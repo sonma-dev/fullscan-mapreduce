@@ -31,7 +31,6 @@ coverage.xml
 # Runtime logs and generated API responses
 *.log
 /_test_*-response.json
-/res/
 /experiment/*/be/res/
 
 # Dependencies and caches for a user-provided frontend
