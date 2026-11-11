@@ -1,7 +1,7 @@
 # Environment settings and local credentials
 .env
 .env.*
-!.env-example
+!.env-sample
 .aws/
 
 # Python virtual environments and bytecode
