@@ -98,7 +98,7 @@ Stage 8 makes one direct Markdown-generation call after stage 7 succeeds, with n
 
 Stage 8 uses `LLM_MAX_OUTPUT_TOKENS` (default and maximum 128000), `LLM_MAX_QUERY_BYTES` (default 8 MiB, maximum 32 MiB), and `LLM_FINAL_MAX_BYTES` (default 1 MiB, maximum 16 MiB). The latter two limits measure the UTF-8 query and Markdown body; exceeding either fails without truncating the specifications. A blank response is not accepted as a completed document.
 
-Each stage receives all previously completed specifications to preserve terminology and consistency. A failed stage stops the sequence. The current prompts generate **Japanese Markdown specifications**, while server logs are in English. To change the generated language, adapt the prompt templates and specification titles in the selected backend.
+Each stage receives all previously completed specifications to preserve terminology and consistency. A failed stage stops the sequence.
 
 ## Quick start
 
