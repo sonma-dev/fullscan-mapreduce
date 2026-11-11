@@ -7,6 +7,8 @@ Also note that normally, additions and deletions of functions for the new IT sys
 
 ## 1. Other Conclusions
 
+- Although the chart shows approximately 1.76 million input tokens for the Full-load approach, the source PDF files were input separately to generate each of the seven specifications.
+  Therefore, the combined token count of the PDF files and the previously generated specifications never exceeded the context window in any single run.
 - Full-scan MapReduce consumes more tokens than Full Load. In other words, full-scan MapReduce has a cost disadvantage.
 - 2-level hierarchical MapReduce requires a large amount of wall-clock time. Improving the program algorithm would likely reduce this wall-clock time.
 - Results may change in the future as issues such as loss in the middle and context rot improve, and reasoning capabilities become more advanced.
