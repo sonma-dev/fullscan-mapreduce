@@ -1,0 +1,36 @@
+{
+  "method": "current_scored_8",
+  "protocol_version": "6.1",
+  "phase": 5,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "universe": {
+    "source_positive_atoms": 1009,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 2944,
+    "generated_positive_occurrences": 3068,
+    "covered_source_atoms": 997,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 0,
+    "canonical_predicted_positive_units": 997,
+    "canonical_decision_units": 1046
+  },
+  "confusion": {
+    "TP": 997,
+    "TN": 37,
+    "FP": 0,
+    "FN": 12
+  },
+  "metrics": {
+    "Precision": 1.0,
+    "Recall": 0.9881070366699702,
+    "F1": 0.9940179461615155,
+    "Duplicate": 0.04041720990873533
+  },
+  "important_limitations": [
+    "The source-positive denominator was corrected to exclude 6 illustrative error-envelope fields and 1 nonnormative fixture-policy statement.",
+    "Contextual TP evidence and generated support classifications are provisional. A zero observed FP is not certification of perfect precision.",
+    "The duplicate rate uses corrected eligible raw occurrences and conservative exact/near-exact class merges.",
+    "TN is limited to PDF-derived fixed negative controls and not all possible missing functionality.",
+    "Additional substantive semantic errors may remain despite structurally consistent item-level judgments."
+  ]
+}

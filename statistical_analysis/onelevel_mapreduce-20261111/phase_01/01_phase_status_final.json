@@ -1,0 +1,100 @@
+{
+  "phase": 1,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "protocol_version": "6.0",
+  "method_scope": "Eight current, unprefixed scored Markdown roles; Phase 1 PDF-only reference shared across methods.",
+  "reuse_decision": "REUSE_SOURCE_INVENTORY_AND_EVIDENCE_VERIFIED_IDENTICAL_PDF",
+  "reuse_source": "Previously completed fullload_cal PDF-derived Phase 1 ledgers",
+  "reference_source_pdf_filename": "OrionDesk_AI_Detailed_Design_Specification.pdf",
+  "current_uploaded_pdf_filename": "OrionDesk_AI_Detailed_Design_Specification(1).pdf",
+  "reference_pdf_sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+  "current_pdf_sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+  "pdf_binary_identity_verified": true,
+  "document_id": "OD-AI-DDS-001",
+  "release": "R1.0",
+  "design_revision": "1.3",
+  "physical_pages": 90,
+  "all_pages_readable": true,
+  "source_positive_atoms": 1024,
+  "source_negative_controls": 37,
+  "unchanged_atom_ids_quotes_pages": true,
+  "unchanged_negative_control_ids_quotes_pages": true,
+  "source_atom_selectable_text_quotes_verified": 1021,
+  "source_atom_visual_figure_quotes_verified": 3,
+  "image_figure_page": 8,
+  "negative_control_pdf_quotes_verified": 37,
+  "visual_pages_contact_sheet_inspected": 31,
+  "excluded_text_units_from_original_page_ledger": 274,
+  "excluded_units_recording": "Page-level summaries, not a newly performed item-by-item exclusion audit.",
+  "scored_inputs": [
+    {
+      "role": "01",
+      "actual_filename": "01_screen_functions(1).md",
+      "mounted": true,
+      "bytes": 79519,
+      "inspected_for_scoring": false
+    },
+    {
+      "role": "02",
+      "actual_filename": "02_api(1).md",
+      "mounted": true,
+      "bytes": 68363,
+      "inspected_for_scoring": false
+    },
+    {
+      "role": "03",
+      "actual_filename": "03_data(1).md",
+      "mounted": true,
+      "bytes": 77230,
+      "inspected_for_scoring": false
+    },
+    {
+      "role": "04",
+      "actual_filename": "04_batch_functions(1).md",
+      "mounted": true,
+      "bytes": 54167,
+      "inspected_for_scoring": false
+    },
+    {
+      "role": "05",
+      "actual_filename": "05_business_rules(1).md",
+      "mounted": true,
+      "bytes": 59073,
+      "inspected_for_scoring": false
+    },
+    {
+      "role": "06",
+      "actual_filename": "06_exception_handling(2).md",
+      "mounted": true,
+      "bytes": 56525,
+      "inspected_for_scoring": false
+    },
+    {
+      "role": "07",
+      "actual_filename": "07_processing_flows(2).md",
+      "mounted": true,
+      "bytes": 59907,
+      "inspected_for_scoring": false
+    },
+    {
+      "role": "08",
+      "actual_filename": "08_architecture_decision(1).md",
+      "mounted": true,
+      "bytes": 53500,
+      "inspected_for_scoring": false
+    }
+  ],
+  "scoring_phase_2_started": false,
+  "phase_1_deliverable_sha256": {
+    "01_source_atoms_final.jsonl": "8a6c97eaf52e3cbe544de9515e22a9f806b173ceac4c12c800f3888ad9053dbc",
+    "01_source_negative_controls_final.jsonl": "ba48d66de139609fbf7d5ff3d3783a1e3792d5f5120b81c404e129ef1561a253",
+    "01_pdf_page_coverage_final.jsonl": "48370c58beee26fb6f10b0660fd462659445a7e0bc18af95eb82dc324b61ae13"
+  },
+  "limitations": [
+    "Source inventory atomicity and negative-control taxonomy retain the earlier BEST_EFFORT provenance; the original source was not newly re-atomized.",
+    "All physical PDF pages and original PDF quotations were checked against byte-identical present PDF; three image-only invariant quotations were visually checked on physical page 8.",
+    "Page-level exclusion categories and aggregate counts do not constitute a fresh item-by-item audit of 274 exclusions.",
+    "No generated-claim extraction, TP/TN/FP/FN, Precision/Recall/F1, or Duplicate scores were performed in Phase 1.",
+    "The canonical PDF filename in unchanged item-level ledgers names an actual materialized, byte-identical reference PDF. The user's newly uploaded PDF has the '(1)' suffix."
+  ]
+}

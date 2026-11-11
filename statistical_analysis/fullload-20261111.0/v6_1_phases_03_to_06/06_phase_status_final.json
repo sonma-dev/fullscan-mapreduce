@@ -1,0 +1,36 @@
+{
+  "protocol_version": "6.1",
+  "phase": 6,
+  "status": "FINAL_BEST_EFFORT",
+  "structural_check": "PASS_STRUCTURAL_ONLY",
+  "semantic_certification": "NOT_CERTIFIED",
+  "confusion": {
+    "TP": 673,
+    "TN": 37,
+    "FP": 210,
+    "FN": 351
+  },
+  "metrics": {
+    "Precision": 0.7621744054360136,
+    "Recall": 0.6572265625,
+    "F1": 0.7058206607236497,
+    "Duplicate": 0.03940298507462687
+  },
+  "audit": {
+    "final_tp_audited": 673,
+    "final_fn_root_causes": {
+      "CONSERVATIVE_UNRESOLVED": 217,
+      "PARTIAL_ENTAILMENT": 134
+    },
+    "supported_only_E1_classes": 722,
+    "unsupported_E1_classes": 210,
+    "phase6_corrected_FNs": [
+      "PDF-01013",
+      "PDF-01014"
+    ],
+    "stale_canonical_rows_removed": 25
+  },
+  "next_phase": null,
+  "method_scope": "single unlabeled eight-file corpus",
+  "delivered_as": "individual English files; no archive"
+}

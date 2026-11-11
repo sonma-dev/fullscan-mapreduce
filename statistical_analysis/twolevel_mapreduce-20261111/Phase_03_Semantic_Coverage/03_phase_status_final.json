@@ -1,0 +1,219 @@
+{
+  "phase": 3,
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "protocol_version": "6.1",
+  "method": "current_user_supplied_eight_document_set",
+  "phase_2_inputs_inspected": 8,
+  "pdf_positive_atoms": 1024,
+  "fixed_negative_controls": 37,
+  "raw_generated_occurrences": 3810,
+  "raw_generated_classes": 3675,
+  "source_matches_completed": 1024,
+  "phase_2_original_generated_occurrences": 3792,
+  "phase_3_eligible_reclassifications": 18,
+  "initial_lexical_false_negatives_corrected": 415,
+  "provisional_tp_count": 809,
+  "provisional_fn_count": 215,
+  "not_phase4_final_rates": true,
+  "negative_control_assertions_evaluated": false,
+  "generated_only_fp_units_evaluated": false,
+  "source_ids_unchanged": true,
+  "generated_occurrence_ids_unchanged": true,
+  "predicate_proof_records": 809,
+  "multi_or_contextual_tp_bridges": 794,
+  "fn_challenge_records": 630,
+  "final_fn_challenge_records": 215,
+  "fn_root_cause_counts": {
+    "CONSERVATIVE_UNRESOLVED": 98,
+    "PARTIAL_ENTAILMENT": 117,
+    "MATCHER_FALSE_NEGATIVE_CORRECTED": 415
+  },
+  "source_evidence_spans_missing": 0,
+  "generated_evidence_spans_missing": 0,
+  "known_decisive_matcher_false_negatives_unresolved": null,
+  "entailment_grade_counts": {
+    "E1": 199,
+    "E2": 794,
+    "E0": 16,
+    "E3": 15
+  },
+  "heuristic_tp_class_counts": {
+    "RECIPROCAL_DIRECT_CORRECTION": 30,
+    "BOUNDED_SHORT_SEMANTIC_REVIEW": 163,
+    "FORMAL_CONTEXT": 294,
+    "CONTEXTUAL_VERIFIED_SCOPE": 316,
+    "DIRECT_SUBPROPOSITION": 5,
+    "CONJUNCTIVE_BEST_EFFORT": 1
+  },
+  "mandatory_critical_exact_match_review_certification": false,
+  "limitations_en": [
+    "This is a bounded best-effort semantic matcher, not a manually certified review of all 1,024 propositions.",
+    "Each provisional TP has original PDF and generated evidence locators, but recorded predicate checks are method-level reviews, not independent certification.",
+    "All provisional FN have reciprocal candidates, source-specific keys, and alternative checks; low similarity does not itself certify absence.",
+    "Source atomicity is unchanged; the designated phase-5 atomization review may change the common denominator with source evidence.",
+    "The canonical universe contains only source-positive and negative control placeholders: generated-only false-positive units and asserted negatives are reserved for phase 4.",
+    "No four-cell metrics, Precision, Recall, F1 or Duplicate have been finalized by phase 3."
+  ],
+  "distribution_by_evidence_kind": {
+    "A2A_FIELD": {
+      "TP": 6,
+      "FN": 2
+    },
+    "ACCEPTANCE_TEST": {
+      "TP": 16,
+      "FN": 0
+    },
+    "API_ACTOR": {
+      "TP": 13,
+      "FN": 2
+    },
+    "API_BEHAVIOR": {
+      "TP": 15,
+      "FN": 2
+    },
+    "API_METHOD_PATH": {
+      "TP": 15,
+      "FN": 0
+    },
+    "API_STATUS": {
+      "TP": 15,
+      "FN": 0
+    },
+    "BOUNDARY_CONTEXT": {
+      "TP": 5,
+      "FN": 0
+    },
+    "COMPONENT_CONTRACT": {
+      "TP": 110,
+      "FN": 0
+    },
+    "CONTRACT_GOVERNANCE": {
+      "TP": 2,
+      "FN": 0
+    },
+    "CROSS_CUTTING_CHECKPOINT": {
+      "TP": 2,
+      "FN": 0
+    },
+    "CROSS_CUTTING_FAILURE": {
+      "TP": 4,
+      "FN": 1
+    },
+    "CROSS_CUTTING_SAFETY": {
+      "TP": 1,
+      "FN": 0
+    },
+    "CROSS_CUTTING_TEST": {
+      "TP": 3,
+      "FN": 4
+    },
+    "DATA_CONSTRAINT": {
+      "TP": 18,
+      "FN": 0
+    },
+    "DATA_FIELD": {
+      "TP": 80,
+      "FN": 0
+    },
+    "DDL_CHECK_OR_DEFAULT": {
+      "TP": 5,
+      "FN": 0
+    },
+    "DDL_FK": {
+      "TP": 2,
+      "FN": 0
+    },
+    "DDL_KEY": {
+      "TP": 1,
+      "FN": 1
+    },
+    "DDL_NULL": {
+      "TP": 7,
+      "FN": 0
+    },
+    "DDL_RLS": {
+      "TP": 2,
+      "FN": 0
+    },
+    "DDL_TYPE": {
+      "TP": 8,
+      "FN": 0
+    },
+    "DESIGN_GOVERNANCE": {
+      "TP": 1,
+      "FN": 0
+    },
+    "DOMAIN_FIELD": {
+      "TP": 13,
+      "FN": 0
+    },
+    "ERROR_CONTRACT": {
+      "TP": 6,
+      "FN": 0
+    },
+    "EVENT_CONTRACT": {
+      "TP": 21,
+      "FN": 3
+    },
+    "EVENT_VERIFICATION": {
+      "TP": 40,
+      "FN": 4
+    },
+    "INDEPENDENT_CONTRACT_FIELD": {
+      "TP": 9,
+      "FN": 8
+    },
+    "INTERFACE_VALIDATION": {
+      "TP": 43,
+      "FN": 0
+    },
+    "MCP_CONTRACT": {
+      "TP": 7,
+      "FN": 2
+    },
+    "NORMATIVE_FIGURE": {
+      "TP": 2,
+      "FN": 1
+    },
+    "NORMATIVE_INVARIANT": {
+      "TP": 11,
+      "FN": 11
+    },
+    "NORMATIVE_PROSE": {
+      "TP": 178,
+      "FN": 163
+    },
+    "NORMATIVE_TEXT": {
+      "TP": 0,
+      "FN": 1
+    },
+    "PRIMARY_SCREEN": {
+      "TP": 8,
+      "FN": 0
+    },
+    "REGISTER_API": {
+      "TP": 64,
+      "FN": 4
+    },
+    "REGISTER_EVENT": {
+      "TP": 40,
+      "FN": 4
+    },
+    "RUNBOOK": {
+      "TP": 6,
+      "FN": 0
+    },
+    "SECURITY_NEGATIVE_TEST": {
+      "TP": 12,
+      "FN": 0
+    },
+    "SECURITY_VERIFICATION": {
+      "TP": 10,
+      "FN": 2
+    },
+    "STATE_CATALOG": {
+      "TP": 8,
+      "FN": 0
+    }
+  }
+}

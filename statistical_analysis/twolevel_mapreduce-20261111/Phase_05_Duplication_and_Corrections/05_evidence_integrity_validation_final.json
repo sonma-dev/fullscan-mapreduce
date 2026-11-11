@@ -1,0 +1,25 @@
+{
+  "phase": 5,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "structural_validation_passed": true,
+  "pdf_identity_sha256_matches_fullload_cal": true,
+  "source_positive_atoms": 1024,
+  "source_negative_controls": 37,
+  "generated_occurrences": 3810,
+  "raw_semantic_classes": 3652,
+  "canonical_judgment_rows": 1061,
+  "final_tp_evidence_audit_rows": 979,
+  "generated_quotes_appearing_on_original_physical_lines": 1525,
+  "quote_text_mismatch_count": 0,
+  "source_class_references_all_resolve": true,
+  "within_across_duplicate_partition_valid": true,
+  "confusion_counts_recompute_structurally": {
+    "TP": 979,
+    "TN": 37,
+    "FP": 0,
+    "FN": 45
+  },
+  "all_original_supplied_markdown_sources_unmodified": true,
+  "semantic_certification": "NOT_VERIFIED_MACHINE_CHECKS_ARE_NOT_FULL_PREDICATE_SEMANTIC_CERTIFICATION",
+  "phase_6_started": false
+}

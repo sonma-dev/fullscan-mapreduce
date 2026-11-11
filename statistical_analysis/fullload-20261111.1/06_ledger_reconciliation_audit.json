@@ -1,0 +1,38 @@
+{
+  "phase": 6,
+  "status": "RECONCILED_INCONSISTENT_PHASE5_MIRRORS",
+  "previous_stale_confusion": {
+    "TP": 733,
+    "TN": 37,
+    "FP": 2115,
+    "FN": 291
+  },
+  "current_confusion": {
+    "TP": 733,
+    "TN": 37,
+    "FP": 2115,
+    "FN": 291
+  },
+  "phase5_evidence_ledger_decisions": {
+    "TP": 733,
+    "FN": 291
+  },
+  "phase5_tp_proof_records": 733,
+  "phase5_fn_candidate_records": 840,
+  "previous_class_validity_rows": 3332,
+  "final_surviving_class_validity_rows": 3275,
+  "source_support_promotions_replayed": 33,
+  "promotion_resulting_surviving_classes": 33,
+  "source_atoms_changed": false,
+  "negative_controls_changed": false,
+  "new_semantic_adjudications": 0,
+  "reason_en": "Stale Phase-4 canonical/validity mirrors contradicted completed Phase-5 evidence judgments and occurrence partitions. Restored the previously documented Phase-5 changes.",
+  "authoritative_reconciliation_inputs": [
+    "03_evidence_matches_final.jsonl",
+    "05_tp_evidence_audit_final.jsonl",
+    "03_fn_root_cause_audit_final.jsonl",
+    "02_generated_classes_final.jsonl",
+    "02_generated_atoms_final.jsonl",
+    "07_change_delta.jsonl"
+  ]
+}

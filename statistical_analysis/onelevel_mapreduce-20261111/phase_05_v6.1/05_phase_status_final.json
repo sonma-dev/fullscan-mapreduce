@@ -1,0 +1,36 @@
+{
+  "protocol_version": "6.1",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "phase": 5,
+  "source_items_reviewed": 1016,
+  "source_atoms_retained": 1009,
+  "new_source_exclusions": 7,
+  "source_exclusion_ids": [
+    "PDF-00757",
+    "PDF-00758",
+    "PDF-00759",
+    "PDF-00760",
+    "PDF-00761",
+    "PDF-00762",
+    "PDF-00964"
+  ],
+  "prior_phase3_exclusions": 8,
+  "fn_root_cause_final_counts": {
+    "CONSERVATIVE_UNRESOLVED": 7,
+    "PARTIAL_ENTAILMENT": 5
+  },
+  "tp_evidence_records": 997,
+  "tp_review_outcome": "PROVISIONAL_BEST_EFFORT_FULL_PREDICATE_TRACE_RETAINED",
+  "generated_classes_after_reclassification": 2944,
+  "eligible_occurrences": 3068,
+  "source_negative_controls": 37,
+  "structural_checks_passed": true,
+  "semantic_evidence_certification": false,
+  "notes": [
+    "No numeric phase-4 score is silently reused after source-denominator correction.",
+    "The full-corpus retrievability and contextual proof of the 12 remaining FNs remains a conservative determination.",
+    "All TP items have original generated quotation locators, but independent predicate review beyond machine-assisted evidence remains a limitation.",
+    "The prior 2209 context-supported classes are not represented as fully semantically certified."
+  ],
+  "recovered_tst_result_cells": 3
+}

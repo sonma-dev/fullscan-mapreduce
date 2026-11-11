@@ -1,0 +1,57 @@
+{
+  "protocol_version": "6.1",
+  "phase": 5,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "completed_work_packages": [
+    "source FN reciprocal review and corrected bridges",
+    "TP evidence audits, including identified unsafe TP correction",
+    "source atomization and release tests review",
+    "generated FP/PDF noncovering and eligibility review",
+    "same-method raw duplication audit",
+    "canonical four-cell recalculation"
+  ],
+  "deliverables_created": [
+    "05_tp_evidence_audit_final.jsonl",
+    "05_source_atomization_audit_final.jsonl",
+    "07_change_delta.jsonl",
+    "04_duplicate_classes_final.jsonl",
+    "05_duplicate_metrics_final.json",
+    "05_duplicate_metrics_final.md",
+    "04_confusion_matrix_final.json",
+    "04_confusion_matrix_final.md"
+  ],
+  "source_confusion": {
+    "TP": 671,
+    "TN": 37,
+    "FP": 210,
+    "FN": 353
+  },
+  "metrics": {
+    "Precision": 0.7616345062429057,
+    "Recall": 0.6552734375,
+    "F1": 0.7044619422572178,
+    "Duplicate": 0.03940298507462687
+  },
+  "audited_TP_count": 671,
+  "final_FN_root_cause_total": 353,
+  "source_denominator_frozen": true,
+  "pending_next_phase": 6,
+  "limitations": "Best-effort semantic proof; automated retrieval and targeted manual adjudication cannot certify full semantic completeness.",
+  "phase5_audit": {
+    "source_FNs_promoted_to_TP": 82,
+    "source_TPs_downgraded_to_FN": 5,
+    "generated_FP_classes_reclassified_supported": 17,
+    "excluded_nondefinitive_classes": 8,
+    "excluded_occurrences": 8,
+    "raw_class_merges": 3,
+    "source_atom_changes": 0,
+    "new_final_FN_dispositions": {
+      "CONSERVATIVE_UNRESOLVED": 217,
+      "PARTIAL_ENTAILMENT": 136
+    },
+    "confirmed_TP_evidence_audit_records": 671,
+    "semantic_certification": "NOT_CERTIFIED_BEST_EFFORT",
+    "phase4_original_TPs_downgraded_to_FN": 1,
+    "phase5_provisional_new_TPs_retracted": 4
+  }
+}

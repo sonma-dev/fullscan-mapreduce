@@ -1,0 +1,10 @@
+{% include 'specification_context.jinja2' %}
+Required sections and coverage:
+{% block requirements required %}{% endblock %}
+
+Phase: {{ phase }}
+Output byte budget: {{ output_budget }}
+{% include 'hierarchy_' ~ phase ~ '.jinja2' %}
+<payload>
+{{ payload }}
+</payload>

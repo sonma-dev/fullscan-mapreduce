@@ -1,0 +1,41 @@
+{
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "protocol_version": "6.1",
+  "phase": 4,
+  "complete_input_files": true,
+  "pdf_pages": 90,
+  "scored_markdown_files": 8,
+  "source_positive_atoms": 1024,
+  "fixed_negative_controls": 37,
+  "raw_generated_classes": 3229,
+  "raw_generated_occurrences": 3358,
+  "canonical_universe_rows": 1296,
+  "confusion": {
+    "TP": 590,
+    "FN": 434,
+    "TN": 37,
+    "FP": 235
+  },
+  "metrics": {
+    "Precision": 0.7151515151515152,
+    "Recall": 0.576171875,
+    "F1": 0.638182801514332
+  },
+  "unique_generated_class_validity": true,
+  "every_occurrence_assigned_to_class": true,
+  "all_canonical_rows_binary_and_unique": true,
+  "one_universe_equations_reconciled": true,
+  "unsupported_generated_only_classes": 235,
+  "affirmatively_asserted_negative_controls": 0,
+  "reciprocal_correctness_reclassifications": 132,
+  "source_support_E1_unresolved_classes": 723,
+  "supported_noncovering_missing_proof_flagged_classes": 125,
+  "original_generated_line_quote_found": 3218,
+  "generated_line_quote_needing_manual_context": 11,
+  "final_fn_root_cause": {
+    "PARTIAL_ENTAILMENT": 202,
+    "CONSERVATIVE_UNRESOLVED": 232
+  },
+  "source_meaningfully_certified": false,
+  "followup_phase5_issues": "Review all E1 source-support records and provisional generated-context eligibility, plus 434 FN dispositions and raw duplicate merges."
+}

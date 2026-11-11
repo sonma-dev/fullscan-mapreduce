@@ -1,0 +1,90 @@
+{
+  "selected_scope": "ONE_EIGHT_FILE_SET",
+  "method_label": "current_user_supplied_eight_document_set",
+  "scored_inputs": [
+    {
+      "input_role": "01_screen_functions",
+      "actual_filename": "01_screen_functions(3).md",
+      "sha256": "b89b69e6b4b908c357f67c2f15cf9a4535043119af894a57e6cdbaa75baff514",
+      "size_bytes": 65980,
+      "physical_lines": 437,
+      "readable_utf8": true,
+      "status": "SCORING_RESERVED_FOR_PHASE_2"
+    },
+    {
+      "input_role": "02_api",
+      "actual_filename": "02_api(3).md",
+      "sha256": "db0e94dce9437a9d5b33346b85e0ee31f46df2d1bd4158948934bf39156d0dd3",
+      "size_bytes": 64693,
+      "physical_lines": 482,
+      "readable_utf8": true,
+      "status": "SCORING_RESERVED_FOR_PHASE_2"
+    },
+    {
+      "input_role": "03_data",
+      "actual_filename": "03_data(3).md",
+      "sha256": "f3eb127d819fca59285d46a0f2e75842c6039bdf899e8e9badaa71577332508c",
+      "size_bytes": 54789,
+      "physical_lines": 411,
+      "readable_utf8": true,
+      "status": "SCORING_RESERVED_FOR_PHASE_2"
+    },
+    {
+      "input_role": "04_batch_functions",
+      "actual_filename": "04_batch_functions(3).md",
+      "sha256": "a7b6927b273a03e4f878889bd2586e1a85f60ce2244f4bacde5b5f83fca1c72c",
+      "size_bytes": 55103,
+      "physical_lines": 274,
+      "readable_utf8": true,
+      "status": "SCORING_RESERVED_FOR_PHASE_2"
+    },
+    {
+      "input_role": "05_business_rules",
+      "actual_filename": "05_business_rules(3).md",
+      "sha256": "7d6934ccf8eb441c799f193066c1f0ef5344c27779073804cbbabf4cdc26167c",
+      "size_bytes": 57330,
+      "physical_lines": 391,
+      "readable_utf8": true,
+      "status": "SCORING_RESERVED_FOR_PHASE_2"
+    },
+    {
+      "input_role": "06_exception_handling",
+      "actual_filename": "06_exception_handling(4).md",
+      "sha256": "cebe3ad3538d3e5bac037f36ac8d0f2bbe6467b759203edb230536f95b40b6ff",
+      "size_bytes": 54914,
+      "physical_lines": 346,
+      "readable_utf8": true,
+      "status": "SCORING_RESERVED_FOR_PHASE_2"
+    },
+    {
+      "input_role": "07_processing_flows",
+      "actual_filename": "07_processing_flows(4).md",
+      "sha256": "0decb3f8128c7aef8b7dbef54836979a677eb927116136cfe8ca7cce2cebe41f",
+      "size_bytes": 65119,
+      "physical_lines": 369,
+      "readable_utf8": true,
+      "status": "SCORING_RESERVED_FOR_PHASE_2"
+    },
+    {
+      "input_role": "08_architecture_decision",
+      "actual_filename": "08_architecture_decision(3).md",
+      "sha256": "ed4804474726c338232ccca4d94641b64e8cb017c0225cfa218072bfef5ae6b3",
+      "size_bytes": 58979,
+      "physical_lines": 216,
+      "readable_utf8": true,
+      "status": "SCORING_RESERVED_FOR_PHASE_2"
+    }
+  ],
+  "authoritative_pdf": {
+    "actual_filename": "OrionDesk_AI_Detailed_Design_Specification(3).pdf",
+    "sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+    "physical_pages": 90,
+    "byte_identical_to_historical_fullload_cal_pdf": true
+  },
+  "instruction_document": {
+    "actual_filename": "OrionDesk_One_Pass_Atomic_Evaluation_Protocol(6).md",
+    "sha256": "1028f4ba1b6ad645b572195e3900d7a01da523f80d9ea59f9eb189767ad4847d",
+    "protocol_version": "6.1",
+    "scored_input": false
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "phase": 6,
+  "phase_name": "Independent recomputation and individual delivery",
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "evaluation_status": "FINAL_BEST_EFFORT",
+  "protocol_version": "6.1",
+  "confusion": {
+    "TP": 754,
+    "TN": 37,
+    "FP": 2115,
+    "FN": 270
+  },
+  "metrics": {
+    "Precision": 0.2628093412338794,
+    "Recall": 0.736328125,
+    "F1": 0.3873619316722322,
+    "Duplicate": 0.030778336786031372
+  },
+  "full_evidence_corpus_enumerated": true,
+  "all_structural_checks_passed": true,
+  "semantic_certification": false,
+  "stale_mirrors_reconciled": true,
+  "additional_explicit_FN_to_TP_corrections": 21,
+  "remaining_high_risk_TP_supported_subclaim_vs_unsupported_full_class_count": 324,
+  "notes_en": [
+    "All six protocol phases are closed.",
+    "No ZIP or TAR archive is created.",
+    "Original scored inputs and frozen PDF R/N remain unchanged.",
+    "Structural validation does not establish independent exhaustive semantic correctness."
+  ]
+}

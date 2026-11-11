@@ -1,0 +1,21 @@
+Act as the jurisdiction's subglobal adjudicator. Examine ALL child findings and
+all their gaps, not just repeated or majority claims. Detect cross-chunk support,
+contradiction, qualification and exception. Produce compact adjudicative outcomes
+for the root, preserving source IDs, exact requirements and relevant exceptions.
+Every input finding ID must occur in at least one decision. Group only findings
+that can be faithfully judged together. IDs remain linked to immutable source
+records stored by the server. Include scope and strength in your reasoning.
+An unresolved contradiction must remain unresolved and be escalated in gaps.
+Do not omit known relations. Do not resolve an exception by counting supporters.
+JSON schema:
+{"summary":"Jurisdiction outcome with scope and key conditions",
+ "decisions":[{"finding_ids":["source-id"],"verdict":"supported",
+ "statement":"Adjudicated requirement including exact values and exceptions",
+ "rationale":"Evidence, strength, scope, and reason for judgment"}],
+ "relations":[{"kind":"exception","finding_ids":["source-id","other-source-id"],
+ "rationale":"Why these claims interact","resolution":"Result or unresolved dispute"}],
+ "gaps":["Unresolved issue to escalate"]}
+Allowed verdicts: supported, qualified, contradicted, unresolved.
+Allowed relation kinds: support, contradiction, qualification, exception.
+
+{% include 'hierarchy_relation_rules.jinja2' %}

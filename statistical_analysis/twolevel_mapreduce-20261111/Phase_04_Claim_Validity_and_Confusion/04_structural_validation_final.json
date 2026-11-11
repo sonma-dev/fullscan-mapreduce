@@ -1,0 +1,14 @@
+{
+  "phase": 5,
+  "TP_plus_FN_equals_R": true,
+  "TN_plus_B_equals_N": true,
+  "FP_equals_B_plus_F": true,
+  "all_four_cells_equal_canonical_universe": true,
+  "duplicate_within_plus_across_equals_excess": true,
+  "source_ID_uniqueness": true,
+  "canonical_ID_uniqueness": true,
+  "class_occurrence_bijection": true,
+  "original_source_evidence_still_present": true,
+  "physical_markdown_line_references_valid": true,
+  "phase_6_not_started": true
+}

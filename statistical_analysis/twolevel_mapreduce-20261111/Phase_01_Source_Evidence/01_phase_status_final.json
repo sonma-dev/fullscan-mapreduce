@@ -1,0 +1,34 @@
+{
+  "phase": 1,
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "protocol_version": "6.1",
+  "source_reuse_requested": true,
+  "source_reuse_verified": true,
+  "authoritative_pdf_is_byte_identical_to_fullload_cal": true,
+  "authoritative_pdf_sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+  "pdf_physical_pages": 90,
+  "pdf_pages_readable": 90,
+  "pdf_image_bearing_pages": 31,
+  "source_positive_atoms": 1024,
+  "source_negative_controls": 37,
+  "source_exclusion_units": 274,
+  "text_evidence_quotes_checked": 2561,
+  "visual_evidence_quotes_checked": 3,
+  "source_quote_mismatch_count": 0,
+  "source_atomization_review_candidates": 19,
+  "source_ledger_unchanged_byte_for_byte": true,
+  "negative_controls_unchanged_byte_for_byte": true,
+  "eight_required_scored_inputs_present": true,
+  "phase_2_started": false,
+  "scores_calculated": false,
+  "limitations_en": [
+    "Source quote verification and structural reconciliation do not certify meaningful semantic atomicity.",
+    "The 19 atomization entries are unresolved review candidates, not demonstrated extraction defects.",
+    "This phase does not evaluate or compare generated Markdown semantics."
+  ],
+  "reused_file_sha256": {
+    "01_source_atoms_final.jsonl": "8a6c97eaf52e3cbe544de9515e22a9f806b173ceac4c12c800f3888ad9053dbc",
+    "01_source_negative_controls_final.jsonl": "ba48d66de139609fbf7d5ff3d3783a1e3792d5f5120b81c404e129ef1561a253",
+    "01_pdf_page_coverage_final.jsonl": "48370c58beee26fb6f10b0660fd462659445a7e0bc18af95eb82dc324b61ae13"
+  }
+}

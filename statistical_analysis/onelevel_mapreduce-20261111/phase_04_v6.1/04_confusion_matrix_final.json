@@ -1,0 +1,47 @@
+{
+  "method": "current_scored_8",
+  "protocol_version": "6.1",
+  "phase": 4,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "universe": {
+    "source_positive_atoms": 1016,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 3168,
+    "generated_positive_occurrences": 3265,
+    "covered_source_atoms": 1003,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 0,
+    "canonical_predicted_positive_units": 1003,
+    "canonical_decision_units": 1053,
+    "negative_universe_scope": "PDF-derived predeclared bounded controls"
+  },
+  "confusion": {
+    "TP": 1003,
+    "TN": 37,
+    "FP": 0,
+    "FN": 13
+  },
+  "metrics": {
+    "Precision": 1.0,
+    "Recall": 0.9872047244094488,
+    "F1": 0.9935611688954928,
+    "Duplicate_phase2_unadjusted": 0.029709035222052066
+  },
+  "generated_claim_validity_dispositions": {
+    "OUT_OF_SCOPE_NONDEFINITIVE": 141,
+    "SUPPORTED_NONCOVERING": 2209,
+    "PDF_ENTAILED": 818
+  },
+  "phase2_eligibility_errors_pending_phase5": 141,
+  "candidate_fp_resolutions_this_pass": 16,
+  "semantic_certification": "NOT_CERTIFIED_BEST_EFFORT",
+  "metric_interpretation": "Provisional precision/recall/F1 over enumerated canonical U; zero observed FP means only that bounded source challenge found no definitive generated-only unsupported proposition, not that any true precision of one is certified.",
+  "limitations": [
+    "The PDF source is authoritative and Phase 3 R/N/TP/FN were not modified.",
+    "Context-supported generated claims were not all reviewed predicate by predicate independently: no final semantic certification.",
+    "The raw Phase 2 class universe contains editorial/nondefinitive extraction errors and must be corrected for Phase 5 duplicate figures.",
+    "Some potential generated-only unsupported commitments may remain undetected due to incomplete semantic retrieval or source-document scope inference.",
+    "Source-side Phase 3 TP bridges and atomization will be independently audited in Phase 5.",
+    "TN only covers 37 fixed PDF-negative controls, not all conceivable nonrequirements."
+  ]
+}

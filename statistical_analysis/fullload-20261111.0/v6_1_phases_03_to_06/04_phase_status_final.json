@@ -1,0 +1,42 @@
+{
+  "phase": 4,
+  "protocol_version": "6.1",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "confusion": {
+    "TP": 590,
+    "TN": 37,
+    "FP": 235,
+    "FN": 434
+  },
+  "metrics": {
+    "Precision": 0.7151515151515152,
+    "Recall": 0.576171875,
+    "F1": 0.638182801514332,
+    "Duplicate": null
+  },
+  "raw_class_count": 3229,
+  "canonical_unit_count": 1296,
+  "generated_claim_validity_counts": {
+    "PDF_ENTAILED": 767,
+    "SUPPORTED_NONCOVERING": 2227,
+    "PDF_UNSUPPORTED": 235
+  },
+  "reversals": 132,
+  "generated_support_evidence_gaps": 125,
+  "input_pdf_physical_pages": 90,
+  "scored_markdown_roles": [
+    "01_screen_functions.md",
+    "02_api.md",
+    "03_data.md",
+    "04_batch_functions.md",
+    "05_business_rules.md",
+    "06_exception_handling(1).md",
+    "07_processing_flows(1).md",
+    "08_architecture_decision.md"
+  ],
+  "scope_completion": "Phase 4 only; Phase 5 duplicate and source-FN/TP audits not performed",
+  "limitations_en": "Bounded reciprocal verification of 3,229 classes, contextual source evidence gaps and partial/unresolved source FNs prevent fully certified correctness.",
+  "generated_source_support_E1_uncertainty": 723,
+  "all_files_verified": true,
+  "original_generated_line_quote_needing_manual_context": 11
+}

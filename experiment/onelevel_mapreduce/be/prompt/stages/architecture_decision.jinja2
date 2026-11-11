@@ -1,0 +1,33 @@
+{% include 'specification_context.jinja2' %}
+
+Phase: decision_register
+
+Create 08_architecture_decision.md in English to organize unresolved items (TBD), using only Markdown specifications 01-07 as input.
+Do not reread the original source or internal Map results. Review Needs confirmation, unresolved decisions, Proposal labels, assumptions, contradictions, and references marked To be defined in a later stage across the specifications.
+Consolidate identical issues while retaining every reference. Use item identifiers such as AD-001, preferring existing identifiers.
+
+## How to Use This Document
+Distinguish confirmed requirements an implementation AI can follow from matters that must remain on hold until confirmed.
+Mark an item resolved only when confirmed statements in specifications 01-07 provide one unambiguous, consistent answer, and state the supporting evidence.
+Do not treat missing statements, implicit guesses, or repeated proposals as confirmation. Do not authorize the implementation AI to adopt unresolved choices independently.
+
+## Unresolved Items
+Create a table of item IDs, subjects, statuses (TBD, Needs confirmation, or Unadopted proposal), reasons for remaining unresolved, questions to confirm, affected scope, and related specification and requirement IDs.
+Map each item to a relative link such as [03_data.md](03_data.md), a section name, and requirement IDs, quoting the necessary statements.
+Keep existing options labeled as proposals. Do not invent an adopted option, decision maker, deadline, or numeric value.
+Keep independent questions separate and distinguish implementation work that depends on a decision from work that can proceed without it.
+If there are no unresolved items, state "No unresolved items" and the scope reviewed. Do not invent issues to meet an item count.
+
+## Items Resolved by the Specifications
+Show the original question, statements establishing the answer, referenced Markdown files, sections and requirement IDs, and the reason for resolution.
+If a reference marked To be defined in a later stage is now defined in a later specification, cite both the original reference and the definition.
+Determine resolution from the supplied statements. Do not claim resolution by adopting a recommendation or filling in missing design details.
+
+## Cross-Specification Conflicts and Pending Decisions
+Show both conflicting statements and their references, the impact, and questions requiring confirmation. Leave the decision pending.
+Do not favor a statement because it appears more often or in a later-generated specification. Leave requests for original-source verification open when needed.
+
+## Consistency and Open Questions
+For each file in 01-07, make the reviewed sections, corresponding item IDs, and resolved or outstanding status traceable.
+Record missing evidence, further confirmation sources, and the confirmation order implied by dependencies.
+Do not claim to have inspected the original source. Treat quotations in earlier specifications as quotations from those specifications.

@@ -1,0 +1,35 @@
+{
+  "phase": 5,
+  "status": "PASS_STRUCTURAL_ONLY",
+  "counts": {
+    "source_positive": 1024,
+    "negative_controls": 37,
+    "generated_occurrences": 3350,
+    "generated_classes": 3218,
+    "canonical_rows": 1271,
+    "TP": 671,
+    "TN": 37,
+    "FP": 210,
+    "FN": 353,
+    "TP_evidence_audit_rows": 676,
+    "unresolved_E1_generated_support": 722
+  },
+  "metrics": {
+    "Precision": 0.7616345062429057,
+    "Recall": 0.6552734375,
+    "F1": 0.7044619422572178,
+    "Duplicate": 0.03940298507462687
+  },
+  "checks": [
+    "one canonical universe",
+    "binary confusion reconciliation",
+    "fixed R/N",
+    "unique class membership",
+    "one TP audit per final TP",
+    "all FN root-cause decisions",
+    "raw duplicate partition",
+    "three regression probes",
+    "full structural recomputation"
+  ],
+  "semantic_reliability": "NOT_CERTIFIED: 722 supported E1 generated classes (plus 210 unsupported E1 generated classes) and 353 unresolved/partial source FNs"
+}

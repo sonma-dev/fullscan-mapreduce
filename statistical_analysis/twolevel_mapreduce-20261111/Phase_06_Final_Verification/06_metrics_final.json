@@ -1,0 +1,135 @@
+{
+  "prefix": "current_user_supplied_eight_document_set",
+  "phase": 6,
+  "status": "FINAL_BEST_EFFORT",
+  "phase_completion_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "universe": {
+    "source_positive_atoms": 1024,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 3652,
+    "generated_positive_occurrences": 3810,
+    "covered_source_atoms": 979,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 0,
+    "canonical_predicted_positive_units": 979,
+    "canonical_decision_units": 1061,
+    "negative_universe_scope": "PDF-grounded, predeclared bounded negative controls only"
+  },
+  "confusion": {
+    "TP": 979,
+    "TN": 37,
+    "FP": 0,
+    "FN": 45
+  },
+  "metrics": {
+    "Precision": 1.0,
+    "Recall": 0.9560546875,
+    "F1": 0.9775336994508238,
+    "Duplicate": 0.04146981627296588
+  },
+  "duplication": {
+    "duplicate_excess_occurrences": 158,
+    "within_file_excess": 0,
+    "across_file_excess": 158,
+    "repeated_claim_class_count": 123,
+    "repeated_classes_spanning_files": 123
+  },
+  "fn_root_causes": {
+    "CONSERVATIVE_UNRESOLVED": 34,
+    "PARTIAL_ENTAILMENT": 11
+  },
+  "fn_candidate_review": {
+    "initial_fn_candidates": 630,
+    "candidate_false_negatives_corrected_to_tp": 585,
+    "final_uncovered": 45
+  },
+  "tp_proof_audit": {
+    "tp_records": 979,
+    "e3_direct": 15,
+    "e2_logical_bridge": 964,
+    "bridge_modes": {
+      "CONJUNCTIVE_BRIDGE": 179,
+      "SEMANTIC_EQUIVALENCE": 205,
+      "UNIVERSAL_INSTANTIATION": 259,
+      "INHERITED_CONTEXT": 321,
+      "DIRECT": 15
+    },
+    "generated_evidence_quotes_checked_on_original_lines": 1525,
+    "reviewed_predicate_maps_present": 979,
+    "independently_semantically_certified": false
+  },
+  "generated_validity": {
+    "classes_by_status": {
+      "PDF_ENTAILED": 1691,
+      "SUPPORTED_NONCOVERING": 1961
+    },
+    "support_grades": {
+      "E2": 426,
+      "E1_BEST_EFFORT": 3218,
+      "E3": 8
+    },
+    "all_classes_independently_semantically_certified": false
+  },
+  "source_atomization": {
+    "audit_records": 1024,
+    "dispositions": {
+      "HIGH_LEVEL_SUMMARY_RETAINED_WITH_PARENT_CHILD_RISK": 1,
+      "NO_ATOMIZATION_CHANGE": 523,
+      "INDEPENDENT_PREDICATE_CHILD_OR_REVIEWED_SHARED_PASSAGE": 496,
+      "PDF_LINE_WRAP_REPAIRED_NO_ATOM_COUNT_CHANGE": 2,
+      "NORMATIVITY_BOUNDARY_RETAINED_WITH_UNCERTAINTY": 2
+    },
+    "source_line_wrap_repairs": 2,
+    "source_count_delta": 0
+  },
+  "change_deltas": {
+    "SOURCE_LINE_WRAP_CORRECTION": 2,
+    "GENERATED_SEMANTIC_CLASS_MERGE": 23,
+    "FN_TO_TP_ENTAILMENT_CORRECTION": 170,
+    "TP_EVIDENCE_RELINK_NO_SCORE_CHANGE": 41
+  },
+  "pdf_verification": {
+    "sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+    "physical_pages_covered": 90,
+    "pdf_quote_text_matches": 2561,
+    "pdf_quote_text_mismatches": 0,
+    "embedded_figure_text_locators": 3,
+    "pdf_text_verification_skipped": false
+  },
+  "input_coverage": {
+    "scored_markdown_files": 8,
+    "all_hashes_verified": true,
+    "every_nonblank_line_inspection_recorded": true,
+    "original_generated_occurrences": 3792,
+    "recovered_generated_occurrences": 18,
+    "source_exclusion_records": 274,
+    "generated_exclusion_records": 2734
+  },
+  "verification_checks": {
+    "source_negative_and_generated_id_uniqueness": true,
+    "method_isolation_and_raw_class_validity": true,
+    "all_occurrences_one_and_only_one_raw_semantic_class": true,
+    "all_eight_input_hashes_and_all_line_inspection_ledgers_verified": true,
+    "duplicate_raw_class_count_and_within_across_partition": true,
+    "one_enumerated_canonical_universe_four_cells_equations": true,
+    "complete_source_to_tp_fn_and_root_cause_ledgers": true,
+    "source_atomization_audit_and_change_deltas": true,
+    "all_generated_classes_checked_and_no_known_unsupported_unscored": true,
+    "all_tp_generated_quotes_and_lines_exist_in_inputs": true,
+    "actual_pdf_hash_and_all_page_inventory_verified": true,
+    "source_text_evidence_physical_page_exact_quote_matches": true,
+    "no_obvious_verbatim_full_statement_fn": true,
+    "reciprocal_regression_probes_run_with_real_file_lines": true,
+    "independent_recomputation_matches_phase5_summaries": true
+  },
+  "warnings_en": [],
+  "metric_interpretation": "All four cells come from one enumerated effective canonical proposition universe; raw generated classes and occurrences are counted separately only for duplication. Rates are best-effort, not certified design correctness.",
+  "semantic_uncertainties_en": [
+    "The 1,024-element PDF source inventory still contains parent/child and normative-status atomization uncertainties; arithmetic alone cannot settle them.",
+    "The generated-only correctness inventory has many E1_BEST_EFFORT classes. FP=0 means none was definitively entered as unsupported; it does not prove zero unsupported claims.",
+    "TP predicate maps and evidence passages are present, but most are E2 best-effort bridges rather than independent expert-certified full-predicate semantic proofs.",
+    "Final FN rows distinguish partial entailment from unresolved conservative judgments; they are not equivalent to verified missing functionality.",
+    "Duplication metrics count the current raw semantic class clustering, which can still miss paraphrases or split scope-sensitive statements.",
+    "The 37 negative controls are a bounded set derived from explicit PDF exclusions; TN is not all true negatives in the world."
+  ]
+}

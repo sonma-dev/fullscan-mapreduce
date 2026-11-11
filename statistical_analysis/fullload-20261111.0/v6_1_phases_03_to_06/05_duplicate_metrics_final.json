@@ -1,0 +1,17 @@
+{
+  "prefix": "unlabeled_single_supplied_corpus",
+  "protocol_version": "6.1",
+  "phase": 6,
+  "status": "FINAL_BEST_EFFORT",
+  "eligible_generated_occurrences": 3350,
+  "unique_generated_claim_classes": 3218,
+  "duplicate_excess_occurrences": 132,
+  "duplicate_rate": 0.03940298507462687,
+  "duplicate_percentage": 3.940298507462687,
+  "repeated_claim_class_count": 86,
+  "repeated_classes_spanning_multiple_files": 82,
+  "within_file_excess": 16,
+  "across_file_excess": 116,
+  "partition_verified": true,
+  "definition": "Duplicate=(raw eligible generated occurrences - within-method unique semantic classes)/raw occurrences. Effective coverage projections must not be used to count duplicates."
+}

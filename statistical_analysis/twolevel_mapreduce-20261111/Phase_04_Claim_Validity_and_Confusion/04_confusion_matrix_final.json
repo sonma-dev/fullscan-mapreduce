@@ -1,0 +1,45 @@
+{
+  "prefix": "current_user_supplied_eight_document_set",
+  "phase": 5,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "universe": {
+    "source_positive_atoms": 1024,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 3652,
+    "generated_positive_occurrences": 3810,
+    "covered_source_atoms": 979,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 0,
+    "canonical_predicted_positive_units": 979,
+    "canonical_decision_units": 1061,
+    "negative_universe_scope": "Only fixed PDF-prohibited/deferred counterfactual controls"
+  },
+  "confusion": {
+    "TP": 979,
+    "TN": 37,
+    "FP": 0,
+    "FN": 45
+  },
+  "metrics": {
+    "Precision": 1.0,
+    "Recall": 0.9560546875,
+    "F1": 0.9775336994508238,
+    "Duplicate": 0.04146981627296588
+  },
+  "corrections": {
+    "newly_recovered_fn_to_tp": 170,
+    "source_line_wrap_fixes_without_denominator_change": 2,
+    "raw_class_merges": 23,
+    "source_atom_adds_or_removals": 0,
+    "remaining_fn_reviewed": 45
+  },
+  "structural_assertions": {
+    "TP_plus_FN_equals_R": true,
+    "TN_plus_B_equals_N": true,
+    "FP_equals_B_plus_F": true,
+    "all_four_cells_equal_canonical_universe": true,
+    "duplicate_within_plus_across_equals_excess": true
+  },
+  "interpretation_en": "Rates are reproducible best-effort binary results over a canonical proposition universe. They are NOT independently certified semantic completeness; many source-atom entailments and generated-only claims still require cautious interpretation. FP=0 is not a proof of zero false or unsupported claims.",
+  "scope_disclaimer_en": "Source R and fixed N are shared with fullload_cal; no other generation method was measured; no previous score is substituted for current evidence."
+}

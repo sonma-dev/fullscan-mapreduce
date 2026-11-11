@@ -1,0 +1,27 @@
+{
+  "status": "FINAL_BEST_EFFORT",
+  "confusion": {
+    "TP": 997,
+    "TN": 37,
+    "FP": 0,
+    "FN": 12
+  },
+  "metrics": {
+    "Precision": 1.0,
+    "Recall": 0.9881070366699702,
+    "F1": 0.9940179461615155,
+    "Duplicate": 0.04041720990873533
+  },
+  "structural_failures": [],
+  "critical_semantic_warnings": [
+    "1636 generated classes labeled SUPPORTED_NONCOVERING are used in 926 TP evidence bridges; the classifications may be consistent for conjunctive bridges, but independent scope and predicate proof is still required.",
+    "997 source-positive TP proof records lack independent full semantic certification.",
+    "2944 generated classes lack independent semantic validity certification.",
+    "No unsupported definitive generated proposition was recorded as FP; this does not prove error-free generation."
+  ],
+  "matched_pdf_text": 1006,
+  "figure_quotes": 3,
+  "generated_quote_failures": 0,
+  "tp_quote_failures": 0
+}
+

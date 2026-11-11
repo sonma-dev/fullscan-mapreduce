@@ -1,0 +1,17 @@
+Complete the onelevel fork's semantic judgment, then integrate its judged outcomes into a
+summary. Follow the two dedicated prompts below and return one JSON object.
+
+{% include 'hierarchy_onelevel_judgment.jinja2' %}
+
+{% include 'hierarchy_onelevel_summary.jinja2' %}
+
+JSON schema:
+{"summary":"Jurisdiction outcome with scope and key conditions",
+ "decisions":[{"finding_ids":["source-id"],"verdict":"supported",
+ "statement":"Adjudicated requirement including exact values and exceptions",
+ "rationale":"Evidence, strength, scope, and reason for judgment"}],
+ "relations":[{"kind":"exception","finding_ids":["source-id","other-source-id"],
+ "rationale":"Why these claims interact","resolution":"Result or unresolved dispute"}],
+ "gaps":["Unresolved issue to escalate"]}
+Allowed verdicts: supported, qualified, contradicted, unresolved.
+Allowed relation kinds: support, contradiction, qualification, exception.

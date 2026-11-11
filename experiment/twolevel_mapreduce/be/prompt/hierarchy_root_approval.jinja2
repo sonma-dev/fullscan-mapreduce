@@ -1,0 +1,75 @@
+Perform an independent root approval review of the current specification as a
+usable, evidence-grounded draft. The acceptance standard is material correctness
+within this stage's scope; publication polish and resolution of every open design
+question are not prerequisites. The candidate's generated prose, headings, table
+labels, and diagram labels must be in English. Review ALL original leaf evidence in
+evidence_ledger, scan coverage/gaps, node outcomes, context, and the current stage's requirements.
+Do not approve merely because a lower node or a majority agreed.
+
+Set approved=true when the candidate is written in English and preserves the
+supported core behavior, material conditions, and exceptions for this stage and
+clearly labels uncertainty.
+The following are non-blocking and may be listed as optional feedback:
+- Source information that is unavailable or ambiguous and explicitly marked Needs confirmation.
+- Unresolved conflicts that retain the source alternatives and their impact as open
+  questions, without presenting an unsupported resolution as confirmed.
+- Clearly labeled Proposal items, or dependencies on later specifications marked
+  To be defined in a later stage.
+- Minor wording, formatting, organization, repetition, or citation-format issues
+  where the underlying requirement and its source remain identifiable.
+- Findings relevant only to another specification. Review them for cross-stage
+  implications; they do not all need to be repeated in this stage's Markdown body.
+
+Set approved=false if the candidate's generated prose or labels are not in English;
+request an English rewrite that preserves evidence and identifiers. Otherwise, reject
+only for a material defect that would mislead implementation or
+testing of this stage: a core source-supported requirement or exception is omitted
+or misstated, a confirmed claim contradicts applicable source evidence, an invented
+requirement/value is presented as confirmed, or a conflict is hidden as settled.
+A documented open question is acceptable; merely labeling a source-confirmed
+mandatory behavior as unknown does not excuse losing that behavior.
+For each blocking defect, feedback must identify the affected finding IDs or source
+locations, the candidate's specific omission/claim, its material impact, and the
+smallest evidence-based correction. Do not reject for speculative improvements or
+details that the source cannot supply. If the English output requirement is met
+and no material defect can be identified, approve and put remaining suggestions in feedback.
+
+Examples: an unspecified field length marked Needs confirmation can pass; an API detail deferred
+to its later stage can pass; an explicitly documented unresolved source conflict can
+pass. A source rule denying suspended administrators that the candidate changes to
+allowing all administrators must be rejected.
+
+When approved=true, feedback contains optional follow-up suggestions and may be
+empty. When approved=false, feedback contains only actionable blocking corrections
+for the next full-scan attempt. Explain this assessment in rationale.
+
+Use required_review.chunk_ids and required_review.finding_ids as the complete review
+checklist. Examine every listed chunk and finding against the candidate and original
+evidence, including findings outside this specification's scope or not cited in the
+candidate. Then report every reviewed ID exactly once in the corresponding array,
+using the exact identifier and type. Return complete lists even when approved is
+false. Do not use ranges, ellipses, counts, representative IDs, or schema examples in
+place of actual IDs. An empty finding list is valid only when the checklist is empty.
+Do not claim an item was reviewed merely by copying its ID.
+
+reviewed_chunk_ids contains only the integer chunk IDs in required_review.chunk_ids,
+each exactly once. These identify leaf chunks, not original page numbers, chapter
+IDs, fork IDs, or attachment-local page numbers. reviewed_finding_ids contains
+only the exact strings in required_review.finding_ids, each exactly once.
+Do not invent IDs or reuse IDs from a previous specification or full-scan attempt.
+
+If coverage_feedback is present, the previous review has missing, duplicate,
+or unknown IDs and is not a valid approval or rejection. It reports each kind of
+ID error and preserves the previous response as untrusted model output.
+Use required_review as the authoritative checklist, never the invalid ID arrays.
+Re-examine the complete evidence and candidate, including any omitted evidence.
+Return a complete new review with every allowed ID exactly once, not an ID patch
+or just a deduplicated copy of the previous review. Reassess
+previous concerns using the material-defect standard above; retain unresolved
+blocking concerns and treat optional improvements as non-blocking feedback.
+Choose approved based on that review; never approve merely to satisfy validation.
+
+JSON schema:
+{"approved":true,"reviewed_chunk_ids":[1,2],"reviewed_finding_ids":["source-id"],
+ "rationale":"Evidence-based reason for approval or rejection",
+ "feedback":["Actionable correction required when rejected"]}

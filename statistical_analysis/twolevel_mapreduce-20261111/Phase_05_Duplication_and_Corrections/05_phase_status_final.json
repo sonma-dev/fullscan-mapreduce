@@ -1,0 +1,41 @@
+{
+  "phase": 5,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "source_pdf_sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+  "R": 1024,
+  "N": 37,
+  "TP": 979,
+  "TN": 37,
+  "FP": 0,
+  "FN": 45,
+  "Precision": 1.0,
+  "Recall": 0.9560546875,
+  "F1": 0.9775336994508238,
+  "GO": 3810,
+  "G_C": 3652,
+  "Duplicate": 0.04146981627296588,
+  "tp_audit_rows": 979,
+  "tp_exact_generated_quotation_not_reverified": 0,
+  "fn_root_cause_rows": 630,
+  "fn_review_dispositions": {
+    "CONSERVATIVE_UNRESOLVED": 34,
+    "PARTIAL_ENTAILMENT": 11
+  },
+  "negative_control_reviews": 37,
+  "source_atomization_reviews": 1024,
+  "generated_duplicate_candidate_reviews": 231,
+  "duplicate_merges": 23,
+  "fn_recovered_this_phase": 170,
+  "source_reference_line_wrap_repairs": 2,
+  "source_count_changes": 0,
+  "validity_status_counts": {
+    "PDF_ENTAILED": 1685,
+    "SUPPORTED_NONCOVERING": 1967
+  },
+  "uncertainty_en": "A complete and structurally reconciled item-level result is available, but independent expert-certified predicate entailment and complete generated-only unsupported-claim discovery are not established; the reported Precision and Recall are provisional.",
+  "tp_evidence_relinks": 41,
+  "evidence_relink_unresolved_cases": 3,
+  "phase5_final_structural_integrity_passed": true,
+  "generated_evidence_quotation_lines_verified": 1525,
+  "invalid_class_reference_count": 0
+}

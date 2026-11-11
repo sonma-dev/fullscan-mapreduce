@@ -1,0 +1,37 @@
+{
+  "phase": 4,
+  "protocol_version": "6.1",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "generated_claim_classes_reviewed": 3168,
+  "negative_controls_reviewed": 37,
+  "canonical_judgments": 1053,
+  "confusion": {
+    "TP": 1003,
+    "TN": 37,
+    "FP": 0,
+    "FN": 13
+  },
+  "semantic_certification": "NOT_CERTIFIED_BEST_EFFORT",
+  "phase5_performed": false,
+  "structural_checks_passed": true,
+  "phase2_eligibility_issues_pending_phase5": 141,
+  "deliverables": [
+    "03_canonical_universe_final.jsonl",
+    "04_atomic_judgments_final.jsonl",
+    "04_build.py",
+    "04_confusion_matrix_final.json",
+    "04_confusion_matrix_final.md",
+    "04_extraction_eligibility_review_final.jsonl",
+    "04_false_positive_challenge_final.jsonl",
+    "04_final_adjudication.py",
+    "04_final_candidate_resolutions.jsonl",
+    "04_final_class_context_review.jsonl",
+    "04_final_review.py",
+    "04_generated_claim_validity_final.jsonl",
+    "04_negative_control_assertion_audit_final.jsonl",
+    "04_phase_status_final.json",
+    "04_reciprocal_pdf_support_refinement.jsonl",
+    "04_refine.py",
+    "04_resolve_final_candidates.py"
+  ]
+}

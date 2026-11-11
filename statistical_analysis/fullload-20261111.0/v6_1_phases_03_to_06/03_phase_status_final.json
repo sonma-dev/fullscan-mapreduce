@@ -1,0 +1,35 @@
+{
+  "phase": 3,
+  "protocol_version": "6.1",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "source_positive_inventory_before_atomization": 1024,
+  "source_positive_inventory_after_atomization": 1024,
+  "source_negative_control_inventory": 37,
+  "generated_occurrences": 3358,
+  "raw_generated_classes": 3229,
+  "source_TP_draft": 590,
+  "source_FN_draft": 434,
+  "grade_counts": {
+    "E2": 574,
+    "E1": 428,
+    "E0": 6,
+    "E3": 16
+  },
+  "initial_FNs_reciprocally_challenged": 527,
+  "initial_TPs_evidence_audited": 497,
+  "corrected_matcher_FN_to_TP": 93,
+  "corrected_TP_to_FN": 0,
+  "source_atomization_corrections": 0,
+  "fn_root_cause_counts": {
+    "PARTIAL_ENTAILMENT": 202,
+    "CONSERVATIVE_UNRESOLVED": 232
+  },
+  "e2_bridge_records": 574,
+  "full_canonical_FP_TN_not_computed": true,
+  "same_source_R_must_apply_to_any_other_method": true,
+  "interpretation": "Phase 3 source-side coverage decisions are best-effort; not independently certified semantic recall. Earlier Phase 4-6 metrics must not be reused after source/judgment changes.",
+  "targeted_generated_short_cell_repairs": 23,
+  "generation_inventory_correction_note_en": "Only originally overlooked definitive short cells were repaired from original source Markdown tables, preserving all original occurrence/class IDs and appending new IDs; full Phase 2 deduplication remains for Phase 5 correction.",
+  "source_atomization_independent_test_obligations_retained": 16,
+  "source_atomization_reconciliation_note_en": "All 16 named Appendix E test cases are retained as separately executable release verification obligations. Their scenario/expected-result evidence was matched to explicitly stated AC tests in the generated corpus. Source test execution must remain distinct from product behavior for future cross-method comparisons."
+}

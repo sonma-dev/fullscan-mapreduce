@@ -1,0 +1,72 @@
+{
+  "prefix": "unprefixed_eight_markdown_set",
+  "protocol_version": "6.1",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "phase": 5,
+  "universe": {
+    "source_positive_atoms": 1024,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 3275,
+    "generated_positive_occurrences": 3379,
+    "covered_source_atoms": 733,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 2115,
+    "canonical_predicted_positive_units": 2848,
+    "canonical_decision_units": 3176,
+    "negative_universe_scope": "The same 37 PDF-grounded negative controls; diagnostic bounds only"
+  },
+  "confusion": {
+    "TP": 733,
+    "TN": 37,
+    "FP": 2115,
+    "FN": 291
+  },
+  "metrics": {
+    "Precision": 0.257373595505618,
+    "Recall": 0.7158203125,
+    "F1": 0.37861570247933884,
+    "Duplicate": 0.030778336786031372
+  },
+  "generated_class_pdf_validity_counts": {
+    "SUPPORTED_NONCOVERING": 756,
+    "PDF_ENTAILED": 402,
+    "PDF_UNSUPPORTED": 2115
+  },
+  "fn_dispositions": {
+    "CONSERVATIVE_UNRESOLVED": 129,
+    "PARTIAL_ENTAILMENT": 154,
+    "TRUE_MISSING": 8
+  },
+  "phase5_source_atomization_changes": 0,
+  "phase5_prior_false_negative_corrections": 29,
+  "phase5_generated_eligibility_exclusions": 15,
+  "phase5_merged_class_count": 42,
+  "phase5_changed_generated_validity_class_count": 33,
+  "phase5_tp_audit_record_count": 733,
+  "phase5_final_tp_audit_count": 733,
+  "duplicate": {
+    "eligible_generated_occurrences": 3379,
+    "unique_generated_claim_classes": 3275,
+    "duplicate_excess_occurrences": 104,
+    "within_file_excess": 5,
+    "across_file_excess": 99,
+    "repeated_claim_class_count": 87,
+    "repeated_classes_spanning_multiple_files": 86
+  },
+  "semantic_certification": false,
+  "limitations_en": [
+    "Every source atom and generated class has a structurally enumerated judgment, but actual full semantic entailment is not human-certified.",
+    "Conservative E1/E0 dispositions and undercontextualized generated extraction may materially change both FP and FN counts.",
+    "The TP proof map shows actual file/line and full table-row context; automatic predicate status cannot independently certify scope, exception and version equivalence.",
+    "The original 1024-atom source denominator is deliberately reused unchanged; source split/merge errors have not been demonstrated conclusively and may remain.",
+    "Generated raw duplication is conservative: candidates below very high full-predicate similarity remain separated.",
+    "The 37 negative controls are bounded and TN does not enumerate all absent design capabilities."
+  ],
+  "phase5_prioritized_generated_class_review_count": 633,
+  "phase5_prioritized_review_dispositions": {
+    "CONSERVATIVE_PDF_UNSUPPORTED_BEST_EFFORT": 610,
+    "PDF_SUPPORT_RECORDED": 14,
+    "REMOVED_OR_UNMAPPED": 8,
+    "MERGED_INTO_SAME_MEANING_CLASS": 1
+  }
+}

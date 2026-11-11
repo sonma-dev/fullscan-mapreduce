@@ -1,0 +1,82 @@
+{
+  "prefix": "unprefixed_eight_markdown_set",
+  "protocol_version": "6.1",
+  "phase": 6,
+  "status": "FINAL_BEST_EFFORT",
+  "universe": {
+    "source_positive_atoms": 1024,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 3275,
+    "generated_positive_occurrences": 3379,
+    "covered_source_atoms": 754,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 2115,
+    "canonical_predicted_positive_units": 2869,
+    "canonical_decision_units": 3176,
+    "negative_universe_scope": "PDF-grounded, predeclared bounded controls only"
+  },
+  "confusion": {
+    "TP": 754,
+    "TN": 37,
+    "FP": 2115,
+    "FN": 270
+  },
+  "metrics": {
+    "Precision": 0.2628093412338794,
+    "Recall": 0.736328125,
+    "F1": 0.3873619316722322,
+    "Duplicate": 0.030778336786031372
+  },
+  "duplicate": {
+    "eligible_generated_occurrences": 3379,
+    "unique_generated_claim_classes": 3275,
+    "duplicate_excess_occurrences": 104,
+    "within_file_excess": 5,
+    "across_file_excess": 99,
+    "repeated_claim_class_count": 87,
+    "repeated_classes_spanning_multiple_files": 86
+  },
+  "fn_root_causes": {
+    "CONSERVATIVE_UNRESOLVED": 125,
+    "PARTIAL_ENTAILMENT": 137,
+    "TRUE_MISSING": 8
+  },
+  "corrected_initial_fn_candidates": 570,
+  "tp_proof_audit_records": 754,
+  "source_atomization_changed_ids": 0,
+  "generated_class_pdf_validity_counts": {
+    "SUPPORTED_NONCOVERING": 763,
+    "PDF_ENTAILED": 397,
+    "PDF_UNSUPPORTED": 2115
+  },
+  "reconciliation": {
+    "corrected_stale_phase4_mirrors": true,
+    "universe_restored_from_phase5_item_level_adjudications": true,
+    "new_semantic_adjudications_in_phase6": 0
+  },
+  "structural_audit": {
+    "all_checks_passed": true,
+    "checks": {
+      "required_final_ledgers_exist": true,
+      "unique_ids_and_universe_partition": true,
+      "every_occurrence_in_exactly_one_class": true,
+      "one_binary_judgment_per_canonical_unit": true,
+      "every_TP_has_proof_record_and_required_bridge_fields": true,
+      "FN_reciprocal_root_causes_and_corrected_candidates": true,
+      "generated_only_FP_and_bounded_N_are_nonoverlapping": true,
+      "one_universe_four_cell_equations": true,
+      "duplicate_occurrence_partition": true,
+      "90_PDF_pages_and_eight_scored_inputs_inspected": true,
+      "TP_original_generated_file_line_locations_resolve": true,
+      "atomization_audit_and_source_id_integrity": true,
+      "reported_phase5_baselines_reconcile": true,
+      "final_report_language_and_required_disclosures": true
+    },
+    "tp_unique_original_locators_reviewed": 609,
+    "missing_tp_evidence_locators": 0,
+    "advisory_non_table_quote_normalization_issues": 0,
+    "warnings": []
+  },
+  "semantic_certification": false,
+  "metric_interpretation": "Conventional binary Precision, Recall and F1 over one effective PDF-source/negative-control/generated-unsupported canonical universe; raw generated class and occurrence counts are separate. Passing structural validation does not certify every semantic judgment."
+}

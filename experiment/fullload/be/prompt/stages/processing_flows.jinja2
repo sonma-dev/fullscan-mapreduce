@@ -1,0 +1,18 @@
+{% extends "specification_user.jinja2" %}
+{% block requirements %}
+Create the Processing Flow Specification in English. Use flow identifiers such as FLOW-001, preferring existing source identifiers. Reference the preceding six specifications to connect business initiation, completion, and recovery.
+
+## Flow Inventory and Prerequisites
+List flow IDs, purposes, users and systems, triggering events, prerequisites, completion conditions, and related specification IDs.
+## Normal Processing
+In execution order, describe actors, screen operations, API calls, inputs and outputs, applicable business rules, data reads and writes, state transitions, batch and asynchronous integrations, and transaction boundaries.
+## Branches, Failures, and Recovery
+Show conditional branches, alternative paths, mutual exclusion and parallel processing, exception IDs, retries, compensation, termination points, and resumption points.
+## Flow Diagrams and Specification Mappings
+Create Mermaid flowcharts or sequence diagrams for major flows supported by the source, matching step numbers and specification IDs in the text.
+Provide a mapping table from screens to APIs, data, batch jobs, business rules, and exceptions. Do not invent elements to complete a diagram.
+## Acceptance Criteria
+Summarize validation conditions for representative normal, branching, failure, and recovery paths.
+## Consistency and Open Questions
+Summarize unresolved references, contradictions, and questions across all seven specifications. Do not silently change earlier specification bodies or identifiers.
+{% endblock %}

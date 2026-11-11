@@ -1,0 +1,96 @@
+{
+  "prefix": "unlabeled_single_supplied_corpus",
+  "protocol_version": "6.1",
+  "phase": 6,
+  "status": "FINAL_BEST_EFFORT",
+  "input_scope": {
+    "original_pdf_physical_pages": 90,
+    "scored_markdown_files": 8,
+    "scored_markdown_physical_lines": 3956,
+    "table_cells_in_coverage_ledger": 6308
+  },
+  "universe": {
+    "source_positive_atoms": 1024,
+    "source_negative_controls": 37,
+    "generated_positive_occurrences": 3350,
+    "raw_generated_claim_classes": 3218,
+    "covered_source_atoms": 673,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 210,
+    "canonical_predicted_positive_units": 883,
+    "canonical_decision_units": 1271
+  },
+  "confusion": {
+    "TP": 673,
+    "TN": 37,
+    "FP": 210,
+    "FN": 351
+  },
+  "metrics": {
+    "Precision": 0.7621744054360136,
+    "Recall": 0.6572265625,
+    "F1": 0.7058206607236497,
+    "Duplicate": 0.03940298507462687
+  },
+  "duplication": {
+    "eligible_generated_occurrences": 3350,
+    "unique_generated_claim_classes": 3218,
+    "duplicate_excess_occurrences": 132,
+    "within_file_excess": 16,
+    "across_file_excess": 116,
+    "repeated_claim_class_count": 86,
+    "repeated_classes_spanning_multiple_files": 82
+  },
+  "audit": {
+    "confirmed_tp_evidence_records": 673,
+    "downgraded_tp_records": 5,
+    "final_fn_root_causes": {
+      "CONSERVATIVE_UNRESOLVED": 217,
+      "PARTIAL_ENTAILMENT": 134
+    },
+    "corrected_candidate_fns_in_root_cause_ledger": 177,
+    "source_atomization_audit_rows": 1,
+    "change_delta_rows": 132,
+    "pdf_quote_text_extraction_nonmatches": [
+      "PDF-00977",
+      "PDF-00978",
+      "PDF-00979"
+    ],
+    "supported_E1_generated_classes": 722,
+    "unsupported_E1_generated_classes": 210,
+    "exact_field_regression_probes": "PASS"
+  },
+  "corrected_in_phase6": {
+    "explicit_FNs_corrected_to_TP": 2,
+    "source_ids": [
+      "PDF-01013",
+      "PDF-01014"
+    ],
+    "generated_evidence": "03_data.md:182 (SearchChunk row / Required content / validation)",
+    "canonical_universe_stale_unsupported_units_removed": 25,
+    "source_positive_inventory_changed": false,
+    "negative_control_inventory_changed": false,
+    "raw_generated_occurrence_or_class_inventory_changed": false,
+    "missing_E2_predicate_maps_backfilled_from_existing_TP_audit": 82,
+    "incomplete_TP_predicate_maps_completed_from_existing_source_context": 7
+  },
+  "metric_interpretation": "Conventional canonical effective-proposition precision/recall/F1 on source R plus fixed bounded N plus distinct unsupported generated propositions F. Raw class duplication is separate. All rates are provisional evidence-based BEST_EFFORT estimates, not semantically certified implementation coverage.",
+  "semantic_certification": "NOT_CERTIFIED",
+  "structural_validation_status": "PASS_STRUCTURAL_ONLY",
+  "validation_checks_passed": [
+    "canonical judgment identity",
+    "single four-cell universe",
+    "PDF source page coverage",
+    "source positive and fixed negative controls",
+    "scored input physical-line and table-cell coverage",
+    "generated evidence exact source locator",
+    "one occurrence per semantic class",
+    "duplicate partition",
+    "TP evidence audit and E2 bridge",
+    "FN reciprocal root-cause audit",
+    "negative-control assertions",
+    "generated-only FP deduplication",
+    "effective-universe denominators",
+    "SearchChunk exact-field regression"
+  ]
+}

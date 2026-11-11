@@ -1,0 +1,14 @@
+{
+  "phase": 6,
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "evaluation_status": "FINAL_BEST_EFFORT",
+  "all_six_phases_closed": true,
+  "all_structural_assertions_passed": true,
+  "independently_computed_metrics_file": "06_metrics_final.json",
+  "standalone_recomputation_script": "compute_metrics.py",
+  "source_requirement_inventory_reused": true,
+  "source_ledger_denominator_changes": 0,
+  "semantic_certification": "NOT_INDEPENDENTLY_VERIFIED",
+  "input_count": 1024,
+  "notes_en": "Final means six-phase process complete; best-effort metrics retain semantic uncertainty, including generated-class E1 support."
+}

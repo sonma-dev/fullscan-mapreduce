@@ -1,0 +1,23 @@
+{
+  "all_checks_passed": true,
+  "checks": {
+    "required_final_ledgers_exist": true,
+    "unique_ids_and_universe_partition": true,
+    "every_occurrence_in_exactly_one_class": true,
+    "one_binary_judgment_per_canonical_unit": true,
+    "every_TP_has_proof_record_and_required_bridge_fields": true,
+    "FN_reciprocal_root_causes_and_corrected_candidates": true,
+    "generated_only_FP_and_bounded_N_are_nonoverlapping": true,
+    "one_universe_four_cell_equations": true,
+    "duplicate_occurrence_partition": true,
+    "90_PDF_pages_and_eight_scored_inputs_inspected": true,
+    "TP_original_generated_file_line_locations_resolve": true,
+    "atomization_audit_and_source_id_integrity": true,
+    "reported_phase5_baselines_reconcile": true,
+    "final_report_language_and_required_disclosures": true
+  },
+  "tp_unique_original_locators_reviewed": 609,
+  "missing_tp_evidence_locators": 0,
+  "advisory_non_table_quote_normalization_issues": 0,
+  "warnings": []
+}

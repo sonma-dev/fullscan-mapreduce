@@ -1,0 +1,57 @@
+# Environment settings and local credentials
+.env
+.env.*
+!.env.example
+.aws/
+
+# Python virtual environments and bytecode
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Python packaging and build output
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Test, coverage, and analysis caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+coverage/
+coverage.xml
+
+# Runtime logs and generated API responses
+*.log
+/_test_*-response.json
+/res/
+/experiment/*/be/res/
+
+# Dependencies and caches for a user-provided frontend
+node_modules/
+.next/
+.nuxt/
+.svelte-kit/
+.vite/
+*.tsbuildinfo
+
+# Local editor, assistant, and operating-system files
+.vscode/
+.idea/
+.codex/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Includes log files under specific directories.
+!/log/

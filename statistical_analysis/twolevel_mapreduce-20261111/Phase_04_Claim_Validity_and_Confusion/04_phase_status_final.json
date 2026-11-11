@@ -1,0 +1,32 @@
+{
+  "phase": 4,
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "protocol_version": "6.1",
+  "source_positive_atoms": 1024,
+  "source_negative_controls": 37,
+  "eight_scored_files_present": 8,
+  "raw_occurrences_with_phase3_recovery": 3810,
+  "raw_classes_with_phase3_recovery": 3675,
+  "generated_claim_validity_rows": 3675,
+  "negative_control_review_rows": 37,
+  "canonical_universe_rows": 1061,
+  "atomic_judgment_rows": 1061,
+  "derived_confusion": {
+    "TP": 809,
+    "TN": 37,
+    "FP": 0,
+    "FN": 215
+  },
+  "derived_rates": {
+    "Precision": 1.0,
+    "Recall": 0.7900390625,
+    "F1": 0.8827059465357338,
+    "Duplicate_provisional_not_phase_5_final": 0.03543307086614173
+  },
+  "source_ledger_modified": false,
+  "phase5_started": false,
+  "uncertainty_note_en": "Structural four-cell reconciliation is complete. Independent predicate-level semantic verification remains incomplete; provisional FP=0 does not certify all generated statements.",
+  "generated_support_risk_candidates": 363,
+  "independent_source_proof_coverage": "NOT_COMPLETE",
+  "fp_zero_is_semantically_certified": false
+}

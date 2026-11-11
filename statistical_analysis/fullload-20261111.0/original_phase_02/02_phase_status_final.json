@@ -1,0 +1,126 @@
+{
+  "phase": 2,
+  "prefix": "unlabeled_single_supplied_corpus",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "method_attribution_note_en": "One complete eight-role set was provided without an explicit fullload/onelevel/twolevel prefix; no generation method is inferred.",
+  "eligible_generated_occurrences": 3349,
+  "unique_generated_claim_classes": 3260,
+  "duplicate_excess_occurrences": 89,
+  "duplicate_rate_preliminary_not_final": 0.0265750970438937,
+  "repeated_claim_class_count": 68,
+  "repeated_classes_spanning_multiple_files": 64,
+  "within_file_excess": 7,
+  "across_file_excess": 82,
+  "generated_excluded_units": 3747,
+  "retained_pdf_excluded_units": 274,
+  "files": [
+    {
+      "file": "01_screen_functions.md",
+      "physical_lines": 495,
+      "total_table_cells": 858,
+      "nonblank_lines": 382,
+      "eligible_occurrences": 471,
+      "excluded_units": 438,
+      "covered_lines_with_eligible_claims": 199,
+      "lines_with_exclusions": 231,
+      "whole_file_readable": true,
+      "inspected": true
+    },
+    {
+      "file": "02_api.md",
+      "physical_lines": 696,
+      "total_table_cells": 1360,
+      "nonblank_lines": 558,
+      "eligible_occurrences": 692,
+      "excluded_units": 649,
+      "covered_lines_with_eligible_claims": 312,
+      "lines_with_exclusions": 351,
+      "whole_file_readable": true,
+      "inspected": true
+    },
+    {
+      "file": "03_data.md",
+      "physical_lines": 474,
+      "total_table_cells": 882,
+      "nonblank_lines": 371,
+      "eligible_occurrences": 553,
+      "excluded_units": 340,
+      "covered_lines_with_eligible_claims": 219,
+      "lines_with_exclusions": 201,
+      "whole_file_readable": true,
+      "inspected": true
+    },
+    {
+      "file": "04_batch_functions.md",
+      "physical_lines": 588,
+      "total_table_cells": 503,
+      "nonblank_lines": 423,
+      "eligible_occurrences": 438,
+      "excluded_units": 305,
+      "covered_lines_with_eligible_claims": 226,
+      "lines_with_exclusions": 187,
+      "whole_file_readable": true,
+      "inspected": true
+    },
+    {
+      "file": "05_business_rules.md",
+      "physical_lines": 481,
+      "total_table_cells": 838,
+      "nonblank_lines": 383,
+      "eligible_occurrences": 380,
+      "excluded_units": 432,
+      "covered_lines_with_eligible_claims": 192,
+      "lines_with_exclusions": 176,
+      "whole_file_readable": true,
+      "inspected": true
+    },
+    {
+      "file": "06_exception_handling(1).md",
+      "physical_lines": 432,
+      "total_table_cells": 651,
+      "nonblank_lines": 336,
+      "eligible_occurrences": 388,
+      "excluded_units": 400,
+      "covered_lines_with_eligible_claims": 170,
+      "lines_with_exclusions": 207,
+      "whole_file_readable": true,
+      "inspected": true
+    },
+    {
+      "file": "07_processing_flows(1).md",
+      "physical_lines": 565,
+      "total_table_cells": 525,
+      "nonblank_lines": 442,
+      "eligible_occurrences": 411,
+      "excluded_units": 559,
+      "covered_lines_with_eligible_claims": 170,
+      "lines_with_exclusions": 329,
+      "whole_file_readable": true,
+      "inspected": true
+    },
+    {
+      "file": "08_architecture_decision.md",
+      "physical_lines": 225,
+      "total_table_cells": 691,
+      "nonblank_lines": 185,
+      "eligible_occurrences": 16,
+      "excluded_units": 624,
+      "covered_lines_with_eligible_claims": 11,
+      "lines_with_exclusions": 149,
+      "whole_file_readable": true,
+      "inspected": true
+    }
+  ],
+  "clustering": {
+    "exact_merges": 27,
+    "explicit_domain_semantic_merges": 14,
+    "near_equivalence_merges": 48,
+    "cluster_representative_rechecks_split_count": 0
+  },
+  "limitations_en": [
+    "Claims extracted with deterministic section/table-context normalization and conservative similarity clustering; full manual semantic verification of all 3,956 lines is not certified.",
+    "Near-equivalent statements may remain split; some semantically distinct short table statements may require a correction at Phase 5.",
+    "No PDF-to-generated entailment matching, unsupported-claim validity, confusion cells, or final metric scoring has been performed in Phase 2.",
+    "Unapproved architecture register items, example payloads, cross-references, and unresolved values excluded; narrow resolved claims included."
+  ]
+}

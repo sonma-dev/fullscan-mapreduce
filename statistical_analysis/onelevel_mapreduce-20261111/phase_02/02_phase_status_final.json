@@ -1,0 +1,111 @@
+{
+  "phase": 2,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "protocol_version": "6.0",
+  "method": "current_scored_8",
+  "source_baseline": "fullload_cal reused source atoms and PDF evidence, unchanged",
+  "pdf_source_atoms_file": "../oriondesk_phase1_fullload_cal_reuse/01_source_atoms_final.jsonl",
+  "pdf_negative_controls_file": "../oriondesk_phase1_fullload_cal_reuse/01_source_negative_controls_final.jsonl",
+  "inputs": {
+    "01_screen_functions(1).md": {
+      "sha256": "aaf3692ab6a79982c4fc3ce074c42d5baf12bcc1e5bebec0b90f784c25ee464b",
+      "byte_size": 79519,
+      "lines": 504,
+      "eligible_occurrences": 513,
+      "lines_inspected": 504,
+      "table_cells": 729,
+      "excluded_fragments": 579
+    },
+    "02_api(1).md": {
+      "sha256": "a8c161687341f010965cdb6f321f0fc84389fc66931ee5a56c34b22cbd4f75e0",
+      "byte_size": 68363,
+      "lines": 486,
+      "eligible_occurrences": 462,
+      "lines_inspected": 486,
+      "table_cells": 884,
+      "excluded_fragments": 823
+    },
+    "03_data(1).md": {
+      "sha256": "e9702699f172521b1ffe4ca313958c97260326a32b8b6a1f6f5e1f0038dc33be",
+      "byte_size": 77230,
+      "lines": 503,
+      "eligible_occurrences": 577,
+      "lines_inspected": 503,
+      "table_cells": 805,
+      "excluded_fragments": 648
+    },
+    "04_batch_functions(1).md": {
+      "sha256": "360117b25cc1fc0cd7242c61ee2f52c0d3d5e0ab4e60ab1355e6d782e9012796",
+      "byte_size": 54167,
+      "lines": 291,
+      "eligible_occurrences": 474,
+      "lines_inspected": 291,
+      "table_cells": 290,
+      "excluded_fragments": 300
+    },
+    "05_business_rules(1).md": {
+      "sha256": "884ec6fe4449440cd3d7303fb459b32c7cd63c8b579c57f35a109754b73e520a",
+      "byte_size": 59073,
+      "lines": 419,
+      "eligible_occurrences": 400,
+      "lines_inspected": 419,
+      "table_cells": 588,
+      "excluded_fragments": 472
+    },
+    "06_exception_handling(2).md": {
+      "sha256": "e1542f7c02bc9e3aca076f3eacf5c4924a8a264e22317d7292386d3e52998603",
+      "byte_size": 56525,
+      "lines": 339,
+      "eligible_occurrences": 331,
+      "lines_inspected": 339,
+      "table_cells": 530,
+      "excluded_fragments": 500
+    },
+    "07_processing_flows(2).md": {
+      "sha256": "2c7b34d8b3426a486d356a3c10ef48229aed1cadb01359c050d3bb481bed7acb",
+      "byte_size": 59907,
+      "lines": 377,
+      "eligible_occurrences": 455,
+      "lines_inspected": 377,
+      "table_cells": 301,
+      "excluded_fragments": 374
+    },
+    "08_architecture_decision(1).md": {
+      "sha256": "e4df3d7bc5d2a0deac79f8d948b5c1fc97f4ee50f766ac55d83b0db74314b086",
+      "byte_size": 53500,
+      "lines": 204,
+      "eligible_occurrences": 53,
+      "lines_inspected": 204,
+      "table_cells": 617,
+      "excluded_fragments": 501
+    }
+  },
+  "generated_positive_occurrences": 3265,
+  "unique_generated_claim_classes": 3168,
+  "duplicate_excess_occurrences": 97,
+  "semantic_duplicate_rate": 0.029709035222052066,
+  "repeated_classes": 64,
+  "within_file_excess": 2,
+  "across_file_excess": 95,
+  "repeated_classes_spanning_multiple_files": 63,
+  "excluded_fragments": 4197,
+  "extracted_table_rows": 1139,
+  "evidence_checks": {
+    "all_eight_files_mounted": true,
+    "all_physical_lines_inspected": true,
+    "table_cells_covered": true,
+    "one_class_per_eligible_occurrence": true,
+    "duplicate_excess_partition_balances": true,
+    "every_generated_quote_verbatim_in_actual_file_line": true,
+    "original_filename_hashes_verified": true,
+    "no_extra_scored_input": true,
+    "all_written_outputs_english": true
+  },
+  "method_caveat_en": "Best-effort automated segmentation with high-threshold lexical semantic merging; incomplete independent human semantic review may under-split multi-predicate clauses, omit embedded definitive clauses or under-merge paraphrased duplicates. No FP/FN/TP/TN decisions have been made.",
+  "phases_not_performed": [
+    "Phase 3 semantic coverage",
+    "Phase 4 correctness and full confusion",
+    "Phase 5 corrections and metrics",
+    "Phase 6 independent recomputation"
+  ]
+}

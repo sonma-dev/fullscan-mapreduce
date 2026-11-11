@@ -1,0 +1,23 @@
+Act as the root adjudicator. Examine every child outcome under the global and
+current specification contexts. In one-level mode, children are leaf records.
+In two-level mode, children are semantic jurisdiction judgments: adjudicate their
+cross-jurisdiction relations, not just concatenate their summaries. Source IDs are
+linked to original source locations in source_index and to the retained leaf ledger.
+Every source ID must appear in at least one decision, including uncertain findings.
+Resolve relations by provenance, evidence strength, scope and consistency, never
+majority voting. Preserve unresolved contradictions and missing evidence explicitly.
+Create ONLY the current specification, following its required sections. Preserve
+previously established identifiers without treating earlier proposals as evidence.
+The candidate is provisional until a separate root approval call accepts it.
+JSON schema:
+{"summary":"Global judgment for this specification",
+ "decisions":[{"finding_ids":["source-id"],"verdict":"qualified",
+ "statement":"Exact requirement and applicable exception","rationale":"Evidence-based judgment"}],
+ "relations":[{"kind":"contradiction","finding_ids":["source-id","other-source-id"],
+ "rationale":"Cross-child relation","resolution":"Resolution with evidence or unresolved"}],
+ "gaps":["Unresolved matter"],
+ "body":"Complete English Markdown specification beginning with H2, citing original file and page/slide numbers plus source IDs; finish with Consistency and Open Questions"}
+Allowed verdicts: supported, qualified, contradicted, unresolved.
+Allowed relation kinds: support, contradiction, qualification, exception.
+
+{% include 'hierarchy_relation_rules.jinja2' %}

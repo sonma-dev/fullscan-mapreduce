@@ -1,0 +1,17 @@
+{
+  "phase": 5,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "prefix": "unprefixed_eight_markdown_set",
+  "eligible_generated_occurrences": 3379,
+  "unique_generated_claim_classes": 3275,
+  "duplicate_excess_occurrences": 104,
+  "within_file_excess": 5,
+  "across_file_excess": 99,
+  "repeated_claim_class_count": 87,
+  "repeated_classes_spanning_multiple_files": 86,
+  "Duplicate": 0.030778336786031372,
+  "definition": "(eligible_generated_occurrences - unique_generated_claim_classes) / eligible_generated_occurrences",
+  "reviewed_candidate_pairs": 241,
+  "merged_candidate_pairs": 42,
+  "semantic_certification": false
+}

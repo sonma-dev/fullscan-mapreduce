@@ -1,0 +1,96 @@
+{
+  "protocol_version": "6.1",
+  "method": "current_scored_8",
+  "status": "FINAL_BEST_EFFORT",
+  "semantic_evidence_certification": false,
+  "universe": {
+    "source_positive_atoms": 1009,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 2944,
+    "generated_positive_occurrences": 3068,
+    "covered_source_atoms": 997,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 0,
+    "canonical_predicted_positive_units": 997,
+    "canonical_decision_units": 1046,
+    "negative_universe_scope": "PDF-grounded, fixed bounded counterfactual controls only"
+  },
+  "confusion": {
+    "TP": 997,
+    "TN": 37,
+    "FP": 0,
+    "FN": 12
+  },
+  "metrics": {
+    "Precision": 1.0,
+    "Recall": 0.9881070366699702,
+    "F1": 0.9940179461615155,
+    "Duplicate": 0.04041720990873533
+  },
+  "duplication": {
+    "eligible_occurrences": 3068,
+    "unique_raw_classes": 2944,
+    "excess_occurrences": 124,
+    "repeated_classes": 88,
+    "within_file_excess": 5,
+    "across_file_excess": 119,
+    "repeated_classes_spanning_files": 84
+  },
+  "evidence_audit": {
+    "pdf_physical_pages": 90,
+    "pdf_readable_pages": 90,
+    "pdf_sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+    "pdf_quote_text_matches": 1006,
+    "pdf_quote_visual_figure_matches": 3,
+    "pdf_unmatched_quote_count": 0,
+    "negative_control_pdf_unmatched_quote_count": 0,
+    "scored_markdown_files": 8,
+    "scored_markdown_lines": 3123,
+    "scored_table_cells_reported": 4744,
+    "generated_eligible_original_quote_locator_failures": 0,
+    "tp_evidence_generated_locator_failures": 0,
+    "tp_evidence_predicate_map_failures": 0,
+    "tp_audit_rows": 997,
+    "tp_E2_bridge_rows": 587,
+    "fn_audit_rows": 12,
+    "fn_root_cause_counts": {
+      "CONSERVATIVE_UNRESOLVED": 7,
+      "PARTIAL_ENTAILMENT": 5
+    },
+    "historical_fn_candidate_dispositions": {
+      "CONSERVATIVE_UNRESOLVED": 7,
+      "MATCHER_FALSE_NEGATIVE_CORRECTED": 299,
+      "PARTIAL_ENTAILMENT": 5,
+      "SOURCE_ATOMIZATION_ERROR_CORRECTED": 8
+    },
+    "source_atomization_reviewed_rows": 1016,
+    "source_atomization_change_rows": 15,
+    "generated_validity_label_counts": {
+      "PDF_ENTAILED": 775,
+      "SUPPORTED_NONCOVERING": 2169
+    },
+    "tp_bridge_classification_tensions": 1636,
+    "tp_units_using_noncovering_class": 926,
+    "tp_proofs_not_independently_certified": 997,
+    "generated_class_validity_not_independently_certified": 2944,
+    "structural_assertions_passed": true
+  },
+  "input_file_hashes_sha256": {
+    "01_screen_functions(1).md": "aaf3692ab6a79982c4fc3ce074c42d5baf12bcc1e5bebec0b90f784c25ee464b",
+    "02_api(1).md": "a8c161687341f010965cdb6f321f0fc84389fc66931ee5a56c34b22cbd4f75e0",
+    "03_data(1).md": "e9702699f172521b1ffe4ca313958c97260326a32b8b6a1f6f5e1f0038dc33be",
+    "04_batch_functions(1).md": "360117b25cc1fc0cd7242c61ee2f52c0d3d5e0ab4e60ab1355e6d782e9012796",
+    "05_business_rules(1).md": "884ec6fe4449440cd3d7303fb459b32c7cd63c8b579c57f35a109754b73e520a",
+    "06_exception_handling(2).md": "e1542f7c02bc9e3aca076f3eacf5c4924a8a264e22317d7292386d3e52998603",
+    "07_processing_flows(2).md": "2c7b34d8b3426a486d356a3c10ef48229aed1cadb01359c050d3bb481bed7acb",
+    "08_architecture_decision(1).md": "e4df3d7bc5d2a0deac79f8d948b5c1fc97f4ee50f766ac55d83b0db74314b086"
+  },
+  "interpretation": "One effective canonical proposition universe for TP/TN/FP/FN; generated raw classes and occurrences form a separate Duplicate universe. All metrics are ledger arithmetic, not certified semantic design accuracy.",
+  "critical_warnings": [
+    "1636 generated classes labeled SUPPORTED_NONCOVERING are used in 926 TP evidence bridges; the classifications may be consistent for conjunctive bridges, but independent scope and predicate proof is still required.",
+    "997 source-positive TP proof records lack independent full semantic certification.",
+    "2944 generated classes lack independent semantic validity certification.",
+    "No unsupported definitive generated proposition was recorded as FP; this does not prove error-free generation."
+  ],
+  "validation_failures": []
+}

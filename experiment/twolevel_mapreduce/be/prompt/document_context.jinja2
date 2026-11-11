@@ -1,0 +1,25 @@
+Document: {{ file_name }}
+Phase: {{ phase }}
+Output byte budget: {{ output_budget }}
+Read the attached original file for global orientation before any worker runs.
+Describe the document's purpose, actors, terms, scope, governing constraints, and
+cross-section dependencies. This overview must not replace the later full scan.
+Build contiguous semantic jurisdictions from the document's chapters/sections.
+For chunks with `chapter_id`, create exactly one jurisdiction per chapter_id,
+containing ALL its sections, introduction, and parts in source order. Never split
+a chapter into multiple forks or combine different chapters. The tree is root >
+chapter forks > section/part Map leaves. The server provides structural boundaries;
+use the original file to explain their meaning and dependencies.
+For chunks without chapter_id, honor native `section_id` boundaries exactly: one jurisdiction per native section,
+no splitting or mixing. Different IDs may have identical `section` titles. For unlabeled spans, use headings,
+slide titles, and the attached document's structure; cite that basis and original
+page/slide numbers. If no meaningful boundary exists, keep one jurisdiction for
+that span. Do not create arbitrary fixed-size groups or infer sections from an
+assumed number of workers. Include every chunk exactly once in source order.
+JSON schema (example values are illustrative, not source facts):
+{"global_context":"Document-level orientation, terminology, constraints, uncertainties",
+ "groups":[{"title":"Source section title","basis":"Source heading and original locations, or explicit unstructured fallback",
+ "context":"Jurisdiction meaning and dependencies","chunk_ids":[1,2]}]}
+<payload>
+{{ payload }}
+</payload>

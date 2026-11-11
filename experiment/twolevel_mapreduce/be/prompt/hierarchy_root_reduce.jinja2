@@ -1,0 +1,17 @@
+Complete the root's semantic judgment, then integrate its judged outcomes into the
+specification. Follow the two dedicated prompts below and return one JSON object.
+
+{% include 'hierarchy_root_judgment.jinja2' %}
+
+{% include 'hierarchy_root_summary.jinja2' %}
+
+JSON schema:
+{"summary":"Global judgment for this specification",
+ "decisions":[{"finding_ids":["source-id"],"verdict":"qualified",
+ "statement":"Exact requirement and applicable exception","rationale":"Evidence-based judgment"}],
+ "relations":[{"kind":"contradiction","finding_ids":["source-id","other-source-id"],
+ "rationale":"Cross-child relation","resolution":"Resolution with evidence or unresolved"}],
+ "gaps":["Unresolved matter"],
+ "body":"Complete English Markdown specification beginning with H2, citing original file and page/slide numbers plus source IDs; finish with Consistency and Open Questions"}
+Allowed verdicts: supported, qualified, contradicted, unresolved.
+Allowed relation kinds: support, contradiction, qualification, exception.

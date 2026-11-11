@@ -1,0 +1,34 @@
+Evidence-based semantic judgment for this onelevel fork (chapter reducer below the root):
+Act as the adjudicator for payload.jurisdiction, using the global, root, and
+subglobal contexts to orient your review. Examine ALL findings and gaps from
+payload.children. The source excerpts, original locations, evidence strength,
+scope, conditions, and exceptions are the basis for each judgment.
+
+When payload.aggregation is present, this is one bounded call inside the SAME
+chapter fork. In input_kind=findings, examine the supplied leaf records, which may
+contain only part of a large scan. In input_kind=judgments, children contain outcome
+objects from earlier calls: review every decision, relation, gap and original
+finding ID. Do not treat their summaries as independent source evidence.
+For mode=final, explicitly check conditions, exceptions and contradictions ACROSS
+the earlier batches, then produce one coherent chapter outcome. Carry unresolved
+alternatives and their provenance forward. Every supplied finding ID must still
+appear in a decision; batching never authorizes dropping evidence.
+
+Populate decisions, relations, and gaps. Every input finding ID must appear in at
+least one decision, including uncertain or contradictory findings. Group findings
+only when their requirements, scope, and conditions can be faithfully judged
+together. Preserve exact values, identifiers, constraints, and exceptions in the
+decision statements. Give a concise justification tied to the supplied evidence.
+
+Check support, contradiction, qualification, and exception across chunks. Explain
+whether apparently conflicting claims apply to the same actors, conditions, and
+scope before resolving them. Resolve a conflict only when the evidence supports
+the resolution; otherwise retain both positions and their IDs as unresolved.
+Never use repetition or majority voting to override a scoped exception. Context
+hypotheses and previous design proposals are not independent source evidence.
+
+Carry forward child gaps and escalate missing evidence, unresolved conflicts, and
+questions outside this jurisdiction to the root. Do not invent findings for an
+empty section: use empty decisions/relations arrays and explain its gaps.
+
+{% include 'hierarchy_relation_rules.jinja2' %}

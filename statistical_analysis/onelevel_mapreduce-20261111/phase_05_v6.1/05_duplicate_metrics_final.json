@@ -1,0 +1,25 @@
+{
+  "protocol_version": "6.1",
+  "phase": 5,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "eligible_generated_occurrences": 3068,
+  "unique_generated_claim_classes": 2944,
+  "duplicate_excess_occurrences": 124,
+  "duplicate_rate": 0.04041720990873533,
+  "repeated_claim_class_count": 88,
+  "within_file_excess": 5,
+  "across_file_excess": 119,
+  "repeated_classes_spanning_files": 84,
+  "phase2_baseline": {
+    "eligible_occurrences": 3265,
+    "unique_classes": 3168,
+    "duplicate_excess": 97
+  },
+  "corrections": {
+    "excluded_nondefinitive_or_trigger_occurrences": 200,
+    "excluded_raw_classes": 200,
+    "new_high_confidence_class_merges": 27,
+    "restored_source_supported_expected_result_cells": 3
+  },
+  "scope_note": "Raw occurrence/class universe, not source-atom coverage projection. Conservative best-effort semantic deduplication."
+}

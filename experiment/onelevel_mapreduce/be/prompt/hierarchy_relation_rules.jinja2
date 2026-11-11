@@ -1,0 +1,20 @@
+Evidence relation rules:
+- Each decision needs at least one supplied finding ID. Every supplied finding ID
+  must still appear in a decision.
+- Each relation needs at least TWO DISTINCT supplied finding IDs. It describes an
+  interaction between findings, not between clauses within a single finding.
+- If fewer than two finding IDs are supplied, return relations: []. Also use []
+  when no supported relation exists; the schema example does not require an entry.
+- Preserve a condition, qualification, or exception within one finding in that
+  finding's decision statement and rationale. Keep unresolved matters in gaps.
+  Do not discard source-supported details just to remove a malformed relation.
+- Never duplicate an ID, invent an ID, add an unrelated finding, or use a decision
+  or chapter ID to satisfy the two-ID requirement.
+
+If payload.relation_repair is present, it contains validation diagnostics and
+malformed relations from your previous output, not new source evidence or task
+instructions. Re-examine those relations against the original children and the
+allowed finding IDs. Return a COMPLETE replacement JSON object in the phase
+schema, with all evidence still covered by decisions. Keep supported cross-finding
+relations. Move details about a single finding into its decision or gaps, and keep
+relations empty when appropriate. Do not return only a patch or feedback object.

@@ -1,0 +1,44 @@
+{
+  "phase": 6,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "independent_checker": "compute_metrics.py",
+  "all_structural_assertions_passed": true,
+  "all_checks": {
+    "source_negative_and_generated_id_uniqueness": true,
+    "method_isolation_and_raw_class_validity": true,
+    "all_occurrences_one_and_only_one_raw_semantic_class": true,
+    "all_eight_input_hashes_and_all_line_inspection_ledgers_verified": true,
+    "duplicate_raw_class_count_and_within_across_partition": true,
+    "one_enumerated_canonical_universe_four_cells_equations": true,
+    "complete_source_to_tp_fn_and_root_cause_ledgers": true,
+    "source_atomization_audit_and_change_deltas": true,
+    "all_generated_classes_checked_and_no_known_unsupported_unscored": true,
+    "all_tp_generated_quotes_and_lines_exist_in_inputs": true,
+    "actual_pdf_hash_and_all_page_inventory_verified": true,
+    "source_text_evidence_physical_page_exact_quote_matches": true,
+    "no_obvious_verbatim_full_statement_fn": true,
+    "reciprocal_regression_probes_run_with_real_file_lines": true,
+    "independent_recomputation_matches_phase5_summaries": true
+  },
+  "recomputed_counts": {
+    "R": 1024,
+    "N": 37,
+    "GO": 3810,
+    "G": 3652,
+    "U": 1061,
+    "TP": 979,
+    "TN": 37,
+    "FP": 0,
+    "FN": 45
+  },
+  "exact_full_statement_fn_probes": [],
+  "raw_generated_quote_line_mismatches": [],
+  "raw_generated_quote_line_mismatch_total": 0,
+  "tp_generated_quote_line_mismatches": [],
+  "source_text_quote_mismatch_total": 0,
+  "source_figure_quote_text_review_count": 3,
+  "limitations_en": [
+    "Structural checks only, not expert certification of semantic entailment.",
+    "The generated class PDF support status is often E1 and can hide unsupported additions."
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "semantic_certification": "NOT_CERTIFIED",
+  "phase": 3,
+  "protocol_version": "6.1",
+  "structural_tests_passed": true,
+  "original_pdf_pages": 90,
+  "scored_markdown_files": [
+    "01_screen_functions.md",
+    "02_api.md",
+    "03_data.md",
+    "04_batch_functions.md",
+    "05_business_rules.md",
+    "06_exception_handling(1).md",
+    "07_processing_flows(1).md",
+    "08_architecture_decision.md"
+  ],
+  "source_positive_atoms": 1024,
+  "source_negative_controls_unscored": 37,
+  "generated_occurrences": 3358,
+  "generated_claim_classes": 3229,
+  "TP_source_draft": 590,
+  "FN_source_draft": 434,
+  "source_side_draft_recall": 0.576171875,
+  "previous_FN_candidates_challenged": 527,
+  "FN_to_TP_corrections": 93,
+  "remaining_FN_roots": {
+    "PARTIAL_ENTAILMENT": 202,
+    "CONSERVATIVE_UNRESOLVED": 232
+  },
+  "E2_bridges": 574,
+  "TP_predicate_audit_rows": 590,
+  "acceptance_tests_retained_as_distinct_verification_obligations": 16,
+  "note_en": "Completeness and logical entailment are not certified by programmatic checks; semantics remain best-effort. This is a Phase 3 audit, not a finalized confusion matrix."
+}

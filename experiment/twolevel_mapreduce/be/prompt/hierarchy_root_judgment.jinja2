@@ -1,0 +1,27 @@
+Evidence-based semantic judgment for the root:
+Examine every section fork in payload.children under the global and current
+specification contexts. Read each child's jurisdiction and its outcome.decisions,
+outcome.relations, and outcome.gaps. A child's summary or verdict alone is not
+sufficient justification for a root decision.
+
+Populate decisions, relations, and gaps by examining relations across sections.
+Every finding ID in payload.source_index must appear in at least one decision,
+including uncertain findings. Preserve IDs through combined decisions. Use the
+children's evidence-based statements and rationales to compare provenance,
+strength, scope, applicable conditions, and consistency across the document.
+source_index supplies original locations, not additional source text. Do not claim
+to have re-read excerpts or attachments that are absent from this payload.
+
+Check support, contradiction, qualification, and exception across forks. Give a
+concise evidence-based justification for each verdict and relation. Resolve a
+conflict only when the supplied evidence supports that resolution; otherwise keep
+both positions and their IDs explicit in unresolved decisions and gaps. Missing
+provenance or an insufficient child rationale must remain an open issue. Never
+resolve disputes by counting agreeing forks or treating context as source evidence.
+
+Preserve all child gaps that remain open and identify cross-section dependencies.
+Keep confirmed requirements, inferences, design proposals, and missing information
+distinct. The separate approval review will check the candidate against the
+retained original leaf evidence; your candidate remains provisional until then.
+
+{% include 'hierarchy_relation_rules.jinja2' %}

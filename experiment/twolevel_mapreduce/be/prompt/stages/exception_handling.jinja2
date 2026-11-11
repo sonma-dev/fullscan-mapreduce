@@ -1,0 +1,16 @@
+{% extends "specification_user.jinja2" %}
+{% block requirements %}
+Create the Exception Handling Specification in English. Use exception identifiers such as ERR-001, preferring existing source identifiers. Map exceptions to the preceding screens, APIs, data, batch jobs, and business rules.
+
+## Exception Inventory and Classification
+List exception IDs, occurrence locations, detection conditions, categories such as invalid input, business rule violations, permission violations, external failures, or internal failures, and affected scope.
+## Handling by Exception
+Define responses, HTTP status codes, business error codes, user-facing displays, continuation or interruption, data rollback and compensation, retries, reruns, and recovery methods.
+Cover failure paths required by the source, including duplicate execution, partial failure, timeouts, and unavailable integrations.
+## Logging, Monitoring, and Operations
+Describe recorded fields, trace IDs, log levels, handling of sensitive values, notification recipients and conditions, and operator inspection and recovery procedures within the source's scope.
+## Failure Acceptance Criteria
+State triggering conditions, expected responses, screen and data states, and retry results in a verifiable form.
+## Consistency and Open Questions
+Mark unspecified error codes, thresholds, retry counts, and notification recipients as Needs confirmation instead of treating them as confirmed. For conflicts with earlier specifications, identify the affected IDs and required amendments.
+{% endblock %}
