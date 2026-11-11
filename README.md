@@ -2,6 +2,7 @@
 
 For experimental findings, evaluation metrics, and limitations, see [Experimental Results](__result.md).
 The naming convention follows the manners of C programmers.
+Freedom to use. Freedom to modify. Freedom to share. Freedom to improve.
 
 This repository compares three Python/FastAPI backends that generate software specifications from PDF and PowerPoint (`.pptx`) documents using the Azure OpenAI Responses API: full-file generation, one-level MapReduce, and two-level MapReduce. It also contains the input dataset, execution logs, generated results, and directories for statistical-analysis work instructions and related documents.
 
