@@ -11,7 +11,7 @@ Also note that normally, additions and deletions of functions for the new IT sys
   Therefore, the combined token count of the PDF files and the previously generated specifications never exceeded the context window in any single run.
 - Full-scan MapReduce consumes more tokens than Full Load. In other words, full-scan MapReduce has a cost disadvantage.
 - 2-level hierarchical MapReduce requires a large amount of wall-clock time. Improving the program algorithm would likely reduce this wall-clock time.
-- Results may change in the future as issues such as loss in the middle and context rot improve, and reasoning capabilities become more advanced.
+- Results may change in the future as issues such as lost in the middle and context rot improve, and reasoning capabilities become more advanced.
 - This experiment uses a relatively simple approach based on an LLM model alone. Using application software such as Codex or Kiro may potentially produce higher evaluation scores.
 - I prepared a common atomic requirements ledger derived from the original PDF for use across all three methods. However, because ChatGPT was involved in the statistical analysis, it modified the ledger during the evaluation process.
 - The improvement in precision is more likely attributable to the approval process than to MapReduce itself, that is, splitting the document and scanning it in full. In contrast, the improvement in recall appears to stem from the splitting process that scans every chunk.
