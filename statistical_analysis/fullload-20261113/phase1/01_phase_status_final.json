@@ -1,0 +1,27 @@
+{
+  "phase": 1,
+  "phase_name": "Independent PDF requirements and fixed negative controls",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "protocol_version": "6.1",
+  "positive_atoms": 1024,
+  "fixed_negative_controls": 37,
+  "pdf_exclusions": 274,
+  "page_coverage": 90,
+  "evidence_verification_locations": 2564,
+  "caution_en": "Byte-identical reuse requested and evidence-page verification passed; 19 possible source atomization overlap concerns require semantic adjudication and are not confirmed duplicate removals.",
+  "output_folder": "/mnt/data/oriondesk_v6_1_phase1",
+  "next_phase_started": false,
+  "files": [
+    "01_input_manifest_final.json",
+    "01_pdf_coverage_and_source_exclusions.md",
+    "01_pdf_page_coverage_final.jsonl",
+    "01_pdf_quote_verification_final.jsonl",
+    "01_source_atomization_challenge_final.jsonl",
+    "01_source_atoms_final.jsonl",
+    "01_source_evidence_verification_final.json",
+    "01_source_negative_controls_final.jsonl",
+    "09_excluded_units.jsonl",
+    "OrionDesk_AI_Detailed_Design_Specification.pdf",
+    "01_phase_status_final.json"
+  ]
+}

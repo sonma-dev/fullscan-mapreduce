@@ -1,0 +1,27 @@
+{
+  "status": "FINAL_BEST_EFFORT",
+  "structural_check_result": "PASS",
+  "semantic_evidence_certification": "NOT_CERTIFIED",
+  "pdf_pages": 90,
+  "pdf_render_verified_figure_page": 8,
+  "scored_input_count": 8,
+  "metric_source": "Independent computation of final ledgers by compute_metrics.py",
+  "canonical_units": 1873,
+  "tp_proof_entries": 654,
+  "fn_root_cause_entries": 370,
+  "fixed_negative_controls": 37,
+  "phase6_source_proof_rescues": 27,
+  "source_quotes_matching_pdf_text": 1021,
+  "figure_quotes_verified_visually": 3,
+  "generated_evidence_locator_matches": 872,
+  "generated_evidence_locator_total": 872,
+  "fn_candidates_without_real_locator": 0,
+  "uncertainty_counts": {
+    "conservative_FN": 191,
+    "partial_FN": 68,
+    "provisionally_supported_noncovering_classes": 829,
+    "provisional_FP": 812,
+    "TP_proofs_not_independently_semantically_certified": 654
+  },
+  "phase6_audit_summary": "One canonical universe and raw duplicate ledger pass structural tests. Specific direct source-grounded false positives were corrected. Logical completeness and source denominator atomization remain best-effort."
+}

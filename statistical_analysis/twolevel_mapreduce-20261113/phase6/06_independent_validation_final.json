@@ -1,0 +1,166 @@
+{
+  "phase": 6,
+  "protocol_version": "6.1",
+  "structural_status": "PASS_WITH_REPAIRED_CANONICAL_LEDGER",
+  "semantic_certification": false,
+  "semantic_status": "NOT_CERTIFIED_PARTIAL_ENTAILMENT_EVIDENCE_REMAINS",
+  "source_pdf_pages": 90,
+  "phase1_page_inspection_records": 90,
+  "phase1_pdf_quote_verification_total": 2564,
+  "phase1_pdf_quotes_verified": 2564,
+  "current_final_source_quote_normalized_exact_matches": 1005,
+  "current_final_source_quote_figure_visual_verified": 3,
+  "current_final_source_quote_unverified": 0,
+  "scored_markdown_files": [
+    "01_screen_functions(8).md",
+    "02_api(8).md",
+    "03_data(8).md",
+    "04_batch_functions(8).md",
+    "05_business_rules(8).md",
+    "06_exception_handling(9).md",
+    "07_processing_flows(9).md",
+    "08_architecture_decision(8).md"
+  ],
+  "physical_markdown_lines_examined": 2926,
+  "original_table_cells_examined": 3769,
+  "canonical_count": 1045,
+  "canonical_representation_repair": {
+    "file": "03_canonical_universe_final.jsonl",
+    "historical_phase4_rows": 1125,
+    "phase5_target_rows": 1045,
+    "current_phase6_rows": 1045,
+    "historical_repair_performed": true,
+    "additional_repair_required_now": false,
+    "action": "Regenerated canonical-universe representation from the final item-level judgment ledger; preserved canonical IDs and decision cells",
+    "source_of_truth": "04_atomic_judgments_final.jsonl",
+    "historical_evidence": "04_phase_status_final.json plus corrected Phase 5 judgments"
+  },
+  "TP_proof_records": 963,
+  "TP_bridge_proof_records": 950,
+  "FN_root_cause_record_count": 565,
+  "final_FN_dispositions": {
+    "PARTIAL_ENTAILMENT": 20,
+    "TRUE_MISSING": 13,
+    "CONSERVATIVE_UNRESOLVED": 12
+  },
+  "generated_occurrences": 2553,
+  "raw_generated_classes": 2349,
+  "generated_occurrence_text_literal_warnings": 4,
+  "E1_class_verdict_unresolved": 1269,
+  "E1_in_PDF_ENTAILED": 36,
+  "E1_in_SUPPORTED_NONCOVERING": 1233,
+  "pdf_atomization_corrections": 16,
+  "selected_method_only": "supplied_set_1",
+  "regression_probes": [
+    {
+      "probe": "case_title",
+      "passed_structural_retrieval_check": true,
+      "source_ids_found": 1,
+      "source_ids_and_results": [
+        {
+          "source_id": "PDF-00208",
+          "cell": "TP",
+          "generated_evidence_count": 2
+        }
+      ],
+      "note_en": "This only checks recorded evidence and status. It does not independently certify complete entailment."
+    },
+    {
+      "probe": "workspace_retention_class",
+      "passed_structural_retrieval_check": true,
+      "source_ids_found": 1,
+      "source_ids_and_results": [
+        {
+          "source_id": "PDF-00199",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        }
+      ],
+      "note_en": "This only checks recorded evidence and status. It does not independently certify complete entailment."
+    },
+    {
+      "probe": "idempotent_identical_case_creation_test",
+      "passed_structural_retrieval_check": true,
+      "source_ids_found": 1,
+      "source_ids_and_results": [
+        {
+          "source_id": "PDF-00948",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        }
+      ],
+      "note_en": "This only checks recorded evidence and status. It does not independently certify complete entailment."
+    },
+    {
+      "probe": "tenant_unique_case_constraint",
+      "passed_structural_retrieval_check": true,
+      "source_ids_found": 26,
+      "source_ids_and_results": [
+        {
+          "source_id": "PDF-00863",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00864",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00865",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00866",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00867",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00868",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00869",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00870",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00871",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00872",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00873",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00874",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        }
+      ],
+      "note_en": "This only checks recorded evidence and status. It does not independently certify complete entailment."
+    }
+  ],
+  "hard_structural_errors": 0,
+  "warning_count": 1274,
+  "structural_checks_do_not_certify_semantic_entailment": true
+}

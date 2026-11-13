@@ -1,0 +1,121 @@
+{
+  "pdf": {
+    "physical_pages": 90,
+    "sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+    "image_bearing_physical_pages": [
+      7,
+      8,
+      11,
+      14,
+      15,
+      18,
+      21,
+      24,
+      27,
+      30,
+      33,
+      34,
+      37,
+      40,
+      43,
+      44,
+      47,
+      48,
+      51,
+      54,
+      57,
+      60,
+      61,
+      64,
+      67,
+      68,
+      71,
+      74,
+      77,
+      78,
+      81
+    ],
+    "pdf_quote_locations": 2560,
+    "pdf_quote_matches": 2560,
+    "pdf_quote_unmatched": 0,
+    "visual_figure_assertions_reinspected": 3
+  },
+  "markdown_inputs": [
+    {
+      "scored_file": "01_screen_functions(7).md",
+      "physical_lines": 504,
+      "eligible_occurrences": 674,
+      "distinct_lines_with_eligible_occurrences": 260,
+      "sha256": "aaf3692ab6a79982c4fc3ce074c42d5baf12bcc1e5bebec0b90f784c25ee464b",
+      "input_readable": true,
+      "coverage_qualification_en": "Every line was loaded and eligible occurrences were located. A machine scan does not certify semantic completeness of atomic extraction."
+    },
+    {
+      "scored_file": "02_api(7).md",
+      "physical_lines": 486,
+      "eligible_occurrences": 624,
+      "distinct_lines_with_eligible_occurrences": 242,
+      "sha256": "a8c161687341f010965cdb6f321f0fc84389fc66931ee5a56c34b22cbd4f75e0",
+      "input_readable": true,
+      "coverage_qualification_en": "Every line was loaded and eligible occurrences were located. A machine scan does not certify semantic completeness of atomic extraction."
+    },
+    {
+      "scored_file": "03_data(7).md",
+      "physical_lines": 503,
+      "eligible_occurrences": 685,
+      "distinct_lines_with_eligible_occurrences": 278,
+      "sha256": "e9702699f172521b1ffe4ca313958c97260326a32b8b6a1f6f5e1f0038dc33be",
+      "input_readable": true,
+      "coverage_qualification_en": "Every line was loaded and eligible occurrences were located. A machine scan does not certify semantic completeness of atomic extraction."
+    },
+    {
+      "scored_file": "04_batch_functions(7).md",
+      "physical_lines": 291,
+      "eligible_occurrences": 521,
+      "distinct_lines_with_eligible_occurrences": 152,
+      "sha256": "360117b25cc1fc0cd7242c61ee2f52c0d3d5e0ab4e60ab1355e6d782e9012796",
+      "input_readable": true,
+      "coverage_qualification_en": "Every line was loaded and eligible occurrences were located. A machine scan does not certify semantic completeness of atomic extraction."
+    },
+    {
+      "scored_file": "05_business_rules(7).md",
+      "physical_lines": 419,
+      "eligible_occurrences": 596,
+      "distinct_lines_with_eligible_occurrences": 221,
+      "sha256": "884ec6fe4449440cd3d7303fb459b32c7cd63c8b579c57f35a109754b73e520a",
+      "input_readable": true,
+      "coverage_qualification_en": "Every line was loaded and eligible occurrences were located. A machine scan does not certify semantic completeness of atomic extraction."
+    },
+    {
+      "scored_file": "06_exception_handling(8).md",
+      "physical_lines": 339,
+      "eligible_occurrences": 519,
+      "distinct_lines_with_eligible_occurrences": 190,
+      "sha256": "e1542f7c02bc9e3aca076f3eacf5c4924a8a264e22317d7292386d3e52998603",
+      "input_readable": true,
+      "coverage_qualification_en": "Every line was loaded and eligible occurrences were located. A machine scan does not certify semantic completeness of atomic extraction."
+    },
+    {
+      "scored_file": "07_processing_flows(8).md",
+      "physical_lines": 377,
+      "eligible_occurrences": 526,
+      "distinct_lines_with_eligible_occurrences": 169,
+      "sha256": "2c7b34d8b3426a486d356a3c10ef48229aed1cadb01359c050d3bb481bed7acb",
+      "input_readable": true,
+      "coverage_qualification_en": "Every line was loaded and eligible occurrences were located. A machine scan does not certify semantic completeness of atomic extraction."
+    },
+    {
+      "scored_file": "08_architecture_decision(7).md",
+      "physical_lines": 204,
+      "eligible_occurrences": 72,
+      "distinct_lines_with_eligible_occurrences": 28,
+      "sha256": "e4df3d7bc5d2a0deac79f8d948b5c1fc97f4ee50f766ac55d83b0db74314b086",
+      "input_readable": true,
+      "coverage_qualification_en": "Every line was loaded and eligible occurrences were located. A machine scan does not certify semantic completeness of atomic extraction."
+    }
+  ],
+  "markdown_total_lines": 3123,
+  "markdown_table_cells_scanned": 4070,
+  "phase2_table_cell_scanning_evidence": "02_generated_line_and_cell_coverage_final.jsonl",
+  "note_en": "Line and table-cell lexical coverage does not establish full atomic extraction or full predicate-level semantic proof."
+}

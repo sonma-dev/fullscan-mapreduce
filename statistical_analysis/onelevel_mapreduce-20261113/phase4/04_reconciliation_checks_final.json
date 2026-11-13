@@ -1,0 +1,29 @@
+{
+  "phase": 4,
+  "protocol_version": "6.1",
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "input_hashes_preserved": true,
+  "source_pdf_pages_checked": 90,
+  "generated_classes_reviewed": 4075,
+  "generated_original_line_matches": 4075,
+  "negative_controls_checked": 37,
+  "canonical_universe_rows": 1067,
+  "all_class_ids_unique": true,
+  "each_occurrence_class_membership_preserved": true,
+  "all_pdf_source_labels_from_phase3": true,
+  "one_canonical_judgment_per_unit": true,
+  "canonical_equations": {
+    "TP_plus_FN_equals_R": true,
+    "TN_plus_B_equals_N": true,
+    "FP_minus_B_equals_F": true,
+    "TP_plus_TN_plus_FP_plus_FN_equals_U": true,
+    "TP_plus_FP_equals_P": true
+  },
+  "negative_control_fp_double_count": 0,
+  "semantic_certification": "NOT_CERTIFIED_BEST_EFFORT",
+  "limitations": [
+    "Generated-class validity uses local PDF text/atom candidate retrieval plus bounded applicability checks, not independently reviewed full-predicate entailment for all classes.",
+    "Six process-metadata FP should be challenged for Phase 2 eligibility in Phase 5.",
+    "All 3,507 noncovering class labels and low-score semantic candidates are specifically not certified full-source-entailment proofs."
+  ]
+}

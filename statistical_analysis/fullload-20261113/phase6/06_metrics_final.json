@@ -1,0 +1,115 @@
+{
+  "prefix": "provided_eight_documents",
+  "status": "FINAL_BEST_EFFORT",
+  "protocol_version": "6.1",
+  "universe": {
+    "source_positive_atoms": 1024,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 2550,
+    "generated_positive_occurrences": 2618,
+    "covered_source_atoms": 654,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 812,
+    "canonical_predicted_positive_units": 1466,
+    "canonical_decision_units": 1873,
+    "negative_universe_scope": "PDF-grounded, predeclared bounded controls only"
+  },
+  "confusion": {
+    "TP": 654,
+    "TN": 37,
+    "FP": 812,
+    "FN": 370
+  },
+  "metrics": {
+    "Precision": 0.4461118690313779,
+    "Recall": 0.638671875,
+    "F1": 0.5253012048192771,
+    "Duplicate": 0.025974025974025976
+  },
+  "duplicate": {
+    "eligible_generated_occurrences": 2618,
+    "unique_generated_claim_classes": 2550,
+    "duplicate_excess_occurrences": 68,
+    "within_file_excess": 6,
+    "across_file_excess": 62,
+    "repeated_claim_class_count": 54,
+    "repeated_classes_spanning_multiple_files": 50
+  },
+  "generated_validity_counts": {
+    "PDF_ENTAILED": 909,
+    "PDF_UNSUPPORTED": 812,
+    "SUPPORTED_NONCOVERING": 829
+  },
+  "FN_root_cause_counts": {
+    "CONSERVATIVE_UNRESOLVED": 191,
+    "PARTIAL_ENTAILMENT": 68,
+    "TRUE_MISSING": 111
+  },
+  "audits": {
+    "tp_final_proof_rows": 654,
+    "tp_downgraded_proof_rows": 22,
+    "fn_initially_challenged_rows": 621,
+    "fn_corrected_to_tp_rows": 251,
+    "source_atomization_audit_rows": 1024,
+    "source_atomization_changed_records": 1,
+    "negative_control_audit_rows": 37,
+    "phase_change_delta_rows": 198,
+    "source_PDF_quote_whitespace_exact_matches": 1021,
+    "source_PDF_quote_total": 1024,
+    "generated_match_evidence_quote_matches": 872,
+    "generated_match_evidence_quote_locations": 872,
+    "FN_without_generated_candidate_locator": 0,
+    "FN_without_generated_candidate_ids": []
+  },
+  "input_coverage": {
+    "pdf_physical_pages": 90,
+    "pdf_nonempty_text_pages": 90,
+    "scored_markdown_roles": 8,
+    "scored_markdown_lines": 3956,
+    "scored_files": [
+      {
+        "file": "01_screen_functions(6).md",
+        "line_count": 495,
+        "sha256": "a7cbb4750406c24de8d19b8b18de58daeb906e738edfa297ccb6250dc0b73c77"
+      },
+      {
+        "file": "02_api(6).md",
+        "line_count": 696,
+        "sha256": "ab4cf9636307cc7dd17d51543f6ccb65d7aa9c7ceb245d2a4ecf21b8c356d699"
+      },
+      {
+        "file": "03_data(6).md",
+        "line_count": 474,
+        "sha256": "8c80fce711c4d88495d255c63665650e7da6051bf9b564e884fb74b6e01c327f"
+      },
+      {
+        "file": "04_batch_functions(6).md",
+        "line_count": 588,
+        "sha256": "02442363a1a85f6d31ce836a0d2cdbe1ee6d8886a1354c9f7c6f9dba7ff57a75"
+      },
+      {
+        "file": "05_business_rules(6).md",
+        "line_count": 481,
+        "sha256": "58e167f9e6ff4ea818caa9f0126f8178edf1fa7e77f57ba434c9eed1651dd308"
+      },
+      {
+        "file": "06_exception_handling(7).md",
+        "line_count": 432,
+        "sha256": "f4628f8f9b186b28ac9663189e647dbb95c6f56b248aa63655d26343093ab191"
+      },
+      {
+        "file": "07_processing_flows(7).md",
+        "line_count": 565,
+        "sha256": "765720a3318cd96aae6ae7f6816fe5a222ad17e73bfac74dee7a3bd306e3e833"
+      },
+      {
+        "file": "08_architecture_decision(6).md",
+        "line_count": 225,
+        "sha256": "c342339757814975c456fa89aad17a20fe33eb5e1ceaa818ead486f6012af712"
+      }
+    ],
+    "original_pdf_sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3"
+  },
+  "metric_interpretation": "Precision, Recall and F1 use the effective canonical proposition universe, not raw generated-class precision. Duplicate uses eligible raw occurrences and semantic classes. TN covers only fixed negative controls. Structural checks cannot certify the completeness of semantic entailment.",
+  "semantic_certification": "NOT_CERTIFIED: PDF-source predicates, 191 conservative FNs and many generated validity classes remain subject to independent semantic interpretation; the arithmetic is independently reproducible."
+}

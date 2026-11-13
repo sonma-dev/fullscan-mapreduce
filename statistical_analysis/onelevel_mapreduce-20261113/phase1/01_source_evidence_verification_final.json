@@ -1,0 +1,20 @@
+{
+  "source_positive_atoms": 1024,
+  "fixed_negative_controls": 37,
+  "quote_evidence_locations": 2564,
+  "text_quote_locations_verified": 2561,
+  "figure_1_1_visual_quotes_verified": 3,
+  "verified_all_uploaded_pdf_pages": 90,
+  "image_bearing_pages": 31,
+  "source_exclusions_grouped_records": 78,
+  "prior_page_block_exclusion_estimate": 274,
+  "original_atomization_challenge_records": 19,
+  "source_atomization_changes_made": 0,
+  "source_ledger_sha256": "8a6c97eaf52e3cbe544de9515e22a9f806b173ceac4c12c800f3888ad9053dbc",
+  "negative_control_ledger_sha256": "ba48d66de139609fbf7d5ff3d3783a1e3792d5f5120b81c404e129ef1561a253",
+  "source_ledger_byte_identical_to_retrieved_fullload_cal": true,
+  "negative_control_ledger_byte_identical_to_retrieved_fullload_cal": true,
+  "source_only_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "semantic_certification": "SOURCE_EVIDENCE_LOCATORS_VERIFIED; ATOMIZATION_INDEPENDENCE_NOT_CERTIFIED",
+  "method_scoring_performed": false
+}

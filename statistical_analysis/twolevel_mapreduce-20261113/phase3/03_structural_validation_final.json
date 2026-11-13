@@ -1,0 +1,33 @@
+{
+  "protocol_version": "6.1",
+  "phase": "3",
+  "status": "STRUCTURAL_PASS_SEMANTIC_BEST_EFFORT",
+  "authoritative_source_positive_atoms": 1024,
+  "fixed_negative_controls_unscored": 37,
+  "raw_generated_occurrences_unmodified_from_phase2": 2516,
+  "raw_generated_classes_unmodified_from_phase2": 2437,
+  "provisional_TP": 895,
+  "provisional_FN": 129,
+  "initial_FN_challenged": 565,
+  "initial_FN_corrected_to_TP": 436,
+  "remaining_FN_dispositions": {
+    "PARTIAL_ENTAILMENT": 64,
+    "TRUE_MISSING": 37,
+    "CONSERVATIVE_UNRESOLVED": 28
+  },
+  "independently_located_tp_bridge_rows": 882,
+  "tp_generated_evidence_line_locators_verified": 1322,
+  "raw_short_cell_evidence_occurrences": 129,
+  "phase2_atomization_gap_records": 126,
+  "source_path_normalization_corrections": 2,
+  "pdf_pages_supported_by_positive_atoms": 76,
+  "file_content_language": "English",
+  "all_required_phase3_deliverables_present": true,
+  "not_yet_performed": [
+    "Generated-claim PDF validity and FP/TN scoring (Phase 4)",
+    "Independent TP/atomization and duplicate semantic audit (Phase 5)",
+    "Independent metric certification (Phase 6)"
+  ],
+  "semantic_certification": "NOT_VERIFIED",
+  "score_qualification": "TP/FN are provisional evidence-based decisions, not independently certified true requirement coverage. No confusion matrix, precision, recall, or F1 claimed."
+}

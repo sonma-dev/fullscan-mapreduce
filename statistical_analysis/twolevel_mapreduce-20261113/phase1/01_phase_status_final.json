@@ -1,0 +1,11 @@
+{
+  "phase": 1,
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "phase_completed": true,
+  "next_phase_not_started": true,
+  "atomic_source_inventory_frozen_for_method_fairness": true,
+  "source_atomization_challenges_preserved_without_method_specific_changes": 21,
+  "no_precision_recall_f1_or_duplicate_scores_computed": true,
+  "source_evidence_matching_passed": true,
+  "why_best_effort_en": "All 90 pages and 2,564 evidence mentions are verified, but retaining the user-requested identical source atomization carries 21 flagged meaningful-independence challenges for the designated correction phase. Byte-level and quotation checks alone cannot certify semantic atomization."
+}

@@ -52,4 +52,10 @@ Furthermore, does it provide insights for migrating from classical programming l
   - Infrastructure: Azure
   - Local Execution Environment: Gentoo Linux, Windows Subsystem for Linux
 
+## 4. Statistical Validation of the Evaluation Metrics
+I verified the validity of the statistical method by applying it to the same set of multiple datasets for each of the three methods.
+During this verification, when precision or recall was close to 100%, the values remained unchanged.
+However, in the statistical calculations for full-load, when precision deviated substantially from 100%, the precision value varied considerably.
+Although the precision values from the full-load calculations cannot be considered reliable, I believe it can be stated with confidence that precision is not 100%.
+
 Note that in N-level hierarchical MapReduce, the number of concurrent LLMs should likely be increased depending on $N$.

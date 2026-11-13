@@ -1,0 +1,182 @@
+{
+  "protocol_version": "6.1",
+  "method": "provided_eight_documents",
+  "phase": 3,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "source_positive_atoms_R": 1024,
+  "source_negative_controls_N": 37,
+  "generated_occurrences_original_phase2": 2523,
+  "generated_classes_original_phase2": 2475,
+  "generated_occurrences_after_corrections": 2672,
+  "generated_classes_after_corrections": 2624,
+  "raw_added_definitive_occurrences": 149,
+  "raw_added_definitive_classes": 149,
+  "source_positive_matched_TP_best_effort": 621,
+  "source_positive_unmatched_FN_best_effort": 403,
+  "phase3_source_recall_diagnostic_only": 0.6064453125,
+  "not_precision_f1_or_confusion_matrix": true,
+  "fn_dispositions": {
+    "MATCHER_FALSE_NEGATIVE_CORRECTED": 196,
+    "TRUE_MISSING": 111,
+    "CONSERVATIVE_UNRESOLVED": 213,
+    "PARTIAL_ENTAILMENT": 79
+  },
+  "grades": {
+    "E2": 365,
+    "E3": 256,
+    "E0": 111,
+    "E1": 292
+  },
+  "coverage_modes": {
+    "CONJUNCTIVE_BRIDGE": 94,
+    "SEMANTIC_EQUIVALENCE": 175,
+    "UNIVERSAL_INSTANTIATION": 75,
+    "DIRECT_EQUIVALENCE": 81,
+    "INHERITED_CONTEXT": 196
+  },
+  "by_source_kind": {
+    "A2A_FIELD": {
+      "TP": 8
+    },
+    "ACCEPTANCE_TEST": {
+      "TP": 16
+    },
+    "API_ACTOR": {
+      "TP": 15
+    },
+    "API_BEHAVIOR": {
+      "FN": 6,
+      "TP": 11
+    },
+    "API_METHOD_PATH": {
+      "TP": 15
+    },
+    "API_STATUS": {
+      "TP": 15
+    },
+    "BOUNDARY_CONTEXT": {
+      "TP": 5
+    },
+    "COMPONENT_CONTRACT": {
+      "FN": 110
+    },
+    "CONTRACT_GOVERNANCE": {
+      "FN": 2
+    },
+    "CROSS_CUTTING_CHECKPOINT": {
+      "FN": 2
+    },
+    "CROSS_CUTTING_FAILURE": {
+      "TP": 5
+    },
+    "CROSS_CUTTING_SAFETY": {
+      "TP": 1
+    },
+    "CROSS_CUTTING_TEST": {
+      "FN": 7
+    },
+    "DATA_CONSTRAINT": {
+      "TP": 7,
+      "FN": 11
+    },
+    "DATA_FIELD": {
+      "TP": 80
+    },
+    "DDL_CHECK_OR_DEFAULT": {
+      "TP": 5
+    },
+    "DDL_FK": {
+      "TP": 2
+    },
+    "DDL_KEY": {
+      "TP": 2
+    },
+    "DDL_NULL": {
+      "TP": 7
+    },
+    "DDL_RLS": {
+      "TP": 2
+    },
+    "DDL_TYPE": {
+      "TP": 8
+    },
+    "DESIGN_GOVERNANCE": {
+      "FN": 1
+    },
+    "DOMAIN_FIELD": {
+      "TP": 13
+    },
+    "ERROR_CONTRACT": {
+      "TP": 6
+    },
+    "EVENT_CONTRACT": {
+      "TP": 24
+    },
+    "EVENT_VERIFICATION": {
+      "FN": 44
+    },
+    "INDEPENDENT_CONTRACT_FIELD": {
+      "TP": 17
+    },
+    "INTERFACE_VALIDATION": {
+      "TP": 43
+    },
+    "MCP_CONTRACT": {
+      "TP": 9
+    },
+    "NORMATIVE_FIGURE": {
+      "FN": 3
+    },
+    "NORMATIVE_INVARIANT": {
+      "TP": 20,
+      "FN": 2
+    },
+    "NORMATIVE_PROSE": {
+      "TP": 144,
+      "FN": 197
+    },
+    "NORMATIVE_TEXT": {
+      "TP": 1
+    },
+    "PRIMARY_SCREEN": {
+      "TP": 8
+    },
+    "REGISTER_API": {
+      "TP": 68
+    },
+    "REGISTER_EVENT": {
+      "TP": 29,
+      "FN": 15
+    },
+    "RUNBOOK": {
+      "TP": 5,
+      "FN": 1
+    },
+    "SECURITY_NEGATIVE_TEST": {
+      "TP": 12
+    },
+    "SECURITY_VERIFICATION": {
+      "TP": 10,
+      "FN": 2
+    },
+    "STATE_CATALOG": {
+      "TP": 8
+    }
+  },
+  "source_coverage_complete": true,
+  "fixed_negative_controls_recorded_but_not_yet_adjudicated": 37,
+  "generated_only_FP_not_evaluated": "PHASE_4",
+  "limitations_en": [
+    "Automated deterministic lexical and structural entailment screening, with original quoted table-cell evidence and bounded reciprocal retrieval, does not equal independent manual review of every full predicate.",
+    "Phase 2 omitted 106 definitive field, DDL, API-actor and primary-screen table assertions; the corrected raw generated inventory is separately retained for downstream phases.",
+    "Potential further Phase-2 extraction and semantic-class errors are not ruled out; do not interpret low Recall as verified missing functionality.",
+    "Every provisional source-FN is accompanied by original generated candidates and reverse-exact lookup descriptors. Remaining conservative uncertainty must be audited in Phase 5.",
+    "A full four-cell universe and FP/TN adjudication will be computed only in Phase 4."
+  ],
+  "initial_candidate_FN_corrected_to_TP": 196,
+  "structural_integrity_gate": "PASSED",
+  "semantic_certification": "NOT_CERTIFIED_BEST_EFFORT",
+  "source_atoms_sha256_matches_fullload_cal": true,
+  "source_negative_controls_sha256_matches_fullload_cal": true,
+  "pdf_pages_verified_from_phase1": 90
+}

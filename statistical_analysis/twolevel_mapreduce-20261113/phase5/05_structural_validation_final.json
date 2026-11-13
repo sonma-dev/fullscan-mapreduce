@@ -1,0 +1,30 @@
+{
+  "phase": 5,
+  "status": "STRUCTURAL_PASS_SEMANTIC_BEST_EFFORT",
+  "protocol_version": "6.1",
+  "source_positive": 1008,
+  "negative_controls": 37,
+  "raw_occurrences": 2553,
+  "raw_classes": 2349,
+  "canonical_rows": 1045,
+  "judgment_rows": 1045,
+  "source_coverage_rows": 1008,
+  "TP_evidence_audit_rows": 964,
+  "final_TP_proofs": 963,
+  "remaining_final_FN_roots": 45,
+  "negative_control_rows": 37,
+  "generated_claim_validity_rows": 2349,
+  "duplicate_partition_pass": true,
+  "conservation_pass": true,
+  "semantic_certification": false,
+  "input_documents": [
+    "04_batch_functions(8).md",
+    "01_screen_functions(8).md",
+    "03_data(8).md",
+    "06_exception_handling(9).md",
+    "08_architecture_decision(8).md",
+    "05_business_rules(8).md",
+    "07_processing_flows(9).md",
+    "02_api(8).md"
+  ]
+}

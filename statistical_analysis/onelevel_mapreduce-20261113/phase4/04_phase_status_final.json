@@ -1,0 +1,34 @@
+{
+  "phase": 4,
+  "phase_name": "Generated correctness and full four-cell universe",
+  "protocol_version": "6.1",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "source_pdf_pages": 90,
+  "source_positive_atoms": 1024,
+  "negative_controls": 37,
+  "raw_generated_occurrences": 4223,
+  "raw_generated_classes": 4075,
+  "generated_validity_records": 4075,
+  "canonical_universe_rows": 1067,
+  "confusion": {
+    "TP": 801,
+    "TN": 37,
+    "FP": 6,
+    "FN": 223,
+    "precision": 0.9925650557620818,
+    "recall": 0.7822265625,
+    "f1": 0.8749317312943746
+  },
+  "negative_controls_asserted": 0,
+  "generated_only_unsupported_propositions": 6,
+  "generated_only_process_metadata_fp_candidates": 6,
+  "generated_validity_counts": {
+    "PDF_ENTAILED": 562,
+    "SUPPORTED_NONCOVERING": 3507,
+    "PDF_UNSUPPORTED": 6
+  },
+  "low_source_similarity_caveat_count": 1011,
+  "source_and_generated_inputs_unmodified": true,
+  "phase5_performed": false,
+  "semantic_certification": "NOT_CERTIFIED_BEST_EFFORT"
+}

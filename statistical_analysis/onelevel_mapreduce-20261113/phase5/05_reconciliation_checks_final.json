@@ -1,0 +1,20 @@
+{
+  "phase": 5,
+  "checks": {
+    "unique_R": true,
+    "unique_N": true,
+    "tp_fn_R": true,
+    "tn_fp_N": true,
+    "four_cell_U": true,
+    "unique_GO": true,
+    "class_coverage": true,
+    "go_class_occurrence_reconciled": true,
+    "dup_partition": true,
+    "final_tp_evidence_all_located": true,
+    "fn_root_causes_cover_all": true,
+    "source_audit_complete": true,
+    "stage8_excluded": true,
+    "language_en_output": true
+  },
+  "notes": "Structural passes are not semantic certification."
+}

@@ -1,0 +1,82 @@
+{
+  "protocol_version": "6.1",
+  "phase": 6,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "metric_status": "FINAL_BEST_EFFORT_NOT_SEMANTICALLY_CERTIFIED",
+  "method_prefix": "supplied_set_1",
+  "input_set_name": "One supplied complete eight-file set; generation method not independently asserted",
+  "source_pdf": "OrionDesk_AI_Detailed_Design_Specification(10).pdf",
+  "pdf_sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+  "pdf_pages": 90,
+  "universe": {
+    "R": 1008,
+    "N": 37,
+    "GO": 2553,
+    "GC": 2349,
+    "A": 963,
+    "B": 0,
+    "F": 0,
+    "P": 963,
+    "U": 1045
+  },
+  "confusion": {
+    "TP": 963,
+    "TN": 37,
+    "FP": 0,
+    "FN": 45
+  },
+  "metrics": {
+    "Precision": 1.0,
+    "Recall": 0.9553571428571429,
+    "F1": 0.9771689497716894,
+    "Duplicate": 0.0799059929494712
+  },
+  "duplicate": {
+    "eligible_generated_occurrences": 2553,
+    "raw_semantic_classes": 2349,
+    "excess": 204,
+    "within_file_excess": 1,
+    "across_file_excess": 203,
+    "repeated_claim_class_count": 144,
+    "repeated_classes_spanning_multiple_files": 143,
+    "rate": 0.0799059929494712
+  },
+  "evidence_quality": {
+    "TP_evidence_audit_rows": 964,
+    "final_TP_audited": 963,
+    "bridge_proof_rows": 950,
+    "FN_review_dispositions": {
+      "PARTIAL_ENTAILMENT": 20,
+      "TRUE_MISSING": 13,
+      "CONSERVATIVE_UNRESOLVED": 12
+    },
+    "generated_class_verdicts": {
+      "PDF_ENTAILED": 636,
+      "SUPPORTED_NONCOVERING": 1713
+    },
+    "generated_class_grade_counts": {
+      "E2": 909,
+      "E1": 1269,
+      "E3": 171
+    },
+    "E1_generated_class_total": 1269,
+    "E1_PDF_ENTAILED_inconsistent_grade_count": 36,
+    "E1_SUPPORTED_NONCOVERING_uncertified_count": 1233,
+    "final_source_quote_contiguous_rechecks": 1005,
+    "final_source_quote_visual_confirmations": 3,
+    "final_source_quote_unverified": 0,
+    "TP_audit_dispositions": {
+      "SOURCE_ATOMIZATION_ERROR_CORRECTED": 1,
+      "EVIDENCE_PRESENT_FULL_PREDICATE_REVIEWED_BEST_EFFORT": 748,
+      "BEST_EFFORT_EVIDENCE_PROOF_REVIEWED_WITH_QUALIFICATION": 215
+    }
+  },
+  "limitations": [
+    "Computed rates apply to the effective canonical proposition universe, not raw generated classes.",
+    "FP=0 is an adjudicated result and does not certify absence of unsupported requirements, especially with E1 class-level evidence.",
+    "TN covers only 37 predeclared PDF-negative controls.",
+    "The 45 FN contain partial and conservative cases; not all are verified omissions.",
+    "Source PDF text rechecks and generated class grade contradictions remain explicit verification exceptions.",
+    "No independent human proof has been established for each of the 963 TP logical entailments."
+  ]
+}

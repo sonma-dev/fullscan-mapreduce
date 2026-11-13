@@ -1,0 +1,17 @@
+{
+  "prefix": "supplied_set_1",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "phase": 5,
+  "eligible_generated_occurrences": 2553,
+  "unique_generated_claim_classes": 2349,
+  "duplicate_excess_occurrences": 204,
+  "duplicate_rate": 0.0799059929494712,
+  "within_file_excess": 1,
+  "across_file_excess": 203,
+  "repeated_claim_class_count": 144,
+  "repeated_classes_spanning_multiple_files": 143,
+  "old_provisional_generated_occurrences": 2516,
+  "old_provisional_classes": 2437,
+  "candidate_merges_approved": 164,
+  "note": "Candidate merges use manually shortlisted full-predicate equivalents; remaining unreviewed paraphrases can cause downward bias in estimated duplication."
+}

@@ -1,0 +1,164 @@
+{
+  "checks": {
+    "source_id_unique": {
+      "passed": true
+    },
+    "negative_id_unique": {
+      "passed": true
+    },
+    "R_N_disjoint": {
+      "passed": true
+    },
+    "generated_occurrence_id_unique": {
+      "passed": true
+    },
+    "generated_class_id_unique": {
+      "passed": true
+    },
+    "universe_id_unique": {
+      "passed": true
+    },
+    "judgment_id_unique": {
+      "passed": true
+    },
+    "universe_judgment_id_equality": {
+      "passed": true
+    },
+    "source_positive_universe_exactly_R": {
+      "passed": true
+    },
+    "negative_control_universe_exactly_N": {
+      "passed": true
+    },
+    "TP_plus_FN_equals_R": {
+      "passed": true
+    },
+    "TN_plus_asserted_negative_equals_N": {
+      "passed": true
+    },
+    "FP_equals_asserted_N_plus_generated_only_F": {
+      "passed": true
+    },
+    "four_cells_equal_universe": {
+      "passed": true
+    },
+    "predicted_pos_matches_TP_FP": {
+      "passed": true
+    },
+    "actual_predicted_labels_reconcile": {
+      "passed": true
+    },
+    "universe_judgment_cells_identical": {
+      "passed": true
+    },
+    "each_occurrence_exactly_one_class": {
+      "passed": true
+    },
+    "occurrence_class_link_bidirectional": {
+      "passed": true
+    },
+    "generated_validity_complete": {
+      "passed": true
+    },
+    "duplicate_classes_complete": {
+      "passed": true
+    },
+    "duplicate_excess_by_class_matches": {
+      "passed": true
+    },
+    "duplicate_excess_partition_recomputed": {
+      "passed": true
+    },
+    "duplicate_partition_matches_phase5": {
+      "passed": true
+    },
+    "TP_audit_exactly_all_TP": {
+      "passed": true
+    },
+    "remaining_FN_audit_exactly_all_FN": {
+      "passed": true
+    },
+    "FN_root_cause_all_closed": {
+      "passed": true
+    },
+    "negative_control_audit_complete": {
+      "passed": true
+    },
+    "source_atomization_audit_covers_R": {
+      "passed": true
+    },
+    "TP_all_have_both_evidence_layers": {
+      "passed": true
+    },
+    "FN_all_have_pdf_and_candidate_review": {
+      "passed": true
+    },
+    "generated_validity_allowed_labels": {
+      "passed": true
+    },
+    "phase5_confusion_matches_independent_item_counts": {
+      "passed": true
+    },
+    "phase5_duplicate_summary_matches_raw_occurrences": {
+      "passed": true
+    },
+    "all_eight_unmodified_inputs_accessible": {
+      "passed": true
+    },
+    "generated_occurrence_files_only_original_eight": {
+      "passed": true
+    },
+    "all_generated_occurrence_line_quotes_match": {
+      "passed": true
+    },
+    "TP_generated_evidence_quotations_found": {
+      "passed": true
+    },
+    "pdf_90_physical_pages": {
+      "passed": true
+    },
+    "pdf_matches_shared_original_sha256": {
+      "passed": true
+    },
+    "all_source_pdf_quotes_match": {
+      "passed": true
+    },
+    "all_90_pages_readable": {
+      "passed": true
+    },
+    "pdf_visual_pages_match_prior_coverage": {
+      "passed": true
+    },
+    "regression_probes_have_original_corpus_hits": {
+      "passed": true
+    },
+    "all_eight_input_files_have_eligible_occurrences": {
+      "passed": true
+    },
+    "phase2_coverage_has_exactly_all_original_lines": {
+      "passed": true
+    },
+    "phase2_reconstructed_table_cell_count": {
+      "passed": true
+    },
+    "phase2_covered_eight_documents": {
+      "passed": true
+    },
+    "phase2_table_and_line_atom_references_valid_after_phase5_meta_exclusion": {
+      "passed": true
+    },
+    "all_final_generated_occurrences_present_in_phase2_coverage": {
+      "passed": true
+    },
+    "phase2_occurrence_file_counts_reconciled": {
+      "passed": true
+    },
+    "source_negative_controls_unchanged_from_phase1": {
+      "passed": true
+    }
+  },
+  "passed": 52,
+  "failed": 0,
+  "failed_names": [],
+  "semantic_certification": "NOT_INDEPENDENTLY_CERTIFIED_BEST_EFFORT"
+}

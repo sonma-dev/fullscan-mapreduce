@@ -1,0 +1,57 @@
+{
+  "prefix": "provided_eight_documents",
+  "phase": 4,
+  "protocol_version": "6.1",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "universe": {
+    "source_positive_atoms": 1024,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 2624,
+    "generated_positive_occurrences": 2672,
+    "covered_source_atoms": 621,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 915,
+    "canonical_predicted_positive_units": 1536,
+    "canonical_decision_units": 1976,
+    "negative_universe_scope": "PDF-grounded, predeclared bounded controls only"
+  },
+  "confusion": {
+    "TP": 621,
+    "TN": 37,
+    "FP": 915,
+    "FN": 403
+  },
+  "metrics": {
+    "Precision": 0.404296875,
+    "Recall": 0.6064453125,
+    "F1": 0.48515625,
+    "Duplicate": 0.017964071856287425
+  },
+  "generated_class_validity": {
+    "PDF_UNSUPPORTED": 915,
+    "PDF_ENTAILED": 895,
+    "SUPPORTED_NONCOVERING": 814
+  },
+  "fixed_negative_control_assertions": 0,
+  "source_coverage_mode": "PHASE_3_BEST_EFFORT_INHERITED; INDEPENDENT_PHASE_5_TP_AUDIT_PENDING",
+  "metric_interpretation": "One canonical effective-proposition universe R disjoint union N disjoint union F. One universal generated class may support multiple source atoms. The class count G does not equal TP+FP. TN is restricted to 37 fixed controls.",
+  "equations": {
+    "TP_plus_FN_equals_R": true,
+    "TN_plus_B_equals_N": true,
+    "FP_minus_B_equals_F": true,
+    "four_cells_sum_equals_U": true,
+    "TP_plus_FP_equals_predicted_positives": true,
+    "raw_occurrences_gte_classes": true
+  },
+  "pdf_input_sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+  "source_atoms_sha256": "8a6c97eaf52e3cbe544de9515e22a9f806b173ceac4c12c800f3888ad9053dbc",
+  "source_negative_controls_sha256": "ba48d66de139609fbf7d5ff3d3783a1e3792d5f5120b81c404e129ef1561a253",
+  "semantic_certification": "NOT_CERTIFIED_BEST_EFFORT",
+  "limitations_en": [
+    "This uses retrieval-assisted bounded semantic support decisions over exact PDF quotations, not an independent full human predicate audit of 2,624 generated classes.",
+    "Provisional GENERATED_ONLY unsupported classifications can include eligibility/atomization defects from the corrected Phase-3 raw class inventory; they must be challenged in Phase 5.",
+    "The 403 Phase-3 source-negative decisions include conservative unresolved cases; arithmetic Recall is not certified true omission rate.",
+    "Unapproved proposals are not promoted to definitive generated commitments. The fixed 37 negative-control inventory is not an exhaustive true-negative population.",
+    "Phase 4 does not complete Phase 5 correction or Phase 6 final independent certification."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "phase": 4,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "protocol_version": "6.1",
+  "method": "provided_eight_documents",
+  "input_pdf_pages_verified_phase1": 90,
+  "scored_markdown_count": 8,
+  "source_positive_atoms": 1024,
+  "negative_controls": 37,
+  "generated_occurrences": 2672,
+  "generated_classes": 2624,
+  "generated_class_validity": {
+    "PDF_UNSUPPORTED": 915,
+    "PDF_ENTAILED": 895,
+    "SUPPORTED_NONCOVERING": 814
+  },
+  "provisional_scoring": {
+    "TP": 621,
+    "TN": 37,
+    "FP": 915,
+    "FN": 403
+  },
+  "metrics": {
+    "Precision": 0.404296875,
+    "Recall": 0.6064453125,
+    "F1": 0.48515625,
+    "Duplicate": 0.017964071856287425
+  },
+  "all_source_and_generated_item_level_rows_reconciled": true,
+  "semantic_certification": "NOT_CERTIFIED_BEST_EFFORT",
+  "phase4_only": true,
+  "phase5_held": true,
+  "phase6_held": true,
+  "source_negative_controls_sha256_matches_phase1": true,
+  "source_positive_atoms_sha256_matches_phase1": true
+}

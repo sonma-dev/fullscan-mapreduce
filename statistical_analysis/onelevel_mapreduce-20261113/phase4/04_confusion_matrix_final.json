@@ -1,0 +1,41 @@
+{
+  "method": "current_scored_8",
+  "phase": 4,
+  "protocol_version": "6.1",
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "semantic_certification": "NOT_CERTIFIED_BEST_EFFORT",
+  "pdf_baseline": "R1.0 / revision 1.3",
+  "pdf_sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+  "source_positive_count_R": 1024,
+  "fixed_negative_control_count_N": 37,
+  "generated_occurrence_count_GO": 4223,
+  "generated_raw_class_count_G": 4075,
+  "generated_only_unsupported_count_F": 6,
+  "asserted_negative_controls_B": 0,
+  "canonical_universe_count_U": 1067,
+  "effective_predicted_positive_count_P": 807,
+  "TP": 801,
+  "TN": 37,
+  "FP": 6,
+  "FN": 223,
+  "precision": 0.9925650557620818,
+  "recall": 0.7822265625,
+  "f1": 0.8749317312943746,
+  "duplicate_rate_provisional": 0.03504617570447549,
+  "equations": {
+    "TP_plus_FN_equals_R": true,
+    "TN_plus_B_equals_N": true,
+    "FP_minus_B_equals_F": true,
+    "TP_plus_TN_plus_FP_plus_FN_equals_U": true,
+    "TP_plus_FP_equals_P": true
+  },
+  "generated_validity_counts": {
+    "PDF_ENTAILED": 562,
+    "SUPPORTED_NONCOVERING": 3507,
+    "PDF_UNSUPPORTED": 6
+  },
+  "class_evidence_quality_warning_count": 1011,
+  "very_weak_pdf_retrieval_count": 226,
+  "explicit_fp_eligibility_challenges": 6,
+  "unreviewed_ambiguity_note_en": "Phase 4 is structurally reconciled but 4,075 raw generated classes cannot be independently certified solely from PDF passage retrieval. Source-positive decisions remain Phase 3 best effort; the high SUPPORTED_NONCOVERING count and short-table-cell claims require Phase 5 semantic review. Six apparent FP are process-stage directives whose raw-class eligibility must also be retested. Precision/Recall/F1 can change in either direction."
+}

@@ -1,0 +1,38 @@
+{
+  "protocol_version": "6.1",
+  "phase": 2,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "structural_checks": {
+    "eight_original_input_hashes_preserved": true,
+    "atom_and_class_ids_unique": true,
+    "each_eligible_occurrence_belongs_to_exactly_one_class": true,
+    "all_physical_lines_classified": true,
+    "all_logged_nonblank_table_data_cells_classified": true,
+    "all_eligible_occurrence_original_quotes_exact": true,
+    "source_quote_origin_for_eligible_predictions_verified": true,
+    "prior_pdf_exclusions_retained": true,
+    "duplicate_partition_recomputes": true,
+    "occurrence_and_class_arithmetic_recomputes": true,
+    "diagnostic_regression_probes": {
+      "case_title": true,
+      "workspace_retention_class": true,
+      "idempotent_identical_create": true,
+      "no_example_settings_promoted": true
+    },
+    "no_incorrect_selected_field_merges_detected": true,
+    "authored_files_contain_no_japanese_or_cjk_characters": true,
+    "phase3_not_started": true
+  },
+  "all_structural_checks_passed": true,
+  "eligible_occurrences": 4223,
+  "raw_semantic_classes": 4075,
+  "excess_within_file": 12,
+  "excess_across_files": 136,
+  "generated_exclusion_records": 5251,
+  "source_exclusion_group_records": 78,
+  "line_records": 3123,
+  "table_data_cell_decisions": 4070,
+  "quotations_without_verbatim_line_origin": 0,
+  "semantic_certification": "NOT_CERTIFIED_BEST_EFFORT",
+  "interpretation": "Line/cell evidence and arithmetic reconcile; the semantic completeness of atomization, eligibility and deduplication remains best effort."
+}

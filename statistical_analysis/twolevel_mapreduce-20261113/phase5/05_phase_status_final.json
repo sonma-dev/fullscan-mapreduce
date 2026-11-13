@@ -1,0 +1,35 @@
+{
+  "phase": 5,
+  "protocol_version": "6.1",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "scored_method": "supplied_set_1",
+  "required_outputs_present": true,
+  "semantic_certification": false,
+  "next_phase_not_started": 6,
+  "phase5_counts": {
+    "source_atomization_removals": 16,
+    "source_counts_before": 1024,
+    "source_counts_after": 1008,
+    "initial_FN_reversals_this_phase": 69,
+    "old_TP_source_summary_removed": 1,
+    "original_FP_eligibility_reclassified": 64,
+    "added_generated_table_cell_occurrences": 101,
+    "duplicate_candidate_pairs_reviewed": 190,
+    "duplicate_candidate_pairs_approved": 164,
+    "merged_distinct_class_clusters_count": 96,
+    "TP_proof_audit_rows": 964,
+    "final_TP_proof_rows": 963,
+    "remaining_generated_class_E1_status": 1269,
+    "source_FN_dispositions": {
+      "PARTIAL_ENTAILMENT": 20,
+      "TRUE_MISSING": 13,
+      "CONSERVATIVE_UNRESOLVED": 12
+    }
+  },
+  "canonical_confusion": {
+    "TP": 963,
+    "TN": 37,
+    "FP": 0,
+    "FN": 45
+  }
+}

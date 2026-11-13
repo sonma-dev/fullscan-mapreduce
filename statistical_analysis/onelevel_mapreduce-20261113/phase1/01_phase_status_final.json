@@ -1,0 +1,25 @@
+{
+  "phase": 1,
+  "phase_name": "Independent PDF requirements and fixed controls",
+  "protocol_version": "6.1",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "source_pdf_verified": true,
+  "all_90_pages_inspected": true,
+  "source_positive_atoms": 1024,
+  "fixed_negative_controls": 37,
+  "source_quote_evidence_matched": 2564,
+  "unmatched_source_quotes": 0,
+  "legacy_source_ledger_byte_preserved": true,
+  "source_atomization_challenge_records": 19,
+  "source_atomization_changes_applied": 0,
+  "semantic_certification": "NOT_CERTIFIED_BEST_EFFORT",
+  "phase2_started": false,
+  "scored_corpus_touched": false,
+  "next_authorized_phase": "PHASE_2_ON_NEXT_USER_REQUEST",
+  "limitations": [
+    "Exact PDF quotation integrity is not a proof of meaningful atomization.",
+    "The historical source inventory is preserved for stable comparison as requested; 19 substantive atomization challenge records remain identified for Phase 5 adjudication.",
+    "Excluded text block counts are page-level prior estimates, not independently reviewed line-by-line exclusion decisions.",
+    "Only source-side PDF requirements and source-negative controls have been processed; no generated judgments or scores exist for this turn."
+  ]
+}

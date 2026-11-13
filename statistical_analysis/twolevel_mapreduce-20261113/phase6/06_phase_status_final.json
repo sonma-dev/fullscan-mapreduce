@@ -1,0 +1,24 @@
+{
+  "phase": 6,
+  "protocol_version": "6.1",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "metric_status": "FINAL_BEST_EFFORT",
+  "semantic_certification": false,
+  "structural_validation": "PASS_WITH_REPAIRED_CANONICAL_LEDGER",
+  "canonical_units": 1045,
+  "output_files": [
+    "06_metrics_final.json",
+    "06_metrics_final.md",
+    "compute_metrics.py",
+    "08_coverage_and_limitations.md",
+    "06_independent_validation_final.json",
+    "06_validation_exceptions_final.jsonl",
+    "06_pdf_quote_recheck_final.jsonl",
+    "06_input_integrity_final.json",
+    "06_regression_probes_final.json",
+    "06_canonical_reconciliation_final.json",
+    "03_canonical_universe_final.jsonl"
+  ],
+  "archive_created": false,
+  "phase7_started": false
+}

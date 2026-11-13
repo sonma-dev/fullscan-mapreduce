@@ -1,0 +1,59 @@
+{
+  "protocol_version": "6.1",
+  "phase": 5,
+  "status": "PASS_STRUCTURAL_SEMANTIC_NOT_CERTIFIED",
+  "source_original_pdf": "OrionDesk_AI_Detailed_Design_Specification(10).pdf",
+  "source_pdf_pages": 90,
+  "inputs_checked": [
+    "01_screen_functions(8).md",
+    "02_api(8).md",
+    "03_data(8).md",
+    "04_batch_functions(8).md",
+    "05_business_rules(8).md",
+    "06_exception_handling(9).md",
+    "07_processing_flows(9).md",
+    "08_architecture_decision(8).md"
+  ],
+  "source_positive": 1008,
+  "source_negative_controls": 37,
+  "generated_occurrences": 2553,
+  "generated_classes": 2349,
+  "generated_occurrence_quote_normalization_warnings": 4,
+  "generated_occurrence_quote_warning_ids_sample": [
+    "GEN-00397",
+    "GEN-00799",
+    "GEN-01537",
+    "GEN-01810"
+  ],
+  "confusion": {
+    "TP": 963,
+    "FN": 45,
+    "TN": 37
+  },
+  "metrics": {
+    "precision": 1.0,
+    "recall": 0.9553571428571429,
+    "f1": 0.9771689497716894,
+    "duplicate": 0.0799059929494712
+  },
+  "duplicate_excess": 204,
+  "within_file_excess": 1,
+  "across_file_excess": 203,
+  "source_atomization_removals": 16,
+  "generated_eligibility_FP_exclusions": 64,
+  "tp_quote_normalization_warnings": 0,
+  "tp_quote_warning_samples": [],
+  "tp_evidence_audit_rows": 964,
+  "tp_final_evidence_audit_rows": 963,
+  "tp_locators_verified": 963,
+  "pdf_source_quote_extraction_checks_success": 748,
+  "pdf_source_quote_extraction_checks_not_fully_matching": 215,
+  "tp_evidence_audit_outcomes": {
+    "SOURCE_ATOMIZATION_ERROR_CORRECTED": 1,
+    "EVIDENCE_PRESENT_FULL_PREDICATE_REVIEWED_BEST_EFFORT": 748,
+    "BEST_EFFORT_EVIDENCE_PROOF_REVIEWED_WITH_QUALIFICATION": 215
+  },
+  "semantic_certification": false,
+  "notes_en": "Arithmetic, identifier linkage, original Markdown physical-line evidence and denominator conservation pass. PDF quote auto-check mismatches are recorded, not silently treated as semantic proof. A remaining E1 evidence grade is not a certified absence or presence. This validator is not Phase 6.",
+  "next_phase_executed": false
+}

@@ -1,0 +1,31 @@
+{
+  "protocol_version": "6.1",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "semantic_certification": "NOT_INDEPENDENTLY_CERTIFIED_BEST_EFFORT",
+  "source_atom_count": 1024,
+  "negative_controls_pending_phase4": 37,
+  "generated_occurrence_count": 4223,
+  "generated_class_count": 4075,
+  "source_coverage_draft": {
+    "TP": 801,
+    "FN": 223
+  },
+  "initial_fn_challenge_counts": {
+    "CONSERVATIVE_UNRESOLVED": 118,
+    "MATCHER_FALSE_NEGATIVE_CORRECTED": 737,
+    "PARTIAL_ENTAILMENT": 97,
+    "TRUE_MISSING": 8
+  },
+  "structural_pass": true,
+  "checks": {
+    "FN_candidate_records": 223,
+    "TP_predicate_records": 801,
+    "literal_quote_line_matches": 1065,
+    "fn_root_records_closed": 960,
+    "bridge_proofs": 711,
+    "literal_exact_FN_review_exceptions": 0
+  },
+  "warnings": [],
+  "warnings_count": 0,
+  "phase4_not_performed": true
+}

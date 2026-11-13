@@ -1,0 +1,13 @@
+{
+  "status": "PASSED_STRUCTURAL_ONLY",
+  "counts": {
+    "TP": 621,
+    "FN": 403,
+    "TN": 37,
+    "FP": 915
+  },
+  "universe": 1976,
+  "generated_classes": 2624,
+  "negative_controls": 37,
+  "semantic_certification": "NOT_CERTIFIED"
+}

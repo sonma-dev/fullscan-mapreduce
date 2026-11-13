@@ -1,0 +1,33 @@
+{
+  "phase": 4,
+  "status": "STRUCTURAL_PASS_SEMANTIC_BEST_EFFORT",
+  "PDF_verified_pages": 90,
+  "supplied_scored_inputs": 8,
+  "R": 1024,
+  "N": 37,
+  "generated_occurrences": 2516,
+  "generated_classes": 2437,
+  "raw_claim_validity_judgments": 2437,
+  "negative_control_judgments": 37,
+  "reciprocal_fp_challenges": 593,
+  "generated_only_fp": 64,
+  "canonical_items": 1125,
+  "cells": {
+    "TP": 895,
+    "FN": 129,
+    "TN": 37,
+    "FP": 64
+  },
+  "rates": {
+    "Precision": 0.9332638164754953,
+    "Recall": 0.8740234375,
+    "F1": 0.902672718103883,
+    "Duplicate": 0.031399046104928455
+  },
+  "source_inventory_changed_during_phase4": false,
+  "semantic_certification": false,
+  "limitations": [
+    "Structural reconciliation does not prove full semantic entailment.",
+    "Phase 5 must review Phase 2 eligibility, source atomization and all E1 generated correctness judgments."
+  ]
+}

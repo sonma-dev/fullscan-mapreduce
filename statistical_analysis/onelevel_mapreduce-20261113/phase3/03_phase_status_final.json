@@ -1,0 +1,112 @@
+{
+  "phase": 3,
+  "protocol_version": "6.1",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "semantic_certification": "NOT_INDEPENDENTLY_CERTIFIED_BEST_EFFORT",
+  "method": "current_scored_8",
+  "pdf": {
+    "pages": 90,
+    "source_pdf": "OrionDesk_AI_Detailed_Design_Specification(8).pdf",
+    "sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3"
+  },
+  "input_source_atoms": 1024,
+  "input_negative_controls": 37,
+  "input_generated_occurrences": 4223,
+  "input_raw_semantic_classes": 4075,
+  "source_positive_coverage": {
+    "TP": 801,
+    "FN": 223
+  },
+  "coverage_mode_counts": {
+    "SEMANTIC_EQUIVALENCE": 55,
+    "UNIVERSAL_INSTANTIATION": 50,
+    "CONJUNCTIVE_BRIDGE": 22,
+    "INHERITED_CONTEXT": 297,
+    "DIRECT_EQUIVALENCE": 90
+  },
+  "initial_fn_review_dispositions": {
+    "CONSERVATIVE_UNRESOLVED": 118,
+    "MATCHER_FALSE_NEGATIVE_CORRECTED": 737,
+    "PARTIAL_ENTAILMENT": 97,
+    "TRUE_MISSING": 8
+  },
+  "fn_audit_records": 960,
+  "tp_bridge_records": 711,
+  "high_risk_review_exceptions": 95,
+  "unscored_negative_controls": 37,
+  "phase4_performed": false,
+  "phase5_source_denominator_corrections_performed": false,
+  "note_en": "Only PDF-positive coverage was decided in Phase 3. Candidate scores and structural checks do not certify complete semantic entailment; conservative E1/E0 absence judgments and register category assumptions remain for Phase 5 audits. Phase 4 will establish N-control predictions and generated-only FP.",
+  "reciprocal_fn_corrections_this_pass": 287,
+  "corrected_source_kinds": {
+    "NORMATIVE_INVARIANT": 7,
+    "CROSS_CUTTING_FAILURE": 3,
+    "NORMATIVE_PROSE": 40,
+    "REGISTER_EVENT": 28,
+    "EVENT_VERIFICATION": 22,
+    "API_BEHAVIOR": 7,
+    "DDL_TYPE": 8,
+    "DDL_KEY": 2,
+    "DDL_NULL": 7,
+    "DDL_FK": 2,
+    "DDL_CHECK_OR_DEFAULT": 5,
+    "DDL_RLS": 1,
+    "ACCEPTANCE_TEST": 14,
+    "RUNBOOK": 4,
+    "DESIGN_GOVERNANCE": 1,
+    "SECURITY_NEGATIVE_TEST": 7
+  },
+  "final_reciprocal_category_corrections": {
+    "NORMATIVE_PROSE": 26,
+    "REGISTER_EVENT": 16,
+    "COMPONENT_CONTRACT": 14,
+    "API_BEHAVIOR": 3,
+    "ERROR_CONTRACT": 5,
+    "SECURITY_VERIFICATION": 12,
+    "SECURITY_NEGATIVE_TEST": 5
+  },
+  "direct_match_regression_corrections": 48,
+  "remaining_selected_regression_probes": [
+    [
+      "PDF-00513",
+      "too weak full-predicate similarity 25.0"
+    ],
+    [
+      "PDF-00514",
+      "too weak full-predicate similarity 42.009132420091326"
+    ],
+    [
+      "PDF-00623",
+      "too weak full-predicate similarity 43.75"
+    ],
+    [
+      "PDF-00680",
+      "too weak full-predicate similarity 38.13559322033898"
+    ],
+    [
+      "PDF-00095",
+      "too weak full-predicate similarity 19.88304093567251"
+    ],
+    [
+      "PDF-00117",
+      "too weak full-predicate similarity 34.21052631578948"
+    ],
+    [
+      "PDF-00030",
+      "too weak full-predicate similarity 34.02489626556017"
+    ]
+  ],
+  "generated_statement_quote_uncertainties": 0,
+  "explicit_statement_FN_exceptions": 0,
+  "input_file_line_counts": {
+    "07_processing_flows(8).md": 377,
+    "02_api(7).md": 486,
+    "03_data(7).md": 503,
+    "08_architecture_decision(7).md": 204,
+    "04_batch_functions(7).md": 291,
+    "05_business_rules(7).md": 419,
+    "01_screen_functions(7).md": 504,
+    "06_exception_handling(8).md": 339
+  },
+  "phase4_generated_classes_queued": 4075
+}

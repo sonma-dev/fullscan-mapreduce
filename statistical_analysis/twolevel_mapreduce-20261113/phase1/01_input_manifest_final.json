@@ -1,0 +1,108 @@
+{
+  "protocol_version": "6.1",
+  "phase": 1,
+  "phase_scope": "Independent PDF-positive and fixed negative-control inventory",
+  "evaluation_method_label": "current_supplied_eight_document_set_method_unlabeled",
+  "reference_pdf": {
+    "actual_filename": "OrionDesk_AI_Detailed_Design_Specification(10).pdf",
+    "source_baseline_canonical_filename": "OrionDesk_AI_Detailed_Design_Specification.pdf",
+    "sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+    "physical_pages": 90,
+    "document_id": "OD-AI-DDS-001",
+    "release": "R1.0",
+    "design_revision": "1.3",
+    "matches_prior_fullload_cal_pdf_sha256": true
+  },
+  "evaluation_protocol": {
+    "actual_filename": "OrionDesk_One_Pass_Atomic_Evaluation_Protocol(20261112-233355).md",
+    "sha256": "1028f4ba1b6ad645b572195e3900d7a01da523f80d9ea59f9eb189767ad4847d"
+  },
+  "scored_input_files": [
+    {
+      "role": "01",
+      "actual_filename": "01_screen_functions(8).md",
+      "sha256": "b89b69e6b4b908c357f67c2f15cf9a4535043119af894a57e6cdbaa75baff514",
+      "readable_utf8": true,
+      "scored_in_phase_1": false
+    },
+    {
+      "role": "02",
+      "actual_filename": "02_api(8).md",
+      "sha256": "db0e94dce9437a9d5b33346b85e0ee31f46df2d1bd4158948934bf39156d0dd3",
+      "readable_utf8": true,
+      "scored_in_phase_1": false
+    },
+    {
+      "role": "03",
+      "actual_filename": "03_data(8).md",
+      "sha256": "f3eb127d819fca59285d46a0f2e75842c6039bdf899e8e9badaa71577332508c",
+      "readable_utf8": true,
+      "scored_in_phase_1": false
+    },
+    {
+      "role": "04",
+      "actual_filename": "04_batch_functions(8).md",
+      "sha256": "a7b6927b273a03e4f878889bd2586e1a85f60ce2244f4bacde5b5f83fca1c72c",
+      "readable_utf8": true,
+      "scored_in_phase_1": false
+    },
+    {
+      "role": "05",
+      "actual_filename": "05_business_rules(8).md",
+      "sha256": "7d6934ccf8eb441c799f193066c1f0ef5344c27779073804cbbabf4cdc26167c",
+      "readable_utf8": true,
+      "scored_in_phase_1": false
+    },
+    {
+      "role": "06",
+      "actual_filename": "06_exception_handling(9).md",
+      "sha256": "cebe3ad3538d3e5bac037f36ac8d0f2bbe6467b759203edb230536f95b40b6ff",
+      "readable_utf8": true,
+      "scored_in_phase_1": false
+    },
+    {
+      "role": "07",
+      "actual_filename": "07_processing_flows(9).md",
+      "sha256": "0decb3f8128c7aef8b7dbef54836979a677eb927116136cfe8ca7cce2cebe41f",
+      "readable_utf8": true,
+      "scored_in_phase_1": false
+    },
+    {
+      "role": "08",
+      "actual_filename": "08_architecture_decision(8).md",
+      "sha256": "ed4804474726c338232ccca4d94641b64e8cb017c0225cfa218072bfef5ae6b3",
+      "readable_utf8": true,
+      "scored_in_phase_1": false
+    }
+  ],
+  "source_ledgers": {
+    "positive_file": "01_source_atoms_final.jsonl",
+    "positive_count": 1024,
+    "positive_sha256": "8a6c97eaf52e3cbe544de9515e22a9f806b173ceac4c12c800f3888ad9053dbc",
+    "negative_file": "01_source_negative_controls_final.jsonl",
+    "negative_count": 37,
+    "negative_sha256": "ba48d66de139609fbf7d5ff3d3783a1e3792d5f5120b81c404e129ef1561a253",
+    "byte_identical_to_materialized_fullload_cal_ledgers": true
+  },
+  "evidence_verification": {
+    "positive_quote_locations": 2527,
+    "negative_quote_locations": 37,
+    "all_quote_locations": 2564,
+    "exact_normalized_current_page_matches": 2561,
+    "manual_raster_figure_matches": 3,
+    "unverified_locations": 0
+  },
+  "page_inspection": {
+    "inspected_physical_pages": 90,
+    "image_bearing_pages": 31,
+    "all_pages_text_readable": true,
+    "all_raster_pages_reviewed": true
+  },
+  "source_atomization": {
+    "exact_normalized_statement_duplicates": 0,
+    "specific_review_challenges": 21,
+    "known_confirmed_source_corrections": 0,
+    "remaining_review_challenges": 21
+  },
+  "source_file_alias_policy_en": "The original R/N evidence locators are preserved byte-for-byte as requested; the manifest identifies the actual uploaded PDF filename and confirms identical PDF bytes. This is not generated-document filename substitution."
+}

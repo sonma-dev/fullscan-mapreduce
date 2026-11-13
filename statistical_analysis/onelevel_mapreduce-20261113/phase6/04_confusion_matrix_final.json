@@ -1,0 +1,48 @@
+{
+  "method": "current_scored_8",
+  "protocol_version": "6.1",
+  "phase": 5,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "confusion_matrix": {
+    "TP": 981,
+    "TN": 37,
+    "FP": 0,
+    "FN": 39
+  },
+  "metrics": {
+    "precision": 1.0,
+    "recall": 0.961764705882353,
+    "f1": 0.9805097451274363
+  },
+  "canonical_universe_size": 1057,
+  "source_positive_inventory": 1020,
+  "bounded_source_negative_controls": 37,
+  "generated_only_unsupported_definitive_predictions": 0,
+  "raw_generated_occurrences": 4217,
+  "raw_generated_classes": 4069,
+  "canonical_predicted_positive": 981,
+  "equations": {
+    "TP_plus_FN_equals_R": true,
+    "TN_plus_asserted_N_equals_N": true,
+    "FP_minus_asserted_N_equals_F": true,
+    "sum_cells_equals_universe": true,
+    "predicted_positive_equals_TP_plus_FP": true
+  },
+  "comparison_to_phase4": {
+    "prior_TP": 801,
+    "prior_FN": 223,
+    "prior_FP": 6,
+    "prior_TN": 37,
+    "source_parents_removed": 5,
+    "new_split_child_count": 1,
+    "reclassified_FN_to_TP": 180,
+    "excluded_nonproduct_stage_8_directions": 6
+  },
+  "limitations": [
+    "TP/FN grades reflect best-effort semantic review; full logical entailment is not independently certified.",
+    "TN is measured only over fixed 37 PDF-negative controls.",
+    "Six former FP are excluded as meta-document-production directives, not reclassified as PDF-supported product commitments.",
+    "A large supported-noncovering class set relies on source-retrieval candidates; review remains open.",
+    "Universal/shared source predicates and table inherited context may require additional human equivalence checking."
+  ]
+}

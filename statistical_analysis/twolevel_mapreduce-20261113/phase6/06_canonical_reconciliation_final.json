@@ -1,0 +1,11 @@
+{
+  "file": "03_canonical_universe_final.jsonl",
+  "historical_phase4_rows": 1125,
+  "phase5_target_rows": 1045,
+  "current_phase6_rows": 1045,
+  "historical_repair_performed": true,
+  "additional_repair_required_now": false,
+  "action": "Regenerated canonical-universe representation from the final item-level judgment ledger; preserved canonical IDs and decision cells",
+  "source_of_truth": "04_atomic_judgments_final.jsonl",
+  "historical_evidence": "04_phase_status_final.json plus corrected Phase 5 judgments"
+}

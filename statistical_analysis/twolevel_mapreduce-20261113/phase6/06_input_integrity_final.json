@@ -1,0 +1,52 @@
+{
+  "reference_pdf": {
+    "name": "OrionDesk_AI_Detailed_Design_Specification(10).pdf",
+    "sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+    "physical_pages": 90
+  },
+  "generated_inputs": [
+    {
+      "name": "01_screen_functions(8).md",
+      "sha256": "b89b69e6b4b908c357f67c2f15cf9a4535043119af894a57e6cdbaa75baff514",
+      "physical_lines": 437
+    },
+    {
+      "name": "02_api(8).md",
+      "sha256": "db0e94dce9437a9d5b33346b85e0ee31f46df2d1bd4158948934bf39156d0dd3",
+      "physical_lines": 482
+    },
+    {
+      "name": "03_data(8).md",
+      "sha256": "f3eb127d819fca59285d46a0f2e75842c6039bdf899e8e9badaa71577332508c",
+      "physical_lines": 411
+    },
+    {
+      "name": "04_batch_functions(8).md",
+      "sha256": "a7b6927b273a03e4f878889bd2586e1a85f60ce2244f4bacde5b5f83fca1c72c",
+      "physical_lines": 274
+    },
+    {
+      "name": "05_business_rules(8).md",
+      "sha256": "7d6934ccf8eb441c799f193066c1f0ef5344c27779073804cbbabf4cdc26167c",
+      "physical_lines": 391
+    },
+    {
+      "name": "06_exception_handling(9).md",
+      "sha256": "cebe3ad3538d3e5bac037f36ac8d0f2bbe6467b759203edb230536f95b40b6ff",
+      "physical_lines": 346
+    },
+    {
+      "name": "07_processing_flows(9).md",
+      "sha256": "0decb3f8128c7aef8b7dbef54836979a677eb927116136cfe8ca7cce2cebe41f",
+      "physical_lines": 369
+    },
+    {
+      "name": "08_architecture_decision(8).md",
+      "sha256": "ed4804474726c338232ccca4d94641b64e8cb017c0225cfa218072bfef5ae6b3",
+      "physical_lines": 216
+    }
+  ],
+  "method_label": "supplied_set_1",
+  "source_controls_reused_from_fullload_cal": true,
+  "phase5_positive_atom_corrections": 16
+}

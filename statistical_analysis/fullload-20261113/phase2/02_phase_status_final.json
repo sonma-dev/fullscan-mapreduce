@@ -1,0 +1,116 @@
+{
+  "phase": 2,
+  "phase_name": "Whole generated corpus and raw semantic class construction",
+  "protocol_version": "6.1",
+  "method": "provided_eight_documents",
+  "method_selection": "ONE_COMPLETE_UNLABELLED_EIGHT_DOCUMENT_SET",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "input_documents": 8,
+  "source_positive_atoms_reused_unchanged": 1024,
+  "source_negative_controls_reused_unchanged": 37,
+  "source_frozen_hashes": {
+    "01_source_atoms_final.jsonl": "8a6c97eaf52e3cbe544de9515e22a9f806b173ceac4c12c800f3888ad9053dbc",
+    "01_source_negative_controls_final.jsonl": "ba48d66de139609fbf7d5ff3d3783a1e3792d5f5120b81c404e129ef1561a253"
+  },
+  "eligible_generated_occurrences_GO": 2523,
+  "raw_generated_semantic_classes_G": 2475,
+  "raw_duplicate_excess_occurrences": 48,
+  "raw_duplicate_rate_for_phase2_diagnostic_only": 0.01902497,
+  "repeated_classes": 40,
+  "classes_spanning_files": 37,
+  "within_file_excess": 4,
+  "across_file_excess": 44,
+  "excluded_generated_records": 5911,
+  "source_exclusions_carried": 274,
+  "coverage_by_file": {
+    "01_screen_functions(6).md": {
+      "occurrences": 310,
+      "nonempty_lines": 382,
+      "physical_lines": 495,
+      "table_cells_checked": 660
+    },
+    "02_api(6).md": {
+      "occurrences": 517,
+      "nonempty_lines": 558,
+      "physical_lines": 696,
+      "table_cells_checked": 1133
+    },
+    "03_data(6).md": {
+      "occurrences": 296,
+      "nonempty_lines": 371,
+      "physical_lines": 474,
+      "table_cells_checked": 715
+    },
+    "04_batch_functions(6).md": {
+      "occurrences": 340,
+      "nonempty_lines": 423,
+      "physical_lines": 588,
+      "table_cells_checked": 367
+    },
+    "05_business_rules(6).md": {
+      "occurrences": 371,
+      "nonempty_lines": 383,
+      "physical_lines": 481,
+      "table_cells_checked": 686
+    },
+    "06_exception_handling(7).md": {
+      "occurrences": 339,
+      "nonempty_lines": 336,
+      "physical_lines": 432,
+      "table_cells_checked": 495
+    },
+    "07_processing_flows(7).md": {
+      "occurrences": 335,
+      "nonempty_lines": 442,
+      "physical_lines": 565,
+      "table_cells_checked": 390
+    },
+    "08_architecture_decision(6).md": {
+      "occurrences": 15,
+      "nonempty_lines": 185,
+      "physical_lines": 225,
+      "table_cells_checked": 60
+    }
+  },
+  "excluded_reason_counts": {
+    "HEADING_METADATA": 258,
+    "DOCUMENT_META": 15,
+    "NO_DEFINITIVE_PREDICATE": 2058,
+    "REFERENCE_OR_UNRESOLVED_METADATA": 39,
+    "UNAPPROVED_OR_UNRESOLVED": 655,
+    "TABLE_HEADER_METADATA": 196,
+    "TABLE_CONTEXT_ONLY": 1896,
+    "SOURCE_EVIDENCE_ONLY": 176,
+    "BARE_CELL_WITHOUT_INDEPENDENT_ASSERTION": 7,
+    "NONASSERTIVE_SHORT_FRAGMENT": 10,
+    "UNRESOLVED_SECTION": 258,
+    "CODE_EXAMPLE_OR_DIAGRAM": 175,
+    "QUESTION_NOT_IMPLEMENTATION_COMMITMENT": 15,
+    "ARCHITECTURE_OPEN_REGISTER": 153
+  },
+  "limitations_en": [
+    "Definitive-claim extraction is a bounded heuristic interpretation of English paragraphs and Markdown table cells; candidate split/merge errors are possible and have not been semantically certified.",
+    "Raw class merges require exact context-preserving normalized assertions; meaning-preserving paraphrases may remain separate pending Phase 5 semantic duplicate audit.",
+    "Claims inside explicit unresolved/proposal sections, fenced examples, and diagrams were excluded as non-independent final implementation assertions; any separable definitive subclaims in unresolved sections may be under-counted.",
+    "All actual input filenames and physical line/table-cell evidence are preserved. Full PDF entailment, FP/FN and four-cell scores are deliberately not evaluated in Phase 2.",
+    "No method label was explicitly supplied by the eight current filenames; records are isolated under provided_eight_documents without assuming fullload, onelevel or twolevel.",
+    "An intentionally bounded high-similarity lexical merge pass uses protected identifier, number, polarity and condition signatures; it is not a human semantic-entailment certification."
+  ],
+  "next_phase_started": false,
+  "output_files": [
+    "02_generated_atoms_final.jsonl",
+    "02_generated_classes_final.jsonl",
+    "02_generated_corpus_audit_final.md",
+    "02_generated_exclusions_final.jsonl",
+    "02_generated_line_coverage_final.jsonl",
+    "02_phase_status_final.json",
+    "02_retrieval_index_final.jsonl",
+    "04_duplicate_classes_final.jsonl",
+    "09_excluded_units.jsonl",
+    "02_generated_corpus_audit_final.md",
+    "02_phase_status_final.json",
+    "02_semantic_duplicate_review_candidates_final.jsonl"
+  ],
+  "high_confidence_similarity_merges": 24,
+  "similarity_pairs_retained_for_semantic_challenge": 95
+}

@@ -1,0 +1,60 @@
+{
+  "prefix": "supplied_set_1",
+  "method_label": "supplied 8-file set; no generation method was explicitly named",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "protocol_version": "6.1",
+  "phase": 4,
+  "metric_status": "PROVISIONAL_BEST_EFFORT_AFTER_PHASE4_PENDING_PHASE5_AND_PHASE6",
+  "universe": {
+    "source_positive_atoms": 1024,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 2437,
+    "generated_positive_occurrences": 2516,
+    "covered_source_atoms": 895,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 64,
+    "canonical_predicted_positive_units": 959,
+    "canonical_decision_units": 1125,
+    "negative_universe_scope": "PDF-grounded, predeclared bounded controls only"
+  },
+  "confusion": {
+    "TP": 895,
+    "TN": 37,
+    "FP": 64,
+    "FN": 129
+  },
+  "metrics": {
+    "Precision": 0.9332638164754953,
+    "Recall": 0.8740234375,
+    "F1": 0.902672718103883,
+    "Duplicate": 0.031399046104928455
+  },
+  "generated_class_verdict_counts": {
+    "PDF_ENTAILED": 486,
+    "SUPPORTED_NONCOVERING": 1887,
+    "PDF_UNSUPPORTED": 64
+  },
+  "reciprocal_generated_fp_challenge": {
+    "initial_unsupported_candidate_classes": 593,
+    "corrected_to_supported_noncovering": 529,
+    "remaining_unsupported_class_candidates": 64,
+    "open_meta_traceability_class_candidates": 51
+  },
+  "class_verdict_reason_counts": {
+    "('PDF_ENTAILED', 'COVERAGE_BACKED')": 486,
+    "('SUPPORTED_NONCOVERING', 'CORROBORATED_SOURCE_SUPPORTED_NONCOVERING')": 1333,
+    "('SUPPORTED_NONCOVERING', 'RECIPROCAL_SOURCE_CONTEXT_CORRECTION')": 529,
+    "('PDF_UNSUPPORTED', 'TRACEABILITY_OR_INTERPRETIVE_ADDITION')": 51,
+    "('SUPPORTED_NONCOVERING', 'CONTEXTUALLY_SUPPORTED_BEST_EFFORT')": 25,
+    "('PDF_UNSUPPORTED', 'NO_COMPLETE_PDF_ENTAILMENT')": 6,
+    "('PDF_UNSUPPORTED', 'WEAK_SOURCE_GROUNDING')": 7
+  },
+  "metric_interpretation": "One canonical effective-proposition universe; raw generated classes are counted separately. TN is limited to fixed controls. PDF-entailment classification and Phase 3 TP bridges require independent semantic review in Phase 5; structural equations cannot certify truth.",
+  "limitations": [
+    "Class-level PDF retrieval is evidence-oriented but not a universal semantic prover.",
+    "Phase 2 included some source-status and traceability statements that might not be eligible product predictions; provisional unsupported counts may overstate FP pending Phase 5.",
+    "A number of source-supported noncovering classes are contextual best-effort and require independent predicate proof before final certification.",
+    "Phase 3 preliminary TP and FN are carried forward unchanged; source-atomization audit is pending Phase 5.",
+    "Exactly one phase (Phase 4) is executed in this turn."
+  ]
+}

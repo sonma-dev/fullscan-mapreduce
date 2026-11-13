@@ -1,0 +1,21 @@
+{
+  "phase": 4,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "all_generated_classes_adjudicated": 2437,
+  "all_canonical_units_scored": 1125,
+  "structural_reconciled": true,
+  "remaining_uncertainty": "Source-supported noncovering claims, provisional unsupported meta-claims, and Phase 3 positive bridges require Phase 5 semantic challenge",
+  "next_phase_not_executed": 5,
+  "report": "04_confusion_matrix_final.md",
+  "artifacts": [
+    "04_generated_claim_validity_final.jsonl",
+    "04_negative_control_adjudication_final.jsonl",
+    "04_generated_only_fp_final.jsonl",
+    "04_generated_fp_reciprocal_challenge_final.jsonl",
+    "04_structural_validation_final.json",
+    "03_canonical_universe_final.jsonl",
+    "04_atomic_judgments_final.jsonl",
+    "04_confusion_matrix_final.json",
+    "04_confusion_matrix_final.md"
+  ]
+}

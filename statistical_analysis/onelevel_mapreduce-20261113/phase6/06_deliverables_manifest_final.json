@@ -1,0 +1,281 @@
+{
+  "phase": 6,
+  "protocol_version": "6.1",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "semantic_certification": "NOT_INDEPENDENTLY_CERTIFIED_BEST_EFFORT",
+  "archive_policy": "Individual files only; no ZIP or TAR",
+  "total_files": 45,
+  "files": [
+    {
+      "filename": "01_pdf_page_coverage_final.jsonl",
+      "description_en": "Final physical PDF page coverage",
+      "size_bytes": 24353,
+      "sha256": "16bab9626277b146903e3a437abb4920c5aa6aa963583d125ba12c693f92da53"
+    },
+    {
+      "filename": "01_pdf_quote_verification_final.jsonl",
+      "description_en": "Final PDF quotation verification ledger",
+      "size_bytes": 1226449,
+      "sha256": "15c7499028cfc398d5319d2aaaae03315d4333c7d948746b0b5fd1b195303f97"
+    },
+    {
+      "filename": "01_screen_functions(7).md",
+      "description_en": "Exact unchanged scored Markdown input",
+      "size_bytes": 79519,
+      "sha256": "aaf3692ab6a79982c4fc3ce074c42d5baf12bcc1e5bebec0b90f784c25ee464b"
+    },
+    {
+      "filename": "01_source_atoms_final.jsonl",
+      "description_en": "Final PDF-positive source atom ledger",
+      "size_bytes": 2225838,
+      "sha256": "fb812b4868578cb0e1f36653eba8ac4770dd7e1ac59862cb68950982480616e1"
+    },
+    {
+      "filename": "01_source_negative_controls_final.jsonl",
+      "description_en": "Fixed negative-control ledger",
+      "size_bytes": 34079,
+      "sha256": "ba48d66de139609fbf7d5ff3d3783a1e3792d5f5120b81c404e129ef1561a253"
+    },
+    {
+      "filename": "02_api(7).md",
+      "description_en": "Exact unchanged scored Markdown input",
+      "size_bytes": 68363,
+      "sha256": "a8c161687341f010965cdb6f321f0fc84389fc66931ee5a56c34b22cbd4f75e0"
+    },
+    {
+      "filename": "02_generated_atoms_final.jsonl",
+      "description_en": "Eligible generated atomic occurrence ledger",
+      "size_bytes": 8300778,
+      "sha256": "18ad44d43135ff9bfa7dcbbea42fc497d03901c69c5a6ee810329aa05f91c44a"
+    },
+    {
+      "filename": "02_generated_classes_final.jsonl",
+      "description_en": "Unique raw semantic generated classes",
+      "size_bytes": 3919284,
+      "sha256": "322da3fe38b1ea71fed028d8f8c06b8c420d09c3951a8fa3eb45635ef16d77e9"
+    },
+    {
+      "filename": "02_generated_line_and_cell_coverage_final.jsonl",
+      "description_en": "Original Phase-2 physical line and table-cell scan",
+      "size_bytes": 1006020,
+      "sha256": "103bebbfd58875eb3e8b53c629cd546fd3f068298c24e4f04a8f1ca6a0439a78"
+    },
+    {
+      "filename": "03_canonical_universe_final.jsonl",
+      "description_en": "Final canonical proposition universe",
+      "size_bytes": 3416242,
+      "sha256": "fa69739258bc2bea7085fa7427360ed08962b64f570ed518b250e70e5c6b13ab"
+    },
+    {
+      "filename": "03_data(7).md",
+      "description_en": "Exact unchanged scored Markdown input",
+      "size_bytes": 77230,
+      "sha256": "e9702699f172521b1ffe4ca313958c97260326a32b8b6a1f6f5e1f0038dc33be"
+    },
+    {
+      "filename": "03_evidence_matches_final.jsonl",
+      "description_en": "Final PDF-to-generated coverage decisions",
+      "size_bytes": 3568424,
+      "sha256": "e463f207a37b8084844a145899875efccb2e41bdab8a3c3c606d54940ad53f4e"
+    },
+    {
+      "filename": "03_fn_root_cause_audit_final.jsonl",
+      "description_en": "Initial false-negative disposition ledger",
+      "size_bytes": 6544463,
+      "sha256": "f0151abd523325acbe03630855ec2fbb0197c6058bc0df1440c5158afc68e37c"
+    },
+    {
+      "filename": "03_semantic_coverage_bridges_final.jsonl",
+      "description_en": "Full evidence locators and coverage bridge records",
+      "size_bytes": 3290221,
+      "sha256": "9c8290094fba5a9fada99f0b2f4d38c056a9669260770b3740d04ead920e0876"
+    },
+    {
+      "filename": "04_atomic_judgments_final.jsonl",
+      "description_en": "One TP/TN/FP/FN judgment per canonical unit",
+      "size_bytes": 3416242,
+      "sha256": "fa69739258bc2bea7085fa7427360ed08962b64f570ed518b250e70e5c6b13ab"
+    },
+    {
+      "filename": "04_batch_functions(7).md",
+      "description_en": "Exact unchanged scored Markdown input",
+      "size_bytes": 54167,
+      "sha256": "360117b25cc1fc0cd7242c61ee2f52c0d3d5e0ab4e60ab1355e6d782e9012796"
+    },
+    {
+      "filename": "04_confusion_matrix_final.json",
+      "description_en": "Final corrected canonical confusion matrix",
+      "size_bytes": 1634,
+      "sha256": "7f22967806ee3a97fa4dfc11730f8600dcb7b070a022016f2be95c5edd97330e"
+    },
+    {
+      "filename": "04_confusion_matrix_final.md",
+      "description_en": "Final corrected confusion matrix explanatory report",
+      "size_bytes": 1145,
+      "sha256": "d14ced0dcd4603d864ad198276985bdbf87ea33f559c662df0afd0f92d1f5f89"
+    },
+    {
+      "filename": "04_duplicate_classes_final.jsonl",
+      "description_en": "Per-class raw generated duplication inventory",
+      "size_bytes": 2753066,
+      "sha256": "b11bc11aeb88d56a453829ee5defbf3dcd0f0a20562d9d28cf78d970e9eb0066"
+    },
+    {
+      "filename": "04_generated_claim_validity_final.jsonl",
+      "description_en": "Per-generated-class correctness classifications",
+      "size_bytes": 11900407,
+      "sha256": "dc4d645812f2dfae926dd4b9d4c17c5e19da050482ca184aa2e6af8e170acb9f"
+    },
+    {
+      "filename": "04_negative_control_assertion_audit_final.jsonl",
+      "description_en": "Per-control generated assertion analysis",
+      "size_bytes": 134736,
+      "sha256": "14f889f041ca7b8bf8e9f648fb015e9175bbea04d99b85d7913cbc52a1b3378a"
+    },
+    {
+      "filename": "05_business_rules(7).md",
+      "description_en": "Exact unchanged scored Markdown input",
+      "size_bytes": 59073,
+      "sha256": "884ec6fe4449440cd3d7303fb459b32c7cd63c8b579c57f35a109754b73e520a"
+    },
+    {
+      "filename": "05_duplicate_metrics_final.json",
+      "description_en": "Corrected raw duplication metrics",
+      "size_bytes": 531,
+      "sha256": "0a7102cbc6653e10f005ab1254521928731b4b22d7b113d5f46005e6ed91c7c5"
+    },
+    {
+      "filename": "05_duplicate_metrics_final.md",
+      "description_en": "Corrected duplication explanatory summary",
+      "size_bytes": 512,
+      "sha256": "de267d08e4d3ebde37186f13d703c56c0a2e8439b14cfa492a5a37359ffa2bcc"
+    },
+    {
+      "filename": "05_remaining_fn_recheck_final.jsonl",
+      "description_en": "Final 39 false-negative rechecks",
+      "size_bytes": 177391,
+      "sha256": "00d8fb4272b44f1812ffa185152b94e35044f6807e948870eefe52f619605bcc"
+    },
+    {
+      "filename": "05_source_atomization_audit_final.jsonl",
+      "description_en": "Source split/merge/duplicate assessment ledger",
+      "size_bytes": 2162005,
+      "sha256": "1592613675807cc85d2dbcfa3a81da126af2fec1e5c5026a5254c224287f0f1d"
+    },
+    {
+      "filename": "05_tp_evidence_audit_final.jsonl",
+      "description_en": "Final TP evidence and predicate review audit",
+      "size_bytes": 4010939,
+      "sha256": "8115ca925325f2fb11eeb30aaf4491230e4bf4b96169608995506c14799ccbc3"
+    },
+    {
+      "filename": "06_deliverables_index_final.md",
+      "description_en": "Human-readable index of all individual final deliverables",
+      "size_bytes": 5637,
+      "sha256": "d0836026c9eddfbdf2fd9f89a6acfa4f38ff43858ee9894a68e5e5dc3324935b"
+    },
+    {
+      "filename": "06_evidence_integrity_audit_final.json",
+      "description_en": "Evidence-locator integrity and weak-bridge counts",
+      "size_bytes": 473,
+      "sha256": "e55811e3e35c4b676a007d375088db698f8faec7e285a566b1f55616492df0c4"
+    },
+    {
+      "filename": "06_exception_handling(8).md",
+      "description_en": "Exact unchanged scored Markdown input",
+      "size_bytes": 56525,
+      "sha256": "e1542f7c02bc9e3aca076f3eacf5c4924a8a264e22317d7292386d3e52998603"
+    },
+    {
+      "filename": "06_generated_locator_validation_final.jsonl",
+      "description_en": "4,217 generated source-line location checks",
+      "size_bytes": 939552,
+      "sha256": "83c63bc23b9ba99d4af80cb16e060edd8974f77f03daf5d29496e50de52006a0"
+    },
+    {
+      "filename": "06_input_coverage_final.json",
+      "description_en": "Original PDF and eight Markdown coverage",
+      "size_bytes": 4682,
+      "sha256": "1930e028d5e2023251e5df867e1a5fb5daca804d48308080b6890a96b23622e0"
+    },
+    {
+      "filename": "06_metrics_final.json",
+      "description_en": "Independent Phase-6 canonical metrics (machine-readable)",
+      "size_bytes": 2277,
+      "sha256": "0b1c3bf41e8d62507f41838a78cc462b367a19197882f07f8b019f7f62e42c68"
+    },
+    {
+      "filename": "06_metrics_final.md",
+      "description_en": "Independent Phase-6 canonical metrics (readable)",
+      "size_bytes": 2550,
+      "sha256": "d6ad4db52c1dd74112669379f1673fa072732410e0d21a0b9957764f5ebe2344"
+    },
+    {
+      "filename": "06_pdf_evidence_validation_final.jsonl",
+      "description_en": "2,560 original PDF evidence location checks",
+      "size_bytes": 1226449,
+      "sha256": "15c7499028cfc398d5319d2aaaae03315d4333c7d948746b0b5fd1b195303f97"
+    },
+    {
+      "filename": "06_phase_status_final.json",
+      "description_en": "Phase-6 completion and limits status",
+      "size_bytes": 621,
+      "sha256": "7f8847c48ccfd27b3562b4375e846d3f648c2688f6a44c3de8dce90162f3147a"
+    },
+    {
+      "filename": "06_regression_probes_final.jsonl",
+      "description_en": "Bidirectional retrieval regression probes",
+      "size_bytes": 10681,
+      "sha256": "7ee7855d035f3336e279062f0eff8f25f24a09c92f295ab821104214693c6e93"
+    },
+    {
+      "filename": "06_validation_checks_final.json",
+      "description_en": "52 independent structural checks",
+      "size_bytes": 3857,
+      "sha256": "09be0b001a86bd9f68848f706089832feb70d682361757992addf80672d8efd4"
+    },
+    {
+      "filename": "07_change_delta.jsonl",
+      "description_en": "Phase-5 substantive correction history",
+      "size_bytes": 1103430,
+      "sha256": "9d1c9bc7ec53836700effc06e841455553900aea9374ac7b6f9ad625624c1893"
+    },
+    {
+      "filename": "07_processing_flows(8).md",
+      "description_en": "Exact unchanged scored Markdown input",
+      "size_bytes": 59907,
+      "sha256": "2c7b34d8b3426a486d356a3c10ef48229aed1cadb01359c050d3bb481bed7acb"
+    },
+    {
+      "filename": "08_architecture_decision(7).md",
+      "description_en": "Exact unchanged scored Markdown input",
+      "size_bytes": 53500,
+      "sha256": "e4df3d7bc5d2a0deac79f8d948b5c1fc97f4ee50f766ac55d83b0db74314b086"
+    },
+    {
+      "filename": "08_coverage_and_limitations.md",
+      "description_en": "Evaluation scope, reliability limits and noncertification",
+      "size_bytes": 6720,
+      "sha256": "0b546d9fcc9c8517e4935b6f75f604674e7ed0c254304a0dd3e8cfb01858af5a"
+    },
+    {
+      "filename": "09_excluded_units.jsonl",
+      "description_en": "PDF and generated exclusions",
+      "size_bytes": 3264325,
+      "sha256": "8d312047e0e0bb565b30e694a2418965c3eaf57124a68f0c54446a3a057da894"
+    },
+    {
+      "filename": "OrionDesk_AI_Detailed_Design_Specification(8).pdf",
+      "description_en": "Authoritative 90-page PDF input, exact copy",
+      "size_bytes": 7761533,
+      "sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3"
+    },
+    {
+      "filename": "compute_metrics.py",
+      "description_en": "Executable independent recomputation and audit script",
+      "size_bytes": 36003,
+      "sha256": "90544dacc1e40ae14b0424bc7486698fb2071f0da641aa770f0122a17dc6ab08"
+    }
+  ],
+  "manifest_self_excluded_from_hash_list": true
+}

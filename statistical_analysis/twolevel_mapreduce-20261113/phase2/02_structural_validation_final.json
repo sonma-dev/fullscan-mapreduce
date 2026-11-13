@@ -1,0 +1,19 @@
+{
+  "structural_verification": "PASS",
+  "semantic_equivalence_certification": "NOT_CLAIMED",
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "inputs": 8,
+  "lines": 2926,
+  "cells": 3769,
+  "eligible_occurrences": 2516,
+  "raw_classes": 2437,
+  "excess_duplicates": 79,
+  "within_file_excess": 1,
+  "across_file_excess": 78,
+  "excluded_generated_fragments": 3477,
+  "class_membership_checked": 2516,
+  "original_cell_source_locations_checked": 2516,
+  "table_cell_linkages_checked": 1402,
+  "phase1_ledger_bytes_identical": true,
+  "phase3_performed": false
+}

@@ -1,0 +1,16 @@
+{
+  "method": "current_scored_8",
+  "protocol_version": "6.1",
+  "phase": 5,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "eligible_generated_occurrences": 4217,
+  "unique_generated_claim_classes": 4069,
+  "duplicate_excess_occurrences": 148,
+  "duplicate_rate": 0.03509603983874793,
+  "within_file_excess": 12,
+  "across_file_excess": 136,
+  "repeated_claim_class_count": 91,
+  "repeated_classes_spanning_files": 87,
+  "nondefinitive_exclusions_applied": 6,
+  "semantic_certification": "NOT_INDEPENDENTLY_CERTIFIED_BEST_EFFORT"
+}

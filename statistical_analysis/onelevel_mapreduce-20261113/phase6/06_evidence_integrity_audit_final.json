@@ -1,0 +1,14 @@
+{
+  "pdf_quote_count": 2560,
+  "pdf_quote_mismatches": [],
+  "generated_occurrence_quotes_checked": 4217,
+  "generated_occurrence_quote_status": {
+    "MATCHED": 4217
+  },
+  "semantic_atomic_fragment_not_a_literal_substring": 87,
+  "TP_generated_evidence_quote_mismatches": [],
+  "TP_high_review_priority": 64,
+  "generated_supported_noncovering_not_independently_certified": 3507,
+  "visual_p8_evidence_reinspection": true,
+  "no_automatic_semantic_certification": true
+}

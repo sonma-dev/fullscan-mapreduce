@@ -1,0 +1,118 @@
+{
+  "phase": 1,
+  "protocol_version": "6.1",
+  "method": "UNSPECIFIED_SINGLE_EIGHT_FILE_SET",
+  "source_pdf": {
+    "uploaded_actual_filename": "OrionDesk_AI_Detailed_Design_Specification(8).pdf",
+    "canonical_evidence_filename": "OrionDesk_AI_Detailed_Design_Specification.pdf",
+    "sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+    "physical_pages": 90,
+    "bytes": 7761533,
+    "document_id": "OD-AI-DDS-001",
+    "design_baseline": "R1.0 / revision 1.3",
+    "byte_identical_to_fullload_cal_pdf": true
+  },
+  "instruction_document": {
+    "role": "PROTOCOL",
+    "actual_filename": "OrionDesk_One_Pass_Atomic_Evaluation_Protocol(10).md",
+    "bytes": 60888,
+    "sha256": "1028f4ba1b6ad645b572195e3900d7a01da523f80d9ea59f9eb189767ad4847d",
+    "utf8_decodable": true,
+    "physical_lines": 485,
+    "present": true,
+    "scored_or_extracted_in_phase1": false
+  },
+  "scored_markdown_inputs": [
+    {
+      "role": "01_screen_functions",
+      "actual_filename": "01_screen_functions(7).md",
+      "bytes": 79519,
+      "sha256": "aaf3692ab6a79982c4fc3ce074c42d5baf12bcc1e5bebec0b90f784c25ee464b",
+      "utf8_decodable": true,
+      "physical_lines": 504,
+      "present": true,
+      "scored_or_extracted_in_phase1": false
+    },
+    {
+      "role": "02_api",
+      "actual_filename": "02_api(7).md",
+      "bytes": 68363,
+      "sha256": "a8c161687341f010965cdb6f321f0fc84389fc66931ee5a56c34b22cbd4f75e0",
+      "utf8_decodable": true,
+      "physical_lines": 486,
+      "present": true,
+      "scored_or_extracted_in_phase1": false
+    },
+    {
+      "role": "03_data",
+      "actual_filename": "03_data(7).md",
+      "bytes": 77230,
+      "sha256": "e9702699f172521b1ffe4ca313958c97260326a32b8b6a1f6f5e1f0038dc33be",
+      "utf8_decodable": true,
+      "physical_lines": 503,
+      "present": true,
+      "scored_or_extracted_in_phase1": false
+    },
+    {
+      "role": "04_batch_functions",
+      "actual_filename": "04_batch_functions(7).md",
+      "bytes": 54167,
+      "sha256": "360117b25cc1fc0cd7242c61ee2f52c0d3d5e0ab4e60ab1355e6d782e9012796",
+      "utf8_decodable": true,
+      "physical_lines": 291,
+      "present": true,
+      "scored_or_extracted_in_phase1": false
+    },
+    {
+      "role": "05_business_rules",
+      "actual_filename": "05_business_rules(7).md",
+      "bytes": 59073,
+      "sha256": "884ec6fe4449440cd3d7303fb459b32c7cd63c8b579c57f35a109754b73e520a",
+      "utf8_decodable": true,
+      "physical_lines": 419,
+      "present": true,
+      "scored_or_extracted_in_phase1": false
+    },
+    {
+      "role": "06_exception_handling",
+      "actual_filename": "06_exception_handling(8).md",
+      "bytes": 56525,
+      "sha256": "e1542f7c02bc9e3aca076f3eacf5c4924a8a264e22317d7292386d3e52998603",
+      "utf8_decodable": true,
+      "physical_lines": 339,
+      "present": true,
+      "scored_or_extracted_in_phase1": false
+    },
+    {
+      "role": "07_processing_flows",
+      "actual_filename": "07_processing_flows(8).md",
+      "bytes": 59907,
+      "sha256": "2c7b34d8b3426a486d356a3c10ef48229aed1cadb01359c050d3bb481bed7acb",
+      "utf8_decodable": true,
+      "physical_lines": 377,
+      "present": true,
+      "scored_or_extracted_in_phase1": false
+    },
+    {
+      "role": "08_architecture_decision",
+      "actual_filename": "08_architecture_decision(7).md",
+      "bytes": 53500,
+      "sha256": "e4df3d7bc5d2a0deac79f8d948b5c1fc97f4ee50f766ac55d83b0db74314b086",
+      "utf8_decodable": true,
+      "physical_lines": 204,
+      "present": true,
+      "scored_or_extracted_in_phase1": false
+    }
+  ],
+  "source_ledger_provenance": {
+    "fullload_cal_shared_positive_inventory": "01_source_atoms_final.jsonl",
+    "fullload_cal_shared_negative_inventory": "01_source_negative_controls_final.jsonl",
+    "source_atom_count": 1024,
+    "negative_control_count": 37,
+    "source_atoms_preserved_byte_for_byte": true,
+    "negative_controls_preserved_byte_for_byte": true,
+    "source_quotes_independently_reverified_against_uploaded_pdf": true,
+    "prior_generated_predictions_and_scores_used": false
+  },
+  "no_archive_created": true
+}

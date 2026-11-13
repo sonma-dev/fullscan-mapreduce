@@ -1,0 +1,111 @@
+{
+  "probes": [
+    {
+      "probe": "case_title",
+      "passed_structural_retrieval_check": true,
+      "source_ids_found": 1,
+      "source_ids_and_results": [
+        {
+          "source_id": "PDF-00208",
+          "cell": "TP",
+          "generated_evidence_count": 2
+        }
+      ],
+      "note_en": "This only checks recorded evidence and status. It does not independently certify complete entailment."
+    },
+    {
+      "probe": "workspace_retention_class",
+      "passed_structural_retrieval_check": true,
+      "source_ids_found": 1,
+      "source_ids_and_results": [
+        {
+          "source_id": "PDF-00199",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        }
+      ],
+      "note_en": "This only checks recorded evidence and status. It does not independently certify complete entailment."
+    },
+    {
+      "probe": "idempotent_identical_case_creation_test",
+      "passed_structural_retrieval_check": true,
+      "source_ids_found": 1,
+      "source_ids_and_results": [
+        {
+          "source_id": "PDF-00948",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        }
+      ],
+      "note_en": "This only checks recorded evidence and status. It does not independently certify complete entailment."
+    },
+    {
+      "probe": "tenant_unique_case_constraint",
+      "passed_structural_retrieval_check": true,
+      "source_ids_found": 26,
+      "source_ids_and_results": [
+        {
+          "source_id": "PDF-00863",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00864",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00865",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00866",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00867",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00868",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00869",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00870",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00871",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00872",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00873",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        },
+        {
+          "source_id": "PDF-00874",
+          "cell": "TP",
+          "generated_evidence_count": 1
+        }
+      ],
+      "note_en": "This only checks recorded evidence and status. It does not independently certify complete entailment."
+    }
+  ]
+}

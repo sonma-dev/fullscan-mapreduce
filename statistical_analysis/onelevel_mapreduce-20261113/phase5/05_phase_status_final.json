@@ -1,0 +1,35 @@
+{
+  "phase": 5,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "protocol_version": "6.1",
+  "phase6_performed": false,
+  "source_count": 1020,
+  "generated_occurrences": 4217,
+  "generated_classes": 4069,
+  "four_cells": {
+    "TP": 981,
+    "FN": 39,
+    "TN": 37
+  },
+  "duplicate_rate": 0.03509603983874793,
+  "semantic_certification": "NOT_INDEPENDENTLY_CERTIFIED_BEST_EFFORT",
+  "limitations": {
+    "phase": 5,
+    "protocol_version": "6.1",
+    "status": "PHASE_COMPLETED_BEST_EFFORT",
+    "remaining_fn_dispositions": {
+      "CONSERVATIVE_UNRESOLVED": 23,
+      "PARTIAL_ENTAILMENT": 11,
+      "TRUE_MISSING": 5
+    },
+    "new_fn_to_tp": 180,
+    "removed_source_parents": 5,
+    "source_split_children": 1,
+    "final_tp_review_rows": 981,
+    "final_fn_review_rows": 39,
+    "weak_tp_bridges": 64,
+    "generated_noncovering_claims_without_certified_equivalence": 3507,
+    "known_unresolved_high_risk_exact_match_exceptions": 64
+  },
+  "checks": "see 05_reconciliation_checks_final.json"
+}

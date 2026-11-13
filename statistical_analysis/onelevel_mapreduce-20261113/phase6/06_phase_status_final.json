@@ -1,0 +1,21 @@
+{
+  "phase": 6,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "protocol_version": "6.1",
+  "semantic_certification": "NOT_INDEPENDENTLY_CERTIFIED_BEST_EFFORT",
+  "structural_reconciliation_passed": true,
+  "failed_check_names": [],
+  "source_positive_atoms": 1020,
+  "negative_controls": 37,
+  "generated_occurrences": 4217,
+  "generated_classes": 4069,
+  "judgments": 1057,
+  "confusion": {
+    "TP": 981,
+    "TN": 37,
+    "FP": 0,
+    "FN": 39
+  },
+  "evaluation_closed_after_phase6": true,
+  "explanation_en": "One six-phase evaluation sequence completed. Structural consistency does not prove semantic entailment."
+}

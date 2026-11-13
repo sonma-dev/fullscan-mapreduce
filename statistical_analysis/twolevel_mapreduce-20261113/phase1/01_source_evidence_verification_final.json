@@ -1,0 +1,20 @@
+{
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "pdf_sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+  "pdf_pages": 90,
+  "source_positive_atoms": 1024,
+  "source_negative_controls": 37,
+  "all_page_quote_evidence": 2564,
+  "normalized_exact_pdf_text_evidence": 2561,
+  "visually_confirmed_raster_evidence": 3,
+  "failed_quote_verifications": 0,
+  "image_bearing_pages_inspected": 31,
+  "unique_positive_atom_statements": 1024,
+  "atomization_concerns_pending_phase_5": 21,
+  "evidence_verification_not_semantic_certification": true,
+  "current_pdf_original_filename": "OrionDesk_AI_Detailed_Design_Specification(10).pdf",
+  "frozen_ledger_sha256": {
+    "R": "8a6c97eaf52e3cbe544de9515e22a9f806b173ceac4c12c800f3888ad9053dbc",
+    "N": "ba48d66de139609fbf7d5ff3d3783a1e3792d5f5120b81c404e129ef1561a253"
+  }
+}
