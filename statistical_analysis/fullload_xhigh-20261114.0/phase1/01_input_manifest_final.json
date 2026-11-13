@@ -1,0 +1,120 @@
+{
+  "instruction_document": {
+    "actual_filename": "OrionDesk_One_Pass_Atomic_Evaluation_Protocol(5).md",
+    "sha256": "1028f4ba1b6ad645b572195e3900d7a01da523f80d9ea59f9eb189767ad4847d"
+  },
+  "method": "single_complete_unlabeled_set",
+  "pdf": {
+    "actual_uploaded_filename": "OrionDesk_AI_Detailed_Design_Specification(3).pdf",
+    "canonical_filename_preserved_inside_reused_evidence": "OrionDesk_AI_Detailed_Design_Specification.pdf",
+    "expected_prior_fullload_cal_pdf_sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+    "identity_check": "SHA256_MATCH",
+    "physical_pages": 90,
+    "sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3"
+  },
+  "phase": 1,
+  "phase_scope": "Shared PDF source-positive requirements and fixed negative controls only",
+  "protocol_version": "6.1",
+  "reused_source_inventories": [
+    {
+      "actual_library_filename": "01_source_atoms_final(3).jsonl",
+      "byte_identical": true,
+      "records": 1024,
+      "reused_output_filename": "01_source_atoms_final.jsonl",
+      "sha256": "8a6c97eaf52e3cbe544de9515e22a9f806b173ceac4c12c800f3888ad9053dbc"
+    },
+    {
+      "actual_library_filename": "01_source_negative_controls_final(2).jsonl",
+      "byte_identical": true,
+      "records": 37,
+      "reused_output_filename": "01_source_negative_controls_final.jsonl",
+      "sha256": "ba48d66de139609fbf7d5ff3d3783a1e3792d5f5120b81c404e129ef1561a253"
+    }
+  ],
+  "scored_markdown_inputs": [
+    {
+      "actual_uploaded_filename": "01_screen_functions(3).md",
+      "bytes": 140241,
+      "path": "/mnt/data/01_screen_functions(3).md",
+      "physical_lines": 864,
+      "required_role": "01_screen_functions.md",
+      "scored_now": false,
+      "sha256": "78b4097061beaaa7306ce5d4a89bf2d4187986966a11b888bd2dea5b27a47b97",
+      "status": "AVAILABLE_UTF8_READABLE"
+    },
+    {
+      "actual_uploaded_filename": "02_api(3).md",
+      "bytes": 152976,
+      "path": "/mnt/data/02_api(3).md",
+      "physical_lines": 1201,
+      "required_role": "02_api.md",
+      "scored_now": false,
+      "sha256": "7cdd0d5338b42e8a4a367c5fa822bc7e31631bcada3fd2f458386ede8c44219c",
+      "status": "AVAILABLE_UTF8_READABLE"
+    },
+    {
+      "actual_uploaded_filename": "03_data(3).md",
+      "bytes": 159991,
+      "path": "/mnt/data/03_data(3).md",
+      "physical_lines": 1034,
+      "required_role": "03_data.md",
+      "scored_now": false,
+      "sha256": "a58ca76f98ca4a7dc361c0fbde65f5bd2ccaadfbdff269d24491937db4974646",
+      "status": "AVAILABLE_UTF8_READABLE"
+    },
+    {
+      "actual_uploaded_filename": "04_batch_functions(4).md",
+      "bytes": 131854,
+      "path": "/mnt/data/04_batch_functions(4).md",
+      "physical_lines": 1323,
+      "required_role": "04_batch_functions.md",
+      "scored_now": false,
+      "sha256": "0903402cd4cef1e9e0e4a0e6d0631ab51fdb56a36535480eaa74bc0027fe22cb",
+      "status": "AVAILABLE_UTF8_READABLE"
+    },
+    {
+      "actual_uploaded_filename": "05_business_rules(3).md",
+      "bytes": 134383,
+      "path": "/mnt/data/05_business_rules(3).md",
+      "physical_lines": 1442,
+      "required_role": "05_business_rules.md",
+      "scored_now": false,
+      "sha256": "e82f7083ea3933672804ce15cc7f03c4a277e0868bace21044bc28b7c4d3f370",
+      "status": "AVAILABLE_UTF8_READABLE"
+    },
+    {
+      "actual_uploaded_filename": "06_exception_handling(4).md",
+      "bytes": 118775,
+      "path": "/mnt/data/06_exception_handling(4).md",
+      "physical_lines": 737,
+      "required_role": "06_exception_handling.md",
+      "scored_now": false,
+      "sha256": "b54a943d2e27589444feb99d6753704e9f466e9561e61162527650dbbdfd323e",
+      "status": "AVAILABLE_UTF8_READABLE"
+    },
+    {
+      "actual_uploaded_filename": "07_processing_flows(5).md",
+      "bytes": 149717,
+      "path": "/mnt/data/07_processing_flows(5).md",
+      "physical_lines": 1143,
+      "required_role": "07_processing_flows.md",
+      "scored_now": false,
+      "sha256": "dea1dc48d15b9f5fceb621de22e82a99e7e6533ad61c82e17e04e80b4adb81a6",
+      "status": "AVAILABLE_UTF8_READABLE"
+    },
+    {
+      "actual_uploaded_filename": "08_architecture_decision(3).md",
+      "bytes": 116287,
+      "path": "/mnt/data/08_architecture_decision(3).md",
+      "physical_lines": 586,
+      "required_role": "08_architecture_decision.md",
+      "scored_now": false,
+      "sha256": "93067f5ac1bebf29ce4117682b2dff86a7d380a4cdc054c4eaf37bd7abc3a2cb",
+      "status": "AVAILABLE_UTF8_READABLE"
+    }
+  ],
+  "scoring": {
+    "performed": false,
+    "reason": "No generated-claim extraction or semantic scoring before Phase 2."
+  }
+}

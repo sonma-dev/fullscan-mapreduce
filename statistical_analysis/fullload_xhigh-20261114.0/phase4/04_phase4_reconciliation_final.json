@@ -1,0 +1,13 @@
+{
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "phase": 4,
+  "method": "fullload",
+  "all_raw_classes": 6527,
+  "eligible_classes": 5986,
+  "excluded_classes": 541,
+  "reciprocal_pdf_search_review_queue": 3688,
+  "negative_controls_checked": 37,
+  "phase3_source_atoms_carried": 1024,
+  "semantic_certification": "NOT_VERIFIED",
+  "caveat": "100% provisional Precision reflects zero confidently established F; it is highly sensitive to unverified weak-signal class validity."
+}

@@ -1,0 +1,48 @@
+{
+  "confusion": {
+    "TP": 521,
+    "TN": 37,
+    "FP": 0,
+    "FN": 506
+  },
+  "metrics": {
+    "Precision": 1.0,
+    "Recall": 0.50730282375852,
+    "F1": 0.6731266149870802,
+    "Duplicate": 0.014686468646864686
+  },
+  "duplication": {
+    "eligible_occurrences": 6060,
+    "raw_unique_classes": 5971,
+    "duplicate_excess": 89,
+    "within_file_excess": 2,
+    "across_file_excess": 87
+  },
+  "validation": {
+    "status": "PASSED_STRUCTURAL_WITH_SEMANTIC_CAVEATS",
+    "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+    "source_atoms": 1027,
+    "negative_controls": 37,
+    "TP_evidence_records": 521,
+    "FN_root_audit_records": 706,
+    "final_FN_root_dispositions": {
+      "CONSERVATIVE_UNRESOLVED": 58,
+      "PARTIAL_ENTAILMENT": 448
+    },
+    "generated_occurrences": 6060,
+    "unique_generated_classes": 5971,
+    "semantic_merge_groups": 31,
+    "raw_duplicate_excess": 89,
+    "universe_rows": 1064,
+    "sum_cells": 1064,
+    "TP_plus_FN_equals_R": true,
+    "TN_plus_asserted_controls_equals_N": true,
+    "FP_subcomponents_reconcile": true,
+    "dup_excess_partition_valid": true,
+    "source_quotes_original_file_validated_for_TP": 521,
+    "unresolved_low_pdf_support_count": 5093,
+    "semantic_certification": "NOT_VERIFIED",
+    "notes_en": "This is a structural proof and a bounded predicate-level evidence audit, not an independently certified full semantic evaluation."
+  },
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT"
+}

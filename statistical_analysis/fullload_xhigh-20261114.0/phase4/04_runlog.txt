@@ -1,0 +1,81 @@
+{
+  "result": {
+    "prefix": "fullload",
+    "protocol_version": "6.1",
+    "phase": 4,
+    "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+    "status": "PROVISIONAL_BEST_EFFORT_PHASE4",
+    "universe": {
+      "source_positive_atoms": 1024,
+      "source_negative_controls": 37,
+      "raw_generated_claim_classes": 5986,
+      "generated_positive_occurrences": 6039,
+      "raw_phase2_classes_before_eligibility_review": 6527,
+      "raw_phase2_occurrences_before_eligibility_review": 6581,
+      "phase4_nondefinitive_excluded_class_count": 541,
+      "covered_source_atoms": 495,
+      "asserted_negative_controls": 0,
+      "unsupported_generated_only_propositions": 0,
+      "canonical_predicted_positive_units": 495,
+      "canonical_decision_units": 1061,
+      "negative_universe_scope": "Fixed 37 PDF-grounded controls only; no unenumerated true negatives"
+    },
+    "confusion": {
+      "TP": 495,
+      "TN": 37,
+      "FP": 0,
+      "FN": 529
+    },
+    "metrics": {
+      "Precision": 1.0,
+      "Recall": 0.4833984375,
+      "F1": 0.65174456879526,
+      "Duplicate_provisional_phase4_eligible": 0.008776287464812056
+    },
+    "raw_duplicates": {
+      "eligible_generated_occurrences": 6039,
+      "unique_generated_claim_classes": 5986,
+      "duplicate_excess_occurrences": 53,
+      "within_file_excess": 2,
+      "across_file_excess": 51,
+      "repeated_claim_class_count": 48,
+      "cross_file_repeated_class_count": 47
+    },
+    "generated_claim_validity_label_counts": {
+      "PDF_ENTAILED": 5800,
+      "SUPPORTED_NONCOVERING": 186
+    },
+    "generated_evidence_strength_counts": {
+      "MODERATE_SOURCE_EVIDENCE": 1417,
+      "WEAK_CONTEXTUAL_SOURCE_EVIDENCE": 2586,
+      "LOW_SIGNAL_REQUIRES_SEMANTIC_REAUDIT": 1102,
+      "STRONG_SOURCE_EVIDENCE": 881
+    },
+    "semantic_evidence_certification": "NOT_VERIFIED: independent full-predicate TP and class-level PDF support audits pending Phase 5",
+    "FP_interpretation": "Zero distinct unsupported generated-only propositions were confidently demonstrated in this best-effort pass; it is not a verified population-wide absence claim. Low-signal classes are flagged for Phase 5 challenge, so provisional Precision is not certified.",
+    "metric_interpretation": "Conventional TP/TN/FP/FN counts refer to a single effective canonical proposition universe. Raw generated classes/occurrences are counted separately. TN comes only from predeclared bounded negative controls; Phase 2 eligibility corrections are recorded explicitly.",
+    "source_inventory_preserved": true,
+    "phase3_TP_FN_preserved": true
+  },
+  "validation": {
+    "status": "PASSED_STRUCTURAL_WITH_SEMANTIC_CAVEATS",
+    "phase": 4,
+    "source_positive": 1024,
+    "source_negative_controls": 37,
+    "generated_eligible_classes": 5986,
+    "generated_eligible_occurrences": 6039,
+    "original_raw_generated_classes": 6527,
+    "excluded_extractor_classes": 541,
+    "class_validation_rows": 5986,
+    "canonical_judgments": 1061,
+    "canonical_unique_ids": 1061,
+    "expected_cell_total": 1061,
+    "observed_cell_total": 1061,
+    "source_positive_reconciliation": true,
+    "source_negative_reconciliation": true,
+    "raw_duplicate_partition_reconciliation": true,
+    "pdf_page_evidence_exists": true,
+    "semantic_certification": "NOT_VERIFIED",
+    "limitation": "Reported FP=0 and Precision=1.0 are best-effort detected-only figures, not evidence-certified absence of unsupported generated claims."
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "phase": 3,
+  "status": "PASS",
+  "inputs_available": {
+    "original_pdf_physical_pages": 90,
+    "generated_markdown_files": 8,
+    "frozen_source_positive": 1024,
+    "frozen_negative_controls": 37,
+    "raw_generated_classes": 6527
+  },
+  "phase3_counts": {
+    "source_TP": 495,
+    "source_FN": 529,
+    "initial_FN_candidates": 705,
+    "corrected_matcher_FN": 177,
+    "negative_controls_pending_phase_4": 37,
+    "phase3_universe_records": 1061
+  },
+  "evidence_coverage": {
+    "generated_original_quote_matches": 560,
+    "unverified_quote_location_count": 0,
+    "TP_bridge_records": 495,
+    "FN_root_final_records": 529,
+    "corrected_candidate_root_records": 177
+  },
+  "failures": [],
+  "error_count": 0,
+  "safety_caveat": "Structural validation and exact citation occurrence do not establish full semantic entailment."
+}
+REPORT /mnt/data/oriondesk_phase3/03_phase3_report.md

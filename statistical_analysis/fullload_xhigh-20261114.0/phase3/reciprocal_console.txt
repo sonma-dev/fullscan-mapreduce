@@ -1,0 +1,33 @@
+{
+  "protocol_version": "6.1",
+  "phase": 3,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "method": "fullload",
+  "source_positive_atoms": 1024,
+  "source_negative_controls": 37,
+  "raw_generated_classes": 6527,
+  "source_coverage": {
+    "TP": 430,
+    "FN": 594,
+    "E3": 25,
+    "E2": 405,
+    "E1": 535,
+    "E0": 59
+  },
+  "FN_root_cause": {
+    "PARTIAL_ENTAILMENT": 535,
+    "CONSERVATIVE_UNRESOLVED": 59
+  },
+  "evidence": "All source atoms have source and reciprocal generated evidence records; class evidence is original file line quote; no Phase 4 validity claims.",
+  "scope_note": "Source-positive coverage is a provisional computation, not a four-cell confusion matrix; negative controls and generated-only claims await Phase 4.",
+  "limitations": [
+    "Automated candidate retrieval cannot certify meaning for every complete source predicate.",
+    "Common/source atoms have known semantic-overlap and duplication watchlist retained for Phase 5.",
+    "Extraction of generated occurrences was best-effort in Phase 2, potentially limiting candidate proof.",
+    "Conservative FN entries must not be interpreted as confirmed absent without further human semantic audit."
+  ],
+  "reciprocal_corrections": 111,
+  "corrections_by_kind": {
+    "MATCHER_FALSE_NEGATIVE_CORRECTED": 111
+  }
+}

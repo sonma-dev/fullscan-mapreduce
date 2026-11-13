@@ -1,0 +1,47 @@
+{
+  "status": "PASS_STRUCTURAL_WITH_SEMANTIC_LIMITATIONS",
+  "source_of_checks": "Independent compute_metrics.py run over final JSONL ledgers",
+  "equations": {
+    "TP_plus_FN_equals_R": true,
+    "TN_plus_B_equals_N": true,
+    "FP_equals_F_plus_B": true,
+    "four_cells_equals_U": true,
+    "canonical_predictions": 576,
+    "raw_prediction_classes_are_distinct": true,
+    "duplicate_partition": true
+  },
+  "coverage": {
+    "scored_inputs": 8,
+    "physical_lines": 8330,
+    "line_coverage_rows": 8330,
+    "table_cell_coverage_rows": 14882
+  },
+  "pdf": {
+    "actual_uploaded_filename": "OrionDesk_AI_Detailed_Design_Specification(3).pdf",
+    "physical_pages": 90,
+    "extractable_text_pages": 90,
+    "source_quote_exact_line_normalized_count": 1024
+  },
+  "TP_audit": {
+    "records": 576,
+    "generated_direct_quote_locators_verified": 662,
+    "pdf_text_quote_exact_locators": 1488,
+    "qualification": "Predicate checks are recorded; exhaustive independent semantic certification is not established."
+  },
+  "FN_root": {
+    "CONSERVATIVE_UNRESOLVED": 55,
+    "PARTIAL_ENTAILMENT": 396
+  },
+  "duplicate": {
+    "eligible_occurrences": 6080,
+    "unique_generated_classes": 5991,
+    "duplicate_excess": 89,
+    "within_file_excess": 2,
+    "across_file_excess": 87,
+    "repeated_claim_class_count": 69,
+    "cross_file_repeated_class_count": 68
+  },
+  "uncertified_generated_claims": 5093,
+  "remaining_exact_quote_FN_exceptions": 0,
+  "limitations": "Semantic full-predicate accuracy is not independently certified; the reported confusion matrix is provisional."
+}

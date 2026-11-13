@@ -16,6 +16,8 @@ I explicitly state that the input token count for the Full Load approach did not
 
 This repository compares three Python/FastAPI backends that generate software specifications from PDF and PowerPoint (`.pptx`) documents using the Azure OpenAI Responses API: full-file generation, one-level MapReduce, and two-level MapReduce. It also contains the input dataset, execution logs, generated results, and directories for statistical-analysis work instructions and related documents.
 
+Note that I have never deliberately attempted to improve the precision, recall, or F1 scores of the MapReduce approaches through this statistical evaluation.
+
 **You must design and build your own frontend. This repository provides backend code only; no frontend application is included.**
 
 ## Repository layout

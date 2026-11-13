@@ -1,0 +1,15 @@
+{
+  "phase": 2,
+  "structural_check": "PASSED",
+  "semantic_certification": "NOT_CLAIMED",
+  "physical_lines_checked": 8330,
+  "table_cells_checked": 14882,
+  "eligible_occurrences_with_verifiable_evidence": 6581,
+  "raw_classes_checked": 6527,
+  "source_files_checked": 8,
+  "quote_mismatch_count": 0,
+  "within_file_excess": 2,
+  "across_file_excess": 52,
+  "source_ledger_reuse_verified": true,
+  "limits": "Verifies structure and source-quote existence, not completeness of semantic atomization or meaning-preserving class merges."
+}

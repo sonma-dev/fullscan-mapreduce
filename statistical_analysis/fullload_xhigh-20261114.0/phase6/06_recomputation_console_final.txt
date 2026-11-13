@@ -1,0 +1,23 @@
+{
+  "status": "FINAL_BEST_EFFORT",
+  "cells": {
+    "TP": 576,
+    "TN": 37,
+    "FP": 0,
+    "FN": 451
+  },
+  "metrics": {
+    "Precision": 1.0,
+    "Recall": 0.560856864654333,
+    "F1": 0.7186525265127885,
+    "Duplicate": 0.014638157894736843
+  },
+  "generated_occurrences": 6080,
+  "classes": 5991,
+  "source_quote_exact": 1024,
+  "remaining_exact_fn_exceptions": 0,
+  "fn_roots": {
+    "CONSERVATIVE_UNRESOLVED": 55,
+    "PARTIAL_ENTAILMENT": 396
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "protocol_version": "6.1",
+  "method": "fullload",
+  "phase": 6,
+  "status": "FINAL_BEST_EFFORT",
+  "phase_closed": true,
+  "final_phase": 6,
+  "structural_verification": "PASSED",
+  "semantic_verification": "NOT_VERIFIED",
+  "metrics_file": "06_metrics_final.json",
+  "uncertified_generated_support_classes": 5093,
+  "final_fn": 451,
+  "final_tp": 576,
+  "revision_notes": [
+    "55 newly corrected matcher false negatives",
+    "20 recovered generated definitive occurrences",
+    "six duplicate canonical IDs repaired",
+    "23 missing method metadata fields populated"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "protocol_version": "6.1",
+  "prefix": "fullload",
+  "phase": 6,
+  "status": "FINAL_BEST_EFFORT",
+  "source_baseline": "OD-AI-DDS-001 / R1.0 revision 1.3",
+  "universe": {
+    "source_positive_atoms": 1027,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 5991,
+    "generated_positive_occurrences": 6080,
+    "covered_source_atoms": 576,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 0,
+    "canonical_predicted_positive_units": 576,
+    "canonical_decision_units": 1064,
+    "negative_universe_scope": "Only PDF-grounded predeclared bounded controls"
+  },
+  "confusion": {
+    "TP": 576,
+    "TN": 37,
+    "FP": 0,
+    "FN": 451
+  },
+  "metrics": {
+    "Precision": 1.0,
+    "Recall": 0.560856864654333,
+    "F1": 0.7186525265127885,
+    "Duplicate": 0.014638157894736843
+  },
+  "validity_note_en": "Provisional best-effort effective-universe confusion matrix. Precision is NOT independently certified; FN does not necessarily mean verified absence.",
+  "source_of_counts": "Independently regenerated from Phase 6 item-level canonical universe and corrected evidence ledgers by compute_metrics.py."
+}

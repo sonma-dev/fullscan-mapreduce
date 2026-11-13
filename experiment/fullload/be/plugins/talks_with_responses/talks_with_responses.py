@@ -89,7 +89,7 @@ class TalksWithResponses:
             "model": self._model_name,
             "input": [{"role": "user", "content": content}],
             "instructions": assistant_instruction,
-            "reasoning": {"effort": "low"},
+            "reasoning": {"effort": "high"},
             "truncation": "disabled",
             "store": True,
             "background": True,

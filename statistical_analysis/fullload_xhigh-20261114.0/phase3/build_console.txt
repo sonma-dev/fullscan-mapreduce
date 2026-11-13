@@ -1,0 +1,31 @@
+{
+  "protocol_version": "6.1",
+  "phase": 3,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "method": "fullload",
+  "source_positive_atoms": 1024,
+  "source_negative_controls": 37,
+  "raw_generated_classes": 6527,
+  "source_coverage": {
+    "TP": 319,
+    "FN": 705,
+    "E3": 25,
+    "E2": 294,
+    "E1": 646,
+    "E0": 59
+  },
+  "FN_root_cause": {
+    "TRUE_MISSING": 0,
+    "PARTIAL_ENTAILMENT": 646,
+    "CONSERVATIVE_UNRESOLVED": 59
+  },
+  "evidence": "All source atoms have source and reciprocal generated evidence records; class evidence is original file line quote; no Phase 4 validity claims.",
+  "scope_note": "Source-positive coverage is a provisional computation, not a four-cell confusion matrix; negative controls and generated-only claims await Phase 4.",
+  "limitations": [
+    "Automated candidate retrieval cannot certify meaning for every complete source predicate.",
+    "Common/source atoms have known semantic-overlap and duplication watchlist retained for Phase 5.",
+    "Extraction of generated occurrences was best-effort in Phase 2, potentially limiting candidate proof.",
+    "Conservative FN entries must not be interpreted as confirmed absent without further human semantic audit."
+  ]
+}
+probes [{"probe": "case title", "source_atoms": [], "total": 0, "FN": 0}, {"probe": "retention class", "source_atoms": [{"source_id": "PDF-00199", "cell": "FN", "grade": "E1"}], "total": 1, "FN": 1}, {"probe": "identical response", "source_atoms": [{"source_id": "PDF-00948", "cell": "FN", "grade": "E1"}], "total": 1, "FN": 1}, {"probe": "same case", "source_atoms": [], "total": 0, "FN": 0}, {"probe": "uuidv7", "source_atoms": [{"source_id": "PDF-00039", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00081", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00120", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00155", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00186", "cell": "TP", "grade": "E2"}, {"source_id": "PDF-00230", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00259", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00288", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00314", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00340", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00369", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00396", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00425", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00437", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00455", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00486", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00516", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00544", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00575", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00601", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00629", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00656", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00683", "cell": "FN", "grade": "E1"}], "total": 23, "FN": 22}, {"probe": "cross-tenant", "source_atoms": [{"source_id": "PDF-00023", "cell": "FN", "grade": "E0"}, {"source_id": "PDF-00079", "cell": "FN", "grade": "E0"}, {"source_id": "PDF-00184", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00528", "cell": "FN", "grade": "E0"}, {"source_id": "PDF-00653", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00934", "cell": "FN", "grade": "E0"}, {"source_id": "PDF-00947", "cell": "FN", "grade": "E1"}], "total": 7, "FN": 7}, {"probe": "revision", "source_atoms": [{"source_id": "PDF-00016", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00029", "cell": "FN", "grade": "E1"}, {"source_id": "PDF-00031", "cell": "TP", "grade": "E2"}, {"source_id": "PDF-00041", "cell": "FN", "grade": "E1"}, {"source

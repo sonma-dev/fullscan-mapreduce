@@ -1,0 +1,16 @@
+{
+  "protocol_version": "6.1",
+  "prefix": "fullload",
+  "phase": 6,
+  "status": "FINAL_BEST_EFFORT",
+  "eligible_generated_occurrences": 6080,
+  "unique_generated_claim_classes": 5991,
+  "duplicate_excess_occurrences": 89,
+  "duplicate_rate": 0.014638157894736843,
+  "within_file_excess": 2,
+  "across_file_excess": 87,
+  "repeated_claim_class_count": 69,
+  "cross_file_repeated_class_count": 68,
+  "counting_rule": "One raw eligible generated occurrence per class membership, excess sorted in source-file/line/cell order.",
+  "interpretation": "Full semantic equivalence of all 5,991 classes is not independently certified; this is a best-effort duplicate estimate."
+}

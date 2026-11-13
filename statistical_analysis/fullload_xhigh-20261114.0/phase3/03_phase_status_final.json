@@ -1,0 +1,42 @@
+{
+  "protocol_version": "6.1",
+  "phase": 3,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "method": "fullload",
+  "source_positive_atoms": 1024,
+  "source_negative_controls": 37,
+  "raw_generated_classes": 6527,
+  "source_coverage": {
+    "TP": 495,
+    "FN": 529,
+    "E3": 25,
+    "E2": 470,
+    "E1": 470,
+    "E0": 59
+  },
+  "FN_root_cause": {
+    "PARTIAL_ENTAILMENT": 470,
+    "CONSERVATIVE_UNRESOLVED": 59
+  },
+  "evidence": "All source atoms have source and reciprocal generated evidence records; class evidence is original file line quote; no Phase 4 validity claims.",
+  "scope_note": "Source-positive coverage is a provisional computation, not a four-cell confusion matrix; negative controls and generated-only claims await Phase 4.",
+  "limitations": [
+    "Complete lexical/structural evidence indexing is not a semantic proof for every one of 1,024 atoms.",
+    "A subset of TP claims relies on automatically reconstructed contextual bridges, not independent human semantic certification.",
+    "The frozen reused source ledger has a known atomization watchlist for the designated Phase 5 audit.",
+    "Conservative FN cases cannot be interpreted as verified missing requirements or a certified Recall.",
+    "Four-cell confusion matrix, generated-only FP, and negative-control assertedness are deliberately deferred until Phase 4."
+  ],
+  "reciprocal_corrections": 177,
+  "corrections_by_kind": {
+    "MATCHER_FALSE_NEGATIVE_CORRECTED": 177,
+    "INCORRECT_TP_BRIDGE_DOWNGRADED": 1
+  },
+  "initial_FN_candidates_audited": 705,
+  "corrected_FN_candidates": 177,
+  "negative_control_rows_pending_phase_4": 37,
+  "phase3_source_only_decisions_are_provisional": true,
+  "initial_TP_downgrades": 1,
+  "endpoint_scope_evidence_repairs": 0,
+  "phase3_structural_validation": "PASS"
+}
