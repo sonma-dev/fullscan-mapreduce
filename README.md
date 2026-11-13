@@ -8,6 +8,10 @@ This is a metric evaluation conducted on the same dataset. It represents a stati
 
 ![Precision, Recall, and F1-score Comparison](_statistical_validation_comparison.png)
 
+I explicitly state that the input token count for the Full Load approach did not exceed the maximum input context length of gpt-6.1-sol.
+
+[The Input Tokens for Fill Load](fullload_inputtoken.png)
+
 This repository compares three Python/FastAPI backends that generate software specifications from PDF and PowerPoint (`.pptx`) documents using the Azure OpenAI Responses API: full-file generation, one-level MapReduce, and two-level MapReduce. It also contains the input dataset, execution logs, generated results, and directories for statistical-analysis work instructions and related documents.
 
 **You must design and build your own frontend. This repository provides backend code only; no frontend application is included.**
