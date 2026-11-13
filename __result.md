@@ -51,6 +51,7 @@ Furthermore, does it provide insights for migrating from classical programming l
   - Number of concurrent LLM executions: 8 for 1-level and 16 for 2-level
   - Infrastructure: Azure
   - Local Execution Environment: Gentoo Linux, Windows Subsystem for Linux
+
 Note that setting a higher reasoning effort might improve the precision, recall, and F1-score for the full-load approach.
 However, even with the reasoning effort set to low, the full-load approach already requires approximately 5 minutes to generate a single specification document.
 
