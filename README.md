@@ -8,6 +8,8 @@ This is a metric evaluation conducted on the same dataset. It represents a stati
 
 ![Precision, Recall, and F1-score Comparison](_statistical_validation_comparison.png)
 
+All three methods initially used the same 1,024 atomic requirements and 37 negative controls. Subsequent corrections led to slight differences in the final reference-set sizes.
+
 I explicitly state that the input token count for the Full Load approach did not exceed the maximum input context length of gpt-6.1-sol.
 
 ![The Input Tokens for Fill Load](fullload_inputtoken.png)
