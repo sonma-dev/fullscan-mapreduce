@@ -12,11 +12,11 @@ All three methods initially used the same 1,024 atomic requirements and 37 negat
 
 I explicitly state that the input token count for the Full Load approach did not exceed the maximum input context length of gpt-6.1-sol.
 
-![The Input Tokens for Fill Load](img/fullload_inputtoken.png)
+![The Input Tokens for Fill Load](misc/fullload_inputtoken.png)
 
 I evaluated the precision, recall, and F1-score exclusively for the `full-load` scenario with the reasoning effort set to extra high (`xhigh`).
 
-![Evaluation Metrics for xhigh Reasoning Effort](img/xhigh_metric.png)
+![Evaluation Metrics for xhigh Reasoning Effort](misc/xhigh_metric.png)
 
 - It seems that xhigh improves precision, but not recall whatsoever.
 - The variance in these trial metrics indicates that I have not yet established a statistically reliable methodology.
@@ -27,7 +27,7 @@ I evaluated the precision, recall, and F1-score exclusively for the `full-load` 
 
 The MapReduce approach demonstrably rejected an aggregated specification that omitted critical requirements.
 
-![Root Rejection](img/root_rejection.png)
+![Root Rejection](misc/root_rejection.png)
 
 Reasons for Rejection
 The Root Approval identified two critical requirements preserved in intermediate evidence but omitted from the aggregated specification:
