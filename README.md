@@ -89,9 +89,9 @@ The project directories and files are organized as follows. Timestamped logs and
 
 | Backend source | Analysis documents | Generated result prefix |
 | --- | --- | --- |
-| [experiment/fullload/be/](experiment/fullload/be/) | [statistical_analysis/fullload/ | `fullload` |
-| [experiment/onelevel_mapreduce/be/](experiment/onelevel_mapreduce/be/) | [statistical_analysis/onelevel/ | `onelevel` |
-| [experiment/twolevel_mapreduce/be/](experiment/twolevel_mapreduce/be/) | [statistical_analysis/twolevel) | `twolevel` |
+| [experiment/fullload/be/](experiment/fullload/be/) | statistical_analysis/fullload/ | `fullload` |
+| [experiment/onelevel_mapreduce/be/](experiment/onelevel_mapreduce/be/) | statistical_analysis/onelevel/ | `onelevel` |
+| [experiment/twolevel_mapreduce/be/](experiment/twolevel_mapreduce/be/) | statistical_analysis/twolevel/ | `twolevel` |
 
 API responses, existing JSON results, and logs provide inputs for usage and timing analysis; Markdown files provide the specification content for implementation and quality review. The analysis directories hold work instructions and related documents maintained for that work. The backends save their generation results in `res/`.
 
