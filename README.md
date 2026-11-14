@@ -14,7 +14,7 @@ I explicitly state that the input token count for the Full Load approach did not
 
 ![The Input Tokens for Fill Load](misc/img/fullload_inputtoken.png)
 
-I evaluated the precision, recall, and F1-score exclusively for the `full-load` scenario with the reasoning effort set to extra high (`xhigh`).
+I evaluated precision, recall, and F1-score using **the same dataset**, exclusively for the `full-load` scenario with the reasoning effort set to extra high (`xhigh`).
 
 ![Evaluation Metrics for xhigh Reasoning Effort](misc/img/xhigh_metric.png)
 
