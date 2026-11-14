@@ -12,11 +12,11 @@ All three methods initially used the same 1,024 atomic requirements and 37 negat
 
 I explicitly state that the input token count for the Full Load approach did not exceed the maximum input context length of gpt-6.1-sol.
 
-![The Input Tokens for Fill Load](fullload_inputtoken.png)
+![The Input Tokens for Fill Load](img/fullload_inputtoken.png)
 
 I evaluated the precision, recall, and F1-score exclusively for the `full-load` scenario with the reasoning effort set to extra high (`xhigh`).
 
-![Evaluation Metrics for xhigh Reasoning Effort](xhigh_metric.png)
+![Evaluation Metrics for xhigh Reasoning Effort](img/xhigh_metric.png)
 
 - It seems that xhigh improves precision, but not recall whatsoever.
 - The variance in these trial metrics indicates that I have not yet established a statistically reliable methodology.
@@ -25,9 +25,21 @@ I evaluated the precision, recall, and F1-score exclusively for the `full-load` 
 - It should also be noted that truncation is disabled by default in the OpenAI Responses API, which increases the risk of exceeding context limits or degrading attention over long inputs.
 - Collectively, these findings imply that, although a MapReduce approach might conversely exacerbate context growth, **it can enhance the LLM's reasoning capabilities.**
 
-This repository compares three Python/FastAPI backends that generate software specifications from PDF and PowerPoint (`.pptx`) documents using the Azure OpenAI Responses API: full-file generation, one-level MapReduce, and two-level MapReduce. It also contains the input dataset, execution logs, generated results, and directories for statistical-analysis work instructions and related documents.
+The MapReduce approach demonstrably rejected an aggregated specification that omitted critical requirements.
+
+![Root Rejection](img/root_rejection.png)
+
+Reasons for Rejection
+The Root Approval identified two critical requirements preserved in intermediate evidence but omitted from the aggregated specification:
+
+1. Background-job tenant integrity (PDF p.22, §5.3.1): The specification omitted the requirement for immutable tenant identities in signed job envelopes, potentially allowing unsigned jobs or tenant substitution.
+2. Encryption-key lifecycle (PDF p.63, §17.3.2): The specification omitted mandatory policy-driven encryption-key rotation without bulk re-encryption in the request path.
+
+Outcome: Root Approval detected substantive omissions in the aggregated output, triggered a complete rescan and regeneration, and approved the revised specification on the second attempt.
 
 Note that I have never deliberately attempted to improve the precision, recall, or F1 scores of the MapReduce approaches through this statistical evaluation.
+
+This repository compares three Python/FastAPI backends that generate software specifications from PDF and PowerPoint (`.pptx`) documents using the Azure OpenAI Responses API: full-file generation, one-level MapReduce, and two-level MapReduce. It also contains the input dataset, execution logs, generated results, and directories for statistical-analysis work instructions and related documents.
 
 **You must design and build your own frontend. This repository provides backend code only; no frontend application is included.**
 
