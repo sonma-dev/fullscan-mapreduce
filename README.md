@@ -64,6 +64,9 @@ The project directories and files are organized as follows. Timestamped logs and
 |   |-- fullload-<timestamp>.log
 |   |-- onelevel_mapreduce-<timestamp>.log
 |   `-- twolevel_mapreduce-<timestamp>.log
+|-- misc/
+|   |-- img/
+|   `-- script/
 |-- res/
 |   `-- <prefix>_<YYYYMMDDhhmmss>_<unique suffix>/
 |       |-- 01_screen_functions.md
@@ -83,8 +86,6 @@ The project directories and files are organized as follows. Timestamped logs and
 | [log/](log/) | Captured server logs for tracing requests, stage progress, retries, elapsed time, and token usage. The startup command below writes logs here. |
 | [res/](res/) | Backend-generated Markdown specifications, grouped by backend and run. Older runs may also contain legacy JSON snapshots. |
 | [statistical_analysis/](statistical_analysis/) | Statistical-analysis work instructions, analysis plans, evaluation procedures, and related working documents, organized by experiment. |
-
-The existing directory name is `statistical_analysis`. Its analysis subdirectories are currently empty and reserved for the corresponding materials:
 
 | Backend source | Analysis documents | Generated result prefix |
 | --- | --- | --- |
