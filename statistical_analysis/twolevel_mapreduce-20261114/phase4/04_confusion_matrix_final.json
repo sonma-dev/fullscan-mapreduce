@@ -1,0 +1,59 @@
+{
+  "protocol_version": "6.1",
+  "method": "single_unlabelled_set",
+  "phase": 4,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "semantic_certification": "NOT_VERIFIED",
+  "universe": {
+    "source_positive_atoms": 1024,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 2340,
+    "generated_positive_occurrences": 2420,
+    "covered_source_atoms": 990,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 0,
+    "canonical_predicted_positive_units": 990,
+    "canonical_decision_units": 1061,
+    "negative_universe_scope": "PDF-grounded, predeclared bounded controls only"
+  },
+  "confusion": {
+    "TP": 990,
+    "TN": 37,
+    "FP": 0,
+    "FN": 34
+  },
+  "metrics": {
+    "Precision": 1.0,
+    "Recall": 0.966796875,
+    "F1": 0.9831181727904668,
+    "Duplicate": null
+  },
+  "metric_interpretation": "One canonical effective-proposition universe. The zero provisional FP classification does not certify perfect precision. Numerous generated-class reverse-direction entailments are not independently certified; this is an evidence-limited best-effort point estimate, subject to Phase-5 correction. Negative controls are bounded, not an absence population. Raw generated semantic classes are distinct from canonical predicted-positive propositions.",
+  "generated_validity_counts": {
+    "PDF_ENTAILED": 879,
+    "SUPPORTED_NONCOVERING": 1461
+  },
+  "ineligible_raw_class_corrections": 38,
+  "low_confidence_generated_pdf_support_candidates": 841,
+  "phase3_TP_refs_corrected_for_citation_only_classes": 93,
+  "structural_invariants": {
+    "TP_plus_FN_equals_R": true,
+    "TN_plus_B_equals_N": true,
+    "FP_minus_B_equals_F": true,
+    "cell_sum_equals_U": true,
+    "predicted_positives_equal_TP_plus_FP": true,
+    "all_generated_validity_records": true,
+    "all_evidence_locators_exist": true
+  },
+  "structural_validation": {
+    "locators_verified": 2340,
+    "invalid_generated_file_locations": 0,
+    "invalid_pdf_quotation_locations": 0,
+    "pending_reverse_evidence_challenges": 841,
+    "all_canonical_rows_checked": 1061,
+    "source_positive_rows": 1024,
+    "source_negative_rows": 37,
+    "duplicate_excess_occurrences_after_exclusions": 80,
+    "next_phase_reaudit_required": true
+  }
+}

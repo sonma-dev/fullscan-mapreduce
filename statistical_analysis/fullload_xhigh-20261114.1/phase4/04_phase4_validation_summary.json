@@ -1,0 +1,29 @@
+{
+  "phase": 4,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "protocol_version": "6.1",
+  "validated_generated_raw_classes": 3818,
+  "validated_canonical_items": 1542,
+  "cell_counts": {
+    "FN": 442,
+    "TP": 582,
+    "TN": 37,
+    "FP": 481
+  },
+  "N_negative_controls": 37,
+  "F_generated_only": 481,
+  "source_positive_count": 1024,
+  "all_original_markdown_files_readable": true,
+  "pdf_pages": 90,
+  "all_class_evidence_page_numbers_valid": true,
+  "all_class_ids_unique": true,
+  "all_canonical_ids_unique": true,
+  "all_canonical_labels_binary_and_consistent": true,
+  "all_four_cell_equations_pass": true,
+  "pdf_quote_lineage_sanitized_count": 8,
+  "original_pdf_quote_fidelity_on_generated_validity_records": {
+    "PDF_QUOTE_EXACT_FLATTENED": 2735,
+    "PDF_QUOTE_NOT_EXACT_FLATTENED": 312
+  },
+  "statement": "Arithmetic reconciliation is verified. This does not imply every semantic entailment decision is verified. Remaining PDF evidence, generated-class eligibility and source atomization uncertainties require Phase 5 review."
+}

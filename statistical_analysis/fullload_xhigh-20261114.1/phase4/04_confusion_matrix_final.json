@@ -1,0 +1,58 @@
+{
+  "protocol_version": "6.1",
+  "phase": 4,
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "method": "single_supplied_set",
+  "source_positive_atoms_R": 1024,
+  "fixed_negative_controls_N": 37,
+  "negative_controls_asserted_B": 0,
+  "distinct_generated_only_unsupported_F": 481,
+  "raw_generated_classes_GC_phase2": 3818,
+  "source_positive_entailed_A": 582,
+  "canonical_universe_size_U": 1542,
+  "effective_predicted_positives_P": 1063,
+  "confusion_matrix": {
+    "TP": 582,
+    "TN": 37,
+    "FP": 481,
+    "FN": 442
+  },
+  "metrics": {
+    "precision": 0.547507056,
+    "recall": 0.568359375,
+    "f1": 0.55773838
+  },
+  "generated_class_validity": {
+    "PDF_UNSUPPORTED": 785,
+    "SUPPORTED_NONCOVERING": 2874,
+    "PDF_ENTAILED": 159
+  },
+  "generated_class_score_disposition": {
+    "NOT_ELIGIBLE_FOR_CANONICAL_FP_PHASE2_LEAKAGE": 304,
+    "SUBSTANTIVE_GENERATED_ONLY_CANDIDATE": 481,
+    "SOURCE_SUPPORTED_NO_LINKED_PHASE3_TP": 2063,
+    "SHORT_CONTEXTUAL_SUBCLAIM_PDF_SUPPORT_UNCERTAIN": 811,
+    "MATCHED_SOURCE_POSITIVE_COVERAGE": 159
+  },
+  "reciprocal_pdf_challenge": {
+    "targeted_corrections": 84,
+    "still_conservative_FP_candidates": 481,
+    "phase4_evidence_status": "BEST_EFFORT_NOT_SEMANTICALLY_CERTIFIED"
+  },
+  "structural_assertions": {
+    "TP+FN=R": true,
+    "TN+B=N": true,
+    "FP-B=F": true,
+    "TP+TN+FP+FN=U": true,
+    "TP+FP=P": true,
+    "one_row_per_generated_class": true,
+    "unique_canonical_ids": true
+  },
+  "semantic_reliability": "PROVISIONAL; broad lexical/contextual claim support, Phase 3 class-link gaps, and Phase 2 ineligible raw classes remain",
+  "limits": [
+    "The canonical score is an approximate structural result, not verified PDF entailment.",
+    "Source R=1024 and N=37 remain fixed. TP/FN carried from Phase 3.",
+    "Weak source-backed classifications and residual FPs must be challenged again in Phase 5.",
+    "No ZIP archive and no Phase 5 work produced."
+  ]
+}

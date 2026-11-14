@@ -1,0 +1,137 @@
+{
+  "phase": 2,
+  "protocol_version": "6.1",
+  "method": "single_unlabelled_set",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "eligible_generated_occurrences": 2440,
+  "unique_generated_semantic_classes": 2360,
+  "excess_duplicate_occurrences": 80,
+  "repeated_classes": 64,
+  "within_file_excess": 1,
+  "across_file_excess": 79,
+  "repeated_classes_across_files": 63,
+  "inspected_physical_lines": 2926,
+  "inspected_nonempty_lines": 2219,
+  "inspected_table_cells": 4090,
+  "exclusion_records": 3662,
+  "unverified_occurrence_quotes": 0,
+  "high_similarity_unmerged_candidate_pairs": 223,
+  "retrieval_index_keys": 542,
+  "manually_reviewed_merge_pairs": 28,
+  "unperformed_suggested_manual_merges": [
+    [
+      "05",
+      267,
+      "07",
+      115,
+      "Not an adequately overlapping assertion"
+    ]
+  ],
+  "per_file": [
+    {
+      "file": "01_screen_functions(8).md",
+      "physical_lines": 437,
+      "nonempty_physical_lines": 325,
+      "inspected_nonempty_lines": 325,
+      "table_cells_including_headers": 608,
+      "inspected_table_cells": 608,
+      "eligible_generated_occurrences": 303,
+      "eligible_occurrences_from_table": 154,
+      "excluded_units": 536,
+      "sections": 26
+    },
+    {
+      "file": "02_api(8).md",
+      "physical_lines": 482,
+      "nonempty_physical_lines": 366,
+      "inspected_nonempty_lines": 366,
+      "table_cells_including_headers": 726,
+      "inspected_table_cells": 726,
+      "eligible_generated_occurrences": 584,
+      "eligible_occurrences_from_table": 361,
+      "excluded_units": 481,
+      "sections": 27
+    },
+    {
+      "file": "03_data(8).md",
+      "physical_lines": 411,
+      "nonempty_physical_lines": 308,
+      "inspected_nonempty_lines": 308,
+      "table_cells_including_headers": 563,
+      "inspected_table_cells": 563,
+      "eligible_generated_occurrences": 417,
+      "eligible_occurrences_from_table": 240,
+      "excluded_units": 493,
+      "sections": 26
+    },
+    {
+      "file": "04_batch_functions(10).md",
+      "physical_lines": 274,
+      "nonempty_physical_lines": 204,
+      "inspected_nonempty_lines": 204,
+      "table_cells_including_headers": 323,
+      "inspected_table_cells": 323,
+      "eligible_generated_occurrences": 273,
+      "eligible_occurrences_from_table": 129,
+      "excluded_units": 302,
+      "sections": 20
+    },
+    {
+      "file": "05_business_rules(7).md",
+      "physical_lines": 391,
+      "nonempty_physical_lines": 301,
+      "inspected_nonempty_lines": 301,
+      "table_cells_including_headers": 468,
+      "inspected_table_cells": 468,
+      "eligible_generated_occurrences": 235,
+      "eligible_occurrences_from_table": 93,
+      "excluded_units": 459,
+      "sections": 20
+    },
+    {
+      "file": "06_exception_handling(9).md",
+      "physical_lines": 346,
+      "nonempty_physical_lines": 260,
+      "inspected_nonempty_lines": 260,
+      "table_cells_including_headers": 367,
+      "inspected_table_cells": 367,
+      "eligible_generated_occurrences": 297,
+      "eligible_occurrences_from_table": 146,
+      "excluded_units": 328,
+      "sections": 23
+    },
+    {
+      "file": "07_processing_flows(9).md",
+      "physical_lines": 369,
+      "nonempty_physical_lines": 280,
+      "inspected_nonempty_lines": 280,
+      "table_cells_including_headers": 395,
+      "inspected_table_cells": 395,
+      "eligible_generated_occurrences": 320,
+      "eligible_occurrences_from_table": 138,
+      "excluded_units": 445,
+      "sections": 29
+    },
+    {
+      "file": "08_architecture_decision(9).md",
+      "physical_lines": 216,
+      "nonempty_physical_lines": 175,
+      "inspected_nonempty_lines": 175,
+      "table_cells_including_headers": 640,
+      "inspected_table_cells": 640,
+      "eligible_generated_occurrences": 11,
+      "eligible_occurrences_from_table": 3,
+      "excluded_units": 618,
+      "sections": 15
+    }
+  ],
+  "original_files_unchanged": true,
+  "limitations_en": [
+    "All eight submitted Markdown files were available and every physical line and parsed table cell was inspected using deterministic preprocessing; no semantic entailment versus the PDF was attempted in Phase 2.",
+    "A bounded heuristic identified definitive assertions and excluded explicit TBD, Needs confirmation, Proposal, unadopted options, source-only citations and illustrative code/diagrams. Some dense mixed cells and multi-predicate sentences may be under- or over-atomized.",
+    "Within-method raw semantic classes use normalized exact text plus conservatively high similarity with operation, status, error, field and test scope guards. Meaning-equivalent paraphrases that differ substantially in wording can remain separate classes; strong lexical similarity is not logical equivalence certification. Potential high-similarity unmerged pairs are recorded as review candidates without automatically changing counts.",
+    "Architecture decision register AD-001 to AD-060 are unresolved and intentionally excluded as new commitments; explicit RES resolutions and definitive shared boundaries are eligible when separately stated.",
+    "Each occurrence preserves actual file, physical line, exact quotation, and for tables row/column/header/key context. Source PDF-positive R and negative N ledgers remain unchanged.",
+    "No TP/TN/FP/FN, source coverage or precision/recall/F1 metrics were produced. Deduplication will receive a distinct substantive review in the protocol-designated Phase 5."
+  ]
+}

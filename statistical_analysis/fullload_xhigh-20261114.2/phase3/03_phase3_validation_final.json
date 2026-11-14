@@ -1,0 +1,56 @@
+{
+  "phase": 3,
+  "protocol_version": "6.1",
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "source_positive_atoms": 979,
+  "source_negative_controls": 37,
+  "original_phase2_generated_occurrences": 6742,
+  "original_phase2_generated_classes": 6669,
+  "phase3_recovered_eligible_occurrences": 196,
+  "phase3_recovered_eligible_classes": 196,
+  "effective_generated_occurrences_for_phase4": 6938,
+  "effective_generated_classes_for_phase4": 6865,
+  "pdf_physical_pages": 90,
+  "scored_markdown_files": 8,
+  "source_positive_judgments": 979,
+  "provisional_source_tp": 587,
+  "provisional_source_fn": 392,
+  "initial_direct_tp_count": 197,
+  "reciprocal_fn_challenge_count": 782,
+  "corrected_provisional_false_negative_count": 390,
+  "fn_final_dispositions": {
+    "PARTIAL_ENTAILMENT": 245,
+    "CONSERVATIVE_UNRESOLVED": 142,
+    "TRUE_MISSING": 5
+  },
+  "tp_coverage_modes": {
+    "DIRECT": 151,
+    "SEMANTIC_EQUIVALENCE": 73,
+    "UNIVERSAL_INSTANTIATION": 7,
+    "CONJUNCTIVE_BRIDGE": 56,
+    "INHERITED_CONTEXT": 300
+  },
+  "non_direct_bridges": 436,
+  "correction_records_current_phase": 171,
+  "negative_controls_unadjudicated_until_phase4": 37,
+  "independent_manual_tp_proof_audits_completed": 0,
+  "semantic_certification_status": "NOT_CERTIFIED_BEST_EFFORT",
+  "critical_limitations_en": [
+    "The generated eight-file corpus was searched bidirectionally with deterministic structural and lexical indexes, source-specific rows and bounded conjunctive candidates. This is not equivalent to independent manual predicate verification of all 979 atoms.",
+    "Phase 2 suppressed some eligible standalone short table cells; the recovered 188 evidence records are added as separately enumerated effective occurrences and classes. These recoveries are explicitly marked and will require Phase 5 semantic and duplicate auditing.",
+    "A remaining FN is a conservative coverage adjudication, not a certified absence; both TP and FN may change after independent audit. No four-cell score or FP/TN is asserted in Phase 3.",
+    "Source inventory R and N retain Phase 1 IDs and counts; no method-specific denominator change was made."
+  ],
+  "files": [
+    "01_screen_functions(2).md",
+    "02_api(2).md",
+    "03_data(2).md",
+    "04_batch_functions(3).md",
+    "05_business_rules(8).md",
+    "06_exception_handling(20261114-124408).md",
+    "07_processing_flows(4).md",
+    "08_architecture_decision(3).md"
+  ],
+  "potentially_unsupported_unlinked_not_yet_adjudicated": 566,
+  "potential_generated_claim_leads_removed_after_source_matching": 0
+}

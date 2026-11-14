@@ -1,0 +1,88 @@
+{
+  "protocol_version": "6.1",
+  "phase": 6,
+  "method": "single_unlabelled_set",
+  "status": "FINAL_BEST_EFFORT",
+  "semantic_certification": "NOT_VERIFIED",
+  "universe": {
+    "source_positive_atoms": 1013,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 2289,
+    "generated_positive_occurrences": 2400,
+    "covered_source_atoms": 990,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 0,
+    "canonical_predicted_positive_units": 990,
+    "canonical_decision_units": 1050,
+    "negative_universe_scope": "Predeclared PDF-grounded bounded controls; does not represent all possible absent requirements."
+  },
+  "confusion": {
+    "TP": 990,
+    "TN": 37,
+    "FP": 0,
+    "FN": 23
+  },
+  "metrics": {
+    "Precision": 1.0,
+    "Recall": 0.9772951628825272,
+    "F1": 0.9885172241637543,
+    "Duplicate": 0.04625
+  },
+  "duplication": {
+    "eligible_generated_occurrences": 2400,
+    "unique_generated_claim_classes": 2289,
+    "duplicate_excess_occurrences": 111,
+    "repeated_claim_class_count": 75,
+    "repeated_classes_spanning_multiple_files": 74,
+    "within_file_excess": 1,
+    "across_file_excess": 110
+  },
+  "final_FN_root_causes": {
+    "CONSERVATIVE_UNRESOLVED": 10,
+    "PARTIAL_ENTAILMENT": 7,
+    "TRUE_MISSING": 6
+  },
+  "source_atomization": {
+    "retained": 1013,
+    "removed_from_original_inventory": 11,
+    "removed_ids": [
+      "PDF-00001",
+      "PDF-00091",
+      "PDF-00526",
+      "PDF-00554",
+      "PDF-00666",
+      "PDF-00757",
+      "PDF-00758",
+      "PDF-00759",
+      "PDF-00760",
+      "PDF-00761",
+      "PDF-00964"
+    ],
+    "review_records": 1024
+  },
+  "generated_class_validity": {
+    "PDF_ENTAILED": 877,
+    "SUPPORTED_NONCOVERING": 1412
+  },
+  "evidence_reliability": {
+    "source_positive_atom_ids_unique": 1013,
+    "fixed_negative_control_ids_unique": 37,
+    "generated_occurrence_ids_unique": 2400,
+    "generated_class_ids_unique": 2289,
+    "canonical_unique_units": 1050,
+    "input_files": 8,
+    "actual_markdown_lines_inspected_by_coverage_ledger": 2926,
+    "actual_markdown_table_cells_inspected_by_coverage_ledger": 4090,
+    "pdf_pages": 90,
+    "retained_tp_with_audit_record": 990,
+    "retained_fn_with_root_cause_record": 23,
+    "tp_with_independently_certified_complete_entailment": 1,
+    "generated_claims_with_independently_certified_semantics": 0,
+    "source_atom_pdf_quote_locator_total": 2516,
+    "source_atom_pdf_quote_literal_text_recovered": 2513,
+    "generated_reverse_pdf_locator_boolean_not_verified": 0,
+    "generated_pdf_support_quote_not_literal_recovered": 15,
+    "diagnostic_probe_exception_count": 0
+  },
+  "interpretation": "Arithmetic is independently recomputed from one canonical effective-proposition universe, not the raw generated-class universe. Unverified generated-class PDF support makes the apparent zero FP and 100% precision provisional only. TP proof records are structurally present but not independently semantically certified. TN is bounded; duplicate rate is raw occurrence/class based. Calculated recall is not certified true coverage."
+}

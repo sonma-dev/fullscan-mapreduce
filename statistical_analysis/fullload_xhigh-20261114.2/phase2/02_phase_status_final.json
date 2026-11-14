@@ -1,0 +1,88 @@
+{
+  "phase": 2,
+  "prefix": "unlabeled_eight_document_set",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "input_files": [
+    {
+      "actual_filename": "01_screen_functions(2).md",
+      "role": "01_screen_functions.md",
+      "total_physical_lines": 864,
+      "total_cells": 2585,
+      "eligible_occurrences": 1068,
+      "excluded_units": 1712
+    },
+    {
+      "actual_filename": "02_api(2).md",
+      "role": "02_api.md",
+      "total_physical_lines": 1201,
+      "total_cells": 2892,
+      "eligible_occurrences": 1096,
+      "excluded_units": 2199
+    },
+    {
+      "actual_filename": "03_data(2).md",
+      "role": "03_data.md",
+      "total_physical_lines": 1034,
+      "total_cells": 2757,
+      "eligible_occurrences": 900,
+      "excluded_units": 2160
+    },
+    {
+      "actual_filename": "04_batch_functions(3).md",
+      "role": "04_batch_functions.md",
+      "total_physical_lines": 1323,
+      "total_cells": 1617,
+      "eligible_occurrences": 926,
+      "excluded_units": 1373
+    },
+    {
+      "actual_filename": "05_business_rules(8).md",
+      "role": "05_business_rules.md",
+      "total_physical_lines": 1442,
+      "total_cells": 1661,
+      "eligible_occurrences": 1052,
+      "excluded_units": 1210
+    },
+    {
+      "actual_filename": "06_exception_handling(20261114-124408).md",
+      "role": "06_exception_handling.md",
+      "total_physical_lines": 737,
+      "total_cells": 1551,
+      "eligible_occurrences": 806,
+      "excluded_units": 1091
+    },
+    {
+      "actual_filename": "07_processing_flows(4).md",
+      "role": "07_processing_flows.md",
+      "total_physical_lines": 1143,
+      "total_cells": 1283,
+      "eligible_occurrences": 874,
+      "excluded_units": 1197
+    },
+    {
+      "actual_filename": "08_architecture_decision(3).md",
+      "role": "08_architecture_decision.md",
+      "total_physical_lines": 586,
+      "total_cells": 1599,
+      "eligible_occurrences": 20,
+      "excluded_units": 1587
+    }
+  ],
+  "eligible_generated_occurrences": 6742,
+  "raw_semantic_classes": 6669,
+  "raw_excess_occurrences": 73,
+  "within_file_excess": 5,
+  "across_file_excess": 68,
+  "repeated_claim_class_count": 63,
+  "repeated_classes_spanning_multiple_files": 60,
+  "excluded_unit_count": 12529,
+  "physical_lines_inspected": 8330,
+  "table_cells_inspected": 15945,
+  "dedup_method": "Conservative exact full-statement normalization with table row, column, method/path, and domain inherited scope; no unsupervised broad topic merging",
+  "limitations": [
+    "Machine-assisted extraction can conservatively omit some affirmative subclaims embedded in ambiguous NC cells.",
+    "Some multi-clause logical statements remain composite and should receive targeted semantic audit in Phase 5.",
+    "Paraphrases with different wording remain separate classes unless full-scope equivalence is obvious from exact content; Duplicate metric not yet finalized.",
+    "Phase 2 does not adjudicate PDF entailment, TP, TN, FP, FN or precision/recall."
+  ]
+}

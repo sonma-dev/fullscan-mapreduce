@@ -1,0 +1,128 @@
+{
+  "prefix": "single_supplied_set",
+  "phase": 6,
+  "protocol_version": "6.1",
+  "status": "FINAL_BEST_EFFORT",
+  "source_ledger_interpretation": "The user-supplied Phase 1 JSONL inputs are preserved. Phase 5 source atomization changes were retained, and Phase 6 made no additional R/N changes.",
+  "universe": {
+    "source_positive_atoms": 1024,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 3656,
+    "generated_positive_occurrences": 3746,
+    "covered_source_atoms": 680,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 426,
+    "canonical_predicted_positive_units": 1106,
+    "canonical_decision_units": 1487,
+    "negative_universe_scope": "PDF-grounded predeclared bounded counterfactual controls only"
+  },
+  "confusion": {
+    "TP": 680,
+    "TN": 37,
+    "FP": 426,
+    "FN": 344
+  },
+  "metrics": {
+    "precision": 0.6148282097649186,
+    "recall": 0.6640625,
+    "f1": 0.6384976525821596,
+    "duplicate": 0.02402562733582488
+  },
+  "duplicate_partition": {
+    "excess_occurrences": 90,
+    "within_file_excess": 8,
+    "across_file_excess": 82,
+    "repeated_claim_classes": 68,
+    "classes_spanning_multiple_files": 64
+  },
+  "fn_root_cause_final_counts": {
+    "PARTIAL_ENTAILMENT": 243,
+    "CONSERVATIVE_UNRESOLVED": 81,
+    "TRUE_MISSING": 20
+  },
+  "tp_audit": {
+    "audited_final_tp_count": 680,
+    "final_tp_count": 680
+  },
+  "phase6_corrections": {
+    "fn_to_tp_source_ids": [
+      "PDF-00008",
+      "PDF-00014",
+      "PDF-00035",
+      "PDF-00281",
+      "PDF-00306",
+      "PDF-00622",
+      "PDF-00815",
+      "PDF-00863",
+      "PDF-00865",
+      "PDF-00866",
+      "PDF-00867",
+      "PDF-00868",
+      "PDF-00869",
+      "PDF-00870",
+      "PDF-00871",
+      "PDF-00872",
+      "PDF-00873",
+      "PDF-00874",
+      "PDF-00875",
+      "PDF-00877",
+      "PDF-00878",
+      "PDF-00880",
+      "PDF-00881",
+      "PDF-00883",
+      "PDF-00884",
+      "PDF-00887",
+      "PDF-00892",
+      "PDF-00895",
+      "PDF-00896",
+      "PDF-00904",
+      "PDF-00907",
+      "PDF-00910",
+      "PDF-00911",
+      "PDF-00985"
+    ],
+    "fn_to_tp_count": 34,
+    "new_eligible_occurrences_and_classes": 14,
+    "generated_fp_to_pdf_supported": [
+      "F-00004",
+      "F-00005",
+      "F-00007",
+      "F-00016",
+      "F-00028",
+      "F-00029",
+      "F-00031",
+      "F-00034",
+      "F-00037",
+      "F-00040",
+      "F-00041",
+      "F-00042",
+      "F-00043"
+    ],
+    "generated_fp_nondefinitive_exclusions": [
+      "F-00003",
+      "F-00012",
+      "F-00014",
+      "F-00017",
+      "F-00022",
+      "F-00023",
+      "F-00025",
+      "F-00038",
+      "F-00047",
+      "F-00048",
+      "F-00052",
+      "F-00053"
+    ],
+    "fp_count_removed": 25
+  },
+  "structural_assertions": {
+    "one_enumerated_universe": true,
+    "source_atom_ids_unique": true,
+    "source_and_negative_ids_disjoint": true,
+    "generated_class_membership_partition": true,
+    "source_FNs_have_terminal_root_cause": true,
+    "final_TPs_have_individual_audit": true,
+    "negative_control_bound": true,
+    "input_pdf_pages_and_markdown_lines_checked": true
+  },
+  "metric_interpretation": "Best-effort semantic evaluation. One canonical effective-proposition universe; the PDF negative controls are bounded; class and occurrence counts are separate from canonical predictions."
+}

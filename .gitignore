@@ -29,6 +29,7 @@ coverage/
 coverage.xml
 
 # Runtime logs and generated API responses
+/out/
 *.log
 /_test_*-response.json
 /experiment/*/be/res/

@@ -1,0 +1,19 @@
+{
+  "protocol_version": "6.1",
+  "phase": 5,
+  "method": "single_unlabelled_set",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "eligible_generated_occurrences": 2400,
+  "raw_unique_generated_claim_classes": 2289,
+  "duplicate_excess_occurrences": 111,
+  "duplicate_rate": 0.04625,
+  "duplicate_rate_percent": 4.625,
+  "repeated_claim_class_count": 75,
+  "classes_spanning_multiple_files": 74,
+  "within_file_excess": 1,
+  "across_file_excess": 110,
+  "manually_reviewed_merge_candidates": 223,
+  "accepted_merge_edges": 32,
+  "remaining_unmerged_similarity_candidates": 178,
+  "calculation_en": "(eligible generated occurrences - unique raw semantic classes) / eligible generated occurrences; distinct from effective canonical source-proposition scoring."
+}

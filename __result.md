@@ -52,10 +52,9 @@ Furthermore, does it provide insights for migrating from classical programming l
   - Infrastructure: Azure
   - Local Execution Environment: Gentoo Linux, Windows Subsystem for Linux
 
-Note that setting a higher reasoning effort might improve the precision, recall, and F1-score for the full-load approach.
 However, even with the reasoning effort set to low, the full-load approach already requires approximately 5 minutes to generate a single specification document.
 
-Also note that in N-level hierarchical MapReduce, the number of concurrent LLMs should likely be increased depending on $N$.
+Note that in N-level hierarchical MapReduce, the number of concurrent LLMs should be increased depending on $N$.
 
 ## 4. Statistical Validation of the Evaluation Metrics
 I verified the validity of the statistical method by applying it to the same set of multiple datasets for each of the three methods.

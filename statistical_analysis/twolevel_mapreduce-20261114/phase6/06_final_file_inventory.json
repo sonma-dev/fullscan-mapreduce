@@ -1,0 +1,276 @@
+{
+  "protocol_version": "6.1",
+  "status": "FINAL_BEST_EFFORT",
+  "individual_artifact_count": 38,
+  "single_directory": "phase6",
+  "archive_created": false,
+  "inventory_self_hash_excluded": true,
+  "files": [
+    {
+      "file": "01_pdf_page_coverage.jsonl",
+      "relative_path": "01_pdf_page_coverage.jsonl",
+      "exists": true,
+      "bytes": 37072,
+      "sha256": "b837eecb19c9a4cdd28c4495afcad79d6589033382c31400e79c391753c5da89"
+    },
+    {
+      "file": "01_source_atoms_final.jsonl",
+      "relative_path": "01_source_atoms_final.jsonl",
+      "exists": true,
+      "bytes": 2285982,
+      "sha256": "7217f44c7457b8541828fc6f6bf2230b0f3967e9fa5346acaf2e7bdf93d416e8"
+    },
+    {
+      "file": "01_source_negative_controls_final.jsonl",
+      "relative_path": "01_source_negative_controls_final.jsonl",
+      "exists": true,
+      "bytes": 36373,
+      "sha256": "d10b319c8dc3863c6b45d597376d5602d011112d92fb2607ea2b934213c00673"
+    },
+    {
+      "file": "02_generated_atoms_final.jsonl",
+      "relative_path": "02_generated_atoms_final.jsonl",
+      "exists": true,
+      "bytes": 2691664,
+      "sha256": "ad09b8b4f66c7efcee336e4d7c565fad9ee44190c68ab7ae89ba10b96bb9d032"
+    },
+    {
+      "file": "02_generated_classes_final.jsonl",
+      "relative_path": "02_generated_classes_final.jsonl",
+      "exists": true,
+      "bytes": 2614850,
+      "sha256": "2de6c10a7216c62b82c0c9726a86eb81138e129a8fdd5c1f3aeea03710ed276e"
+    },
+    {
+      "file": "02_line_cell_coverage_final.jsonl",
+      "relative_path": "02_line_cell_coverage_final.jsonl",
+      "exists": true,
+      "bytes": 1278938,
+      "sha256": "9330bc9d9757b3c3bf9e65e2d660217b1178cc4f0e4a0bd3436637fda4e23ba4"
+    },
+    {
+      "file": "02_table_cell_coverage_final.jsonl",
+      "relative_path": "02_table_cell_coverage_final.jsonl",
+      "exists": true,
+      "bytes": 1803526,
+      "sha256": "22dc488f00168f70f3b3d275de0785e5ab48f53a999823b84f4ad9e7ce9d2a86"
+    },
+    {
+      "file": "03_canonical_universe_final.jsonl",
+      "relative_path": "03_canonical_universe_final.jsonl",
+      "exists": true,
+      "bytes": 4288703,
+      "sha256": "b639dde21b9c4fa701806baf5d0087b96bbf1a078fdc7f88f6250fa6685057ae"
+    },
+    {
+      "file": "03_evidence_matches_final.jsonl",
+      "relative_path": "03_evidence_matches_final.jsonl",
+      "exists": true,
+      "bytes": 8633830,
+      "sha256": "3687635daee7cd44c93c05baa3a753236c4258dae6fb853d7c249edf48c3c59b"
+    },
+    {
+      "file": "03_fn_root_cause_audit_final.jsonl",
+      "relative_path": "03_fn_root_cause_audit_final.jsonl",
+      "exists": true,
+      "bytes": 3445524,
+      "sha256": "4aca2d417b3e8b038c041060a9f1e5fb87879da86cc0ad2f9badc91fd22159ec"
+    },
+    {
+      "file": "03_semantic_coverage_bridges_final.jsonl",
+      "relative_path": "03_semantic_coverage_bridges_final.jsonl",
+      "exists": true,
+      "bytes": 1959000,
+      "sha256": "7f29870c710256635f33cc6504d797e16453ef3e89d26889f7c8fab94896e0d0"
+    },
+    {
+      "file": "04_atomic_judgments_final.jsonl",
+      "relative_path": "04_atomic_judgments_final.jsonl",
+      "exists": true,
+      "bytes": 4288703,
+      "sha256": "b639dde21b9c4fa701806baf5d0087b96bbf1a078fdc7f88f6250fa6685057ae"
+    },
+    {
+      "file": "04_confusion_matrix_final.json",
+      "relative_path": "04_confusion_matrix_final.json",
+      "exists": true,
+      "bytes": 1310,
+      "sha256": "07092f4b24ad5043fab5074b54a8a9b8334352a2b03d8ebc0f79237e06dad72a"
+    },
+    {
+      "file": "04_confusion_matrix_final.md",
+      "relative_path": "04_confusion_matrix_final.md",
+      "exists": true,
+      "bytes": 1895,
+      "sha256": "df7cf9708f672fa9944279ecf75da39a185822d0ab1eae69bf8e1a73683de4df"
+    },
+    {
+      "file": "04_duplicate_classes_final.jsonl",
+      "relative_path": "04_duplicate_classes_final.jsonl",
+      "exists": true,
+      "bytes": 102542,
+      "sha256": "de6ecb0a51ab25837fe3b183b4e4fc94323e51dc610bbd2425b28300788ae0ad"
+    },
+    {
+      "file": "04_generated_claim_validity_final.jsonl",
+      "relative_path": "04_generated_claim_validity_final.jsonl",
+      "exists": true,
+      "bytes": 4102701,
+      "sha256": "915b1939772551ad2b61b59b4c0e19fbecd05da008fcc6938084acdee8297084"
+    },
+    {
+      "file": "04_negative_control_assertion_audit.jsonl",
+      "relative_path": "04_negative_control_assertion_audit.jsonl",
+      "exists": true,
+      "bytes": 87053,
+      "sha256": "ee144e3666b1dcc55e286c6db80b31f79c3872b3b5a52fde557d8512046738d3"
+    },
+    {
+      "file": "05_duplicate_metrics_final.json",
+      "relative_path": "05_duplicate_metrics_final.json",
+      "exists": true,
+      "bytes": 630,
+      "sha256": "afe0b54bf18ac018b480c764a991808b7daac383de0c5bc1351f829548763c52"
+    },
+    {
+      "file": "05_duplicate_metrics_final.md",
+      "relative_path": "05_duplicate_metrics_final.md",
+      "exists": true,
+      "bytes": 966,
+      "sha256": "065115855718061b1a9cc6ea1098b1163273ccf356c82340cc73fcbf59ae4247"
+    },
+    {
+      "file": "05_evidence_and_corrections_report.md",
+      "relative_path": "05_evidence_and_corrections_report.md",
+      "exists": true,
+      "bytes": 3706,
+      "sha256": "10b233299992db9800ae175add89ec6136c61dc12b26bbe44f1fc3c5f4c9b0f9"
+    },
+    {
+      "file": "05_generated_reverse_evidence_audit_final.jsonl",
+      "relative_path": "05_generated_reverse_evidence_audit_final.jsonl",
+      "exists": true,
+      "bytes": 3655116,
+      "sha256": "b1276f84536ac3fd1f7f540a867e424c1273da6817d7dde18d016e1cba60e2f4"
+    },
+    {
+      "file": "05_phase_status.json",
+      "relative_path": "05_phase_status.json",
+      "exists": true,
+      "bytes": 1555,
+      "sha256": "89b293f55edb64ec24707213f5db9e6ace0004075bfda90eda7af97cf761227e"
+    },
+    {
+      "file": "05_semantic_merge_decisions_final.jsonl",
+      "relative_path": "05_semantic_merge_decisions_final.jsonl",
+      "exists": true,
+      "bytes": 166885,
+      "sha256": "f54a25884bcae136699d70991ceae0ae9a376e50c1241f15c911b44ea535591a"
+    },
+    {
+      "file": "05_source_atomization_audit_final.jsonl",
+      "relative_path": "05_source_atomization_audit_final.jsonl",
+      "exists": true,
+      "bytes": 2028065,
+      "sha256": "6dabfd2252fa21fc7e0df78d724b0386696a8803e041eea05720e45226b07fd8"
+    },
+    {
+      "file": "05_structural_validation.json",
+      "relative_path": "05_structural_validation.json",
+      "exists": true,
+      "bytes": 458,
+      "sha256": "3acaf1356285e8898feeb9f2f03f2299b2b89e6822f89b4d44e66b44639a0555"
+    },
+    {
+      "file": "05_tp_evidence_audit_final.jsonl",
+      "relative_path": "05_tp_evidence_audit_final.jsonl",
+      "exists": true,
+      "bytes": 4304153,
+      "sha256": "4a5152f3b461d641dc4da660493b5a41e24a9b42ab55e4071967cbedeba5462d"
+    },
+    {
+      "file": "06_final_file_inventory.json",
+      "relative_path": "06_final_file_inventory.json",
+      "exists": true,
+      "bytes": null,
+      "sha256": null
+    },
+    {
+      "file": "06_fn_full_corpus_search_final.jsonl",
+      "relative_path": "06_fn_full_corpus_search_final.jsonl",
+      "exists": true,
+      "bytes": 71045,
+      "sha256": "f3768b4f4e12a45f664c205d2b9851509a0bc070ff723558a4b0e27078e61222"
+    },
+    {
+      "file": "06_independent_checks.json",
+      "relative_path": "06_independent_checks.json",
+      "exists": true,
+      "bytes": 1765,
+      "sha256": "61297c0f0fbb34aeb6b476a3d7162727463725ab0c9c4e26f303b39542b22236"
+    },
+    {
+      "file": "06_metrics_final.json",
+      "relative_path": "06_metrics_final.json",
+      "exists": true,
+      "bytes": 3116,
+      "sha256": "728ed8e7ebff3a14f0861b51579c79b13aa3578ac2879caacafd8398e5d36605"
+    },
+    {
+      "file": "06_metrics_final.md",
+      "relative_path": "06_metrics_final.md",
+      "exists": true,
+      "bytes": 3139,
+      "sha256": "fbfa0f5cb3b4ed60ed6de5bae83cb4d718ca203429bdc0fdc2a741f34330aae6"
+    },
+    {
+      "file": "06_phase_status.json",
+      "relative_path": "06_phase_status.json",
+      "exists": true,
+      "bytes": 792,
+      "sha256": "6f1501d0cdd66b813a091fd0a92568cfc99cbfbc0dc8b1d5e31f578c04b22740"
+    },
+    {
+      "file": "06_quote_recovery_exceptions_final.jsonl",
+      "relative_path": "06_quote_recovery_exceptions_final.jsonl",
+      "exists": true,
+      "bytes": 8330,
+      "sha256": "d8b64cb5d8270713755e88efe6daa7d1441f78d4d1d89583f50eb98658fffc9c"
+    },
+    {
+      "file": "06_regression_probes_final.jsonl",
+      "relative_path": "06_regression_probes_final.jsonl",
+      "exists": true,
+      "bytes": 6394,
+      "sha256": "1226fb635c295c3d8491ba20098dc82ae2cbe6d35480af5c74a7ae98efb5a2d7"
+    },
+    {
+      "file": "07_change_delta.jsonl",
+      "relative_path": "07_change_delta.jsonl",
+      "exists": true,
+      "bytes": 44197,
+      "sha256": "5911a131e03115f4656468a8d72cb114facf0efc3fbb43687d7430598af967c5"
+    },
+    {
+      "file": "08_coverage_and_limitations.md",
+      "relative_path": "08_coverage_and_limitations.md",
+      "exists": true,
+      "bytes": 9642,
+      "sha256": "b03912cbfe0bc783d3a0c4f6fe7c488a2c4d9c6883614817eac8f860aab7da05"
+    },
+    {
+      "file": "09_excluded_units.jsonl",
+      "relative_path": "09_excluded_units.jsonl",
+      "exists": true,
+      "bytes": 1847368,
+      "sha256": "1e70a86422dd9980112dda184afee2dc8106de1ac3ffd085cbf546d0965ca36d"
+    },
+    {
+      "file": "compute_metrics.py",
+      "relative_path": "compute_metrics.py",
+      "exists": true,
+      "bytes": 34593,
+      "sha256": "bbd64907fb23fb2661ba6c6a244d3c87b23d107d51acee52b5c0e275e5dcbd85"
+    }
+  ]
+}

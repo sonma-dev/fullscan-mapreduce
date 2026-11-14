@@ -1,0 +1,17 @@
+{
+  "protocol_version": "6.1",
+  "phase": 4,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "source_R": 1024,
+  "negative_N": 37,
+  "generated_G_after_nondefinitive_exclusions": 2340,
+  "generated_GO_after_nondefinitive_exclusions": 2420,
+  "TP": 990,
+  "FN": 34,
+  "TN": 37,
+  "FP": 0,
+  "generated_claim_support_uncertainty": 841,
+  "negative_controls_asserted": 0,
+  "extracted_nondeﬁnitive_classes_excluded": 38,
+  "next_phase": "Phase 5: reciprocal audit of generated claims, TP/FN and atomization with corrections"
+}

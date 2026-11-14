@@ -1,0 +1,196 @@
+{
+  "protocol_version": "6.1",
+  "phase": 6,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "semantic_certification": "NOT_CERTIFIED",
+  "method": "unlabeled_eight_document_set",
+  "source_pdf_file": "OrionDesk_AI_Detailed_Design_Specification(2).pdf",
+  "scores": {
+    "TP": 647,
+    "FN": 332,
+    "TN": 37,
+    "FP": 0,
+    "R": 979,
+    "N": 37,
+    "F_generated_only": 0,
+    "B_asserted_negative_controls": 0,
+    "canonical_universe_size": 1016,
+    "effective_predicted_positive": 647,
+    "precision": 1.0,
+    "recall": 0.6608784473953013,
+    "f1": 0.7958179581795818,
+    "eligible_generated_occurrences": 6929,
+    "unique_generated_claim_classes": 6851,
+    "duplicate_excess_occurrences": 78,
+    "duplicate_rate": 0.01125703564727955,
+    "within_file_excess": 5,
+    "across_file_excess": 73,
+    "repeated_claim_class_count": 66,
+    "repeated_classes_spanning_multiple_files": 63
+  },
+  "counts": {
+    "invalid_generated_quote_locations": 0,
+    "tp_audit_source_missing": 0,
+    "tp_quote_location_defects": 0,
+    "tp_predicate_field_defects": 0,
+    "fn_missing_justification": 0,
+    "fn_candidate_quote_location_defects": 0,
+    "source_high_risk_review_binding_atoms": 1,
+    "high_risk_review_binding_tp": 0,
+    "high_risk_review_binding_fn": 1,
+    "pdf_positive_atoms": 979,
+    "negative_controls": 37,
+    "markdown_documents": 8,
+    "markdown_physical_lines": 8330,
+    "generated_occurrences": 6929,
+    "generated_classes": 6851,
+    "generated_claim_validity": {
+      "SUPPORTED_NONCOVERING": 5368,
+      "PDF_ENTAILED": 1483
+    },
+    "generated_claim_support_certainty": {
+      "NOT_ESTABLISHED_BY_LEXICAL_RETRIEVAL": 3904,
+      "BEST_EFFORT_NOT_INDEPENDENTLY_CERTIFIED": 2947
+    },
+    "pdf_positive_source_pages_with_atoms": 76,
+    "source_positive_evidence_locators": 2450,
+    "negative_control_evidence_locators": 37,
+    "initial_fn_audit_rows": 782,
+    "remaining_fn_dispositions": {
+      "PARTIAL_ENTAILMENT": 185,
+      "CONSERVATIVE_UNRESOLVED": 142,
+      "TRUE_MISSING": 5
+    },
+    "tp_proof_rows": 647,
+    "tp_proof_grades": {
+      "E3": 151,
+      "E2": 496
+    },
+    "source_atomization_rows": 979,
+    "source_atomization_decisions": {
+      "RETAINED_IN_SOURCE_INVENTORY": 977,
+      "CORRECTED_WORDING_RETAINED": 2
+    },
+    "change_delta_rows": 76,
+    "change_delta_types": {
+      "SOURCE_ATOM_TEXT_CORRECTION": 1,
+      "SOURCE_ATOM_NORMALIZATION_CONTEXT_TRIM": 1,
+      "EXCLUDE_UNADOPTED_PROPOSAL": 9,
+      "MERGE_EQUIVALENT_GENERATED_CLASSES": 5,
+      "FN_TO_TP_RECOVERED": 60
+    },
+    "excluded_units_rows": 12600
+  },
+  "original_pdf_inspection": {
+    "available": true,
+    "pages": 90,
+    "text_quote_matches": 2484,
+    "raster_visual_quotations": 3,
+    "text_quote_failures": 0,
+    "hash_matches_phase1": true,
+    "pages_with_nonempty_text": 90,
+    "sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3"
+  },
+  "markdown_line_coverage": {
+    "available": true,
+    "rows": 8330,
+    "table_cells": 15945,
+    "exact_coverage": true
+  },
+  "regression_probes": [
+    {
+      "probe": "case_title_field",
+      "source_ids": [
+        "PDF-00208"
+      ],
+      "judgments": [
+        "TP"
+      ],
+      "source_count": 1,
+      "pass": true
+    },
+    {
+      "probe": "workspace_retention_class",
+      "source_ids": [
+        "PDF-00199"
+      ],
+      "judgments": [
+        "TP"
+      ],
+      "source_count": 1,
+      "pass": true
+    },
+    {
+      "probe": "case_idempotent_replay",
+      "source_ids": [
+        "PDF-00948"
+      ],
+      "judgments": [
+        "TP"
+      ],
+      "source_count": 1,
+      "pass": true
+    }
+  ],
+  "structural_checks": {
+    "01_unique_source_atoms": true,
+    "02_unique_negative_controls": true,
+    "03_unique_generated_occurrences": true,
+    "04_unique_generated_classes": true,
+    "05_unique_canonical_judgments": true,
+    "06_complete_class_validity": true,
+    "07_source_evidence_mapping": true,
+    "08_canonical_universe_identity": true,
+    "09_canonical_universe_row_parity": true,
+    "10_label_and_cell_consistency": true,
+    "11_exact_source_universe": true,
+    "12_exact_negative_universe": true,
+    "13_known_universe_kinds": true,
+    "14_single_canonical_population": true,
+    "15_one_universe_equations": true,
+    "16_occurrence_membership_one_to_one": true,
+    "17_class_cardinality": true,
+    "18_duplicate_ledger_membership": true,
+    "19_eight_unique_markdown_inputs": true,
+    "20_occurrence_input_paths_exist": true,
+    "21_markdown_eight_document_8330_line_census": true,
+    "22_every_generated_quote_verbatim": true,
+    "23_complete_tp_audit": true,
+    "24_final_fn_audit_closed": true,
+    "25_all_source_atomization_rows": true,
+    "26_negative_controls_well_sourced": true,
+    "27_source_atoms_well_sourced": true,
+    "28_every_tp_has_source_generated_and_predicate_proof_record": true,
+    "29_every_tp_quote_reloads_from_original_markdown": true,
+    "30_tp_structured_predicates_no_missing_proof_field": true,
+    "31_every_fn_has_specific_unmet_predicate_and_candidates": true,
+    "32_every_fn_best_candidate_original_markdown_quote": true,
+    "33_original_pdf_90_pages": true,
+    "34_all_pdf_pages_text_readable": true,
+    "35_original_pdf_quote_integrity": true,
+    "36_pdf_matches_phase1_fixed_source": true,
+    "37_raw_duplicate_count": true,
+    "38_duplicate_partition_audit": true,
+    "39_no_unscored_proposals_promoted": true,
+    "40_full_audit_disposition_counts": true,
+    "41_class_validity_categories_exclusive": true,
+    "42_generated_unsupported_units_match_judgments": true,
+    "43_regression_probes_source_to_generated": true,
+    "44_single_method_isolation": true,
+    "45_english_evidence_text_present": true,
+    "46_all_original_markdown_lines_in_phase2_census": true
+  },
+  "structural_pass_count": 46,
+  "structural_total_check_count": 46,
+  "warnings_en": [
+    "Three source-positive quotations are from embedded raster labels on physical PDF page 8; their provenance is recorded as visual inspection in Phase 1 and not reproducible by PDF text extraction.",
+    "3904 generated classes lack established PDF support beyond weak/lexical retrieval; FP=0 is not a verified absence of unsupported claims.",
+    "142 source-positive judgments remain conservative unresolved FN, not proven absences.",
+    "Every TP has a source/generated quote locator and a predicate-check record; these structured fields are not independent formal semantic proofs.",
+    "The 37 TN records are bounded controls constructed from explicit prohibitions/deferrals; TN is not a census of all absent requirements.",
+    "Phase-5 final raw classes may omit unresolved paraphrase duplicates; measured duplicate rate is a conservative estimate, not exhaustive semantic equivalence."
+  ],
+  "exceptions_en": [],
+  "accounting_basis_en": "One canonical proposition universe U = R disjoint-union N disjoint-union F. The effective predicted-positive count need not equal the raw generated semantic-class count.",
+  "interpretation_en": "Calculated scores are provisional best-effort ledger statistics, not independent semantic certification. In particular, FP=0 and Precision=100% are not verified."
+}

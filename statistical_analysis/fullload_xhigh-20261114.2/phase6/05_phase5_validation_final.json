@@ -1,0 +1,22 @@
+{
+  "phase": "5",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "scored_md_files": 8,
+  "source_positive_atoms": 979,
+  "negative_controls": 37,
+  "generated_occurrences": 6929,
+  "generated_classes": 6851,
+  "canonical_units": 1016,
+  "judgments": 1016,
+  "TP_audit_records": 647,
+  "final_FN_root_cause_records": 332,
+  "initial_FN_root_cause_records": 782,
+  "source_atomization_review_records": 979,
+  "source_text_fixes": 2,
+  "all_confusion_equations_pass": true,
+  "raw_duplicate_partition_pass": true,
+  "all_TP_have_generated_original_locator": true,
+  "all_FN_have_reciprocal_generated_candidates": true,
+  "phase6_not_executed": true,
+  "semantic_certification": false
+}

@@ -1,0 +1,11 @@
+{
+  "locators_verified": 2340,
+  "invalid_generated_file_locations": 0,
+  "invalid_pdf_quotation_locations": 0,
+  "pending_reverse_evidence_challenges": 841,
+  "all_canonical_rows_checked": 1061,
+  "source_positive_rows": 1024,
+  "source_negative_rows": 37,
+  "duplicate_excess_occurrences_after_exclusions": 80,
+  "next_phase_reaudit_required": true
+}

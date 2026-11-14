@@ -1,0 +1,16 @@
+{
+  "protocol_version": "6.1",
+  "phase": 6,
+  "method": "single_unlabelled_set",
+  "status": "FINAL_BEST_EFFORT",
+  "eligible_generated_occurrences": 2400,
+  "raw_unique_generated_claim_classes": 2289,
+  "duplicate_excess_occurrences": 111,
+  "duplicate_rate": 0.04625,
+  "duplicate_rate_percent": 4.625,
+  "repeated_claim_class_count": 75,
+  "classes_spanning_multiple_files": 74,
+  "within_file_excess": 1,
+  "across_file_excess": 110,
+  "calculation_en": "Raw within-method eligible occurrences minus unique complete-predicate semantic classes divided by occurrences; independent from canonical effective prediction units."
+}

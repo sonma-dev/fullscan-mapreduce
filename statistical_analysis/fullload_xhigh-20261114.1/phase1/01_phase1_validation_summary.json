@@ -1,0 +1,139 @@
+{
+  "phase": 1,
+  "protocol_version": "6.1",
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "phase_name": "Inherited source-positive requirements and fixed negative controls",
+  "scope_label": "supplied_eight_file_set_1",
+  "source_inventory_policy": "USER_SUPPLIED_FROZEN_INPUTS_WITH_PDF_EVIDENCE_AUDIT",
+  "source_authority": "The original 90-page PDF remains the normative authority; user explicitly instructed reuse of the two attached JSONL inventories without rebuilding them.",
+  "pdf": {
+    "actual_filename": "OrionDesk_AI_Detailed_Design_Specification(1).pdf",
+    "sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+    "physical_pages": 90,
+    "page_with_primary_positive_atoms": 76,
+    "page_with_positive_evidence": 76,
+    "raster_illustration_only_pages_without_positive_atom": [
+      14,
+      33,
+      43,
+      47,
+      60,
+      67,
+      77,
+      81
+    ],
+    "frontmatter_pages_without_positive_atom": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  "source_positive_atoms": 1024,
+  "source_negative_controls": 37,
+  "pdf_positive_evidence_references": 2527,
+  "pdf_negative_evidence_references": 37,
+  "pdf_evidence_match_dispositions": {
+    "EXACT_TEXT_MATCH": 2561,
+    "VISUALLY_CONFIRMED_PAGE_8_FIGURE": 3
+  },
+  "source_ledger_sha256": "8a6c97eaf52e3cbe544de9515e22a9f806b173ceac4c12c800f3888ad9053dbc",
+  "negative_ledger_sha256": "ba48d66de139609fbf7d5ff3d3783a1e3792d5f5120b81c404e129ef1561a253",
+  "actual_scored_files": [
+    {
+      "role": "01_screen_functions.md",
+      "actual_filename": "01_screen_functions(1).md",
+      "mounted": true,
+      "byte_size": 140241,
+      "sha256": "78b4097061beaaa7306ce5d4a89bf2d4187986966a11b888bd2dea5b27a47b97",
+      "phase_1_scored_content_read": false
+    },
+    {
+      "role": "02_api.md",
+      "actual_filename": "02_api(1).md",
+      "mounted": true,
+      "byte_size": 152976,
+      "sha256": "7cdd0d5338b42e8a4a367c5fa822bc7e31631bcada3fd2f458386ede8c44219c",
+      "phase_1_scored_content_read": false
+    },
+    {
+      "role": "03_data.md",
+      "actual_filename": "03_data(1).md",
+      "mounted": true,
+      "byte_size": 159991,
+      "sha256": "a58ca76f98ca4a7dc361c0fbde65f5bd2ccaadfbdff269d24491937db4974646",
+      "phase_1_scored_content_read": false
+    },
+    {
+      "role": "04_batch_functions.md",
+      "actual_filename": "04_batch_functions(1).md",
+      "mounted": true,
+      "byte_size": 131854,
+      "sha256": "0903402cd4cef1e9e0e4a0e6d0631ab51fdb56a36535480eaa74bc0027fe22cb",
+      "phase_1_scored_content_read": false
+    },
+    {
+      "role": "05_business_rules.md",
+      "actual_filename": "05_business_rules(2).md",
+      "mounted": true,
+      "byte_size": 134383,
+      "sha256": "e82f7083ea3933672804ce15cc7f03c4a277e0868bace21044bc28b7c4d3f370",
+      "phase_1_scored_content_read": false
+    },
+    {
+      "role": "06_exception_handling.md",
+      "actual_filename": "06_exception_handling(3).md",
+      "mounted": true,
+      "byte_size": 118775,
+      "sha256": "b54a943d2e27589444feb99d6753704e9f466e9561e61162527650dbbdfd323e",
+      "phase_1_scored_content_read": false
+    },
+    {
+      "role": "07_processing_flows.md",
+      "actual_filename": "07_processing_flows(2).md",
+      "mounted": true,
+      "byte_size": 149717,
+      "sha256": "dea1dc48d15b9f5fceb621de22e82a99e7e6533ad61c82e17e04e80b4adb81a6",
+      "phase_1_scored_content_read": false
+    },
+    {
+      "role": "08_architecture_decision.md",
+      "actual_filename": "08_architecture_decision(2).md",
+      "mounted": true,
+      "byte_size": 116287,
+      "sha256": "93067f5ac1bebf29ce4117682b2dff86a7d380a4cdc054c4eaf37bd7abc3a2cb",
+      "phase_1_scored_content_read": false
+    }
+  ],
+  "checks": {
+    "pdf_90_pages": true,
+    "pdf_has_legible_text_on_every_page": true,
+    "eight_required_scored_markdown_roles_present": true,
+    "positive_jsonl_records": 1024,
+    "negative_jsonl_records": 37,
+    "positive_ids_unique": true,
+    "negative_ids_unique": true,
+    "positive_ids_sequential": true,
+    "negative_ids_sequential": true,
+    "all_evidence_locators_have_valid_page": true,
+    "all_inventory_references_have_pdf_evidence": true,
+    "all_negative_controls_actual_label_0": true,
+    "all_positive_statements_present": true,
+    "all_negative_counterfactuals_present": true,
+    "all_quoted_evidence_located_or_visual_verified": true,
+    "positive_source_ledger_unchanged": true,
+    "negative_control_ledger_unchanged": true
+  },
+  "unverified_evidence_references": [],
+  "audit_limits": [
+    "Both inherited inventories have been adopted unchanged at the explicit user request. Their self-reported independent_source_extraction flags are not independent proof that the inventories are semantically complete.",
+    "All 90 pages were opened, their text and image inventories inspected, and a rendered 90-page overview checked. This is not a fully independent manual clause-by-clause re-atomization.",
+    "The three raster-figure evidence quotations on physical page 8 were independently visually verified; all other evidence quotations match the corresponding physical-page extracted text.",
+    "Eight representative operator-figure pages contain raster UI images but have no page-local positive atom. They may provide context; whether any independently normative visual element was missed remains an atomization review question.",
+    "The inherited atom inventory contains at least three specific atomization concerns in the watchlist. No changes were silently made to the user-supplied source denominator.",
+    "The eight scored Markdown documents were verified mounted, not atomized or scored. Generated-corpus extraction is reserved exclusively for Phase 2.",
+    "No four-cell scores, accuracy metrics, generated-claim classifications, or semantic completeness certificates are claimed in Phase 1."
+  ]
+}

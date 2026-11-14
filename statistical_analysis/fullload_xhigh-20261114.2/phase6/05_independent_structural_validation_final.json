@@ -1,0 +1,33 @@
+{
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "semantic_certification": false,
+  "checks": {
+    "R_UNIQUE": true,
+    "N_UNIQUE": true,
+    "G_UNIQUE": true,
+    "GO_UNIQUE": true,
+    "V_ONE_PER_G": true,
+    "GO_ONE_CLASS_EACH": true,
+    "G_MEMBERS_MATCH_GO": true,
+    "J_UNIQUE": true,
+    "C_EQUALS_J": true,
+    "CANONICAL_TOTAL": true,
+    "CONFUSION_EQUATIONS": true,
+    "TP_AUDIT": true,
+    "FN_AUDIT": true,
+    "SOURCE_ATOMIZATION": true,
+    "DUP_ROWS": true,
+    "DUP_PARTITION": true,
+    "ALL_ORIGINAL_GENERATED_QUOTATIONS": true,
+    "ALL_TP_QUOTATIONS_ORIGINAL": true,
+    "ALL_FN_HAVE_CANDIDATE_QUOTATIONS": true,
+    "DELTA_INCLUDES_CORRECTIONS": true
+  },
+  "source_file_count": 8,
+  "quote_error_count": 0,
+  "confusion": {
+    "TP": 647,
+    "FN": 332,
+    "TN": 37
+  }
+}

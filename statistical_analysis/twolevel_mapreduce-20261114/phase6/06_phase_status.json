@@ -1,0 +1,20 @@
+{
+  "phase": 6,
+  "protocol_version": "6.1",
+  "status": "FINAL_BEST_EFFORT",
+  "arithmetic_recomputation_passed": true,
+  "semantic_certification": "NOT_VERIFIED",
+  "all_90_pdf_pages_accessible": true,
+  "all_eight_scored_markdown_inputs_accessible": true,
+  "repaired_source_FN_exact_alias_search_ledgers": 17,
+  "additional_source_FN_full_corpus_search_logs": 23,
+  "corrected_stale_TP_predicate_map": "PDF-00762",
+  "changes_to_final_TP_TN_FP_FN_in_phase6": false,
+  "output_language": "English",
+  "archive_created": false,
+  "important_limitations": [
+    "Reverse-direction generated validity is not semantically certified.",
+    "Only one final TP has independently certified full-predicate semantic evidence.",
+    "A calculated zero FP does not establish perfect precision."
+  ]
+}

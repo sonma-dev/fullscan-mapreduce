@@ -1,0 +1,11 @@
+{
+  "eligible_generated_occurrences": 6929,
+  "unique_generated_claim_classes": 6851,
+  "duplicate_excess_occurrences": 78,
+  "within_file_excess": 5,
+  "across_file_excess": 73,
+  "repeated_claim_class_count": 66,
+  "repeated_classes_spanning_multiple_files": 63,
+  "duplicate_rate": 0.01125703564727955,
+  "status": "PHASE_COMPLETED_BEST_EFFORT"
+}

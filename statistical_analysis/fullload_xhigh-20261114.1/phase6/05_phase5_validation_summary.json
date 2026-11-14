@@ -1,0 +1,33 @@
+{
+  "phase": 5,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "checks": {
+    "input_pdf_pages": 90,
+    "scored_files": 8,
+    "unique_source_positive_ids": 1024,
+    "unique_negative_control_ids": 37,
+    "every_tp_has_original_pdf_and_markdown_evidence": true,
+    "every_tp_has_anchored_eligible_generated_claim": true,
+    "every_tp_has_predicate_audit_record": true,
+    "every_fn_has_final_root_cause_record": true,
+    "all_scoring_cells_enumerated": true,
+    "negative_controls_no_positive_assertion": true,
+    "same_universe_equations": true,
+    "generated_class_occurrence_partition": true,
+    "duplicate_excess_partition": true,
+    "english_deliverables_exist": true
+  },
+  "counts": {
+    "TP": 646,
+    "FN": 378,
+    "TN": 37,
+    "FP": 451
+  },
+  "metrics": {
+    "precision": 0.5888787602552416,
+    "recall": 0.630859375,
+    "f1": 0.6091466289486092,
+    "duplicate": 0.02403846153846154
+  },
+  "constraints": "Evidence structural validation completed; individual semantic entailments remain best-effort and have not been independently certified."
+}
