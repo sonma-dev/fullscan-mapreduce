@@ -61,7 +61,7 @@ The project directories and files are organized as follows. Timestamped logs and
 |   `-- twolevel_mapreduce/
 |       `-- be/
 |-- log/
-|   |-- fullload-<timestamp>.log
+|   |-- fullload-<timestamp>.log.gz
 |   |-- onelevel_mapreduce-<timestamp>.log.gz
 |   `-- twolevel_mapreduce-<timestamp>.log.gz
 |-- misc/
