@@ -15,14 +15,15 @@ I explicitly state that the input token count for the Full Load approach did not
 ![The Input Tokens for Fill Load](fullload_inputtoken.png)
 
 I evaluated the precision, recall, and F1-score exclusively for the `full-load` scenario with the reasoning effort set to extra high (`xhigh`).
+
+![Evaluation Metrics for xhigh Reasoning Effort](xhigh_metric.png)
+
 - It seems that xhigh improves precision, but not recall whatsoever.
 - The variance in these trial metrics indicates that I have not yet established a statistically reliable methodology.
 - Even if xhigh improves precision and recall, performance degradation similar to the low setting will likely occur as the number and size of files increase.
 - Because this pipeline passes previously generated specifications into subsequent generation steps, it becomes increasingly susceptible to issues such as "lost in the middle" and "context rot." This risk is further exacerbated by the fact that each generated specification averages approximately 120 KB under xhigh, compared to about 50 KB under low.
 - It should also be noted that truncation is disabled by default in the OpenAI Responses API, which increases the risk of exceeding context limits or degrading attention over long inputs.
 - Collectively, these findings imply that, although a MapReduce approach might conversely exacerbate context growth, it can enhance the LLM's reasoning capabilities. 
-
-![Evaluation Metrics for xhigh Reasoning Effort](xhigh_metric.png)
 
 This repository compares three Python/FastAPI backends that generate software specifications from PDF and PowerPoint (`.pptx`) documents using the Azure OpenAI Responses API: full-file generation, one-level MapReduce, and two-level MapReduce. It also contains the input dataset, execution logs, generated results, and directories for statistical-analysis work instructions and related documents.
 
