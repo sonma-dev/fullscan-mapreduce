@@ -35,13 +35,6 @@ I explicitly state that the same statistical method was used to calculate the pr
 - I did not add an approval process to the full-load approach because having a single LLM perform the approval could lead to the same errors being repeated. However, an approval process might be meaningful in a multi-pass full-load approach.
 - We might be able to use the OpenAI Decisions API or TypeSafe AI Jev for the approval process and for calculating precision, recall, and F1-scores.
 
-## Objective
-
-To generate specification documents from existing detailed design documents using full load, 1-level hierarchical MapReduce, and 2-level hierarchical MapReduce, and to measure the accuracy of those specification documents using precision, recall, and F1 score.
-
-While this approach is a tautology, does it allow us to confirm whether valid specifications can be generated from existing specifications and design documents?
-Furthermore, does it provide insights for migrating from classical programming languages to modern programming languages?
-
 ## Assumptions / Prerequisites
 
 - The experimental programs consist of full load, 1-level hierarchical MapReduce, and 2-level hierarchical MapReduce.
