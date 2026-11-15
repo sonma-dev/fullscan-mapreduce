@@ -39,7 +39,7 @@ I explicitly state that the same statistical method was used to calculate the pr
 
 - The experimental programs consist of full load, 1-level hierarchical MapReduce, and 2-level hierarchical MapReduce.
 - In this experiment, considering the large context length of gpt-6.1-sol, we compare PDF file full load with MapReduce, rather than comparing against RAG.
-- Based on the detailed design documents, the following 8 specification documents were sequentially generated. The eight documents were generated sequentially. The MapReduce approaches required multiple LLM calls for each of the first seven documents.
+- Based on the detailed design documents, the eight documents were generated sequentially. The MapReduce approaches required multiple LLM calls for each of the first seven documents.
   1. Screen Functional Specification
   2. API Specification
   3. Data Specification
