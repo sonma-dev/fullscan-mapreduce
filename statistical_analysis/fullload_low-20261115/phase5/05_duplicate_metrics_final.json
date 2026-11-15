@@ -1,0 +1,10 @@
+{
+  "eligible_generated_occurrences": 2320,
+  "raw_unique_generated_classes": 2241,
+  "duplicate_excess_occurrences": 79,
+  "within_file_excess": 3,
+  "across_file_excess": 76,
+  "repeated_claim_class_count": 61,
+  "repeated_classes_across_files": 58,
+  "duplicate_rate": 0.03405172413793103
+}

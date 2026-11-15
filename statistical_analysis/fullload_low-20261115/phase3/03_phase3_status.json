@@ -1,0 +1,50 @@
+{
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "phase": 3,
+  "method": "supplied_set_01",
+  "source_positive_count": 1024,
+  "fixed_negative_control_count": 37,
+  "generated_table_extraction_corrections": 27,
+  "eligible_generated_occurrences_after_correction": 2383,
+  "raw_generated_classes_after_correction": 2289,
+  "scored_markdown_files": [
+    "01_screen_functions(9).md",
+    "02_api(2).md",
+    "03_data(10).md",
+    "04_batch_functions(20261115-060045).md",
+    "05_business_rules(10).md",
+    "06_exception_handling(20261115-060054).md",
+    "07_processing_flows(20261115-060053).md",
+    "08_architecture_decision(20261115-060055).md"
+  ],
+  "source_positive_provisional_coverage": {
+    "covered_TP_candidates": 545,
+    "uncovered_FN_candidates": 479,
+    "initial_simple_matcher_TP": 302,
+    "initial_simple_matcher_FN": 722,
+    "corrected_initial_false_negatives": 262,
+    "coverage_grade_counts": {
+      "E0": 100,
+      "E3": 379,
+      "E1": 379,
+      "E2": 166
+    },
+    "fn_root_cause_counts": {
+      "CONSERVATIVE_UNRESOLVED": 344,
+      "PARTIAL_ENTAILMENT": 123,
+      "TRUE_MISSING": 12
+    },
+    "fn_root_cause_ledger_all_initial_FN_plus_final_FN": 741
+  },
+  "four_cell_metrics_computed": false,
+  "full_generated_validity_verified": false,
+  "phase4_deferred": "Negative-control assertions and distinct unsupported generated claims are intentionally not judged until phase 4; there are no FP/TN/Precision/Recall/F1 results in phase 3.",
+  "semantic_certification": "UNVERIFIED_BEST_EFFORT",
+  "limitations": [
+    "Automated lexical/contextual evidence checking is not a substitute for a human or model verifying every predicate for all 1,024 source atoms.",
+    "The phase-2 eligible generated-claim ledger contains some document metadata/bare reference fragments; do not use those to assert source coverage; revisit their eligibility during phase 4/5.",
+    "Conservative E1/E0 FN judgments may include semantically valid cross-file entailments missed by the bounded matcher; all candidates and exact line locations are retained for correction.",
+    "Automatically accepted E2 entailments are provisional until independently challenged in phases 4 and 5.",
+    "Atomization review flags from phase 1 are carried to phase 5 without changing R in phase 3."
+  ]
+}

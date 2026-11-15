@@ -1,0 +1,61 @@
+{
+  "protocol_version": "6.1",
+  "method": "supplied_set_01",
+  "phase": 5,
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "universe": {
+    "source_positive_atoms": 1019,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 2241,
+    "generated_positive_occurrences": 2320,
+    "covered_source_atoms": 574,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 571,
+    "canonical_predicted_positive_units": 1145,
+    "canonical_decision_units": 1627,
+    "negative_universe_scope": "37 fixed original-PDF prohibitions and deferrals; bounded only"
+  },
+  "confusion": {
+    "TP": 574,
+    "FN": 445,
+    "TN": 37,
+    "FP": 571
+  },
+  "metrics": {
+    "Precision": 0.5013100436681223,
+    "Recall": 0.563297350343474,
+    "F1": 0.5304990757855823,
+    "Duplicate": 0.03405172413793103
+  },
+  "duplicate_metrics": {
+    "eligible_generated_occurrences": 2320,
+    "raw_unique_generated_classes": 2241,
+    "duplicate_excess_occurrences": 79,
+    "within_file_excess": 3,
+    "across_file_excess": 76,
+    "repeated_claim_class_count": 61,
+    "repeated_classes_across_files": 58,
+    "duplicate_rate": 0.03405172413793103
+  },
+  "class_validity_counts": {
+    "SUPPORTED_NONCOVERING": 1261,
+    "PDF_ENTAILED": 409,
+    "PDF_UNSUPPORTED": 571
+  },
+  "fn_root_causes": {
+    "CONSERVATIVE_UNRESOLVED": 324,
+    "PARTIAL_ENTAILMENT": 109,
+    "TRUE_MISSING": 12
+  },
+  "source_atomization_changes": 5,
+  "generated_class_splits": 1,
+  "nonpredictive_exclusions": 19,
+  "fp_source_backed_corrections": 9,
+  "fn_to_tp_corrections": 29,
+  "tp_to_fn_corrections": 0,
+  "initial_tp_audited": 545,
+  "final_tp_audited": 574,
+  "semantic_certification": "NOT_CERTIFIED; FULL PREDICATE REQUIRES INDEPENDENT HUMAN VERIFICATION FOR MULTI-CLAUSE/CONSERVATIVE CASES",
+  "metric_interpretation": "Conventional Precision/Recall/F1 over one corrected effective canonical source/prohibition/unsupported proposition universe, not raw G class accuracy; TN diagnostic bounded."
+}

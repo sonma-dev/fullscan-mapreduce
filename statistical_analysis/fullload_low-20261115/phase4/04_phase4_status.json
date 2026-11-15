@@ -1,0 +1,23 @@
+{
+  "protocol_version": "6.1",
+  "phase": 4,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "completed_scope": [
+    "all 2289 original generated classes eligibility-screened",
+    "all eligible generated classes reverse-checked against original PDF candidates",
+    "all 37 original PDF negative controls adjudicated for affirmative assertions",
+    "one effective four-cell universe enumerated",
+    "arithmetic and class/occurrence bijection verified"
+  ],
+  "source_positive": 1024,
+  "negative_controls": 37,
+  "eligible_generated_classes": 2259,
+  "eligible_generated_occurrences": 2339,
+  "extracted_metadata_excluded": 20,
+  "FP_conservative": 599,
+  "uncertainty_note": "Automated lexical/contextual evidence does not constitute a complete independent predicate-by-predicate review; provisional FP and supported class counts require Phase 5 challenges.",
+  "next_phase": 5,
+  "reverse_challenge_initial_FP_to_supported_corrections": 304,
+  "additional_nonpredictive_exclusions": 10,
+  "crossledger_TP_support_consistency_corrections": 53
+}

@@ -1,0 +1,43 @@
+{
+  "status": "STRUCTURAL_VALIDATION_PASSED",
+  "semantic_certification": "NOT_CERTIFIED_BEST_EFFORT",
+  "pdf_physical_pages": 90,
+  "pdf_pages_cited_by_source_or_controls": 76,
+  "original_scored_markdown_files": 8,
+  "source_positive_atoms": 1024,
+  "fixed_source_negative_controls": 37,
+  "source_positive_coverage_candidates": 545,
+  "uncovered_source_positive_candidates": 479,
+  "canonical_phase3_rows": 1061,
+  "pending_phase4_negative_control_rows": 37,
+  "generated_occurrences_after_table_extraction_corrections": 2383,
+  "generated_classes_after_table_extraction_corrections": 2289,
+  "phase3_eligible_table_cell_extraction_corrections": 27,
+  "all_source_evidence_rows": 1024,
+  "source_coverage_bridge_records": 395,
+  "fn_root_cause_ledger_rows_including_corrected": 741,
+  "final_FN_dispositions": {
+    "CONSERVATIVE_UNRESOLVED": 344,
+    "PARTIAL_ENTAILMENT": 123,
+    "TRUE_MISSING": 12
+  },
+  "initial_matcher_FNs_corrected_to_TP": 262,
+  "TP_candidate_coverage_modes": {
+    "SEMANTIC_EQUIVALENCE": 150,
+    "UNIVERSAL_INSTANTIATION": 34,
+    "INHERITED_CONTEXT": 334,
+    "CONJUNCTIVE_BRIDGE": 27
+  },
+  "validation_checks": [
+    "90-page original PDF readable",
+    "all eight scored source files accessible",
+    "source/control ID unique",
+    "generated occurrence/class membership consistent",
+    "all TP evidence links original physical generated source lines and valid PDF pages",
+    "all provisional FN have eight-file reciprocal search and a permitted disposition",
+    "initial FN corrections included in FN root-cause ledger",
+    "one source-positive row per original PDF atom",
+    "negative controls pending Phase 4 only",
+    "no premature FP/TN/Precision/Recall/F1 metrics"
+  ]
+}

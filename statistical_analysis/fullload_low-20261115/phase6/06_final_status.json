@@ -1,0 +1,23 @@
+{
+  "status": "FINAL_BEST_EFFORT",
+  "phase": 6,
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "protocol_version": "6.1",
+  "method": "supplied_set_01",
+  "structural_validation_passed": true,
+  "semantic_certification": "NOT_CERTIFIED",
+  "completed_only_phase_6_in_this_turn": true,
+  "archive_created": false,
+  "scores": {
+    "TP": 584,
+    "FN": 435,
+    "TN": 37,
+    "FP": 571
+  },
+  "metrics": {
+    "Precision": 0.5056277056277056,
+    "Recall": 0.5731108930323847,
+    "F1": 0.5372585096596136,
+    "Duplicate": 0.03405172413793103
+  }
+}

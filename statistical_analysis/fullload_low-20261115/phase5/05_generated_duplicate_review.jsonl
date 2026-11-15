@@ -1,0 +1,1 @@
+{"action":"SPLIT","old_class_id":"GCLASS-00574","new_class_ids":["GCLASS-00574","GCLASS-02290"],"occurrence_ids":["GEN-00575","GEN-00577"],"reason_en":"Different endpoint resource/operation: export versus delete; distinct target and independent check even though cell text matches."}
