@@ -4,7 +4,7 @@
 
 2026/11/16 17:45
 Version 6.2 change summary (non-execution metadata)
-
+================================================================
 Version 6.2 replaces the ambiguity between existing common inputs and newly extracted Phase 1 deliverables.
 It explicitly requires common_atomic_reqs.jsonl and common_negative_controls.jsonl as reusable candidate inputs, verifies them against the PDF, preserves valid IDs and supplied originals, and writes working/final copies to a separate evaluation output directory.
 It defines PDF-grounded corrections, shared versus method-specific delta placement, cross-method propagation, missing-ledger handling, and recomputation from the final common output copies rather than historical files.
@@ -16,7 +16,7 @@ The preceding 6.1 document is preserved as OrionDesk_One_Pass_Atomic_Evaluation_
 
 2026/11/11 0:00
 Version 6.1 change summary (non-execution metadata)
-
+================================================================
 This revision preserves the six-turn limit, the authoritative PDF-only source rule, eight scored inputs, one canonical TP/TN/FP/FN universe, metric equations, and the no-archive rule.
 It adds: (1) a required independent source-atomization and acceptance-test deduplication check; (2) full-corpus reciprocal FN retrieval and table-context reconstruction; (3) corrected-false-negative versus genuinely missing versus partial/unresolved dispositions; (4) audited E2/TP predicate proofs and reciprocal FP validation; and (5) explicit reliability disclosures and machine-verifiable reconciliation across new audit ledgers.
 Prior-run scores and observed false-negative examples are not accepted as current-run ground truth.
