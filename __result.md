@@ -70,9 +70,7 @@ Note that the eighth document consolidates unresolved architectural decisions, s
 
 Note that, considering AI agents fine-tuned by OpenAI, SaaS-hosted ChatGPT may be a superior metric calculation environment compared to Codex.
 
-However, even with the reasoning effort set to low, the full-load approach already requires approximately 5 minutes to generate a single specification document.
-
-Note that in N-level hierarchical MapReduce, the number of concurrent LLMs should be increased depending on $N$.
+Also note that in N-level hierarchical MapReduce, the number of concurrent LLMs should be increased depending on $N$.
 
 ## Statistical Validation of the Evaluation Metrics
 I verified the validity of the statistical method by applying it to the same set of multiple datasets for each of the three methods.
