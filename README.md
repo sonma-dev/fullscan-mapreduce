@@ -75,6 +75,7 @@ The project directories and files are organized as follows. Timestamped logs and
 |       |-- ...
 |       `-- 08_architecture_decision.md
 `-- statistical_analysis/
+    |-- README
     |-- CHANGES
     |-- OrionDesk_One_Pass_Atomic_Evaluation_Protocol.md
     |-- common_atomic_reqs.jsonl
