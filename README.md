@@ -2,7 +2,7 @@
 
 For experimental findings, evaluation metrics, and limitations, see [Experimental Results](__result.md).
 
-**The issue seems to be not the number of datasets, but the reliability of the statistical methodology.**
+**The key issue seems to be not the number of datasets, but the reliability of the statistical methodology.**
 
 Based on my examination of these results, although the observed differences have not been established as statistically significant, there seems to be a consistent tendency for the MapReduce approach to achieve precision and recall scores close to 100%, whereas the full-load approach tends to fall short of 100%.
 
