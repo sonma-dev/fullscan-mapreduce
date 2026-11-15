@@ -14,7 +14,7 @@ Version 6.1's source-atomization audit, reciprocal FN/FP review, predicate-level
 Existing ledger sizes and earlier scores are not fixed expected answers for a new run.
 The preceding 6.1 document is preserved as OrionDesk_One_Pass_Atomic_Evaluation_Protocol-6.1.md; OrionDesk_One_Pass_Atomic_Evaluation_Protocol.md identifies the current 6.2 protocol.
 
-2026/11/16 17:45
+2026/11/11 0:00
 Version 6.1 change summary (non-execution metadata)
 
 This revision preserves the six-turn limit, the authoritative PDF-only source rule, eight scored inputs, one canonical TP/TN/FP/FN universe, metric equations, and the no-archive rule.
