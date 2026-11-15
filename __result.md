@@ -5,14 +5,14 @@ While an individual cannot hold an advantage over enterprise scale, please use t
 Note that I do not claim that this method will reduce the personnel, time, or cost required for the entire development of a new system, including requirements definition, testing, etc.
 Also note that normally, additions and deletions of functions for the new IT system—in other words, specification changes—should be taken into account; however, for the sake of simplicity, this experiment does not consider them.
 
-## Objective
+## 1. Objective
 
 To generate specifications from existing detailed design documents using full load, 1-level hierarchical MapReduce, and 2-level hierarchical MapReduce approaches, and evaluate the accuracy of the generated specifications using precision, recall, and the F1 score.
 Although this approach is tautological, wouldn't it help verify whether valid specifications can be generated from existing design documents?
 
 I explicitly state that the same statistical method was used to calculate the precision, recall, and F1-score for all three methods.
 
-## Main conclusion
+## 2. Main conclusion
 
 The MapReduce method significantly improved recall, precision, and F1-score.
 
@@ -28,7 +28,7 @@ Further experiments are needed to isolate the effects of factors such as hierarc
 
 Multiple experiments for each approach are necessary to obtain statistically significant results before claiming that MapReduce is superior.
 
-## 1. Other Conclusions
+## 3. Other Conclusions
 
 - Although the chart shows approximately 1.76 million input tokens for the Full-load approach, the source PDF files were input separately to generate each of the seven specifications.
   Therefore, the combined token count of the PDF files and the previously generated specifications never exceeded the context window in any single run.
@@ -41,14 +41,14 @@ Multiple experiments for each approach are necessary to obtain statistically sig
 - I did not add an approval process to the full-load approach because having a single LLM perform the approval could lead to the same errors being repeated. However, an approval process might be meaningful in a multi-pass full-load approach.
 - We might be able to use the OpenAI Decisions API or TypeSafe AI Jev for the approval process and for calculating precision, recall, and F1-scores.
 
-## 2. Objective
+## 4. Objective
 
 To generate specification documents from existing detailed design documents using full load, 1-level hierarchical MapReduce, and 2-level hierarchical MapReduce, and to measure the accuracy of those specification documents using precision, recall, and F1 score.
 
 While this approach is a tautology, does it allow us to confirm whether valid specifications can be generated from existing specifications and design documents?
 Furthermore, does it provide insights for migrating from classical programming languages to modern programming languages?
 
-## 3. Assumptions / Prerequisites
+## 5. Assumptions / Prerequisites
 
 - The experimental programs consist of full load, 1-level hierarchical MapReduce, and 2-level hierarchical MapReduce.
 - In this experiment, considering the large context length of gpt-sol-6.1, we compare PDF file full load with MapReduce, rather than comparing against RAG.
@@ -79,7 +79,7 @@ However, even with the reasoning effort set to low, the full-load approach alrea
 
 Note that in N-level hierarchical MapReduce, the number of concurrent LLMs should be increased depending on $N$.
 
-## 4. Statistical Validation of the Evaluation Metrics
+## 6. Statistical Validation of the Evaluation Metrics
 I verified the validity of the statistical method by applying it to the same set of multiple datasets for each of the three methods.
 During this verification, when precision or recall was close to 100%, the values remained unchanged.
 However, in the statistical calculations for full-load, when precision deviated substantially from 100%, the precision value varied considerably.
