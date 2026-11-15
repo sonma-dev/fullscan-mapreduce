@@ -1,4 +1,4 @@
-# AI-agentic Hierarchical MapReduce Experiment
+# LLM-based Hierarchical MapReduce Experiment
 
 For experimental findings, evaluation metrics, and limitations, see [Experimental Results](__result.md).
 
