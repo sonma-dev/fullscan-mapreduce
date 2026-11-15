@@ -1,4 +1,4 @@
-# Hierarchical MapReduce with LLMs
+# LLM-based Hierarchical MapReduce: A Preliminary Experiment
 
 For experimental findings, evaluation metrics, and limitations, see [Experimental Results](__result.md).
 
