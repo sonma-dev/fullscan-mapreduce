@@ -1,0 +1,146 @@
+Execution metrics for the three MapReduce programs
+Time unit: seconds. Log timestamps: JST (UTC+09:00).
+
+SUMMARY FOR THE SELECTED OUTPUTS
+Program                 Wall-clock time   Cumulative aggregated time   Input tokens    Output tokens
+fullload_mapreduce              2493.141                       2492.2        1765106           112945
+onelevel_mapreduce              7134.881                   >= 17852.9     >= 19008910        >= 938252
+twolevel_mapreduce         >= 11905.281                   >= 48503.4     >= 85718952       >= 2551311
+
+UNAVAILABLE means that the complete measurement cannot be recovered from
+the supplied files. >= denotes a known lower bound, not a complete total.
+Aggregated time uses durations rounded to the precision recorded in the logs.
+
+DEFINITIONS AND COUNTING RULES
+1. Wall-clock time is Upload completed.total_elapsed_ms / 1000, measured
+   with the application's monotonic timer. It includes application overhead.
+   Timestamp differences are provided separately because they can differ
+   from the monotonic measurement. Server startup and idle time are excluded.
+   For twolevel, no complete run timer is available. The sum of the selected
+   eight sequential stage durations gives a lower bound on active wall-clock
+   time. It excludes global-context generation, processing between stages,
+   the abandoned original stage 6, and the interruption before resumption.
+2. Cumulative aggregated time sums elapsed_s from distinct Responses request
+   completed records, plus the recorded timeout budgets for cancelled Map
+   attempts within the selected scope.
+   Concurrent calls contribute separately. This measures cumulative client-side
+   LLM waiting time, including polling and internal retries, not CPU/GPU time.
+   Timeout cleanup and unlogged work are not recoverable, so affected totals
+   are lower bounds. An internal retry's elapsed time is already included in
+   its eventual completion record and is not added again.
+3. Tokens are summed once per distinct Responses request completed record
+   with numeric usage. Stage, hierarchy, and upload summaries are not added
+   again. None means unknown, not zero. Completed repair/reprocessing calls
+   are included even when their output was subsequently rejected.
+
+FULLLOAD_MAPREDUCE
+Source: log/fullload_mapreduce-20261110203806.log
+Output directory: res/fullload_20261110203907_jkt9hcd7
+Generation started: 2026-11-10 20:39:07.920 JST (line 10)
+Upload completed:   2026-11-10 21:20:54.554 JST (line 149)
+Wall-clock time: 2493.141 s (00:41:33.141)
+Timestamp difference: 2506.634 s
+The timestamp difference exceeds the logged monotonic duration by 13.493 s;
+these two measurements are reported separately rather than assumed identical.
+Completed LLM calls: 8
+Cumulative aggregated time: 2492.2 s
+Input tokens: 1765106
+Output tokens: 112945
+Total tokens: 1878051
+Coverage: All eight completion records have numeric usage; their token sums
+match the final Upload completed summary.
+
+ONELEVEL_MAPREDUCE
+Source: log/onelevel_mapreduce-20261111004134.log
+Output directory: res/onelevel_20261111004156_gcywqgya
+Generation started: 2026-11-11 00:41:56.316 JST (line 10)
+Upload completed:   2026-11-11 02:40:51.210 JST (line 2599)
+Wall-clock time: 7134.881 s (01:58:54.881)
+Timestamp difference: 7134.894 s
+Completed LLM calls: 274; completion records with numeric usage: 273
+Cumulative time of completed calls: 17552.9 s
+Additional cancelled Map attempt: at least 300 s (line 1891)
+Cumulative aggregated time: at least 17552.9 + 300 = 17852.9 s
+Input tokens: at least 19008910
+Output tokens: at least 938252
+Total tokens: at least 19947162
+Missing usage:
+- One cancelled Map attempt has no final token usage.
+- The completion at line 2252 reports input_tokens=None, output_tokens=None,
+  and total_tokens=None after an internal server-error retry. Its 713.9 s
+  elapsed time is included, but its token usage cannot be recovered.
+The retry warning's 296.0 s is already included in that 713.9 s; adding it
+separately would double-count time. Exact overall token totals are unavailable.
+
+TWOLEVEL_MAPREDUCE: AUTHORITATIVE OUTPUT
+Selected output directory: res/twolevel_20261111111134_3fzm1p75
+Checkpoint: res/twolevel_20261111111134_3fzm1p75/checkpoint.json
+Inherited-stage source: res/twolevel_20261111082915_iqz55pk5
+Inherited-stage log: log/twolevel_mapreduce-20261111082844.log
+
+Scope:
+- Use the eight specifications in the selected output directory.
+- The checkpoint identifies stages 1-5 as inherited from the source run.
+  Their Markdown files are byte-identical across both directories. Recover
+  their missing checkpoint metrics from the source log, counting them once.
+- Include the original global context used to generate inherited stages,
+  their internal retries, and the resumed run's new global context.
+- Use the selected checkpoint for resumed stages 6-8.
+- Exclude the abandoned original exception_handling stage, including its
+  205 completed calls and its unfinished root-reduction call. It did not
+  produce the selected stage 6. These metrics describe the selected output's
+  generation work, not the total cost of every attempted run.
+
+Wall-clock time:
+Stage                        Duration (s)   Evidence
+1 screen_functions               1699.139   Source log, line 1712
+2 api                            1176.213   Source log, line 3390
+3 data                           2684.210   Source log, line 6783
+4 batch_functions                1557.580   Source log, line 8488
+5 business_rules                 1374.139   Source log, line 10212
+6 exception_handling             1551.721   Selected checkpoint, stage 6
+7 processing_flows               1597.037   Selected checkpoint, stage 7
+8 architecture_decision           265.242   Selected checkpoint, stage 8
+Inherited stage-duration subtotal: 8491.281 s
+Resumed stage-duration subtotal: 3414.000 s
+Selected stage-duration sum: 11905.281 s (03:18:25.281)
+Active wall-clock time: at least 11905.281 s.
+Exact wall-clock time: UNAVAILABLE. Neither a complete resumed-run timer nor
+its log is present. Stage durations exclude global-context generation and
+other work between stages. Directory names and file modification times are
+not used as substitutes for measured execution time.
+
+Cumulative aggregated time:
+Selected source-log range ends at stage 5 completion (line 10212).
+Completed LLM calls in that range: 1246; all have numeric usage.
+Cumulative time of those completed calls: 47303.4 s
+Cancelled Map attempts within inherited stages: at least 4 * 300 = 1200 s
+  Timeout records: lines 4893, 6485, 8425, and 10140.
+Known cumulative aggregated time: at least 47303.4 + 1200 = 48503.4 s
+The resumed run's individual LLM-call durations are unavailable. Its stage
+durations measure elapsed stage time, not cumulative concurrent-call time,
+so they are not added to this LLM-time subtotal. The full cumulative time
+is unavailable; 48503.4 s is a lower bound for the selected scope.
+
+Input and output tokens:
+Component                         Input tokens   Output tokens   Total tokens
+Original context + stages 1-5         85394435         2529658       87924093
+Resumed global context                  219918            6215         226133
+Resumed stage 8                         104599           15438         120037
+Known total                           85718952         2551311       88270263
+Input tokens: at least 85718952
+Output tokens: at least 2551311
+Total tokens: at least 88270263
+The first row sums unique numeric API completions through source-log line
+10212. The next two rows come from hierarchy.context_usage and stage 8 usage
+in the selected checkpoint. They do not overlap with the inherited-stage log.
+Missing usage: four cancelled source-run Map attempts and resumed stages
+6 and 7, whose checkpoint usage fields are None. Exact token totals remain
+unavailable; unknown usage is not treated as zero.
+
+VALIDATION
+Completed response IDs are unique within each log. Every numeric completion
+satisfies input_tokens + output_tokens = total_tokens. The selected twolevel
+source range contains 1250 submissions: 1246 completions and four cancelled
+Map attempts. All five inherited Markdown files match the selected output.
+No copied stage, polling record, or higher-level summary is counted twice.

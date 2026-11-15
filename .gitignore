@@ -55,3 +55,4 @@ Desktop.ini
 
 # Includes log files under specific directories.
 !/log/
+!/res/other_params.log
