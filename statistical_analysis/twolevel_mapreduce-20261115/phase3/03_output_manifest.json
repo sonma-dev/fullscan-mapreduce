@@ -1,0 +1,50 @@
+{
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "files": [
+    {
+      "filename": "03_canonical_universe_final.jsonl",
+      "bytes": 2965685,
+      "sha256": "efbbb2db16dcc8baca5178463ba519173afb9e0d6b836a487b1e3894d167e2cd"
+    },
+    {
+      "filename": "03_evidence_matches_final.jsonl",
+      "bytes": 3886664,
+      "sha256": "13a609e9981545422764cc375b414d8d17caa75b423720aeed731fcd5fa4dc63"
+    },
+    {
+      "filename": "03_fn_root_cause_audit_final.jsonl",
+      "bytes": 4035654,
+      "sha256": "7e6f6a2804cd40b2d8c53e391deef1159192efda2be4f8f78cb7cc72f5510160"
+    },
+    {
+      "filename": "03_phase3_report.md",
+      "bytes": 7104,
+      "sha256": "4f6a69687fffb088be8145cfd3999b3b4ea76e114d9b354fb1255335133226cb"
+    },
+    {
+      "filename": "03_phase3_validation.json",
+      "bytes": 1473,
+      "sha256": "742bc0bfd18fcaa926932ff45e952ec330da3e24e391ec5e4cc09500c5bb26b5"
+    },
+    {
+      "filename": "03_semantic_coverage_bridges_final.jsonl",
+      "bytes": 3170878,
+      "sha256": "a24a2ca26cd0d4f86e592e012fc4c342eeaa6c717abc8d615f983e7ec225b805"
+    },
+    {
+      "filename": "03_source_atomization_review_candidates.jsonl",
+      "bytes": 37572,
+      "sha256": "797091f5b62bae9db06435b0a00ba71dd55c1bec9564d20ace47085f93630d5a"
+    },
+    {
+      "filename": "03_structural_validation.json",
+      "bytes": 2567,
+      "sha256": "3911c842259af9eb18a1260ac954c33eebec7c933653827c3f463e11438f4d4d"
+    },
+    {
+      "filename": "03_unmatched_generated_class_candidates.jsonl",
+      "bytes": 382989,
+      "sha256": "9190fa192b9a06f8650b2972d3df397792b5cf6709d176d79eab67151f355139"
+    }
+  ]
+}

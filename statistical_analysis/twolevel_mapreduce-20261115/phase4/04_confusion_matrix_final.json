@@ -1,0 +1,51 @@
+{
+  "prefix": "supplied_eight_file_set",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "protocol_version": "6.1",
+  "phase": 4,
+  "method_count": 1,
+  "universe": {
+    "source_positive_atoms": 1024,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 3020,
+    "generated_positive_occurrences": 3116,
+    "covered_source_atoms": 943,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 0,
+    "canonical_predicted_positive_units": 943,
+    "canonical_decision_units": 1061,
+    "negative_universe_scope": "PDF-grounded, predeclared bounded controls only"
+  },
+  "confusion": {
+    "TP": 943,
+    "TN": 37,
+    "FP": 0,
+    "FN": 81
+  },
+  "metrics": {
+    "Precision": 1.0,
+    "Recall": 0.9208984375,
+    "F1": 0.9588205388917133,
+    "Duplicate": 0.03080872913992298
+  },
+  "quality": {
+    "generated_validity_status_counts": {
+      "PDF_ENTAILED": 1166,
+      "SUPPORTED_NONCOVERING": 1854
+    },
+    "generated_pdf_support_grades": {
+      "E2_BEST_EFFORT": 531,
+      "E3": 128,
+      "E1_UNCERTAIN": 2361
+    },
+    "generated_classes_requiring_phase5_semantic_review": 2361,
+    "pdf_negative_control_assertion_decisions_complete": 37,
+    "tp_full_predicate_independent_review_completed": false,
+    "fp_full_corpus_independent_review_completed": false,
+    "source_atomization_independent_review_completed": false,
+    "canonical_universe_structurally_reconciled": true,
+    "phase3_semantic_coverage_carry_forward": true,
+    "precision_interpretation": "Provisional estimated precision conditional on no currently identified PDF-unsupported definitive claims; NOT certified 100% correctness."
+  },
+  "metric_interpretation": "Conventional binary metrics on one effective canonical-proposition universe; raw classes counted separately. TN is a bounded diagnostic control set. Class-to-PDF support judgments are best-effort, not certified by retrieval."
+}

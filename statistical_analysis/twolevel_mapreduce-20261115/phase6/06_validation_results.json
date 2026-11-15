@@ -1,0 +1,72 @@
+{
+  "status": "FINAL_BEST_EFFORT",
+  "all_canonical_equations_pass": true,
+  "all_unique_membership_tests_pass": true,
+  "all_FN_have_final_disposition": true,
+  "all_final_TP_have_proof_audit": true,
+  "generated_quote_or_line_issues": [],
+  "generated_quote_or_line_issue_count": 0,
+  "pdf_quotes_not_literal_in_text_layer": [
+    {
+      "source_id": "PDF-00977",
+      "page": 8,
+      "quote_en": "tenant_id and actor context at every boundary",
+      "possible_explanation": "Figure-image text or wrapped/table normalization; requires image-aware validation"
+    },
+    {
+      "source_id": "PDF-00978",
+      "page": 8,
+      "quote_en": "immutable evidence and versioned policy inputs",
+      "possible_explanation": "Figure-image text or wrapped/table normalization; requires image-aware validation"
+    },
+    {
+      "source_id": "PDF-00979",
+      "page": 8,
+      "quote_en": "idempotent event processing with trace correlation",
+      "possible_explanation": "Figure-image text or wrapped/table normalization; requires image-aware validation"
+    }
+  ],
+  "pdf_quotes_not_literal_count": 3,
+  "final_FN_source_ids": [
+    "PDF-00005",
+    "PDF-00009",
+    "PDF-00012",
+    "PDF-00022",
+    "PDF-00023",
+    "PDF-00024",
+    "PDF-00025",
+    "PDF-00034",
+    "PDF-00091",
+    "PDF-00094",
+    "PDF-00130",
+    "PDF-00131",
+    "PDF-00134",
+    "PDF-00150",
+    "PDF-00151",
+    "PDF-00313",
+    "PDF-00324",
+    "PDF-00435",
+    "PDF-00438",
+    "PDF-00468",
+    "PDF-00526",
+    "PDF-00528",
+    "PDF-00565",
+    "PDF-00585",
+    "PDF-00591",
+    "PDF-00613",
+    "PDF-00614",
+    "PDF-00639"
+  ],
+  "generated_class_support_grades": {
+    "E2_BEST_EFFORT": 537,
+    "E3": 128,
+    "E1_UNCERTAIN": 2353
+  },
+  "source_entailment_grades": {
+    "E2": 963,
+    "E3": 14,
+    "E0": 20,
+    "E1": 8
+  },
+  "warning": "Evidence availability and structural arithmetic cannot certify all full-predicate semantic entailments."
+}

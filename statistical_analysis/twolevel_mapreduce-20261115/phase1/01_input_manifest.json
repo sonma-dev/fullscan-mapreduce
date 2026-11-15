@@ -1,0 +1,102 @@
+{
+  "protocol_version": "6.1",
+  "phase": 1,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "user_selected_source_ledgers": true,
+  "source_record_count": 1024,
+  "source_negative_control_count": 37,
+  "source_positive_count_supported_by_text_page_tokens": 1021,
+  "source_positive_figure_render_verified_count": 3,
+  "pdf_physical_page_count": 90,
+  "pdf_document_id": "OD-AI-DDS-001",
+  "pdf_baseline": "R1.0 / revision 1.3",
+  "inputs": [
+    {
+      "actual_mounted_filename": "OrionDesk_AI_Detailed_Design_Specification(9).pdf",
+      "size_bytes": 7761533,
+      "sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+      "readable": true
+    },
+    {
+      "actual_mounted_filename": "01_source_atoms_final(4).jsonl",
+      "size_bytes": 2231744,
+      "sha256": "8a6c97eaf52e3cbe544de9515e22a9f806b173ceac4c12c800f3888ad9053dbc",
+      "readable": true
+    },
+    {
+      "actual_mounted_filename": "01_source_negative_controls_final(20261115-043821).jsonl",
+      "size_bytes": 34079,
+      "sha256": "ba48d66de139609fbf7d5ff3d3783a1e3792d5f5120b81c404e129ef1561a253",
+      "readable": true
+    },
+    {
+      "actual_mounted_filename": "OrionDesk_One_Pass_Atomic_Evaluation_Protocol(20261115-043836).md",
+      "size_bytes": 60888,
+      "sha256": "1028f4ba1b6ad645b572195e3900d7a01da523f80d9ea59f9eb189767ad4847d",
+      "readable": true
+    },
+    {
+      "actual_mounted_filename": "01_screen_functions(7).md",
+      "size_bytes": 65980,
+      "sha256": "b89b69e6b4b908c357f67c2f15cf9a4535043119af894a57e6cdbaa75baff514",
+      "readable": true
+    },
+    {
+      "actual_mounted_filename": "02_api(7).md",
+      "size_bytes": 64693,
+      "sha256": "db0e94dce9437a9d5b33346b85e0ee31f46df2d1bd4158948934bf39156d0dd3",
+      "readable": true
+    },
+    {
+      "actual_mounted_filename": "03_data(9).md",
+      "size_bytes": 54789,
+      "sha256": "f3eb127d819fca59285d46a0f2e75842c6039bdf899e8e9badaa71577332508c",
+      "readable": true
+    },
+    {
+      "actual_mounted_filename": "04_batch_functions(20261115-043829).md",
+      "size_bytes": 55103,
+      "sha256": "a7b6927b273a03e4f878889bd2586e1a85f60ce2244f4bacde5b5f83fca1c72c",
+      "readable": true
+    },
+    {
+      "actual_mounted_filename": "05_business_rules(9).md",
+      "size_bytes": 57330,
+      "sha256": "7d6934ccf8eb441c799f193066c1f0ef5344c27779073804cbbabf4cdc26167c",
+      "readable": true
+    },
+    {
+      "actual_mounted_filename": "06_exception_handling(20261115-043822).md",
+      "size_bytes": 54914,
+      "sha256": "cebe3ad3538d3e5bac037f36ac8d0f2bbe6467b759203edb230536f95b40b6ff",
+      "readable": true
+    },
+    {
+      "actual_mounted_filename": "07_processing_flows(20261115-043821).md",
+      "size_bytes": 65119,
+      "sha256": "0decb3f8128c7aef8b7dbef54836979a677eb927116136cfe8ca7cce2cebe41f",
+      "readable": true
+    },
+    {
+      "actual_mounted_filename": "08_architecture_decision(10).md",
+      "size_bytes": 58979,
+      "sha256": "ed4804474726c338232ccca4d94641b64e8cb017c0225cfa218072bfef5ae6b3",
+      "readable": true
+    }
+  ],
+  "scored_markdown_roles": {
+    "screen_functions": "01_screen_functions(7).md",
+    "api": "02_api(7).md",
+    "data": "03_data(9).md",
+    "batch_functions": "04_batch_functions(20261115-043829).md",
+    "business_rules": "05_business_rules(9).md",
+    "exception_handling": "06_exception_handling(20261115-043822).md",
+    "processing_flows": "07_processing_flows(20261115-043821).md",
+    "architecture_decision": "08_architecture_decision(10).md"
+  },
+  "pdf_reference_name_in_supplied_ledgers": "OrionDesk_AI_Detailed_Design_Specification.pdf",
+  "actual_pdf_basename": "OrionDesk_AI_Detailed_Design_Specification(9).pdf",
+  "note_en": "The displayed basename difference is an evidence-locator alias. Original supplied ledger rows were copied byte-for-byte. Every Phase 2+ lookup must resolve the alias to the actual mounted PDF.",
+  "method_selection_en": "One complete eight-role Markdown set is provided; no method prefix is established from filenames.",
+  "completed_scope_en": "Phase 1 only; no generated claim extraction, canonical TP/FN decisions, duplicate rate, or final score is asserted."
+}

@@ -1,0 +1,24 @@
+{
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "structural_checks_passed": true,
+  "pdf_physical_pages": 90,
+  "source_positive": 1005,
+  "negative_controls": 37,
+  "generated_occurrences": 3128,
+  "generated_classes": 3018,
+  "judgments": 1042,
+  "TP_proof_audit_rows": 978,
+  "final_TP_audited": 977,
+  "FN_review_rows": 924,
+  "final_FN_dispositions": {
+    "CONSERVATIVE_UNRESOLVED": 20,
+    "PARTIAL_ENTAILMENT": 8
+  },
+  "source_atomization_audits": 115,
+  "dedup_candidate_pair_audits": 589,
+  "change_delta_rows": 83,
+  "uncertain_generated_class_validity": 2353,
+  "generated_evidence_without_phase2_class": 3,
+  "no_meaning_certification_from_structural_pass": true,
+  "source_files_unmodified": true
+}

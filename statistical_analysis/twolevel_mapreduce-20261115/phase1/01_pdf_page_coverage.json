@@ -1,0 +1,902 @@
+[
+  {
+    "physical_pdf_page": 1,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 64,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 0,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 2,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 1148,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 0,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 3,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 1593,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 0,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 4,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 1644,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 0,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 5,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 1553,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 0,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 6,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 1318,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 0,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 7,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 133,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 8,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 272,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 22,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 9,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 500,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 7,
+    "negative_control_count": 5,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 10,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 373,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 19,
+    "negative_control_count": 3,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 11,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 248,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 12,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 539,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 9,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 13,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 340,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 14,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 26,
+    "embedded_image_count": 1,
+    "figure_dominant_page": true,
+    "positive_atom_count": 0,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 15,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 250,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 16,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 492,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 14,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 17,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 365,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 13,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 18,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 262,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 19,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 510,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 11,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 20,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 331,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 21,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 259,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 11,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 22,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 489,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 8,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 23,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 329,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 24,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 248,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 21,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 25,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 498,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 11,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 26,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 324,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 27,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 224,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 9,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 28,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 525,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 8,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 29,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 332,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 30,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 253,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 8,
+    "negative_control_count": 3,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 31,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 494,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 9,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 32,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 321,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 33,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 26,
+    "embedded_image_count": 1,
+    "figure_dominant_page": true,
+    "positive_atom_count": 0,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 34,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 245,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 16,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 35,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 488,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 6,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 36,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 329,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 37,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 255,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 7,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 38,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 492,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 7,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 39,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 326,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 40,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 264,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 7,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 41,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 498,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 9,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 42,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 326,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 13,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 43,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 26,
+    "embedded_image_count": 1,
+    "figure_dominant_page": true,
+    "positive_atom_count": 0,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 44,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 212,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 10,
+    "negative_control_count": 2,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 45,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 508,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 5,
+    "negative_control_count": 2,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 46,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 332,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 47,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 26,
+    "embedded_image_count": 1,
+    "figure_dominant_page": true,
+    "positive_atom_count": 0,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 48,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 236,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 18,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 49,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 489,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 8,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 50,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 326,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 51,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 254,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 10,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 52,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 482,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 8,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 53,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 322,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 54,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 256,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 10,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 55,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 489,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 9,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 56,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 326,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 57,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 260,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 17,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 58,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 495,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 8,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 59,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 326,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 13,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 60,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 26,
+    "embedded_image_count": 1,
+    "figure_dominant_page": true,
+    "positive_atom_count": 0,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 61,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 259,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 9,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 62,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 494,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 7,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 63,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 329,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 64,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 256,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 10,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 65,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 495,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 9,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 66,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 327,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 67,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 26,
+    "embedded_image_count": 1,
+    "figure_dominant_page": true,
+    "positive_atom_count": 0,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 68,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 261,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 7,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 69,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 491,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 7,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 70,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 323,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 71,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 215,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 10,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 72,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 520,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 7,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 73,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 327,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 11,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 74,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 253,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 9,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 75,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 489,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 6,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 76,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 324,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 77,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 26,
+    "embedded_image_count": 1,
+    "figure_dominant_page": true,
+    "positive_atom_count": 0,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 78,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 260,
+    "embedded_image_count": 1,
+    "figure_dominant_page": false,
+    "positive_atom_count": 10,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 79,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 471,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 5,
+    "negative_control_count": 2,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 80,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 326,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 12,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 81,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 26,
+    "embedded_image_count": 1,
+    "figure_dominant_page": true,
+    "positive_atom_count": 0,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 82,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 127,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 10,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 83,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 158,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 62,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 84,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 66,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 8,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 85,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 159,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 98,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 86,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 116,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 28,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 87,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 185,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 43,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 88,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 217,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 26,
+    "negative_control_count": 1,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 89,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 271,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 22,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  },
+  {
+    "physical_pdf_page": 90,
+    "text_extraction_succeeded": true,
+    "extractable_word_count": 201,
+    "embedded_image_count": 0,
+    "figure_dominant_page": false,
+    "positive_atom_count": 7,
+    "negative_control_count": 0,
+    "inspected_material_en": "PDF text extraction and page-level evidence matching; figure-dominant pages were rendered in a contact sheet."
+  }
+]

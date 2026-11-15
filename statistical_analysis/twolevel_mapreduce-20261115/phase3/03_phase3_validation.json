@@ -1,0 +1,37 @@
+{
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "phase": 3,
+  "scope": "All 1024 supplied PDF-positive source atoms and eight supplied Markdown inputs; 37 negative controls carried but deferred to Phase 4.",
+  "source_positive_atoms": 1024,
+  "negative_controls_deferred": 37,
+  "raw_generated_claim_classes": 3020,
+  "raw_generated_occurrences": 3116,
+  "source_side_coverage_draft": {
+    "FN": 81,
+    "TP": 943
+  },
+  "coverage_mode_counts": {
+    "SEMANTIC_EQUIVALENCE": 282,
+    "CONJUNCTIVE_BRIDGE": 214,
+    "DIRECT": 14,
+    "UNIVERSAL_INSTANTIATION": 145,
+    "INHERITED_CONTEXT": 288
+  },
+  "fn_root_cause_counts": {
+    "PARTIAL_ENTAILMENT": 25,
+    "CONSERVATIVE_UNRESOLVED": 54,
+    "TRUE_MISSING": 2
+  },
+  "bridged_tp_records": 929,
+  "initial_lexical_provisional_fn_count": 942,
+  "corrected_lexical_false_negative_count": 861,
+  "source_atomization_flags": 102,
+  "generated_class_candidates_for_phase4": 326,
+  "source_atom_denominator_changed": false,
+  "cautions": [
+    "These are phase-3 evidence-based best-effort TP/FN judgments, NOT a complete four-cell confusion matrix.",
+    "Rule-based candidate retrieval and structural bridges do not establish manual certification of every semantic predicate.",
+    "The Phase-4 generated correctness review will evaluate negative controls and generated-only unsupported commitments.",
+    "The Phase-5 independent audit may correct source atomization, conservative FNs and over-permissive TP bridges."
+  ]
+}

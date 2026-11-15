@@ -1,0 +1,187 @@
+{
+  "phase": 6,
+  "status": "FINAL_BEST_EFFORT",
+  "method": "supplied_eight_file_set",
+  "protocol_version": "6.1",
+  "delivery_policy": "Individual English-language files. No bundled archives.",
+  "required_deliverables_present": true,
+  "files": [
+    {
+      "filename": "01_pdf_page_coverage.json",
+      "bytes": 34409,
+      "sha256": "936634bfa4c91c0fcb57fc911adc7c7ffdfcd7db9c33fcd9af29bdbd03652c33"
+    },
+    {
+      "filename": "01_pdf_page_coverage_final.json",
+      "bytes": 40078,
+      "sha256": "2b3af56d6d01afa39b18645dbf650da0a985009c95dd900a152f194c12e56d41"
+    },
+    {
+      "filename": "01_source_atoms_final.jsonl",
+      "bytes": 2200961,
+      "sha256": "f456e1d507fb03946ad337fa41b25ce5a07b78cb26e817cedededbe6bd034d65"
+    },
+    {
+      "filename": "01_source_negative_controls_final.jsonl",
+      "bytes": 34079,
+      "sha256": "ba48d66de139609fbf7d5ff3d3783a1e3792d5f5120b81c404e129ef1561a253"
+    },
+    {
+      "filename": "02_generated_atoms_final.jsonl",
+      "bytes": 3040461,
+      "sha256": "78196489c6a37748cbc6b289ee5f8f76689e2a2c0170a6d51c65217bf0fc0142"
+    },
+    {
+      "filename": "02_generated_classes_final.jsonl",
+      "bytes": 3767248,
+      "sha256": "4b2b9bcbeb8f541d59517b5d3d3b60b2fc65835f40f23f75206ac8ce0497fa6d"
+    },
+    {
+      "filename": "02_generated_corpus_coverage.json",
+      "bytes": 3879,
+      "sha256": "9e126ca838cc07c45adac82dde47a3163754e2be196235ffa618de6fd980a805"
+    },
+    {
+      "filename": "02_generated_corpus_coverage_final.json",
+      "bytes": 1945,
+      "sha256": "ee13cc629e0592575f3369ac6ed0c3a83295031d6f41ee1336f332de2a92f3ab"
+    },
+    {
+      "filename": "02_generated_exclusions_final.jsonl",
+      "bytes": 1281002,
+      "sha256": "3dd5e527e2e18f2b2a5990ff058975ea8178b3447d3307c59833998346f1fbe1"
+    },
+    {
+      "filename": "02_generated_line_coverage.jsonl",
+      "bytes": 1884022,
+      "sha256": "6090ad19b3bfd3c172b08a579e514e1549cd3d57a821c6433849ae4a0fdbed8d"
+    },
+    {
+      "filename": "03_canonical_universe_final.jsonl",
+      "bytes": 3225963,
+      "sha256": "e438b1d1c17a1b1e06b8a837470b077c42832e6cd0ec11ac8139514141487f63"
+    },
+    {
+      "filename": "03_evidence_matches_final.jsonl",
+      "bytes": 3802486,
+      "sha256": "3e5fac37cdec7fda2fa53b304e28e265674fdb9eef489dd22b58a3e68c043508"
+    },
+    {
+      "filename": "03_fn_root_cause_audit_final.jsonl",
+      "bytes": 3837440,
+      "sha256": "e328924f02e08aaae091df4f21d13c0c2474f761246e98dab5c05a6295b630d5"
+    },
+    {
+      "filename": "03_semantic_coverage_bridges_final.jsonl",
+      "bytes": 3267797,
+      "sha256": "d6d6f89fd375f84592f34cf6d592322d12861894d77a9feb670290f7c945876e"
+    },
+    {
+      "filename": "04_atomic_judgments_final.jsonl",
+      "bytes": 3225963,
+      "sha256": "e438b1d1c17a1b1e06b8a837470b077c42832e6cd0ec11ac8139514141487f63"
+    },
+    {
+      "filename": "04_confusion_matrix_final.json",
+      "bytes": 1712,
+      "sha256": "402ca0ebac5139417a5548b00b7b12f2d58c1f10f456f09ace33f7818e539aff"
+    },
+    {
+      "filename": "04_confusion_matrix_final.md",
+      "bytes": 983,
+      "sha256": "beb80affddc267213c3e491e68f883a1093d88dfd8d7e76fa3c9ee9982c773d9"
+    },
+    {
+      "filename": "04_duplicate_classes_final.jsonl",
+      "bytes": 3365297,
+      "sha256": "fa2492db832b15b84ac6094a968b4b1f044b507fd544a17067d85a61ece4f934"
+    },
+    {
+      "filename": "04_generated_claim_validity_final.jsonl",
+      "bytes": 8195563,
+      "sha256": "6662f265e23452f4658cfcbea34c256f98634958f51a9f9a9fad2e4cbc652fab"
+    },
+    {
+      "filename": "04_generated_only_unsupported_final.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "filename": "04_negative_control_audit_final.jsonl",
+      "bytes": 233257,
+      "sha256": "a0c1b6cb10e0c61d335891b244e51e207e6abc5b855b25eea75c3ed51c298fb5"
+    },
+    {
+      "filename": "05_duplicate_candidate_audit_final.jsonl",
+      "bytes": 816234,
+      "sha256": "f7920e480e37ec2ca2f3870304d976598504a98d74fd23c10a4bc5a2f28e0b6e"
+    },
+    {
+      "filename": "05_duplicate_metrics_final.json",
+      "bytes": 669,
+      "sha256": "47ae53fbb1bdf19b827a3d7c46cb9d37f726b2bb2b0c66b003b5891dbda8db1e"
+    },
+    {
+      "filename": "05_duplicate_metrics_final.md",
+      "bytes": 899,
+      "sha256": "1131eaf6a9d2cd75437f279146ca12b1d92a00580906345b63f6876aebe0d309"
+    },
+    {
+      "filename": "05_source_atomization_audit_final.jsonl",
+      "bytes": 401925,
+      "sha256": "52320967e77b195483b94ae2bc1774cb8e0c218312911f3462ea9bce85fcec7b"
+    },
+    {
+      "filename": "05_tp_evidence_audit_final.jsonl",
+      "bytes": 5349539,
+      "sha256": "e6e022af7f6951b92ffe8d33bb12d676b361fe6c987d80266d7e400670e6fb0a"
+    },
+    {
+      "filename": "06_metrics_final.json",
+      "bytes": 3334,
+      "sha256": "90275db4acea757308d1a0c189d065bacea6a2218da0daaa471b84932c1edf70"
+    },
+    {
+      "filename": "06_metrics_final.md",
+      "bytes": 4085,
+      "sha256": "6031f9ac0050753b50347ac7c0f07c6f74033412368dd7e273e48bdf06b63092"
+    },
+    {
+      "filename": "06_regression_probe_evidence.jsonl",
+      "bytes": 45961,
+      "sha256": "d28a7f0e428f38eca6788771a3857c7def6ea1fa162a36a54d91b85e0c273d81"
+    },
+    {
+      "filename": "06_validation_results.json",
+      "bytes": 1935,
+      "sha256": "02e86137af2295ff0d660182ad82c8b23490afbc0ac26869fc488ddf695ddaf5"
+    },
+    {
+      "filename": "06_visual_pdf_evidence_audit.jsonl",
+      "bytes": 1449,
+      "sha256": "ab289e0a094b647ee05fefbdde86f053256a85ee0825f21451cfd25a2c893d05"
+    },
+    {
+      "filename": "07_change_delta.jsonl",
+      "bytes": 113012,
+      "sha256": "5cc6f00e17525c47136df2f478442ff20c59d2a50f79f1405b022efc1558832a"
+    },
+    {
+      "filename": "08_coverage_and_limitations.md",
+      "bytes": 10199,
+      "sha256": "2fbdcb056913b09605fd4c2f1602c194bf8bf8f056f0ac2893d3c7e49357a62c"
+    },
+    {
+      "filename": "09_excluded_units.jsonl",
+      "bytes": 1614836,
+      "sha256": "b39e08adcc4eddbd1d5b1488b59efd3f9319e93fd006cd3ad2a99b0b84959fe6"
+    },
+    {
+      "filename": "compute_metrics.py",
+      "bytes": 22206,
+      "sha256": "70aa4771b9a2cb314cc9d6ddf9541732d6170a22dd00e0cfa8834a4263980252"
+    }
+  ],
+  "number_of_files_excluding_manifest": 35,
+  "note": "Phase 6 independently revalidated the canonical calculation, corrected a duplicate historical FN audit record, and retained explicitly unverified generated-class semantics."
+}

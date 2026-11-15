@@ -6,7 +6,7 @@ For experimental findings, evaluation metrics, and limitations, see [Experimenta
 
 ![2-level MapReduce Workflow](misc/img/twolevel_mapreduce.png)
 
-This is a metric evaluation conducted on the same dataset. It represents a statistical validation of the metric evaluation itself, rather than an assessment of confidence intervals or statistical significance.
+This is a metric evaluation conducted on **the same dataset**. It represents a statistical validation of the metric evaluation itself, rather than an assessment of confidence intervals or statistical significance.
 
 ![Precision, Recall, and F1-score Comparison](_statistical_validation_comparison.png)
 
@@ -16,7 +16,7 @@ I explicitly state that the input token count for the Full Load approach did not
 
 ![The Input Tokens for Fill Load](misc/img/fullload_inputtoken.png)
 
-I evaluated precision, recall, and F1-score using **the same dataset**, exclusively for the `full-load` scenario with the reasoning effort set to extra high (`xhigh`).
+I evaluated precision, recall, and F1-score using **the same dataset**, exclusively for the **full-load** scenario with the reasoning effort set to extra high (`xhigh`).
 
 ![Evaluation Metrics for xhigh Reasoning Effort](misc/img/xhigh_metric.png)
 

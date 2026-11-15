@@ -1,0 +1,52 @@
+{
+  "prefix": "supplied_eight_file_set",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "protocol_version": "6.1",
+  "universe": {
+    "source_positive_atoms": 1005,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 3018,
+    "generated_positive_occurrences": 3128,
+    "covered_source_atoms": 977,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 0,
+    "canonical_predicted_positive_units": 977,
+    "canonical_decision_units": 1042,
+    "negative_universe_scope": "PDF-grounded, predeclared bounded controls only"
+  },
+  "confusion": {
+    "TP": 977,
+    "TN": 37,
+    "FP": 0,
+    "FN": 28
+  },
+  "metrics": {
+    "Precision": 1.0,
+    "Recall": 0.972139303482587,
+    "F1": 0.9858728557013118,
+    "Duplicate": 0.03516624040920716
+  },
+  "duplicate": {
+    "eligible_generated_occurrences": 3128,
+    "unique_generated_claim_classes": 3018,
+    "duplicate_excess_occurrences": 110,
+    "within_file_excess": 1,
+    "across_file_excess": 109,
+    "repeated_claim_class_count": 80,
+    "repeated_classes_spanning_multiple_files": 80
+  },
+  "fn_root_causes": {
+    "CONSERVATIVE_UNRESOLVED": 20,
+    "PARTIAL_ENTAILMENT": 8
+  },
+  "corrections": {
+    "fn_to_tp": 35,
+    "tp_to_fn": 1,
+    "source_atoms_excluded": 19,
+    "source_literal_corrections": 2,
+    "recovered_generated_occurrences": 12,
+    "class_merge_groups": 13,
+    "classes_removed_by_merge": 14
+  },
+  "metric_interpretation": "One effective canonical PDF-proposition universe, distinct from raw generated semantic class counts. All figures are PROVISIONAL; FP=0 and 100% computed Precision DO NOT establish absence of unsupported generated claims."
+}
