@@ -4,6 +4,8 @@ For experimental findings, evaluation metrics, and limitations, see [Experimenta
 
 **You must understand that executing two-level MapReduce incurs substantial financial costs.**
 
+![2-level MapReduce Workflow](misc/img/twolevel_mapreduce.png)
+
 This is a metric evaluation conducted on the same dataset. It represents a statistical validation of the metric evaluation itself, rather than an assessment of confidence intervals or statistical significance.
 
 ![Precision, Recall, and F1-score Comparison](_statistical_validation_comparison.png)
