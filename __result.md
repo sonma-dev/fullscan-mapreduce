@@ -68,7 +68,7 @@ Note that the eighth document consolidates unresolved architectural decisions, s
   - SaaS-hosted ChatGPT
   - Reasoning effort: High
 
-Note that Considering AI agents fine-tuned by OpenAI, isn't SaaS-hosted ChatGPT a superior metrics evaluation environment compared to Codex?
+Note that, considering AI agents fine-tuned by OpenAI, isn't SaaS-hosted ChatGPT a superior metrics evaluation environment compared to Codex?
 
 However, even with the reasoning effort set to low, the full-load approach already requires approximately 5 minutes to generate a single specification document.
 
