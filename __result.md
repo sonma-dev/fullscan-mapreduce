@@ -64,7 +64,7 @@ Note that the eighth document consolidates unresolved architectural decisions, s
   - Number of concurrent LLM executions: 8 for 1-level and 16 for 2-level
   - Infrastructure: Azure
   - Local Execution Environment: Gentoo Linux, Windows Subsystem for Linux
-- Statistical evaluation details
+- Statistical evaluation details:
   - SaaS-hosted ChatGPT
   - Reasoning effort: High
 
