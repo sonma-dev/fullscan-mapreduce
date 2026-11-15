@@ -54,7 +54,7 @@ Note that the eighth document consolidates unresolved architectural decisions, s
   All three programs pass previously generated specification documents to the LLM as input.
 - Both Full load and N-level hierarchical MapReduce can use an LLM in the final step of specification generation to eliminate duplicates. This was not done in this experiment.
 - In 2-level hierarchical MapReduce, levels were assigned to chapters and sections, respectively.
-- Root performs the approval process, but Level 1 fork nodes do not.
+- Since wall-clock time and total token consumption grow exponentially, only the root node performs the approval process; level-1 fork nodes do not.
 - In this experiment, the detailed design document was not converted using Microsoft Document Intelligence; it was passed directly to the LLM via the `input_file` parameter of the Responses API.
 - The number of trials was one each for full load, 1-level hierarchical MapReduce, and 2-level MapReduce. I currently do not have enough time to conduct multiple runs. If others need it, I might execute them.
 - I defined "duplicate" as redundant specifications across the 8 specification documents.
