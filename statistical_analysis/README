@@ -1,12 +1,12 @@
 /***
  * Statistical Analysis Results
-/***
+***/
 
 The following results were extracted from the final metric calculation files in the statistical_analysis/ directory.
 All values are expressed as percentages.
 
-Full Load — Low Reasoning Effort
-
+1. Full Load — Low Reasoning Effort
+----------------------------------------------------------------
 fullload_low-20261111.0
 Precision: 76.22%, Recall: 65.72%, F1-score: 70.58%, Duplicate: 3.94%
 
@@ -19,8 +19,8 @@ Precision: 44.61%, Recall: 63.87%, F1-score: 52.53%, Duplicate: 2.60%
 fullload_low-20261115
 Precision: 50.56%, Recall: 57.31%, F1-score: 53.73%, Duplicate: 3.41%
 
-Full Load — Extra High Reasoning Effort
-
+2. Full Load — Extra High Reasoning Effort
+----------------------------------------------------------------
 fullload_xhigh-20261114.0
 Precision: 100.00%, Recall: 56.09%, F1-score: 71.87%, Duplicate: 1.46%
 
@@ -30,16 +30,16 @@ Precision: 61.48%, Recall: 66.41%, F1-score: 63.85%, Duplicate: 2.40%
 fullload_xhigh-20261114.2
 Precision: 100.00%, Recall: 66.09%, F1-score: 79.58%, Duplicate: 1.13%
 
-One-Level Hierarchical MapReduce
-
+3. One-Level Hierarchical MapReduce
+----------------------------------------------------------------
 onelevel_mapreduce-20261111
 Precision: 100.00%, Recall: 98.81%, F1-score: 99.40%, Duplicate: 4.04%
 
 onelevel_mapreduce-20261113
 Precision: 100.00%, Recall: 96.18%, F1-score: 98.05%, Duplicate: 3.51%
 
-Two-Level Hierarchical MapReduce
-
+4. Two-Level Hierarchical MapReduce
+----------------------------------------------------------------
 twolevel_mapreduce-20261111
 Precision: 100.00%, Recall: 95.61%, F1-score: 97.75%, Duplicate: 4.15%
 
