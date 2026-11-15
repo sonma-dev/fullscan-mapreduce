@@ -1,4 +1,4 @@
-# Document Specification Generation Experiments
+# AI-agentic Hierarchical MapReduce Experiment
 
 For experimental findings, evaluation metrics, and limitations, see [Experimental Results](__result.md).
 
