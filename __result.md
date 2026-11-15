@@ -5,6 +5,29 @@ While an individual cannot hold an advantage over enterprise scale, please use t
 Note that I do not claim that this method will reduce the personnel, time, or cost required for the entire development of a new system, including requirements definition, testing, etc.
 Also note that normally, additions and deletions of functions for the new IT system—in other words, specification changes—should be taken into account; however, for the sake of simplicity, this experiment does not consider them.
 
+## Objective
+
+To generate specifications from existing detailed design documents using full load, 1-level hierarchical MapReduce, and 2-level hierarchical MapReduce approaches, and evaluate the accuracy of the generated specifications using precision, recall, and the F1 score.
+Although this approach is tautological, wouldn't it help verify whether valid specifications can be generated from existing design documents?
+
+I explicitly state that the same statistical method was used to calculate the precision, recall, and F1-score for all three methods.
+
+## Main conclusion
+
+The MapReduce method significantly improved recall, precision, and F1-score.
+
+It is necessary to verify the validity of the experimental methods, including the source code logic and the calculation of TP, FP, TN, and FN.
+
+Further investigation into N-level hierarchical MapReduce is necessary before drawing definitive conclusions.
+
+Results also depend on how the gold set is constructed. If the gold set is exported as a separate file directly from the original document (the PDF), it is difficult to accurately measure TP, FP, TN, and FN.
+
+In the N-level hierarchical MapReduce implementation used in this experiment, wall-clock time increases as N increases because each fork requires operations such as aggregation and approval. Data splitting itself does not take significant time because it does not involve sending queries to the LLM.
+
+Further experiments are needed to isolate the effects of factors such as hierarchy depth and global context at each level.
+
+Multiple experiments for each approach are necessary to obtain statistically significant results before claiming that MapReduce is superior.
+
 ## 1. Other Conclusions
 
 - Although the chart shows approximately 1.76 million input tokens for the Full-load approach, the source PDF files were input separately to generate each of the seven specifications.
