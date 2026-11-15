@@ -53,7 +53,7 @@ I explicitly state that the same statistical method was used to calculate the pr
 - In 2-level hierarchical MapReduce, levels were assigned to chapters and sections, respectively.
 - Root performs the approval process, but Level 1 fork nodes do not.
 - In this experiment, the detailed design document was not converted using Microsoft Document Intelligence; it was passed directly to the LLM via the `input_file` parameter of the Responses API.
-- The number of trials was one each for full load, 1-level hierarchical MapReduce, and 2-level MapReduce. I currently do not have the time to conduct multiple runs. If others need it, I might execute them.
+- The number of trials was one each for full load, 1-level hierarchical MapReduce, and 2-level MapReduce. I currently do not have enough time to conduct multiple runs. If others need it, I might execute them.
 - I defined "duplicate" as redundant specifications across the 7 specification documents.
 - Environment details:
   - LLM Model: gpt-6.1-sol
