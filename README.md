@@ -33,7 +33,7 @@ All three methods initially used the same 1,024 atomic requirements and 37 negat
 
 I explicitly state that the input token count for the Full Load approach did not exceed the maximum input context length of gpt-6.1-sol.
 
-![The Input Tokens for Fill Load](misc/img/fullload_inputtoken.png)
+![The Input Tokens for Full Load](misc/img/fullload_inputtoken.png)
 
 I evaluated precision, recall, and F1-score using **the same dataset**, exclusively for **the full-load scenario** with the reasoning effort set to extra high (`xhigh`).
 
