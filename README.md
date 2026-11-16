@@ -31,18 +31,6 @@ I evaluated precision, recall, and F1-score using **the same dataset**, exclusiv
 - It should also be noted that truncation is disabled by default in the OpenAI Responses API, which increases the risk of exceeding context limits or degrading attention over long inputs.
 - Collectively, these findings imply that, although a MapReduce approach might conversely exacerbate context growth, **it can enhance the LLM's reasoning capabilities.**
 
-The MapReduce approach demonstrably rejected an aggregated specification that omitted critical requirements.
-
-![Root Rejection](misc/img/root_rejection.png)
-
-Reasons for Rejection
-The Root Approval identified two critical requirements preserved in intermediate evidence but omitted from the aggregated specification:
-
-1. Background-job tenant integrity (PDF p.22, §5.3.1): The specification omitted the requirement for immutable tenant identities in signed job envelopes, potentially allowing unsigned jobs or tenant substitution.
-2. Encryption-key lifecycle (PDF p.63, §17.3.2): The specification omitted mandatory policy-driven encryption-key rotation without bulk re-encryption in the request path.
-
-Outcome: Root Approval detected substantive omissions in the aggregated output, triggered a complete rescan and regeneration, and approved the revised specification on the second attempt.
-
 Note that I have never deliberately attempted to improve the precision, recall, or F1 scores of the MapReduce approaches through this statistical evaluation.
 
 This repository compares three Python/FastAPI backends that generate software specifications from PDF and PowerPoint (`.pptx`) documents using the Azure OpenAI Responses API: full-file generation, one-level MapReduce, and two-level MapReduce. It also contains the input dataset, execution logs, generated results, and directories for statistical-analysis work instructions and related documents.
@@ -120,6 +108,8 @@ Local environment files, Python caches, logs, and generated results are covered 
 The one-level tree is `root > leaf chunks`. The two-level tree is `root > chapter forks > section/part leaves`. Both MapReduce programs split the document once, preserving native PDF outline or PPTX section boundaries where available. The two-level backend additionally detects numbered PDF sections within pages, preserves chapter introductions, and divides oversized sections into parts under the same chapter fork. Oversized chapter reductions run bounded batches concurrently within each round, followed by a check across batches, preserving the two-level tree. Chapter workers and leaf Map workers have independent concurrency limits. See its README for layout fallbacks and budget settings.
 
 An initial MapReduce call receives the entire original document through `input_file` to establish global context. Each of specifications 01–07 then scans every chunk, with each Map call receiving its corresponding file attachment through `input_file`. Aggregation and approval use the retained evidence records. If approval rejects a candidate, the backend regenerates context and scans every chunk again. The default limit per specification, including the initial attempt, is two attempts for the one-level backend and eight for the two-level backend. It retains evidence and review history in the response.
+
+Note that I have not implemented file transfers using the OpenAI Files API in this source code. However, implementing it would allow us to avoid repeatedly transferring the same file when generating the seven specification documents.
 
 Approval receives an explicit checklist of every chunk and finding ID. If an otherwise valid review has missing, duplicate, or unknown IDs, the backend retries that review with the full checklist, exact ID diagnostics, and previous response. These errors share one allowance of up to three review attempts by default. Retries reuse the candidate and evidence without rerunning Map or reduction. Every allowed ID must appear exactly once; the backend never corrects the reported arrays automatically. Exhaustion fails the request. Failed reviews and their token usage remain in completed stages' audit history and totals.
 

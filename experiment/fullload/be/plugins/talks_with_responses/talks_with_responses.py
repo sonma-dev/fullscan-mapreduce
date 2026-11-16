@@ -127,10 +127,11 @@ class TalksWithResponses:
                         response = None
                         logger.info(
                             "Responses request submitting: model=%s input_chars=%d file_name=%s "
-                            "max_output_tokens=%s response_attempt=%d deadline_attempt=%d",
+                            "max_output_tokens=%s reasoning_effort=%s response_attempt=%d deadline_attempt=%d",
                             self._model_name, len(query),
                             input_file.get("filename", "") if input_file else "",
-                            max_output_tokens, response_attempt, timeout_failures + 1,
+                            max_output_tokens, request_kwargs["reasoning"]["effort"],
+                            response_attempt, timeout_failures + 1,
                         )
                         response = await client.responses.create(**request_kwargs)
                         last_status = None
