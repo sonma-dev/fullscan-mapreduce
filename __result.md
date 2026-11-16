@@ -15,7 +15,6 @@ I explicitly state that the same statistical method was used to calculate the pr
 ## Main conclusion
 
 - In the Full Load approach, I did not provide the LLM with input exceeding its context window. **Nevertheless, the Full Load approach yielded lower precision, recall, and F1 scores than the MapReduce approaches.**
-- **Full Load may have inherent structural upper bounds on precision and recall that cannot be overcome by adding approval gates or parallel execution.**
 - It is necessary to verify the validity of the experimental methods, including the source code logic and the calculation of TP, FP, TN, and FN.
 - Further investigation into N-level hierarchical MapReduce is necessary before drawing definitive conclusions.
 - Results also depend on how the gold set is constructed. If the gold set is exported as a separate file directly from the original document (the PDF), it is difficult to accurately measure TP, FP, TN, and FN.
