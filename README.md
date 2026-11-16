@@ -18,7 +18,7 @@ $$
 
 Here, we can reasonably assume that $R$ and $N$ are essentially the same sets of atomic requirements and negative controls initially provided for the metric calculations.
 $F$ represents atomic requirements that are not semantically included in $R$.
-Therefore, it appears that the Full Load approach with an approval process and xhigh reasoning effort generates additional atomic requirements that are not semantically included in $R$.
+Therefore, it appears that the full-Load approach with an approval process and XHigh reasoning effort generates additional atomic requirements that are not semantically included in $R$.
 Since $R$ was derived by an LLM from the original PDF detailed design specification, it is reasonable to assume that $R$ provides nearly comprehensive coverage of the ideal set of true atomic requirements.
 
 **You must understand that executing two-level MapReduce incurs substantial financial costs.**
