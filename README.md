@@ -12,9 +12,9 @@ Based on my examination of these results, although the observed differences have
 
 Evaluation Protocol version 6.1 defines the evaluation universe as follows:
 
-[
+$$
 X = R + N + F
-]
+$$
 
 Here, we can reasonably assume that R and N are essentially the same sets of atomic requirements and negative controls initially provided for the metric calculations.
 F represents atomic requirements that are not semantically included in R.
