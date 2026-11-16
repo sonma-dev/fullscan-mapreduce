@@ -483,3 +483,4 @@ When a single assistant response cannot support exhaustive semantic checking to 
 ## 10. Version 6.1 change summary (non-execution metadata)
 
 This revision preserves the six-turn limit, the authoritative PDF-only source rule, eight scored inputs, one canonical TP/TN/FP/FN universe, metric equations, and the no-archive rule. It adds: (1) a required independent source-atomization and acceptance-test deduplication check; (2) full-corpus reciprocal FN retrieval and table-context reconstruction; (3) corrected-false-negative versus genuinely missing versus partial/unresolved dispositions; (4) audited E2/TP predicate proofs and reciprocal FP validation; and (5) explicit reliability disclosures and machine-verifiable reconciliation across new audit ledgers. Prior-run scores and observed false-negative examples are **not** accepted as current-run ground truth.
+
