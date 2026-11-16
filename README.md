@@ -8,6 +8,19 @@ Based on my examination of these results, although the observed differences have
 
 **I am currently performing metric calculations using full-load with approval process and xhigh reasoning effort, and I'm running into FP explosions! Surprisingly, I didn't see these FP explosions when running full-load with xhigh reasoning effort alone.**
 
+## Hypothesis
+
+Evaluation Protocol version 6.1 defines the evaluation universe as follows:
+
+[
+X = R + N + F
+]
+
+Here, we can reasonably assume that R and N are essentially the same sets of atomic requirements and negative controls initially provided for the metric calculations.
+F represents atomic requirements that are not semantically included in R.
+Therefore, it appears that the Full Load approach with an approval process and xhigh reasoning effort generates additional atomic requirements that are not semantically included in R.
+Since R was derived by an LLM from the original PDF detailed design specification, it is reasonable to assume that R provides nearly comprehensive coverage of the ideal set of true atomic requirements.
+
 **You must understand that executing two-level MapReduce incurs substantial financial costs.**
 
 ![2-level MapReduce Workflow](misc/img/twolevel_mapreduce.png)
