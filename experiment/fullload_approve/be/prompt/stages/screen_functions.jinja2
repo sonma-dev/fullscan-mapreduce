@@ -1,0 +1,17 @@
+{% extends "specification_user.jinja2" %}
+{% block requirements %}
+Create the Screen Function Specification in English. Use identifiers such as SCR-001, preferring existing source identifiers.
+
+## Scope and Users
+State the business activities, users and permissions, prerequisites, and scope.
+## Screen Inventory and Navigation
+List each screen's ID, name, purpose, users, display conditions, navigation origins and destinations, and launch method.
+## Functions by Screen
+For each display or input field, define its name, meaning, type, length and format, required status, initial value, editability, input constraints, validation timing, display conditions, and source of selectable values.
+For each button or event, describe execution conditions, processing, successful displays and navigation, and failure displays. Cover search, lists, sorting, pagination, and similar functions when supported by the source.
+## Integrations and Acceptance Criteria
+Describe required external integrations and data inputs and outputs. If API or data details are undefined, record questions for later stages and cite identifiers only when they already exist.
+For major operations, state prerequisites, actions, and expected results as acceptance criteria.
+## Consistency and Open Questions
+Identify source locations and unresolved screens, fields, navigation, and permissions.
+{% endblock %}

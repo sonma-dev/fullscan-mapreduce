@@ -1,0 +1,14 @@
+{% extends "specification_user.jinja2" %}
+{% block requirements %}
+Create the Business Rules in English. Use rule identifiers such as BR-001, preferring existing source identifiers. Organize shared conditions across screens, APIs, data, and batch jobs into consistent rules.
+
+## Rule Inventory and Scope
+State rule IDs, names, purposes, applicable targets, actors and permissions, timing, and evidence.
+## Decisions, Calculations, and State Transitions
+Define prerequisites, inputs, decision conditions, results, formulas, rounding, units, boundary values, priorities, conflict handling, and effective periods.
+Use decision tables where appropriate and cover all business conditions in the source, including approvals, access control, period-end processing, and prohibited operations.
+## Application Points and Validation Conditions
+Map each rule to its enforcing screens, APIs, or batch jobs and the data it reads or updates using identifiers. State validation conditions for satisfied, unsatisfied, and boundary cases.
+## Consistency and Open Questions
+Identify conflicting rules, unresolved thresholds, calculation conditions or priorities, proposals carried from preceding specifications, and source references.
+{% endblock %}

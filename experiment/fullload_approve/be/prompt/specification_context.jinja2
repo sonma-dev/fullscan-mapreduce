@@ -1,0 +1,17 @@
+Document: {{ file_name }}
+Stage: {{ stage.step }}/{{ total_stages }}
+Specification key: {{ stage.key }}
+Specification title: {{ stage.title }}
+Specification name: {{ stage.english_title }}
+Specification prompt: {{ stage.prompt_template }}
+Output Markdown file: {{ '%02d' | format(stage.step) }}_{{ stage.key }}.md
+
+<previous_specifications>
+{% for specification in previous_specifications %}
+Markdown file: {{ '%02d' | format(specification.step) }}_{{ specification.key }}.md
+{{ specification.content }}
+
+{% else %}
+No previous specifications. This is the first stage.
+{% endfor %}
+</previous_specifications>

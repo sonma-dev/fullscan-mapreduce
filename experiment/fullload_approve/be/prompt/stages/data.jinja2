@@ -1,0 +1,16 @@
+{% extends "specification_user.jinja2" %}
+{% block requirements %}
+Create the Data Specification in English. Use logical data identifiers such as DAT-001, preferring existing source identifiers. Preserve identifiers and field names from the preceding screen and API specifications.
+
+## Data Inventory and Relationships
+List entities, tables, files, purposes, owners, relationships, cardinality, and mappings to screens and APIs.
+## Data Field Definitions
+Define field names, physical names, meanings, types, lengths and precision, nullability, required status, defaults, primary keys, foreign keys, uniqueness, value ranges, and code systems.
+Distinguish logically required fields from unresolved physical design. Do not independently finalize database products, types, or indexes.
+## Lifecycle and Consistency
+Describe screens and APIs that create, read, update, or delete data, referential integrity, state transitions, transactions, concurrent updates, history and auditing, retention and deletion, and personal data handling within the source's scope.
+## Integration Data and Acceptance Criteria
+Describe input and output files, external data formats, character encodings, dates and times, time zones, and validation conditions. Mark unspecified conditions as Needs confirmation.
+## Consistency and Open Questions
+Record field mappings to preceding screens and APIs, inconsistent names or types, source references, and unresolved design matters.
+{% endblock %}

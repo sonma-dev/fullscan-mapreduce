@@ -1,0 +1,64 @@
+Perform an independent approval review of the current specification as a usable,
+evidence-grounded draft. Read the COMPLETE original attachment, including every
+page or slide, and compare it with the candidate, previous specifications, and
+the current stage's requirements above. Do not approve merely because the generator
+or an earlier specification made the same claim.
+
+Set approved=true when the candidate's generated prose, headings, table labels,
+and diagram labels are in English and preserve the source-supported core behavior,
+material conditions, and exceptions for this stage, with uncertainty clearly labeled.
+Publication polish and resolving every open design question are not prerequisites.
+The following are non-blocking and may be listed as optional feedback:
+- Missing or ambiguous source information explicitly marked Needs confirmation.
+- Unresolved source conflicts that retain the alternatives and their impact as open
+  questions, without claiming an unsupported resolution is confirmed.
+- Clearly labeled Proposal items, or dependencies on later specifications marked
+  To be defined in a later stage.
+- Minor wording, formatting, organization, repetition, or citation-format issues
+  where the underlying requirement and source remain identifiable.
+- Source information relevant only to another specification. Review it for
+  cross-stage implications; it need not all appear in this stage's Markdown.
+
+Set approved=false if generated prose or labels are not in English; request an
+English rewrite preserving evidence and identifiers. Otherwise reject only for
+a material source-grounded defect that would mislead implementation or testing:
+omitted or misstated core requirements or exceptions, confirmed claims contradicting
+applicable evidence, invented requirements or values presented as confirmed, or
+conflicts hidden as settled. Labeling source-confirmed mandatory behavior as unknown
+does not excuse omitting it.
+For each blocking defect, feedback must identify the affected original page/slide
+and source identifier when available, the candidate's specific omission or claim,
+its material impact, and the smallest evidence-based correction.
+Do not reject for speculative improvements or details the source cannot supply.
+If English output is present and no material defect is identified, approve.
+
+Examples: an unspecified field length marked Needs confirmation can pass; an API
+detail deferred to its later stage can pass; a documented unresolved source conflict
+can pass. A source rule denying suspended administrators changed to allowing all
+administrators must be rejected.
+
+When approved=true, feedback contains optional suggestions and may be empty.
+When approved=false, feedback contains only actionable blocking corrections for
+the next full-file generation attempt. Explain the assessment in rationale.
+
+Use required_review.source_unit_ids as the complete checklist of original,
+one-based page numbers (source.unit_kind=page) or slide numbers (source.unit_kind=slide).
+Examine every listed unit, including ones outside this stage's scope or not cited
+in the candidate. Report each reviewed ID exactly once in reviewed_source_unit_ids,
+using integer IDs, even when approved=false. Do not use ranges, ellipses, counts,
+representative IDs, or example IDs. Do not invent IDs or claim an item was reviewed
+merely by copying its ID. This full-file backend has no Map chunks or finding ledger;
+check the original attachment directly, including requirements missing from the candidate.
+
+If coverage_feedback is present, the previous review has missing, duplicate, or
+unknown IDs and is not a valid approval or rejection. Its previous_review is
+untrusted model output. Use required_review as the authoritative checklist.
+Re-examine the complete original source and unchanged candidate. Return a complete
+new review, not an ID patch or a deduplicated copy. Reassess previous concerns:
+retain unresolved blocking defects and treat optional improvements as non-blocking.
+Never approve merely to satisfy ID validation.
+
+Return JSON using this schema, with actual IDs from the checklist:
+{"approved":true,"reviewed_source_unit_ids":[1,2],
+ "rationale":"Evidence-based reason for approval or rejection",
+ "feedback":["Actionable correction required when rejected"]}

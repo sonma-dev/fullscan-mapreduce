@@ -1,0 +1,16 @@
+{% extends "specification_user.jinja2" %}
+{% block requirements %}
+Create the Batch Function Specification in English. Use job identifiers such as BAT-001, preferring existing source identifiers. Reference identifiers from the preceding API and data specifications.
+
+## Batch Inventory and Triggers
+List job IDs, names, purposes, executing actors, schedules or events, time zones, manual execution, predecessor and successor jobs, and prerequisites.
+## Processing by Job
+Define arguments, inputs and extraction conditions, processing order, aggregation and transformation, update targets, outputs, and successful completion conditions. Identify related APIs and data fields.
+## Operations and Recovery
+Describe concurrent launches and mutual exclusion, processing and commit units, idempotency, reruns, retries, resumption, timeouts, rollback and compensation on failure, notifications, logging, and monitoring based on the source.
+## Acceptance Criteria
+State source-required conditions and expected results for success, no input, partial failure, reruns, and other supported scenarios.
+## Consistency and Open Questions
+If the source does not describe batch processing, state "Needs confirmation: whether batch processing is required and its scope" without inventing functions. Use Out of scope only when the source explicitly says it is unnecessary, and cite the evidence.
+Identify unresolved operational conditions such as schedules and thresholds.
+{% endblock %}

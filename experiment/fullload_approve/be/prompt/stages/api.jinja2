@@ -1,0 +1,17 @@
+{% extends "specification_user.jinja2" %}
+{% block requirements %}
+Create the API Specification in English. Use identifiers such as API-001, preferring existing source identifiers. Reference screen IDs and events from the preceding Screen Function Specification.
+
+## API Inventory and Responsibilities
+List each API's ID, purpose, calling screens or external systems, synchronous or asynchronous behavior, HTTP method, path, authentication, and authorization.
+If methods or paths are absent from the source, label them Needs confirmation or Proposal instead of inventing confirmed details.
+## Interfaces by API
+Define path, query, header, and body parameters by name, meaning, type, required status, constraints, and default value.
+Specify successful HTTP status codes, response fields and their types and required status, pagination, and necessary request and response examples. Label proposed examples explicitly.
+## Processing and Consistency
+Describe input validation, business processing, data reads and writes, transaction boundaries, idempotency, concurrency, timeouts, and retries within the source's scope.
+## Errors and Acceptance Criteria
+Describe failure conditions, HTTP status codes, business error codes, response bodies, caller actions, and acceptance criteria for success and failure. Mark unknown values and codes as Needs confirmation.
+## Consistency and Open Questions
+Show links to screen operations, matters to carry into the later Data and Exception Handling Specifications, and source references.
+{% endblock %}
