@@ -1,0 +1,16 @@
+{
+  "phase": 3,
+  "structural_checks": "PASS",
+  "source_positive_count": 1024,
+  "negative_controls_pending": 37,
+  "generated_occurrences_amended": 5955,
+  "generated_classes_amended": 5888,
+  "source_TP_provisional": 384,
+  "source_FN_provisional": 640,
+  "initial_fn_challenges": 788,
+  "corrected_false_negative_history": 148,
+  "e2_bridges": 358,
+  "duplicate_excess_unchanged": 67,
+  "semantic_audit_certification": false,
+  "note_en": "All structural and physical-location assertions passed; proof logical entailment has not been exhaustively independently certified."
+}

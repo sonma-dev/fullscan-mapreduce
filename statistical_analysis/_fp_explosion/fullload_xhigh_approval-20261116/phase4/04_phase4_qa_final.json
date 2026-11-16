@@ -1,0 +1,45 @@
+{
+  "phase": 4,
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "method": "supplied_unprefixed_set",
+  "protocol_version": "6.1",
+  "structural_validation": "PASS",
+  "input_pdf_page_count": 90,
+  "original_markdown_count": 8,
+  "source_positive_count": 1024,
+  "negative_control_count": 37,
+  "generated_class_validity_rows": 5265,
+  "canonical_judgments": 2856,
+  "unsupported_residuals": 1795,
+  "confusion_totals": {
+    "FN": 310,
+    "TP": 714,
+    "TN": 37,
+    "FP": 1795
+  },
+  "confusion_equations_pass": true,
+  "binary_labels_pass": true,
+  "unique_universe_ids_pass": true,
+  "original_line_quoted_substring_checks": 5265,
+  "original_line_quote_mismatches": 0,
+  "pdf_evidence_missing_for_unsupported_claims": 5,
+  "pdf_evidence_missing_class_ids": [
+    "GCLASS-03351",
+    "GCLASS-03516",
+    "GCLASS-03547",
+    "GCLASS-03607",
+    "GCLASS-03667"
+  ],
+  "pdf_text_quote_extraction_warnings": [],
+  "pdf_image_only_excerpt_count": 33,
+  "generated_unsupported_with_phase3_positive_links": 146,
+  "unsupported_claims_with_phase5_eligibility_flag": 171,
+  "semantic_evidence_certification": "NOT_VERIFIED",
+  "semantic_limitations": [
+    "Generated-only unsupported labels are rule-assisted conservative findings, not independently certified contradictions.",
+    "Source-positive TP/FN imported from Phase3 without full independent proof audit.",
+    "Full semantic merging, class eligibility and source atomization require Phase5 correction.",
+    "Some PDF source excerpt text is from figures and is not exposed by text extraction."
+  ],
+  "phase5_executed": false
+}

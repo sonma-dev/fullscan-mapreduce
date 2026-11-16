@@ -1,0 +1,27 @@
+{
+  "status": "PASS_STRUCTURE_ONLY",
+  "checks": {
+    "source_ids_unique": true,
+    "negative_ids_unique": true,
+    "no_disjoint_source_control_collision": true,
+    "raw_occurrence_partition": true,
+    "raw_duplicate_partition": true,
+    "canonical_unique": true,
+    "four_cell_universe": true,
+    "source_coverage_equation": true,
+    "bounded_negative_equation": true,
+    "tp_one_evidence_audit_each": true,
+    "fn_root_cause_coverage": true,
+    "phase5_delta_all_explained": true,
+    "source_id_lineage": true,
+    "generated_line_locators_exist": true,
+    "no_phase6_claim": true
+  },
+  "source_positive": 1014,
+  "fixed_negative_controls": 37,
+  "generated_occurrences": 5956,
+  "generated_classes": 5889,
+  "canonical_decisions": 1051,
+  "semantic_certification": "NOT_CERTIFIED",
+  "uncertified_raw_class_support_count": 3973
+}

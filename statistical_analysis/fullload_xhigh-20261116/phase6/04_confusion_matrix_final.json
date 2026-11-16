@@ -1,0 +1,33 @@
+{
+  "protocol_version": "6.1",
+  "method": "supplied_eight_file_set",
+  "status": "FINAL_BEST_EFFORT",
+  "semantic_certification": "NOT_CERTIFIED",
+  "universe": {
+    "source_positive_atoms": 1014,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 5889,
+    "generated_positive_occurrences": 5956,
+    "covered_source_atoms": 456,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 0,
+    "canonical_predicted_positive_units": 456,
+    "canonical_decision_units": 1051,
+    "negative_universe_scope": "PDF-grounded, predeclared bounded controls only"
+  },
+  "confusion": {
+    "TP": 456,
+    "TN": 37,
+    "FP": 0,
+    "FN": 558
+  },
+  "metrics": {
+    "Precision": 1.0,
+    "Recall": 0.44970414201183434,
+    "F1": 0.6204081632653061,
+    "Duplicate": 0.01124916051040967
+  },
+  "negative_controls_bounded": true,
+  "recomputed_from": "04_atomic_judgments_final.jsonl / 03_canonical_universe_final.jsonl",
+  "metric_interpretation": "Canonical effective-proposition universe U=R union N union F; raw generated class counting is separate. Precision 100% and FP=0 remain unverified because thousands of generated-class validity decisions lack complete predicate audit. TN is bounded to fixed PDF-negative controls. Semantic entailment is not certified by structural assertions."
+}

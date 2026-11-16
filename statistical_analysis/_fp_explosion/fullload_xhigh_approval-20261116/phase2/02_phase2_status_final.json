@@ -1,0 +1,144 @@
+{
+  "phase": 2,
+  "protocol_version": "6.1",
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "method": "supplied_unprefixed_set",
+  "scored_input_files": [
+    {
+      "actual_filename": "01_screen_functions.md",
+      "sha256": "7163dbae451f2f6e262100b7fe73281befd0c51cd25fc1bceb1cc156204d4265",
+      "bytes": 133085,
+      "physical_lines": 709
+    },
+    {
+      "actual_filename": "02_api.md",
+      "sha256": "d1486869ce3279be3552e78c10cf716bc03902ef131967e8537a6132685793fa",
+      "bytes": 161787,
+      "physical_lines": 1286
+    },
+    {
+      "actual_filename": "03_data.md",
+      "sha256": "2d07845b71a7c6398543fcacf1898312ce982f0f8a5fa5bcd312e21ecad3272a",
+      "bytes": 164101,
+      "physical_lines": 1051
+    },
+    {
+      "actual_filename": "04_batch_functions.md",
+      "sha256": "4001fd618909b0c6adcbff89b7a13924139ed1577ee14f6deab68b108be8e464",
+      "bytes": 133823,
+      "physical_lines": 1133
+    },
+    {
+      "actual_filename": "05_business_rules.md",
+      "sha256": "2d697b846e65840a246ae64824b8d3bbf1f48defa96dd9997cede1d4401c1f30",
+      "bytes": 111135,
+      "physical_lines": 1107
+    },
+    {
+      "actual_filename": "06_exception_handling(2).md",
+      "sha256": "e5765e8629d0fc49cb2fe93f170fe7f36984414ade79748a46d42528fcb4a27e",
+      "bytes": 115158,
+      "physical_lines": 767
+    },
+    {
+      "actual_filename": "07_processing_flows(1).md",
+      "sha256": "fd2754c98df874851fb2d6f632a0d8b6dbb86d98d56a90576b7edd2ac446a85f",
+      "bytes": 141413,
+      "physical_lines": 1090
+    },
+    {
+      "actual_filename": "08_architecture_decision(1).md",
+      "sha256": "81bb77d9c72eafae5e3a58830a30a6898012e04f02efeb1f40d206d3fadc4268",
+      "bytes": 106482,
+      "physical_lines": 555
+    }
+  ],
+  "scored_input_count": 8,
+  "eligible_generated_occurrences": 5226,
+  "unique_raw_semantic_classes": 5195,
+  "duplicate_excess_occurrences": 31,
+  "repeated_classes": 27,
+  "cross_file_repeated_classes": 27,
+  "within_file_excess": 0,
+  "across_file_excess": 31,
+  "duplicate_rate_phase2_provisional": 0.005931879066207424,
+  "excluded_unit_records": 2738,
+  "line_cell_coverage_rows": 7698,
+  "markdown_physical_lines": 7698,
+  "physical_table_cells": 16577,
+  "per_file_summary": {
+    "01_screen_functions.md": {
+      "lines": 709,
+      "table_cells": 2293,
+      "atoms": 632,
+      "exclusions": 215,
+      "non_assertion_cells_reviewed": 1173
+    },
+    "02_api.md": {
+      "lines": 1286,
+      "table_cells": 3032,
+      "atoms": 1079,
+      "exclusions": 241,
+      "non_assertion_cells_reviewed": 1529
+    },
+    "03_data.md": {
+      "lines": 1051,
+      "table_cells": 3255,
+      "atoms": 749,
+      "exclusions": 206,
+      "non_assertion_cells_reviewed": 2142
+    },
+    "04_batch_functions.md": {
+      "lines": 1133,
+      "table_cells": 1707,
+      "atoms": 749,
+      "exclusions": 277,
+      "non_assertion_cells_reviewed": 867
+    },
+    "05_business_rules.md": {
+      "lines": 1107,
+      "table_cells": 1722,
+      "atoms": 607,
+      "exclusions": 281,
+      "non_assertion_cells_reviewed": 909
+    },
+    "06_exception_handling(2).md": {
+      "lines": 767,
+      "table_cells": 1580,
+      "atoms": 600,
+      "exclusions": 263,
+      "non_assertion_cells_reviewed": 767
+    },
+    "07_processing_flows(1).md": {
+      "lines": 1090,
+      "table_cells": 1292,
+      "atoms": 767,
+      "exclusions": 231,
+      "non_assertion_cells_reviewed": 591
+    },
+    "08_architecture_decision(1).md": {
+      "lines": 555,
+      "table_cells": 1696,
+      "atoms": 43,
+      "exclusions": 756,
+      "non_assertion_cells_reviewed": 705
+    }
+  },
+  "schema_or_table_anomalies": [],
+  "semantic_candidate_merge_diagnostics": {
+    "candidate_pairs_inspected": 18,
+    "accepted_conservative_pairs": 13,
+    "rejected_pairs": 5
+  },
+  "source_positive_atoms_unchanged": 1024,
+  "source_negative_controls_unchanged": 37,
+  "pdf_semantic_validation": "NOT_PERFORMED_IN_PHASE_2",
+  "planned_correction_stage": "Phase 5",
+  "limitations_en": [
+    "This is a rule-based, original-text and full-predicate-normalized extraction; ambiguous table cells, embedded clauses, and semantically paraphrased repetition may require human reclassification in Phase 5.",
+    "The class partition is conservative: exact fully normalized claims merge; a very high threshold permits limited near-verbatim merges while protecting distinctive identifiers, scopes and numeric constraints.",
+    "A table cell may bundle more than one testable predicate when it contains multiple conditions or outcomes. Such cases may be split after detailed semantic audit.",
+    "No source coverage TP/FN judgments, generated correctness FP/TN judgments, or final Precision/Recall/F1 values are made during Phase 2.",
+    "Unapproved architectural alternatives and unresolved open-question text are excluded as definitive predictions."
+  ]
+}

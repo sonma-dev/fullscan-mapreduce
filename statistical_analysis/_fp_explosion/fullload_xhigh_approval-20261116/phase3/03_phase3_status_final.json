@@ -1,0 +1,36 @@
+{
+  "phase": 3,
+  "protocol_version": "6.1",
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "method": "supplied_unprefixed_set",
+  "scope": "Source-positive requirements (R) only. N and generated-only FP deferred to Phase 4.",
+  "source_positive_atoms": 1024,
+  "source_negative_controls_unchanged": 37,
+  "source_positive_decision_rows": 1024,
+  "TP_evidence_best_effort": 714,
+  "FN_conservative": 310,
+  "FN_dispositions": {
+    "PARTIAL_ENTAILMENT": 275,
+    "CONSERVATIVE_UNRESOLVED": 35
+  },
+  "initial_FN_corrected_to_TP": 357,
+  "direct_matches": 13,
+  "bridged_matches": 701,
+  "eligible_generated_classes_from_phase2": 5195,
+  "phase3_eligibility_recovered_from_original_rows": 70,
+  "eligible_generated_classes_adjustment_pending_phase5": 70,
+  "raw_scored_lines_indexed": 5511,
+  "all_eight_files_inspected": true,
+  "phase2_classification_changes": "Recovered certain explicit source-backed table rows as a separate phase3 addendum; they must be integrated into the class ledger in Phase5. No silent claim of Phase2 counts being unchanged for final scope.",
+  "PDF_positive_atoms_unchanged": true,
+  "source_atomization_review_candidates_pending_phase5": 18,
+  "limitation_en": "Automated bidirectional retrieval and rule-assisted conservative entailment cannot certify every full logical predicate or every negative absence. The semantic support, occurrence extraction and source denominator must be independently challenged during Phase 5. All provisional FN records retain actual candidate quotations and failure reasons. This is not a final confusion matrix.",
+  "reciprocal_corrections_in_original_row_audit": 329,
+  "technical_reason_for_corrections": "Additional direct-identifier and inherited row matching found definitive scope-specific assertions missed by similarity-first retrieval.",
+  "targeted_proof_changes": {
+    "CORRECTED_TP_EVIDENCE_LOCATORS": 105,
+    "TP_TO_FN_INVALID_EVIDENCE": 1,
+    "FN_TO_TP_TARGETED_REVIEW": 27
+  },
+  "semantic_proof_audit_en": "Evidence locators and targeted high-risk predicates were checked; the full set of TP proofs has not been independently certified and Phase 5 must audit all."
+}

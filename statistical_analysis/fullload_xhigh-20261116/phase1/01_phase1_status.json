@@ -1,0 +1,53 @@
+{
+  "protocol_version": "6.1",
+  "phase": 1,
+  "phase_status": "PHASE_COMPLETED_BEST_EFFORT",
+  "inputs": {
+    "authoritative_pdf": "OrionDesk_AI_Detailed_Design_Specification(1).pdf",
+    "user_supplied_positive_candidate_file": "01_source_atoms_final(7).jsonl",
+    "user_supplied_negative_candidate_file": "01_source_negative_controls_final(5).jsonl",
+    "protocol": "OrionDesk_One_Pass_Atomic_Evaluation_Protocol(4).md",
+    "eight_scored_markdown_files_available": [
+      "01_screen_functions(1).md",
+      "02_api(1).md",
+      "03_data(1).md",
+      "04_batch_functions(1).md",
+      "05_business_rules(1).md",
+      "06_exception_handling(3).md",
+      "07_processing_flows(2).md",
+      "08_architecture_decision(2).md"
+    ]
+  },
+  "source_positive_atoms_retained": 1024,
+  "bounded_negative_controls_retained": 37,
+  "pdf_physical_pages_inspected": 90,
+  "source_pdf_quote_text_exact": 1021,
+  "source_pdf_quote_visual_figure_verified": 3,
+  "negative_quote_text_exact": 37,
+  "source_atom_statement_repairs": [
+    "PDF-00706",
+    "PDF-00727"
+  ],
+  "visual_figure_locator_repairs": [
+    "PDF-00977",
+    "PDF-00978",
+    "PDF-00979"
+  ],
+  "sourced_pdf_exclusion_records": 17,
+  "atomicity_preflight_dispositions": {
+    "PARENT_CHILD_OVERLAP_REVIEW_REQUIRED": 4,
+    "GENERAL_RULE_ATOMICITY_REVIEW_REQUIRED": 349,
+    "RETAINED_SOURCE_CANDIDATE": 624,
+    "MALFORMED_ATOM_CORRECTED_IN_PHASE1": 2,
+    "EXAMPLE_VS_NORMATIVE_CONTRACT_REVIEW_REQUIRED": 14,
+    "REQUIREMENT_VS_VERIFICATION_OVERLAP_REVIEW_REQUIRED": 28,
+    "FIGURE_SCOPE_AND_DUPLICATION_REVIEW_REQUIRED": 3
+  },
+  "denominator_treatment": "User-supplied 1,024/37 inventory retained as a common provisional candidate set; no unapproved additions from scored Markdown. Semantic independence of all atoms is not certified by quote matching.",
+  "limitations": [
+    "Input inventories were supplied by the user and reverified against the PDF; not regenerated de novo in this turn.",
+    "Exact quotation support is necessary but does not independently prove that each normalized proposition is normative or nonredundant.",
+    "Narrative/figure/test/exemplar overlap candidates require bounded semantic decisions; the current phase is completed as best effort, not verified source-atomization certification.",
+    "No generated-Markdown semantic extraction, method-specific TP/FN/FP/TN judgment, or score computation was performed in phase 1."
+  ]
+}

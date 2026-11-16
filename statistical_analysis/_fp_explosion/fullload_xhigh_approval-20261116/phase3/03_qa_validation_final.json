@@ -1,0 +1,36 @@
+{
+  "phase": 3,
+  "structural_checks": "PASS",
+  "source_positive_count": 1024,
+  "source_positive_classification": {
+    "FN": 310,
+    "TP": 714
+  },
+  "fn_disposition_counts": {
+    "PARTIAL_ENTAILMENT": 275,
+    "CONSERVATIVE_UNRESOLVED": 35
+  },
+  "fn_corrections": 357,
+  "bridge_rows": 701,
+  "eligible_recovery_addendum_rows": 70,
+  "unique_canonical_source_rows": 1024,
+  "unique_fn_review_source_rows": 667,
+  "source_covered_plus_fn": 1024,
+  "all_source_evidence_present": true,
+  "all_tp_generated_proof_present": true,
+  "every_fn_root_cause_present": true,
+  "all_tp_e2_bridge_present": true,
+  "eight_markdown_files_present": true,
+  "semantic_certification": "NOT_CERTIFIED_BEST_EFFORT",
+  "warnings_en": [
+    "Semantic proof descriptions are rule-assisted; final predicate-completeness requires independent audit.",
+    "Full source inventory might contain overlapping implementation/test requirement atoms.",
+    "Explicit source-backed generated rows omitted by Phase 2 extraction are in Phase 3 addendum and require class integration."
+  ],
+  "targeted_evidence_proof_patch": "PASS",
+  "source_positive_tp_fn_partition": "PASS",
+  "TP": 714,
+  "FN": 310,
+  "bridge_count": 701,
+  "corrected_proof_claims": 133
+}

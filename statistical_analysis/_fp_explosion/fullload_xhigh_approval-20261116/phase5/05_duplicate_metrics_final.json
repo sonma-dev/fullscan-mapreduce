@@ -1,0 +1,13 @@
+{
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "method": "supplied_unprefixed_set",
+  "eligible_generated_occurrences": 5289,
+  "unique_generated_claim_classes": 5258,
+  "duplicate_excess_occurrences": 31,
+  "within_file_excess": 0,
+  "across_file_excess": 31,
+  "repeated_claim_class_count": 27,
+  "repeated_claims_spanning_multiple_files": 27,
+  "duplicate_rate": 0.005861221402911704,
+  "interpretation": "Raw occurrence-to-class duplication, not canonical predicted coverage."
+}

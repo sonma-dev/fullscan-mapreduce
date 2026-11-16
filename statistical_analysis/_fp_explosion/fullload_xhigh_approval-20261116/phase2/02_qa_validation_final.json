@@ -1,0 +1,25 @@
+{
+  "phase": 2,
+  "method": "supplied_unprefixed_set",
+  "structural_validation": "PASS",
+  "errors": [],
+  "count_errors": 0,
+  "file_count": 8,
+  "physical_lines_covered": 7698,
+  "table_cells_accounted": 16577,
+  "eligible_occurrences": 5226,
+  "class_count": 5195,
+  "duplicate_excess": 31,
+  "within_file_excess": 0,
+  "across_file_excess": 31,
+  "class_membership_bijection": true,
+  "actual_markdown_input_bytes_unchanged": true,
+  "source_inventory_unchanged": true,
+  "semantic_completeness_certified": false,
+  "substantive_limitations": [
+    "Numerous candidate assertions required clause-level interpretation; automated field/status exclusions and conservative grouping are not a manual proof of all semantic equivalences.",
+    "The very low duplicate count is potentially an underestimate of genuine semantic paraphrase repetition and is provisional pending Phase 5.",
+    "Open questions, nonadopted proposals and incomplete architecture decisions are preserved as excluded context, not final predictions.",
+    "Some standalone observations and acceptance criteria may need to be merged with their surrounding row context to meet meaningful atomicity."
+  ]
+}

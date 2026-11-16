@@ -1,0 +1,25 @@
+{
+  "phase": 6,
+  "protocol_version": "6.1",
+  "method": "supplied_unprefixed_set",
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "structural_reconciliation": "PASS",
+  "semantic_certification": "NOT_VERIFIED",
+  "source_positive_atoms": 1023,
+  "source_negative_controls": 37,
+  "generated_occurrences": 5289,
+  "generated_classes": 5258,
+  "canonical_universe": 2702,
+  "confusion": {
+    "TP": 715,
+    "TN": 37,
+    "FP": 1642,
+    "FN": 308
+  },
+  "failures": 0,
+  "warnings": 0,
+  "individual_delivery": true,
+  "archive_created": false,
+  "comparison_applicable": false,
+  "notes_en": "The semantic rates are provisional. See 08_coverage_and_limitations.md for explicit evidence and uncertainty."
+}

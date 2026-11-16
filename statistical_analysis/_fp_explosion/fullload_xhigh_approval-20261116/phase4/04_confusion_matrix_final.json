@@ -1,0 +1,52 @@
+{
+  "method": "supplied_unprefixed_set",
+  "prefix": "supplied_unprefixed_set",
+  "protocol_version": "6.1",
+  "phase": 4,
+  "status": "PHASE_COMPLETED_BEST_EFFORT",
+  "universe": {
+    "source_positive_atoms": 1024,
+    "source_negative_controls": 37,
+    "raw_generated_claim_classes": 5265,
+    "phase2_raw_classes": 5195,
+    "phase3_recovered_addendum_classes": 70,
+    "generated_positive_occurrences": 5296,
+    "covered_source_atoms": 714,
+    "asserted_negative_controls": 0,
+    "unsupported_generated_only_propositions": 1795,
+    "canonical_predicted_positive_units": 2509,
+    "canonical_decision_units": 2856,
+    "negative_universe_scope": "PDF-grounded, predeclared bounded controls only"
+  },
+  "confusion": {
+    "TP": 714,
+    "TN": 37,
+    "FP": 1795,
+    "FN": 310
+  },
+  "metrics": {
+    "Precision": 0.2845755280988442,
+    "Recall": 0.697265625,
+    "F1": 0.404189074440985,
+    "Duplicate": 0.005853474320241692
+  },
+  "raw_generated_validity": {
+    "PDF_UNSUPPORTED": 1795,
+    "SUPPORTED_NONCOVERING": 1402,
+    "PDF_ENTAILED": 2068
+  },
+  "validity_review_uncertainty": {
+    "unsupported_low_support": 1302,
+    "support_requires_manual_full_predicate_review": 3331,
+    "unsupported_eligibility_question": 156
+  },
+  "metric_interpretation": "Effective canonical proposition universe U=R disjoint-union N disjoint-union F, with positive coverage projection; raw generated classes are counted separately; TN is limited to fixed PDF-negative controls.",
+  "certification_limitations": [
+    "Rule-assisted class-to-PDF retrieval has not independently certified complete full-predicate support for all raw generated classes.",
+    "Insufficient-PDF-support generated claims are conservatively scored as provisional unsupported FP, not confirmed contradictions.",
+    "Some raw classes are potentially nondefinitive fragments or unresolved observations and must be audited for eligibility in Phase 5.",
+    "Phase3 TP evidence and source atomization are not yet independently audited; the stated Recall is provisional, not verified coverage.",
+    "The Phase3 recovered 70 generated occurrences/classes are explicitly added to the working Phase4 denominator pending Phase5 class-ledger reconciliation.",
+    "Raw duplicate classes are provisional because semantically equivalent paraphrases may remain split."
+  ]
+}
