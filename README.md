@@ -8,7 +8,7 @@ Based on my examination of these results, although the observed differences have
 
 **I am currently performing metric calculations using full-load with approval process and xhigh reasoning effort, and I'm running into FP explosions! Surprisingly, I didn't see these FP explosions when running full-load with xhigh reasoning effort alone.**
 
-## Hypothesis
+## Hypothesis of FP Explosion
 
 Evaluation Protocol version 6.1 defines the evaluation universe as follows:
 
