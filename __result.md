@@ -80,3 +80,4 @@ I verified the validity of the statistical method by applying it to the same set
 During this verification, when precision or recall was close to 100%, the values remained unchanged.
 However, in the statistical calculations for full-load, when precision deviated substantially from 100%, the precision value varied considerably.
 Although the precision and recall estimates obtained from the full-load evaluations with low reasoning effort are not reliable, I believe we can confidently conclude that neither precision nor recall reaches 100%.
+
