@@ -25,6 +25,8 @@ I explicitly state that the same statistical method was used to calculate the pr
 - **To mitigate Attention Dilution in AI, we could organize fork nodes into a two-level hierarchy for documents containing a large number of chapters, or extend the hierarchy to multiple levels as needed.**
 - **With LLM-based MapReduce methods, pursuing semantic accuracy requires incurring high wall-clock time and input/output token costs. Conversely, pursuing high speed comes at the expense of semantic accuracy.**
 
+Note that If I have enough time, I can also develop a dependency-graph-based MapReduce, rather than a tree-based MapReduce.
+
 ## Other Conclusions
 
 - Although the chart shows approximately 1.76 million input tokens for the Full-load approach, the source PDF files were input separately to generate each of the seven specifications.
