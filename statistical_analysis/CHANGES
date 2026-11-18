@@ -2,6 +2,32 @@
  * OrionDesk Atomic Evaluation Protocol Changes
 ***/
 
+2026/11/18 23:02
+Version 7.0 change summary
+Without being based on version 6.2, I had the AI generate a completely new version 7.0 metric calculation protocol.
+
+OrionDesk Atomic Evaluation Protocol v6.2 — Problems and Solutions in v7.0
+================================================================
+1. Problem: The Gold Set could be modified during metric evaluation.
+Solution: Freeze the Gold Set before evaluation and prohibit all modifications.
+2. Problem: Gold Set construction and validation were mixed with metric evaluation.
+Solution: Remove both processes entirely from the evaluation protocol.
+3. Problem: Gold Set completeness could not be guaranteed.
+4. Problem: Semantically duplicate false positives could inflate FP counts.
+Solution: Strengthen semantic FP deduplication across all generated specifications.
+5. Problem: TP and FP used different counting units.
+Solution: Retain conventional Precision, Recall, and F1, and introduce Generated Claim Validity Rate (GCVR) as a separate auxiliary metric.
+6. Problem: Duplicate metrics did not distinguish legitimate reuse from unnecessary repetition.
+Solution: Classify duplicates as EXPECTED_REUSE or REDUNDANT_DUPLICATE.
+7. Problem: Excessive processing requirements could increase human interaction.
+Solution: Limit evaluation to six turns, completing one phase per turn without restricting internal LLM operations.
+8. Problem: Critical LLM judgments lacked independent verification.
+Solution: Require one independent review and at most one targeted resolution for each critical decision or equivalent group.
+9. Problem: Confirmed and unconfirmed false negatives were not sufficiently distinguished.
+Solution: Report TRUE_FN and UNCONFIRMED_FN separately, while including both in total FN.
+10. Problem: TN could be misinterpreted as representing all possible true negatives.
+Solution: Explicitly restrict TN to the fixed, bounded negative-control set.
+
 2026/11/18 9:11
 On November 19, I will generate evaluation protocol version 7.0 along with a new atomic requirements ledger, and re-perform the metric evaluation. I have saved the past metric evaluations in old/.
 
@@ -24,4 +50,5 @@ This revision preserves the six-turn limit, the authoritative PDF-only source ru
 It adds: (1) a required independent source-atomization and acceptance-test deduplication check; (2) full-corpus reciprocal FN retrieval and table-context reconstruction; (3) corrected-false-negative versus genuinely missing versus partial/unresolved dispositions; (4) audited E2/TP predicate proofs and reciprocal FP validation; and (5) explicit reliability disclosures and machine-verifiable reconciliation across new audit ledgers.
 Prior-run scores and observed false-negative examples are not accepted as current-run ground truth.
 
-Note that, since introducing version 6.1 of the evaluation protocol, I have used the same atomic requirements ledger and negative controls ledger for all metric calculations under the statistical_analysis/ directory. I have not yet used version 6.2 of the evaluation protocol in any experiments.
+Note that, since introducing version 6.1 of the evaluation protocol, I had used the same atomic requirements ledger and negative controls ledger for all metric calculations under the statistical_analysis/ directory. I have not yet used version 6.2 of the evaluation protocol in any experiments.
+Also note that, since introducing version 7.0, I have used the same newly created ledgers.

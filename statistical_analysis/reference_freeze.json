@@ -1,0 +1,82 @@
+{
+  "protocol_version": "1.0",
+  "reference_version": "oriondesk-od-ai-dds-001-r1.0-stage-d-provisional-v1",
+  "source_pdf": "OrionDesk_AI_Detailed_Design_Specification(6).pdf",
+  "source_pdf_sha256": "b71541e74564559d2cc0a84e9827086946998fbc6c627488fb9e7a7f9b0137c3",
+  "common_atomic_reqs_sha256": "99d1b665e70cc4696f5508cfb8d32aca2833efa001b5fc3e5157b7a968379de6",
+  "common_negative_controls_sha256": "586401b1c11dd0f74a5f1aab64465dacadfe6d6b56871e297067e6a76b8a0a6a",
+  "frozen_at_utc": "2026-11-18T13:09:52Z",
+  "validation_status": "REFERENCE_FROZEN_PROVISIONAL",
+  "open_issues": [
+    {
+      "id": "D-OPEN-001",
+      "severity": "MATERIAL_UNVERIFIED",
+      "topic": "Independent semantic source-to-ledger review",
+      "detail": "Structural checks and exact-text quotation location do not validate all 2,729 positive predicates or all 383 control inversions for entailment, scope, and independent atomicity. A full per-proposition source-to-statement semantic adjudication has not been completed."
+    },
+    {
+      "id": "D-OPEN-002",
+      "severity": "MATERIAL_UNVERIFIED",
+      "topic": "Completeness challenge",
+      "detail": "All 90 pages are represented by prior Stage B coverage reports and checked for input/evidence presence, but independent page-by-page semantic re-extraction and omission audit are not proven complete. No 100% semantic recall claim is made."
+    },
+    {
+      "id": "D-OPEN-003",
+      "severity": "REVIEW",
+      "topic": "Figure, example and appendix normativity",
+      "detail": "Interpretation of front-matter illustration boundaries, Appendix C example A2A payload, Appendix D reference to undefined SEC-001 through SEC-012, Appendix E verification-matrix duplication, and Appendix F example configuration remains subject to detailed normativity review."
+    },
+    {
+      "id": "D-OPEN-004",
+      "severity": "REVIEW",
+      "topic": "Residual possible duplicate and hierarchy clusters",
+      "detail": "Five positive exact-normalized statement clusters (6 excess occurrences) and one negative same-text pair have scope differences or potentially distinct test duties. They were not silently merged. A complete broader paraphrase audit is not certified."
+    },
+    {
+      "id": "D-OPEN-005",
+      "severity": "REVIEW",
+      "topic": "Coverage report consistency",
+      "detail": "Chapter 9 physical page 35 contains two source-report count-definition errors. Non-destructive amendments correct page-local unique-candidate counts to 57 positives and 5 negative controls; the immutable Stage B coverage original is unchanged."
+    },
+    {
+      "id": "D-OPEN-006",
+      "severity": "LIMITATION",
+      "topic": "Source filename aliases",
+      "detail": "Evidence file labels mention historical (1), (2), (3) PDF copies. The currently supplied original PDF hash matches all three manifest SHA-256 values; historical byte copies were not independently received for hash confirmation."
+    },
+    {
+      "id": "D-OPEN-007",
+      "severity": "LIMITATION",
+      "topic": "Blindness of independent construction",
+      "detail": "Earlier evaluation concepts and methods were present in user-conversation context. No generated method-specific specification files or TP/FP/FN scores were read or used in this Stage D audit, but strict context isolation cannot be certified."
+    }
+  ],
+  "limitations": [
+    "Quotation presence is not complete entailment; visual figure labels are only a subset of full diagram semantics.",
+    "No generated-method evaluation or confusion-matrix calculation was performed.",
+    "Prior Stage B archives and original uploaded Stage C reference files remain unmodified.",
+    "Strict leakage-free independent reviewer context could not be certified."
+  ],
+  "counts": {
+    "positive_final": 2729,
+    "negative_final": 383,
+    "original_local_positive": 2926,
+    "original_local_negative": 421,
+    "lineage_rows": 3347,
+    "semantic_decision_rows": 74,
+    "pdf_pages": 90,
+    "physical_pages_with_coverage": 90,
+    "positive_review_flagged": 655,
+    "negative_review_flagged": 5
+  },
+  "amendments": [
+    "STAGE-D-AMEND-00001",
+    "STAGE-D-COV-00001",
+    "STAGE-D-COV-00002"
+  ],
+  "retired_id_crosswalk": {
+    "NEG-00285": "NEG-00022"
+  },
+  "immutable_frozen_pair": true,
+  "verification_scope": "Stage D structural source/lineage and PDF quotation-location audit, 22 illustrated figure assertion panels reviewed visually, focused scope correction; semantic completeness not certified."
+}
