@@ -1,405 +1,459 @@
-# OrionDesk AI — Frozen-Reference Semantic Evaluation Protocol
+# OrionDesk AI — Evidence-First Atomic Specification Evaluation Protocol
 
-**Protocol version:** 7.0  
-**Status:** New, self-contained protocol; not a patch or an amendment to a previous version.  
-**Purpose:** Compare the fidelity and requirement coverage of AI-generated software design specifications using one externally constructed and frozen Gold Set.  
-**Supported methods:** `fullload`, `onelevel`, `twolevel`.  
-**Execution environment:** SaaS-hosted ChatGPT; ordinary Python-based file parsing and deterministic checks may be performed within that environment. Codex and switching to external coding agents are not required.  
-**Conversation language:** Follow the user's explicit instruction; Japanese when requested.  
-**Authored artifact language:** **English only**, including narrative text, field descriptions, report headings, machine-readable strings, and scripts. Original quotations retain the source language.  
-**Human interaction budget:** **Six request–response turns maximum for one selected evaluation scope**, with exactly one complete work package per turn. The turn budget is not an API-call budget.
+**Protocol version:** 8.1  
+**Design status:** Output-minimized revision of version 8.0. The evidence rules, semantic standards, metric definitions and twelve-phase dependencies are retained; only artifact packaging and redundant reporting are consolidated.  
+**Purpose:** Evaluate how completely and faithfully eight AI-produced software design specifications represent a fixed, PDF-grounded reference of atomic requirements.  
+**Execution model:** Twelve ordered phases, with traceable checkpoints and minimal mandatory file output. No fixed six-turn deadline.  
+**Operator environment:** ChatGPT with access to the supplied files and ordinary local parsing/search scripts. A dedicated external coding agent is not required.  
+**All authored file contents:** **English**, including Markdown, JSON/JSONL values, audit reasons, program comments, reports, and log messages. Exact quotations may preserve the original source language.  
+**Top priority:** Evidence-grounded semantic accuracy over speed, phase count, estimated scores, or appearance of completion. Do not generate low-value auxiliary files.
 
-## 1. Governing principles
+## 0. Version 8.1 file-minimization policy
 
-1. **Read-only reference:** The Gold Set and negative controls are supplied outputs of a separate construction workflow. They are **not** created, reconstructed, semantically validated, supplemented, split, merged, renumbered, corrected, or overwritten during metric evaluation. This applies to temporary copies and final outputs as well as the input originals.
-2. **Assumed source coverage:** For the purpose of this evaluation, assume that the externally reconstructed Gold Set comprehensively represents the PDF's normative atomic requirements. Do **not** undertake an independent Gold Set completeness study, page-by-page re-extraction, or source-inventory atomization audit in this protocol.
-3. **Reference freeze precedes Turn 1:** The reference version and exact bytes must be fixed before any generated specifications are scored. Once the run starts, use identical reference bytes, identifiers, and scoring rules for every selected method and throughout all six turns.
-4. **The PDF remains the evidentiary authority:** Use the original PDF to substantiate semantic matching and test whether a generated claim is actually supported, contradicted, or unsubstantiated. This is **generated-output evaluation**, not Gold Set reconstruction or certification. A valid PDF-supported generated claim that does not cover any frozen reference atom is not automatically a false positive.
-5. **One explicit decision universe:** Compute TP, TN, FP, and FN over one enumerated canonical binary universe for each method. Never mix raw occurrence counts, generated-class counts, and source-atom counts without an explicit projection.
-6. **Canonical FP counting:** Before counting FP, merge semantically identical unsupported claims across all eight generated specifications. Count the unsupported proposition once, while retaining every source occurrence and provenance. Do not merge merely related, overlapping, or partially different claims.
-7. **Two duplicate types:** Classify eligible excess occurrences into exactly `EXPECTED_REUSE` and `REDUNDANT_DUPLICATE`; report both separately. A purposeful cross-document restatement is not automatically a quality defect.
-8. **Two measurement views:** Retain conventional canonical-universe Precision, Recall, and F1 and add a distinctly named, expressly **nonstandard** generated-claim-validity measure. Do not substitute one for the other.
-9. **Independent critical adjudication:** Perform one independently prompted evidence review of each critical semantic judgment or materially identical review group, with at most one targeted conflict resolution. The goal is independent challenge, not repeated self-confirmation. Do not initiate indefinite review loops or review every ordinary judgment multiple times.
-10. **Unconfirmed FN contributes to metrics:** Report fully challenged true FN separately from unconfirmed FN, but include **both** in the total FN used for Precision, Recall, and F1.
-11. **Bounded TN:** Negative controls represent a **fixed, bounded diagnostic subset** of the source-negative universe. TN is **not** the population count of everything absent from the PDF. Never infer specificity or population-wide accuracy from these controls.
-12. **No manufactured assurance:** A passed script, complete file list, or plausible confusion matrix does not establish correct semantic entailment. Preserve evidence, residual uncertainty, and actual coverage limitations.
+**Strict output budget:** Emit **one consolidated required artifact per phase in Phases 01–11**, and only **three essential artifacts in Phase 12** (a metrics calculator, machine-readable metrics, and a combined human-readable report). Thus, **14 mandatory deliverable files in total**, rather than version 8.0's 53 files. Do not produce separate search-receipt, unresolved, exclusion, duplication, equivalence, reconciliation, challenge, change-log, limitation, evidence-audit or delivery-manifest files; embed their necessary records in the designated consolidated artifact. All of their **checks and substantive evidence obligations remain mandatory**.
 
-This protocol defines **metric evaluation only**. Gold Set construction, quality certification, repairs, and reference re-release belong to a separate workflow; none is a phase, subtask, required deliverable, or permissible automatic repair here.
+- **Only evidence-bearing data is worth writing.** Every frozen source ID, eligible generated occurrence, exclusion/coverage disposition, generated class, canonical residual, negative control and material challenge must remain traceable. The consolidation changes storage layout, **not** the evaluation population, source authority, semantic decisions, audit thresholds or scoring formulas.
+- **Do not write repeated copies.** Do not replicate a completed three-shard source ledger in Phase 07, an earlier PDF ledger in Phase 09, or all pre-challenge ledgers in separate final files. Reference unique earlier IDs where the exact record already exists and build **one coherent, post-challenge final ledger** in Phase 11.
+- **Compact serialization.** Use UTF-8 JSONL with one compact JSON object per row, stable IDs, a `record_type` discriminator, and no pretty-print whitespace. Include only evidence quotations needed to prove each decision, exact locators and enough context to recover qualifications. Use direct `source_id` references for already-frozen source evidence instead of duplicating its full text needlessly. Never omit a material predicate, necessary counterevidence, search scope, uncertainty reason, or complete occurrence-to-class link for brevity.
+- **Inline audit data.** Store search query variants, corpus scope, inspected candidate IDs/locators, strongest selected quotations, rejected-candidate reasoning, bridge evidence, exclusions, reconciliation totals and open issues **inside the item or summary records**. No separate file is required merely to carry a `search_receipt_id`.
+- **Temporary computation is allowed but not a deliverable.** Scripts, indexes, extracted PDF text, microbatch prompts/responses and working tables may exist in local temporary storage to support genuine checking. Do not export them as user deliverables, create ZIP archives, write narrative progress logs, or generate interim Markdown reports unless the operator explicitly requests them. Remove redundant temporary artifacts from the deliverable directory. Do not represent unavailable evidence as completed to save time.
+- **Per-phase gate remains strict.** One consolidated phase file must include an explicit `PHASE_SUMMARY` (or its JSON equivalent for Phase 01) with input counts, output counts, ID completeness, acceptance-check results, unresolved items and phase status. Do not advance until the phase is truly complete under Section 8. For a phase that cannot finish in one interaction, keep a durable local checkpoint for resumption; expose only the required final phase artifact after the gate is met.
+- **Immutability and final reproducibility remain strict.** Never modify the frozen positive/negative references or a previously completed phase artifact to hide a change. Phase 11 carries item-level corrected snapshots plus append-only `CHANGE` records with affected IDs. Phase 12 recomputes from that final ledger, validates reference hashes and original phase coverage, and includes a compact delivery inventory inside `12_metrics.json`.
 
-## 2. Inputs and immutable boundaries
+## 1. Mission and non-negotiable boundaries
 
-### 2.1 Required inputs
+This protocol scores **generated specifications**, not the quality of the upstream Gold Set construction workflow. Its inputs are a frozen set of source-positive requirements, a frozen bounded set of negative controls, the authoritative source PDF, and eight generated Markdown specifications. It must not extract a new Gold Set, modify the supplied reference, or silently adapt requirements to make a method appear better or worse.
 
-| Input | Evaluation role | Treatment |
+### 1.1 Mandatory inputs
+
+| Role | Canonical name | Required interpretation |
 | --- | --- | --- |
-| `common_atomic_reqs.jsonl` | Frozen source-positive atomic requirements, `R` | Read-only; assumed comprehensive and already constructed and validated externally |
-| `common_negative_controls.jsonl` | Frozen bounded source-negative counterfactuals, `N` | Read-only; no creation or revision in evaluation |
-| Original `OrionDesk_AI_Detailed_Design_Specification.pdf` | PDF evidence for adjudicating generated claims and matching references | Read for matching and claim support, never for rebuilding `R` or `N` |
-| Eight scored Markdown files per selected method | Generated specifications to evaluate | Read-only; never silently edit or regenerate |
+| Positive reference | `common_atomic_reqs.jsonl` | Frozen `R` atoms, keyed by `source_id`, with `actual_label=1` and PDF evidence |
+| Negative controls | `common_negative_controls.jsonl` | Frozen `N` counterfactuals, keyed by `negative_control_id`, with `actual_label=0` |
+| Reference metadata | `reference_freeze.json` | Reference version, recorded digests, provenance, freeze status and limitations |
+| Authoritative PDF | `OrionDesk_AI_Detailed_Design_Specification.pdf` | Original semantic authority for evaluating generated statements |
+| Generated specification 1 | `01_screen_functions.md` | Screen functions |
+| Generated specification 2 | `02_api.md` | API contracts |
+| Generated specification 3 | `03_data.md` | Data contracts |
+| Generated specification 4 | `04_batch_functions.md` | Batch and background processing |
+| Generated specification 5 | `05_business_rules.md` | Business rules |
+| Generated specification 6 | `06_exception_handling.md` | Exceptions and failure handling |
+| Generated specification 7 | `07_processing_flows.md` | Processing flows |
+| Generated specification 8 | `08_architecture_decision.md` | Architecture decisions, including explicit unresolved proposals |
 
-The two reference filenames above are canonical. A supplied filename with a harmless upload suffix is acceptable only if its role is unambiguous. Record the actual path and the source-file SHA-256. Do **not** silently replace these inputs with a historical ledger, a newly synthesized ledger, or a ledger copied from a different run.
+A harmless upload-copy suffix such as `(3)` is allowed. Resolve each role **unambiguously**, record the exact actual filename, and hash the actual bytes. Do not use historical files just because their basename looks familiar. The eight-file bundle is evaluated as one corpus for one declared method. If the method (`fullload`, `onelevel`, `twolevel`) cannot be established from explicit operator input or trusted file provenance, label it `unattributed`; never infer the method from quality or file naming alone. Compare methods only when their reference version, evaluator, scoring policy and provenance are genuinely aligned.
 
-Required scored roles (recognizable method prefixes, timestamps, and copy suffixes are acceptable only when unambiguous):
+### 1.2 Freeze and source authority
 
-1. `01_screen_functions.md`
-2. `02_api.md` (accept `02_api_.md` if that is the supplied file)
-3. `03_data.md`
-4. `04_batch_functions.md`
-5. `05_business_rules.md`
-6. `06_exception_handling.md`
-7. `07_processing_flows.md`
-8. `08_architecture_decision.md`
+1. Before any classification, record SHA-256 of both reference JSONLs and of the PDF; compare with `reference_freeze.json`. Fail the phase if a required expected hash and actual hash disagree. A filename difference with identical bytes is acceptable only when documented.
+2. From that point forward, `R`, `N`, their IDs, their text, and their exact bytes remain immutable. No normalization, merging, splitting, filtering, rewording, or repairs are permitted in the evaluation workspace, including temporary “corrected” copies.
+3. Assume `R` is the complete positive requirement inventory for **this benchmark**, even if the upstream freeze record discloses unresolved validation limitations. Do not conduct an independent Gold Set completeness audit.
+4. Nevertheless, consult the PDF to determine whether a **generated claim** is supported. A generated claim supported by the PDF but not matching a frozen `R` ID is `SUPPORTED_NONCOVERING`, not FP, and does not create a new TP or change `R`.
+5. If a supplied frozen atom conflicts materially with the PDF while adjudicating a generated claim, create a `REFERENCE_EXCEPTION` record with the fixed ID, exact PDF evidence and the scoring impact. Do not edit the atom. Material exceptions may block verified scores.
+6. Rehash all source files before the final report. If either reference ledger changes, classify the run `RUN_INVALID_REFERENCE_CHANGED`, do not publish comparable scores, and start a fresh run under an explicitly new reference version.
 
-The eighth file is scored, but `TBD`, open questions, unadopted proposals, and undecided alternatives are **not** definitive implemented commitments. Explicitly adopted, definitive claims may be eligible if evidence supports that status.
+### 1.3 Accuracy rules
 
-### 2.2 Permitted input checks versus prohibited Gold Set verification
+- A retrieval score, embedding similarity, text overlap, regex, matching number, or exact keyword search is **candidate discovery, not semantic judgment**.
+- A claim is not FP because it has no one-to-one match in `R`; its complete meaning must be checked against the PDF.
+- A source requirement is not FN because it lacks matching words; check universal rules, inherited context, aliases, tables, and combinations across all eight files.
+- `UNRESOLVED` is **not automatically FP or confirmed FN**. It is an explicit unfinished judgment with quantified possible effect on the metrics.
+- Different endpoints, objects, actors, conditions, error codes, timing, versions, exceptions or outcomes are not duplicates merely because their sentences look alike.
+- A repeated statement across seven specifications does not become seven TPs or seven FPs. Preserve every occurrence, count the canonical proposition once in its proper scoring view, and classify why each excess occurrence exists.
+- `TBD`, missing contracts, suggestions, examples, possible alternatives and unanswered architecture questions do not assert implemented behavior. An explicitly adopted and definitive architecture decision can be scored.
+- Original evidence must be quoted or pinpointed; invented quotations, claimed searches that were not run, fictitious second reviewers and substituted evidence are prohibited.
+- Do not optimize toward a prior score or method ranking. Prior charts may inform a **sanity investigation**, never labels or score targets.
 
-Permitted: confirm that required files exist and are readable; check JSONL parseability, required identifier fields, duplicate identifiers, file-to-role mapping, and content hashes; record counts as **input metadata only**. These are technical integrity checks, **not** a semantic audit or completeness certification.
+## 2. Units, semantics and permitted outcomes
 
-Prohibited: rescan all PDF pages to extract missing reference atoms; compare chapter maps for Gold Set omissions; alter the reference set in response to generated text; normalize away allegedly duplicate reference atoms; add or modify negative controls; produce replacement `common_*.jsonl` files.
+### 2.1 Objects
 
-If a reference item seems inconsistent with PDF evidence while adjudicating a generated claim, record `REFERENCE_EXCEPTION` with the exact frozen ID, the PDF evidence and its potential effect. Do not revise the reference, create a substitute scoring item, or silently remove it from a denominator. If the inconsistency makes a material result indefensible, withhold `FINAL_VERIFIED` and mark the result as qualified or blocked as appropriate. **Do not turn that exception into a Gold Set validation phase.**
+For a selected generated corpus `m`:
 
-### 2.3 Freeze and cross-method fairness
+| Symbol | Meaning |
+| --- | --- |
+| `R` | Fixed source-positive atomic requirement records |
+| `N` | Fixed, bounded source-negative control records |
+| `GO_m` | Eligible generated **atomic commitment occurrences** from all eight files |
+| `GC_m` | Distinct generated semantic proposition classes; each class retains every member occurrence |
+| `COVERED_R` | Source atoms fully entailed by eligible generated evidence |
+| `MISSING_R` | Source atoms not fully entailed **after completed reciprocal eight-file evidence search** |
+| `UNKNOWN_R` | Source atoms whose coverage remains materially unresolved or whose search was incomplete |
+| `SUPPORTED_G` | Generated classes whose complete material predicates are PDF-supported |
+| `INVALID_G` | Generated classes with confirmed unsupported or contradictory material predicates |
+| `UNKNOWN_G` | Generated classes whose full PDF support remains materially unresolved |
+| `F_CONFIRMED` | Distinct canonical unsupported/contradicted generated residual propositions after corpus-wide deduplication |
+| `F_UNKNOWN` | Distinct possible unsupported residual propositions awaiting resolution |
+| `B` | Frozen negative-control IDs affirmatively asserted by definitive generated claims |
 
-At the start of Turn 1, record the SHA-256 of both frozen ledgers and PDF and the sizes and paths of scored inputs. The same `R`, `N`, rule definitions, evidence standards, and judgment policies must be used for all selected methods. Assert that reference hashes remain unchanged before final reporting. If a reference changes, **end the run as invalid**; a new run with a new frozen reference is required. Do not quietly continue or recompute a favorable subset.
+Each generated class is one **complete independently testable proposition**, including inherited qualifications. Normalize actor, action, object, logical polarity, modality, scope, precondition, exception, timing, version, quantity, error/outcome and authority. Split a sentence only when it actually makes independent testable commitments. Never create artificial atoms from headings or isolated table values; reattach the row/column/section context first. Preserve independent changes in actor or scope.
 
-### 2.4 Evaluation scope
+### 2.2 Three-valued evidence outcomes, not guessed binary labels
 
-An evaluation may select one method or all three. A six-turn run applies to the **selected scope**, not six turns per internal chunk, and never requires the human to alternate between ChatGPT and Codex. For multiple methods, preserve method isolation and produce a side-by-side comparison only when they share the same frozen reference.
+**Source-to-generated judgment for each `source_id`:**
 
-## 3. Semantic units and scoring model
+- `COVERED`: every material source predicate is entailed by definitive generated content, supported by actual locators. Grade `E3` = direct complete match; `E2` = complete, explicitly proven universal/contextual/cross-file entailment.
+- `MISSING_CONFIRMED`: exhaustive prescribed search and contextual review are complete; no eligible generated evidence fully entails the atom. Report the strongest partial evidence and missing predicates. Grade `E1` = incomplete overlap; `E0` = no valid entailment found after the full audit.
+- `COVERAGE_UNRESOLVED`: incomplete search, unresolved scope, conflicting evidence or incomplete semantic judgment. Record what was checked and exactly what remains uncertain. Never describe it as a proven omission.
 
-### 3.1 Source and generated units
+**Generated-to-PDF judgment for each `class_id`:**
 
-For a selected method `m`, let:
+- `PDF_SUPPORTED`: the PDF entails every material predicate; attach real quotations and context. The class may cover several `R` IDs or zero.
+- `PDF_UNSUPPORTED`: at least one specific material predicate is not supported or contradicts the PDF, after a completed evidence search. List exactly which part fails and create appropriate canonical residual FP candidates.
+- `PDF_UNRESOLVED`: material evidence is insufficient to make either decision. Keep the most relevant PDF evidence and a precise missing-proof statement; do not call it a fabrication.
+
+**Negative-control judgment for each `negative_control_id`:** `ASSERTED`, `NOT_ASSERTED_VERIFIED`, or `ASSERTION_UNRESOLVED`. Only an eligible, definitive generated assertion with the same material scope and polarity triggers `ASSERTED`. Mere mention, prohibition, quotation of a test counterexample, and discussion of an unadopted proposal do not trigger it.
+
+### 2.3 Explicit entailment and contradiction tests
+
+For every judgment, ask in order:
+
+1. What is the full source or generated proposition after restoring table, heading, section and inherited universal-rule context?
+2. Who acts, on which object, under which permission, precondition, scope, version and timing?
+3. What outcome, field, status, failure behavior, limitation or exception is required?
+4. Does cited evidence entail **all** these predicates, not just address the same topic?
+5. Does any stronger contradictory or scoped exception elsewhere in the corpus change applicability?
+6. For universal rules, where is the explicit membership proof that the particular endpoint/field/job/resource falls inside the rule?
+7. Could the evidence establish a narrower rule but not the broader one? If so, do **not** mark full coverage or equivalence.
+
+Use exact negative polarity. “Must reject self-approval” is an affirmative requirement to **enforce rejection**, not evidence that the system allows self-approval. An `OR` alternative does not establish both alternatives; an optional feature does not establish mandatory implementation. Do not infer a concrete HTTP error code from generic failure handling or a UI default from a database default.
+
+## 3. Evidence discovery and model reasoning
+
+### 3.1 Candidate retrieval (necessary but never sufficient)
+
+Use scripts for exhaustive enumeration, UTF-8 decoding, offset preservation, inverted indexes, identifier and alias retrieval, source-page indexing, lexical/semantic candidate ranking and arithmetic. For each source atom, search **all eight** generated files by:
+
+- Exact identifier, path/method, entity/field, event, status/error code, constraint and numerical value;
+- Accepted aliases and terminology variants;
+- Semantic paraphrases of actor/action/target/conditions;
+- Relevant global/universal rules, shared preambles, appendices, table headers and cross-document conjunctions;
+- Contradictory claims and exceptions.
+
+For each generated class, search the **entire original PDF** for source support, both direct and paraphrased, plus common rules and the surrounding tables/sections. Retrieve enough surrounding text to preserve modality and scope. PDF page images/figures must be inspected when visual or table content materially governs a judgment. PDF citations use **physical 1-based page numbers** with section/table/figure identifiers and, when possible, exact extracts.
+
+A top-k similarity result alone cannot certify absence. Retain **search receipts**: search queries, corpus files/pages examined, candidate IDs, candidate text/locations, any broad-rule retrieval, rejected candidates and why the predicates failed. Do not falsely write `searched_all_eight=true` if the check was not performed.
+
+### 3.2 Required LLM semantic adjudication
+
+An LLM must actually read the candidate evidence and apply the entailment questions in Section 2.3. This is the **decision step**, not a programmatic threshold test. Parsers and similarity scores are allowed to propose candidate links, never to assign final `COVERED`, `MISSING_CONFIRMED`, `PDF_SUPPORTED`, `PDF_UNSUPPORTED`, `ASSERTED`, or semantic-equivalence labels on their own.
+
+Process the corpus in **small, traceable microbatches** (recommended 25–60 decisions per LLM context, reduced further for dense tables or complex claims). Give each microbatch a complete evidence pack and return **one judgment for every requested ID**. Scripts must reconcile input IDs against returned IDs, detect omissions and restart only incomplete microbatches. Do not silently mark unprocessed IDs `MISSING` or `PDF_UNSUPPORTED`.
+
+For each nontrivial decision record: `item_id`, `evidence_ids`, actual quotations/locations, predicate-by-predicate reasoning, entailment/contradiction finding, confidence/uncertainty explanation, and `adjudication_origin` (`LLM_SEMANTIC` versus mechanical checks). If the model cannot inspect enough source context, mark it unresolved with a documented blocker or continue the **same phase**; do not manufacture a determination.
+
+### 3.3 Decision quality and independence
+
+- The primary LLM judge must be **source-blind to the prior result labels** for an item when feasible; prior numerical scores and the preferred comparison method must not be provided as adjudication evidence.
+- For high-impact or disputed cases, obtain a fresh challenge assessment with the evidence and rubric but **without the first verdict**. Record the model/session/prompt or tool actually used. A differently worded self-check in the same context is not a genuinely independent reviewer.
+- Where a separate reviewer/context is unavailable, record `INDEPENDENT_CHALLENGE_UNAVAILABLE`; a bounded adversarial self-check may still identify mistakes but must be labeled as nonindependent.
+- Conflicts receive at most one focused evidence-based resolution pass per canonical decision group. If unresolved, retain uncertainty; never loop until a desired score appears.
+- Repeated occurrences with genuinely identical material evidence can be challenged as one canonical group. Do not multiply review work by number of copies.
+
+## 4. Twelve ordered phases and acceptance gates
+
+**Execution policy:** Each phase remains a distinct work package. Finish its required population, actual semantic reviews and gates before moving forward. The twelve phases are logical milestones, not a promise of twelve chat turns. Resumable internal microbatches are permitted. **Only the essential consolidated output below is mandatory per phase**; absence of former auxiliary files is not a gate failure when all required fields and checks are preserved inside the consolidated file.
+
+| Phase | Work package | Sole mandatory phase artifact | Gate to next phase |
+| --- | --- | --- | --- |
+| **01 — Freeze** | Verify all inputs, file hashes, PDF identity/page count, method attribution, frozen counts and fixed three-way source-ID sharding | `01_reference_lock.json` | All inputs readable, reference digests match and explicit shard ID lists cover every `R` once |
+| **02 — Extract A** | Read generated files 01–04; restore table context; classify each substantive line/cell and extract definitive occurrences | `02_extraction_a.jsonl` | Every substantive file 01–04 line/cell accounted for as extracted, context, excluded or explicitly unresolved |
+| **03 — Extract B** | Read files 05–08; distinguish adopted architecture from unadopted items; reconcile all eight-file extraction | `03_extraction_b.jsonl` | Complete eight-file line/cell accounting; no substantive unprocessed line concealed |
+| **04 — Semantic classes** | LLM adjudicate full semantic equivalence, classify reused versus redundant occurrences, allocate fixed class shards for 08/09 | `04_generated_classes.jsonl` | Every eligible occurrence in exactly one proven class; complete equivalence and duplicate audit embedded |
+| **05 — Source coverage A** | LLM source-to-eight-file semantic coverage decisions for source shard A | `05_source_a.jsonl` | Every shard A ID gets one sourced decision or precise unresolved finding |
+| **06 — Source coverage B** | Same for shard B, with justified rather than inherited universal applicability | `06_source_b.jsonl` | Every shard B ID accounted for |
+| **07 — Source coverage C** | Complete shard C and reciprocal missing-item search; reconcile all three source shards without copying their rows | `07_source_c.jsonl` | Every frozen `R` ID has exactly one decision across 05–07 |
+| **08 — PDF validity A** | LLM check first deterministic class shard against original PDF; identify exact unsupported residual candidates | `08_pdf_a.jsonl` | Every allocated class judged or explicitly unresolved |
+| **09 — PDF validity B** | Check remaining classes and reconcile the entire generated-class population without copying 08 rows | `09_pdf_b.jsonl` | Every `GC` class has exactly one PDF-validity judgment across 08–09 |
+| **10 — FP and negative audit** | Both full-semantic residual dedup passes; fixed `N` assertion checks; remove control/FP double counting | `10_fp_controls.jsonl` | All candidate residuals and every `N` ID reconciled; provisional canonical universe derivable |
+| **11 — Critical challenge** | Challenge material decisions, record independent-review limits, issue corrected post-challenge item-level ledger | `11_final_ledger.jsonl` | Every item, challenge and correction reconciled; one self-contained final scoring snapshot |
+| **12 — Recompute and deliver** | Independently recompute from final ledger, check invariants and hashes, disclose bounded uncertainty, limitations, provenance and file inventory | `compute_metrics.py`, `12_metrics.json`, `12_report.md` | Accurate reproducible calculation or explicit blocked status, no fabricated verification |
+
+**Required typed-record packaging:** For Phase 02/03, use `OCCURRENCE`, `EXCLUSION`, `LINE_DISPOSITION`, and `PHASE_SUMMARY` records, including original line totals and table-cell coverage. For Phase 04, use `CLASS`, `EQUIVALENCE_AUDIT`, `DUPLICATE`, and `PHASE_SUMMARY` records; embed per-member mutual-entailment proof when it is compact enough. For Phases 05–07, use **one `SOURCE_JUDGMENT` row per assigned `source_id`**, with its search receipt, grade, evidence and unresolved reason embedded, plus `PHASE_SUMMARY`. For Phases 08–09, use **one `PDF_JUDGMENT` per assigned `class_id`**, with PDF search details, evidence and unsupported residuals embedded, plus `PHASE_SUMMARY`. For Phase 10, use `FP_CLUSTER`, `FP_EQUIVALENCE_AUDIT`, `NEGATIVE_CONTROL`, `REFERENCE_EXCEPTION` as applicable, and `PHASE_SUMMARY`; the provisional proposition universe may be derived deterministically rather than written row by row. For Phase 11, use `FINAL_SOURCE`, `FINAL_CLASS`, `FINAL_DUPLICATE`, `FINAL_FP_CLUSTER`, `FINAL_CONTROL`, `FINAL_UNIVERSE`, `CRITICAL_CHALLENGE`, `CHANGE`, `REFERENCE_EXCEPTION` as applicable, and `FINAL_RECONCILIATION`. Reconstruct all final item-level statuses from these rows alone.
+
+**Shard allocation:** At Phase 01, sort frozen `R` by earliest cited physical PDF page and stable `source_id`; partition into three near-equal groups. Store **all explicit IDs**, byte hashes, actual filenames, counts and provenance inside `01_reference_lock.json`. After Phase 04, sort complete generated `class_id` values, allocate alternating deterministic halves to Phases 08/09 and store all allocated IDs inside the `PHASE_SUMMARY` record of `04_generated_classes.jsonl`. Neither partition may change after scoring begins. When one LLM context cannot hold a phase's population, process bounded resumable microbatches inside that phase.
+
+### 4.1 Phase 02–03 extraction criteria
+
+Include: independently testable, definitive statements about screens, API actions, constraints, data, processing, failure behavior, authority, access, policy, performance, supported versions and adopted architecture. Extract conjunctions as separate claims only when each component is a genuine independent testable duty. Restore short table entries using their row/column headings and common section rules; retain `table_locator` and `context_source_locator`.
+
+Exclude: document titles, lists of citations, cross-reference-only rows, editorial narration, illustrative data, unresolved `TBD`, unadopted alternatives, proposals, merely hypothetical errors and examples without normative force. A test assertion that independently commits to validation behavior can be included; a bare reference to a test ID is not a design commitment. **Do not treat the generator's self-reported word “Confirmed” as proof of PDF support**; it may establish whether the generator intended a definitive statement, not its truth.
+
+Produce one per-line or per-table-cell **coverage disposition** (`EXTRACTED`, `CONTEXT_ONLY`, `EXCLUDED`, `REQUIRES_REVIEW`); keep total original line counts by file. `REQUIRES_REVIEW` cannot quietly count as extracted or excluded. Enforce inclusion/exclusion reconciliation before proceeding.
+
+### 4.2 Phase 04 duplicate logic
+
+Choose one deterministic representative occurrence per class (file order, line, table-cell position). Every other occurrence belongs to **exactly one** category:
+
+- `EXPECTED_REUSE`: an identical proposition legitimately serves a distinct independent contractual/operational/verification role; record the specific role and location. Appearing in a different file is **not sufficient** on its own.
+- `REDUNDANT_DUPLICATE`: an identical repetition adds no independently justified role; record why.
+
+Do not merge just because a general rule subsumes a specific one, two claims refer to the same subject, or a table repeats a section title. Full equivalence requires mutual entailment of the material predicates. Use LLM-confirmed candidate clusters across **all eight** files; compare clusters against one another again after the first pass to catch paraphrases. Candidate retrieval may propose pairs, but no similarity threshold may decide the merge.
+
+Require `eligible_occurrences = unique_generated_classes + expected_reuse_occurrences + redundant_duplicate_occurrences` and make each surplus occurrence traceable to its representative. Report both duplicate types and their rates independently. This stage deduplicates **all generated propositions**, not yet only FP.
+
+### 4.3 Phase 05–07 source coverage standards
+
+For each `source_id`, inspect every material predicate in the frozen record and its source citations. LLM-evaluate direct candidate matches, context, universal statements and cross-document conjunctions. An explicit universal assertion may satisfy many genuinely distinct source atoms **if** the proof demonstrates membership and all conditions for each; a source atom counts once no matter how often covered. Store every TP's evidence; E2 requires explicit bridge steps and relevant line locators.
+
+For a source atom tentatively thought missing, **re-search all eight** generated files through the complete retrieval procedure. Inspect the strongest candidates and a separate universal/context search even if the nearest lexical match looks weak. `MISSING_CONFIRMED` requires an evidence-backed list of absent material predicates plus a complete search receipt. If search or interpretation is not complete, mark `COVERAGE_UNRESOLVED`, not confirmed FN.
+
+### 4.4 Phase 08–09 PDF validity standards
+
+Start with generated claims, **not** only source atoms that failed an `R` match. Each distinct generated class must receive a full-PDF semantic support review. Give the LLM the generated proposition, all material context, strongest PDF candidates, source page/section and any apparent exceptions. Test exact actor, target, modality, policy, conditions, timing, numbers, status, source authority and scope. A generated claim that expresses a global rule differently from the PDF can still be valid.
+
+If PDF-supported but covering no frozen `R` atom, record `SUPPORTED_NONCOVERING` and the PDF proof; do not count an FP or manufacture a new gold atom. If PDF-unsupported, capture the **exact residual error** rather than classifying an entire surrounding true paragraph as fabricated. If uncertain, mark `PDF_UNRESOLVED`, not unsupported. A broad generated class may contain more than one independent unsupported residual, but split only genuinely independently testable propositions; retain linking provenance and do not count the same residue twice.
+
+### 4.5 Phase 10 FP cluster audit: mandatory two passes
+
+**Pass 1 — Validity and normalization:** Inspect every `PDF_UNSUPPORTED` generated class and each `PDF_UNRESOLVED` potential residual separately. Verify the original PDF evidence was searched. Normalize the precise unsupported proposition using actor, action, object, modality, logical polarity, preconditions, exceptions, version, scope, timing, codes, numerical constraints and outcome. Remove supported portions. Preserve `PDF_CONTRADICTION`, `UNSUPPORTED_ADDITION`, or `UNRESOLVED_POSSIBILITY` as diagnostic categories.
+
+**Pass 2 — Global semantic equivalence:** Compare every normalized residual across **all eight** documents and generated classes. Merge **only mutually entailing** residuals; preserve all class/occurrence IDs, each exact locator and the semantic equivalence proof. Run a final cross-cluster challenge for high-likelihood pairs to detect missed paraphrase duplicates and over-merges. Keep related but nonidentical residuals separate. An unsupported claim repeated in seven files contributes one canonical FP cluster; a source requirement copied in seven files contributes no FP merely by repetition.
+
+Compare all canonical residuals with each of the supplied `NEG-*` controls. If a generated assertion is exactly semantically equivalent at matching scope to a frozen control, link it to that control and **do not count that same proposition again as generated-only FP**. Record each negative control's asserted/not-asserted/unresolved decision based on actual generated text. Do not create, change, or add controls. Preserve one `FP_CLUSTER_ID -> class_ids -> occurrence_ids -> PDF_evidence` chain and a control-equivalence crosswalk. A broad assertion that entails several distinct controls requires a documented scope/predicate analysis; never automatically count one broad sentence several times merely by text matching.
+
+### 4.6 Phase 11 critical audit and controlled changes
+
+Critical cases include: suspiciously large FP groups, residual classes that look PDF-supported, directly matching candidates labeled missing, ambiguous universal-to-many coverage, a material change from merging/splitting one FP cluster, assertion of a forbidden control, and uncertain security/authorization/privacy/approval/irreversible-operation predicates. Every discovered counterexample must be considered even if it undermines an earlier score. Challenge each canonical decision once with a blinded second pass where possible; disagreements receive at most one targeted resolution. Record `INDEPENDENT_CHALLENGE_UNAVAILABLE` explicitly if a genuinely distinct context or reviewer cannot be obtained.
+
+A correction must update **all dependent ledgers** consistently: source coverage links, generated class validity, residual cluster memberships, asserted controls, duplicate classifications and the final canonical universe. Preserve original phase outputs and embed append-only `CHANGE` records (old/new values, reason, evidence, adjudicator, affected IDs) in `11_final_ledger.jsonl`. Never use a summary-only correction that leaves the item-level final snapshot stale. Material unresolved judgments remain unresolved and may prevent verified point estimates.
+
+## 5. Measurement policy: no “uncertain = FP” distortion
+
+This protocol has **two primary measurement perspectives**, because one generated universal claim can cover several frozen source atoms and one source requirement can appear in several generated specifications. Do not pretend that generated occurrence count, generated class count, source-atom count and unsupported-residual count are interchangeable.
+
+### 5.1 Source requirement coverage
+
+Let:
 
 ```text
-R      = fixed set of source-positive atomic requirement IDs and propositions
-N      = fixed set of bounded source-negative counterfactual control IDs
-GO_m   = all eligible definitive generated claim occurrences across eight files
-GC_m   = distinct, fully normalized semantic classes of GO_m
-A_m    = {r in R : the complete generated corpus entails every material predicate of r}
-B_m    = {n in N : an eligible generated claim asserts or entails n}
-F_m    = distinct unsupported or source-contradicting generated-only propositions,
-         including explicitly conservative unresolved predictions when necessary,
-         after cross-file semantic merging and excluding propositions represented in B_m
-U_m    = R disjoint-union N disjoint-union F_m
-P_m    = A_m union B_m union F_m
+R_total   = |R|
+R_TP      = count(COVERED)
+R_FN      = count(MISSING_CONFIRMED)
+R_UNKNOWN = count(COVERAGE_UNRESOLVED)
+R_TP + R_FN + R_UNKNOWN = R_total
+
+Recall_lower = R_TP / R_total
+Recall_upper = (R_TP + R_UNKNOWN) / R_total
 ```
 
-`GC_m` contains **one class per complete semantic proposition**, not one class per file, sentence, appearance, or PDF atom. Normalize actor, object, operation, modality, condition, scope, exception, timing, constraints, version, and outcome. Keep original occurrence IDs and exact file/line/table-cell locators. A shared universal generated rule may cover multiple genuinely distinct `R` atoms without creating more occurrences or generated classes.
+If `R_UNKNOWN=0`, report `Recall = R_TP/R_total` as a single resolved value. Otherwise display the interval `[Recall_lower, Recall_upper]`, both counts, and the reasons for uncertainty. `R_FN` means proven absence of **complete coverage in the scored eight-file corpus**, not proven absence of any related text anywhere.
 
-**Do not assume** `|P_m| = |GC_m|`. Source-atom coverage projections and generated-class counts measure different things.
+### 5.2 Generated claim validity
 
-### 3.2 Generated eligibility
-
-Include definitive, independently meaningful implementation/design commitments: API behavior, data constraints, access restrictions, processing conditions and outcomes, timing, exception handling, security rules, and accepted decisions. Exclude pure headings, citations, test-case references without an independent assertion, illustrative nonadopted examples, unresolved options, and unapproved proposals. If a table cell is abbreviated, reconstruct its full meaning using the table title, column, row, section, and explicit inherited rules.
-
-Split a generated sentence when it contains genuinely independent testable commitments. Do not artificially split equivalent wording into many classes. A prohibition is a positive commitment to prohibit behavior; preserve logical polarity rather than converting every negation into a negative control.
-
-### 3.3 Semantic entailment rubric
-
-For **each source atom**, compare the complete predicate against all eligible generated evidence, using:
-
-1. Direct equivalence, including ordinary paraphrases and identifier aliases.
-2. Explicit universal or class-wide statements, with a proven membership link for the particular endpoint, object, actor, or workflow.
-3. Table/section context and cross-document conjunction when each part is a definitive commitment.
-4. Exact conditions, modality, timing, scope, limitations, exceptions, version, and outcome.
-5. Contrary and inconsistent generated evidence; mere topic overlap is not a TP.
-
-Use evidence grades:
-
-| Grade | Interpretation | Source-coverage decision |
-| --- | --- | --- |
-| `E3` | Complete direct semantic equivalence, with genuine locators | TP |
-| `E2` | Complete proved entailment through universal/contextual/conjunctive bridge | TP |
-| `E1` | Material overlap, but at least one required predicate is not established | FN |
-| `E0` | No defensible entailment or contradiction after the retrieval procedure | FN |
-
-Do not infer an exact error code from generic validation, an ordering guarantee from eventual completion, or permission from an unrelated similar operation. E2 counts as **full TP** only with an explicit complete applicability proof.
-
-### 3.4 Bidirectional source-coverage search
-
-Before finalizing an FN candidate, search all eight generated files by exact source identifiers, API method/path, field/entity name, actor, event name, response code, test trigger/outcome, aliases, and relevant general rules. Search both source-to-generated and generated-to-source. Inspect strongest candidates in their original table/section context; check cross-file conjunctions. A similarity-only top-k search cannot by itself establish absence. Preserve actual candidate text and rejected entailment predicates, not only a search counter or an unchecked assertion that the corpus was inspected.
-
-### 3.5 Generated claim validity against PDF
-
-Evaluate every unique generated class against the **original PDF**, not merely against the list of `R` IDs:
-
-- `PDF_FULLY_SUPPORTED`: every material predicate of the generated class follows from PDF evidence; may cover zero, one, or several frozen `R` atoms.
-- `PDF_NOT_FULLY_SUPPORTED`: at least one substantive generated predicate is unsupported, exceeds scope, or contradicts PDF evidence after full review. Record the unsupported residual and its FP canonical cluster unless already represented by `B_m`.
-- `PDF_SUPPORT_UNRESOLVED`: available evidence does not resolve whether the complete generated class is supported. Record the strongest source evidence and uncertainty. Under the conservative binary policy, any distinct unresolved unsupported residual is provisionally counted in `F_m` and therefore FP; mark it provisional, not a verified fabrication.
-
-A class fully supported by the PDF but not mapped to a frozen source atom is `PDF_FULLY_SUPPORTED` with a `SUPPORTED_NONCOVERING` coverage tag. **It is not FP**, and `R` remains unchanged. It also does not create a new TP or increase the denominator of Recall. The completeness assumption about `R` is not permission to contradict directly observed PDF evidence.
-
-When a compound generated statement contains both a supported obligation and an unsupported additional permission, identify the distinct fully supported subclaim and unsupported residual without erasing qualifiers. One residual is counted once per **unique semantic proposition**, not once per failed `R` match, document, or sentence. A class that asserts an `N` control is represented in `B_m` and must not appear a second time in `F_m`.
-
-### 3.6 Source-negative controls
-
-`N` is a fixed bounded set of affirmative-sounding counterfactuals derived externally from explicit exclusions, prohibitions, or deferrals. For each `n in N`, classify whether the generated corpus definitively asserts it. If asserted, that negative-control row is FP; otherwise it is TN. The rule is about **generated assertion**, not the general absence of a feature from the PDF. Do not create additional controls or alter the supplied controls.
-
-## 4. Metrics and their interpretation
-
-### 4.1 Conventional binary metrics on the effective canonical universe
+Let:
 
 ```text
-TP = |A_m|
-FN = |R| - |A_m|
-TN = |N| - |B_m|
-FP = |F_m| + |B_m|
+G_total     = |GC|
+G_supported = count(PDF_SUPPORTED)
+G_invalid   = count(PDF_UNSUPPORTED)
+G_unknown   = count(PDF_UNRESOLVED)
+G_supported + G_invalid + G_unknown = G_total
 
-|U_m| = |R| + |N| + |F_m|
-|P_m| = TP + FP
-
-TP + FN = |R|
-TN + |B_m| = |N|
-FP - |B_m| = |F_m|
-TP + TN + FP + FN = |U_m|
-
-Precision = TP / (TP + FP)
-Recall    = TP / (TP + FN)
-F1        = 2 * TP / (2 * TP + FP + FN)
+ClaimValidity_lower = G_supported / G_total
+ClaimValidity_upper = (G_supported + G_unknown) / G_total
 ```
 
-These are conventional binary-rate formulas **on this protocol's explicitly defined effective proposition universe**. `TP` counts covered source atoms, while `FP` counts distinct unsupported generated residual propositions and asserted negative controls. This is an intentionally disclosed difference of semantic projection units; the resulting Precision is **not** raw generated-class precision. Neither equality of `TP + FP` to `|GC_m|` nor equivalence with the new class metric is implied.
+`ClaimValidity` is a **separate class-level metric**, not raw occurrence precision and not a substitute for source Recall. When `G_unknown=0`, report its resolved value. When unresolved, report only the interval and qualified counts. A PDF-supported generated class may have `SUPPORTED_NONCOVERING` status and **still contributes to `G_supported`**.
 
-If a rate denominator is zero, write JSON `null` and explain. Report numerical rates consistently as decimal fractions or percentages with units. Do not hardcode expected counts or historical results.
+### 5.3 Canonical proposition projection: Precision, Recall, F1
 
-### 4.2 Mandatory FN subdivision, without changing the conventional equations
+For explicitly comparable semantic-projection scoring, use source-positive atoms as the reference-positive universe; negative-control assertions and unique PDF-unsupported generated-only residual propositions form the negative-prediction side. Count each canonical false proposition only once, not once per document, failed source match, or generated occurrence.
 
-Every source-positive unit not proven covered receives exactly one of these **two** final FN categories:
-
-- `TRUE_FN`: the prescribed bidirectional **full eight-file** retrieval, strongest-candidate inspection, contextual checks, and evidence comparison have been completed; no eligible generated material fully entails the requirement. This includes fully audited partial entailments with a specific missing predicate. `TRUE_FN` means substantiated absence of **full coverage within the scored corpus**, not a claim that no related text exists anywhere.
-- `UNCONFIRMED_FN`: full coverage was not established, but the search or semantic adjudication remained incomplete or materially uncertain. Preserve what was checked, the strongest available evidence, and the precise unresolved issue. Do **not** label this a confirmed source omission.
+Let:
 
 ```text
-FN_true        = count(TRUE_FN)
-FN_unconfirmed = count(UNCONFIRMED_FN)
-FN             = FN_true + FN_unconfirmed = |R| - TP
+B_asserted       = number of distinct N IDs definitively asserted
+B_not_asserted   = number of N IDs verified not asserted
+B_unknown        = number of N IDs with unresolved assertion
+B_asserted + B_not_asserted + B_unknown = |N|
+
+F_only_confirmed = count of unique confirmed unsupported residual propositions
+                   NOT already represented by an asserted N control
+F_only_unknown   = count of unique unresolved potential unsupported residuals
+                   NOT already represented by a confirmed or potential N assertion
+
+FP_confirmed = F_only_confirmed + B_asserted
+FP_possible_extra = F_only_unknown + B_unknown
 ```
 
-**Both categories are counted as FN in Precision, Recall, and F1.** Report `FN_true` and `FN_unconfirmed` next to each metric set and distinguish source absence from unconfirmed coverage. If the number of unconfirmed cases is material, mark the score `BEST_EFFORT`; never call it semantically certified. Missing/unreadable mandatory input is an input blocker, not an `UNCONFIRMED_FN` shortcut.
-
-### 4.3 New nonstandard metric: Generated Claim Validity Rate (GCVR)
-
-**Definition (original protocol-specific measure):** Among all **unique eligible definitive generated semantic claim classes** in `GC_m`, what fraction is fully supported by the original PDF?
+Only when **all** source, generated validity, negative-control and FP equivalence decisions affecting the metrics are resolved:
 
 ```text
-C_supported  = number of classes with PDF_FULLY_SUPPORTED
-C_invalid    = number of classes with PDF_NOT_FULLY_SUPPORTED
-C_uncertain  = number of classes with PDF_SUPPORT_UNRESOLVED
-C_all        = |GC_m| = C_supported + C_invalid + C_uncertain
+TP = R_TP
+FN = R_FN
+TN = B_not_asserted       # bounded diagnostic controls only
+FP = FP_confirmed
 
-GCVR = C_supported / C_all
+Projection_Precision = TP / (TP + FP)
+Source_Recall        = TP / (TP + FN)
+Projection_F1        = 2*TP / (2*TP + FP + FN)
 ```
 
-- Count each generated semantic class **once**, regardless of its number of source atoms covered or occurrences across documents.
-- A fully PDF-supported `SUPPORTED_NONCOVERING` generated class **does** contribute to `C_supported` even without a match to `R`.
-- A partially supported class is **not** fully valid; if meaningful independent claims can be separated, first atomize them consistently before assigning classes and calculating GCVR.
-- Unresolved classes remain in the denominator but **not** the numerator, and `C_uncertain` is prominently disclosed. Thus GCVR is a **conservative operational estimate**, not an estimate with a statistical confidence interval or a universal truth claim.
-- For `C_all = 0`, return `null`. Never round raw counts or use duplicated occurrences as the denominator.
+These are rates on the disclosed **canonical semantic-proposition projection**. They are **not** generated-class precision: the TP side counts covered frozen source atoms, whereas the extra FP side counts unique unsupported semantic residuals and asserted fixed controls. Report `ClaimValidity` alongside them so a universal rule's multiple source-atom coverage does not conceal weak per-class validity. Explicitly state this measurement choice in every comparison.
 
-**Interpretation:** GCVR describes **generated-claim support**, while Recall describes **coverage of frozen PDF source requirements**; conventional Precision describes correctness within the **effective canonical projection universe**. They are distinct. **GCVR is a newly defined, nonstandard auxiliary indicator**, not a replacement for conventional Precision and not grounds to claim a method is superior by itself. Retain all four-cell metrics independently.
-
-### 4.4 Exactly two duplicate types
-
-For each semantic class, select one representative occurrence by deterministic order: scored-file order, line, then table-cell position. Every other occurrence of that class is an **excess occurrence**, and must have **exactly one** of the following mutually exclusive types:
-
-- `EXPECTED_REUSE`: a semantically identical assertion deliberately serves an independently justifiable role in a distinct specification context (for example, the same required API constraint also being necessary in a processing-flow specification). Record specific role and location evidence. Cross-file duplication alone is **not** sufficient proof of expected reuse.
-- `REDUNDANT_DUPLICATE`: a repeated substantive assertion that adds no independently justified contractual, operational, or verification role. This includes unnecessary repetition inside one file or across files. Record the representative occurrence and why the additional assertion is redundant.
-
-Use the **same full-predicate equivalence standard** for clustering duplicates and FP candidates. Similar topics, a narrower rule versus a broader rule, different endpoint/resource scopes, distinct failure codes, or changed conditions are not semantically identical; do **not** merge them to make duplication or FP appear smaller.
+If unresolved judgments remain, **do not issue one falsely precise “final FP” or Precision**. Show confirmed lower counts and conservative bounds instead:
 
 ```text
-C_occurrences       = |GO_m|
-C_unique_classes    = |GC_m|
-Duplicate_excess    = C_occurrences - C_unique_classes
-Expected_reuse      = count(excess occurrences labeled EXPECTED_REUSE)
-Redundant_duplicate = count(excess occurrences labeled REDUNDANT_DUPLICATE)
+TP_min = R_TP
+TP_max = R_TP + R_UNKNOWN
+FN_min = R_FN
+FN_max = R_FN + R_UNKNOWN
+FP_min = FP_confirmed
+FP_max = FP_confirmed + FP_possible_extra
 
-Expected_reuse + Redundant_duplicate = Duplicate_excess
-
-Expected_reuse_rate      = Expected_reuse / C_occurrences
-Redundant_duplicate_rate = Redundant_duplicate / C_occurrences
+Precision_lower = TP_min / (TP_min + FP_max)
+Precision_upper = TP_max / (TP_max + FP_min)
+Recall_lower    = TP_min / |R|
+Recall_upper    = TP_max / |R|
+F1_lower        = 2*TP_min / (2*TP_min + FP_max + FN_max)
+F1_upper        = 2*TP_max / (2*TP_max + FP_min + FN_min)
 ```
 
-When `C_occurrences = 0`, both rates are `null`. Report **the two types separately as the primary duplicate result**; a raw total may be given for reconciliation, but never report an undifferentiated single `Duplicate` value as though all repetition were harmful. A class that appears in several documents does not become several source-atom TPs merely because it is repeated.
+These are **conservative uncertainty envelopes**, not probability confidence intervals and not an assertion that all extreme combinations are jointly attainable. Use JSON `null` for undefined denominators, with a written explanation. `TN` is limited to the predeclared controls; neither all possible absent behaviors nor population specificity/accuracy can be inferred from it. Explicitly separate an N-control alarm count from unique FP residuals in every report.
 
-### 4.5 Bounded meaning of TN
+### 5.4 Duplicate metrics
 
-`TN = |N| - |B_m|` only measures **unasserted predeclared negative controls** in a deliberately bounded set. There are innumerable possible false features not enumerated by `N`. TN cannot be interpreted as a population-wide true-negative count; these data do not justify general specificity, negative predictive value, or overall accuracy of generated specifications across all imaginable absent claims. Adding more predeclared unasserted controls can increase TN but does **not** change Precision, Recall, F1, or GCVR.
+```text
+GO_count = number of eligible generated occurrences
+GC_count = number of canonical generated classes
+D_excess = GO_count - GC_count
+D_expected = number of excess occurrences classified EXPECTED_REUSE
+D_redundant = number of excess occurrences classified REDUNDANT_DUPLICATE
 
-## 5. Mandatory FP cluster audit
+D_expected + D_redundant = D_excess
+Expected_reuse_rate = D_expected / GO_count
+Redundant_duplicate_rate = D_redundant / GO_count
+```
 
-Perform a **corpus-wide canonical FP audit**, not a source-to-generated unmatched-count shortcut.
+For a zero denominator return `null`. Report two types separately. These are **occurrence-level** diagnostics and must not alter source TP or canonical FP merely because the same rule is repeated in several document roles.
 
-1. Extract every definitive generated occurrence and restore inherited context before any FP classification.
-2. Group semantic equivalents into full-predicate `GC_m` classes across all eight files; preserve original occurrences.
-3. For each candidate unsupported claim, search the entire PDF for direct support, equivalent terminology, table context, explicit universal rules, exceptions, adopted scope and cross-section conjunction. Lack of a match in `R` alone **never proves FP**.
-4. Split supported subclaims from truly unsupported additions without dropping conditional predicates; flag unsupported or contradicting residuals.
-5. Normalize all remaining unsupported residuals into **distinct canonical FP propositions**, preserving polarity, target, actor, conditions, scope, modality, timing, outcomes and versions.
-6. Deduplicate the residuals **again across all classes and files**, using bidirectional semantic entailment as the equivalence test. A relation of simple containment or shared subject is not equality. Maintain `FP_CLUSTER_ID -> [generated_class_ids, occurrence_ids, evidence]`.
-7. Match asserted `NEG-*` controls and remove their exact semantic equivalents from the generated-only `F_m` pool; never count the same proposition in both `B_m` and `F_m`.
-8. Verify unique cluster IDs, source locators, original candidate coverage, evidence of semantic equivalence, and reconciliation `FP = |B_m| + |F_m|`.
-9. For high-consequence or ambiguous FP clusters, request the independent critical check in Section 6; do not simply relabel every FP as a duplicate or make unsupported behavior disappear.
+### 5.5 Historical comparison restriction
 
-Maintain at least these descriptive FP subtypes without changing the four-cell equations: `PDF_CONTRADICTION`, `UNSUPPORTED_ADDITION`, and `CONSERVATIVE_UNRESOLVED`. A subtype is a **diagnostic annotation**, not a new confusion-matrix cell or a third duplicate type.
+Do not compare a new score numerically with historical Full Load/One-Level/Two-Level charts unless the **same frozen reference, eligible-claim definition, PDF version, semantic equivalence standard, handling of unresolved cases, and scoring projection** are used. If not, call the comparison `NOT_COMPARABLE`; historical results may still be described as context but never used to force label changes or claim an improvement/decline.
 
-## 6. Independent, bounded critical adjudication
+## 6. Minimum machine-readable record schemas
 
-### 6.1 What qualifies as critical
+These are mandatory **field families**, not illustrative evidence or actual scoring outcomes. Additional fields are allowed, but required identifiers and decision vocabulary must be stable. Every row must be valid UTF-8 JSONL with JSON `null` for absent values. **In 8.1, store them as typed rows in the consolidated phase files; `record_type` is mandatory and separate legacy files are forbidden by default.**
 
-A judgment is critical if **any** of these apply:
-
-- A source-positive atom has an apparently direct complete match but was classified as FN, or a generated claim has a persuasive PDF match but was classified as FP.
-- A single universal or cross-file rule is being used to cover **five or more** distinct `R` atoms, or its scope could materially change the result.
-- A generated claim contradicts an explicit PDF constraint or asserts a predeclared `N` control.
-- An FP canonical cluster changes the FP count substantially if merged or split, or contains a serious semantic scope/modality dispute.
-- A required privacy, authorization, safety, financial, data-integrity, or irreversible-action predicate is uncertain or contradictory.
-- A remaining `UNCONFIRMED_FN` has an identified close candidate whose acceptance would change a scoring cell.
-
-Ordinary clear direct matches and routine noncritical judgments do not require independent re-review. A large raw occurrence count alone is not a reason to launch a separate review for every repeated occurrence: **review the canonical decision, not its copies**.
-
-### 6.2 Independence procedure and strict anti-loop rule
-
-For each unique critical canonical decision (or evidence-identical group):
-
-1. Preserve the initial decision, strongest candidate evidence, and a concise predicate-level rationale.
-2. Submit an **independently prompted second assessment** within the **same user turn and SaaS-hosted ChatGPT environment** whenever the environment permits it. Provide actual PDF and generated evidence, identifiers needed to locate them, and the adjudication rubric, **without providing the initial verdict or score**. Different wording alone does not guarantee statistical independence; label this as a **procedurally independent challenge**, not proof of independent model errors.
-3. Record the second verdict and full-predicate reasoning separately.
-4. If the decisions agree and the supporting evidence is sufficient, close the case. If they disagree, conduct **at most one** targeted, evidence-based resolution assessment focused only on the disputed predicates.
-5. After that, close the case: correct the score if evidence resolves it; otherwise use the declared conservative decision and explicit uncertainty. **Never iterate until agreement.**
-
-No hard numerical limit is imposed on internal parsing, searching, Python checks, batching, or model calls needed to complete a phase. **The exceptional critical review process itself is bounded to one second assessment plus at most one targeted resolution per unique case/group**, and only the listed critical categories trigger it. Do not clone identical rechecks across every duplicate occurrence or repeat prior full phases. If a genuinely separate assessment is unavailable in the current environment, document `INDEPENDENT_CHALLENGE_UNAVAILABLE` and do not claim independent confirmation or `FINAL_VERIFIED` for that unresolved material case.
-
-## 7. Six-turn execution plan
-
-**One turn** means one user request followed by **one assistant response**. The assistant may use any reasonable number of internal tool calls, local scripts, batches, targeted model passes, and file operations **within that turn**. The user should never be asked to run tens of interactive turns, change to Codex, or manually execute an internal batch. A phase is complete only when its required output exists or a precisely reported input/technical blocker prevents completion. Ordinary semantic uncertainty must be recorded, not used to silently skip work.
-
-| Turn | Full work package | Mandatory turn outputs |
-| --- | --- | --- |
-| **1 — Input freeze and generated occurrence extraction** | Read frozen `R` and `N`, original PDF, and all eight generated documents per selected method. Record input hashes and integrity, inspect all substantive generated lines/table cells, extract eligible definitive `GO_m`, and record excluded generated material. **No Gold Set verification or editing.** | `00_input_inventory.json`, `01_generated_occurrences.jsonl`, `01_generated_exclusions.jsonl`, `01_generated_coverage.json` |
-| **2 — Generated classes and two duplicate types** | Normalize every eligible occurrence, form `GC_m`, classify every excess occurrence as `EXPECTED_REUSE` or `REDUNDANT_DUPLICATE`, preserve all provenance, and reconcile occurrence/class counts. | `02_generated_classes.jsonl`, `02_duplicate_occurrences.jsonl`, `02_duplicate_metrics.json` |
-| **3 — Frozen-source coverage: TP and two FN categories** | Judge every frozen source-positive `r`, perform reciprocal eight-file retrieval for provisional FN, record every direct/bridged TP proof, and classify remaining FN as `TRUE_FN` or `UNCONFIRMED_FN`. Flag critical cases for Turn 5. Never alter `R`. | `03_source_coverage.jsonl`, `03_coverage_bridges.jsonl`, `03_fn_diagnostics.jsonl`, `03_source_confusion.json` |
-| **4 — Generated correctness: FP, TN and class validity** | For every `GC_m`, check full PDF support; complete both passes of FP semantic consolidation, detect `B_m`, construct `F_m`, assign `TN` and `FP`, calculate a provisional GCVR, and flag critical cases. Do not amend `N`. | `04_generated_validity.jsonl`, `04_fp_clusters.jsonl`, `04_negative_control_judgments.jsonl`, `04_canonical_universe.jsonl`, `04_provisional_metrics.json` |
-| **5 — Targeted independent review and reconciliation** | Independently challenge only critical decisions, close disagreements under the bounded rule, apply corrections to **judgments, FP clusters, duplicate classifications, and evidence links only**, and reconcile all rows. **Never modify the frozen Gold Set or controls.** | `05_critical_review.jsonl`, `05_judgment_changes.jsonl`, `05_reconciliation.json`; updated full copies of affected `02_duplicate_occurrences.jsonl`, `03_source_coverage.jsonl`, `03_fn_diagnostics.jsonl`, `04_generated_validity.jsonl`, `04_fp_clusters.jsonl`, and `04_canonical_universe.jsonl` in their original evaluation-output locations |
-| **6 — Independent mechanical recomputation and delivery** | Recompute every metric from final item-level ledgers, recheck frozen hashes, total counts, FN split, both duplicate types, FP clustering, bounded TN, critical-review coverage, file existence and report limitations. Deliver individual files and comparison when scope includes multiple methods. | `06_metrics_final.json`, `06_metrics_final.md`, `06_coverage_and_limitations.md`, `compute_metrics.py`, and `06_comparison_final.json`/`.md` if applicable |
-
-If a requested turn cannot finish because a mandatory input is missing or unreadable, return available **English** partial artifacts with `PHASE_TERMINATED_INPUT_BLOCKER`, state exactly what is inaccessible, and do not invent metrics. If inputs are accessible but semantic decisions are incomplete, complete the specified work package with itemized `BEST_EFFORT` judgments and quantified limitations rather than manufacturing verified certainty. There is no requirement to revisit the same phase repeatedly to make every ambiguity vanish.
-
-## 8. Output data requirements
-
-### 8.1 Provenance and schemas
-
-Every **generated occurrence** must contain at least:
+### 6.1 Generated occurrence and exclusion
 
 ```json
-{"method":"fullload","occurrence_id":"GEN-000001","file":"01_screen_functions.md","line_start":1,"line_end":1,"table_locator":null,"statement_en":"Illustrative definitive statement","eligibility":"DEFINITIVE"}
+{
+  "occurrence_id": "GEN-000001", "method": "unattributed",
+  "file": "01_screen_functions.md", "line_start": 1, "line_end": 1,
+  "table_locator": null, "context_source_locator": null,
+  "statement_en": "A real atomic commitment read from this location",
+  "predicate_structure": {"actor": null, "action": null, "target": null, "scope": null,
+    "modality": null, "conditions": [], "exceptions": [], "timing": null,
+    "version": null, "outcome": null, "polarity": null},
+  "eligibility": "DEFINITIVE", "extraction_evidence": [], "review_status": "LLM_REVIEWED"
+}
 ```
 
-Every **generated semantic class** must contain a stable class ID, normalized proposition, predicate structure, all member occurrence IDs, and whether it has one or more PDF support/coverage bridges. Every **duplicate excess** record must contain `occurrence_id`, `class_id`, `representative_occurrence_id`, `duplicate_type`, `reason_en`, and genuine file/line evidence.
+Exclusions have their own `exclusion_id`, exact file/line/table locator, original text, `exclusion_reason` and coverage disposition. The example is a **schema placeholder**, not an actual OrionDesk finding.
 
-Every source-coverage record must contain `source_id`, `cell` (`TP` or `FN`), grade, PDF source citation, actual generated candidate locators, full-predicate applicability explanation, and **if FN**, exactly one `fn_type` (`TRUE_FN` or `UNCONFIRMED_FN`) with search evidence and unresolved predicates. Every E2 TP must additionally include explicit scope membership and any cross-file evidence links.
+### 6.2 Generated semantic class and duplicate
 
-Every generated-validity record must contain `class_id`, one `pdf_support_status`, evidence locators, fully justified or missing predicate list, and links to zero or more source atoms and relevant FP clusters. Every canonical FP cluster must contain exactly one distinct residual proposition, a support subtype, proof of its cross-occurrence semantic merging, a list of source class IDs and generated occurrence IDs, and a flag showing whether the cluster belongs to `F_m` or is represented by `B_m` (never both).
+`class_id`, `complete_normalized_proposition_en`, `predicate_structure`, `representative_occurrence_id`, `member_occurrence_ids`, and `equivalence_evidence` are mandatory. For each excess duplicate store `occurrence_id`, `class_id`, `representative_occurrence_id`, `duplicate_type`, `specific_role_evidence`, `reason_en`, and exact locators. Preserve every source occurrence even after normalization.
 
-Every critical review must retain original decision, blinded-review decision, evidence, exact disputed predicates, optional targeted resolution and final decision, plus evidence of how the initial verdict was excluded from the independent challenge. Never invent an independent reviewer, a separate model call, or a review trace that did not occur.
+### 6.3 Source coverage
 
-Illustrative rows in this section are **schemas, not actual OrionDesk findings**. Replace all placeholders with evidence from the actual supplied inputs when executing a phase.
+`source_id`, `judgment` (`COVERED`/`MISSING_CONFIRMED`/`COVERAGE_UNRESOLVED`), `grade` (`E3`/`E2`/`E1`/`E0`/`UNRESOLVED`), frozen PDF evidence, candidate generated occurrence IDs and actual locators, strongest candidate quotations, `all_material_predicates`, `entailed_predicates`, `missing_predicates`, applicability/exception proof, `search_receipt` (embedded object or compact array), and `adjudication_origin`. For E2 include an explicit universal membership bridge or multi-document proof. For missing, include completed reciprocal search evidence; for unresolved, specify the actual unfinished issue.
 
-### 8.2 A canonical scoring ledger
+### 6.4 PDF validity and FP residual
 
-The final `04_canonical_universe.jsonl` must enumerate exactly one binary judgment per element of `U_m`:
+Each generated class gets `class_id`, `pdf_judgment`, actual PDF `physical_page` and section/table/figure locators, exact quotation/context, predicate-level evidence, `supported_noncovering` flag, `covered_source_ids`, `unsupported_residual_ids`, `search_receipt` (embedded object or compact array), and `adjudication_origin`. Each FP residual cluster gets exactly one complete proposition, `fp_cluster_id`, support subtype, source class IDs, all occurrence IDs/locations, full equivalence reasoning, PDF counterevidence or absence-search evidence, negative-control crosswalk and `confirmation_state` (`CONFIRMED_UNSUPPORTED`/`UNRESOLVED_POTENTIAL`).
 
-- For each `r in R`: actual `1`; predicted `1` iff fully entailed (TP), otherwise predicted `0` (FN, with the required split).
-- For each `n in N`: actual `0`; predicted `1` if asserted (FP), else predicted `0` (TN).
-- For each distinct `f in F_m`: actual `0`, predicted `1` (FP), with canonical FP-cluster provenance.
+### 6.5 Negative controls and corrections
 
-There must be no overlap of canonical IDs, no double inclusion of an asserted negative control in `F_m`, and no duplication of one FP residual due only to repeated generated wording. The complete final ledger must be emitted after Turn 5 corrections; the earlier Turn 4 file may be marked provisional until reconciled.
+Every fixed `negative_control_id` has one `assertion_status`, generated-claim locators, predicate-level assertion explanation, matching canonical cluster IDs and full-search receipt. Corrections append `change_id`, target ledger row, old status, new status, reason, evidence, adjudicator, challenge outcome and dependent-file updates. Never erase older decisions from the audit trail.
 
-### 8.3 Required results
+## 7. Verification gates and script requirements
 
-For each method, report:
+The Phase 12 `compute_metrics.py` must compute counts and rates **only from the typed final item-level records in `11_final_ledger.jsonl`**, cross-validating IDs against the frozen source inputs and Phases 02–10, not from any prior summary JSON. It must read the consolidated file types directly; separate legacy ledgers are not required. It must fail loudly on any of the following:
 
-- `TP`, `TN`, `FP`, `FN`, `Precision`, `Recall`, `F1` and universe sizes.
-- `FN_true`, `FN_unconfirmed`, the fraction of FNs unconfirmed, and strongest reasons for uncertainty.
-- `GCVR`, `C_supported`, `C_invalid`, `C_uncertain`, `C_all`, with **nonstandard auxiliary metric** labeling.
-- `Expected_reuse`, `Redundant_duplicate`, their separate rates, eligible occurrences, unique classes, and reconciliation.
-- FP subtype counts, distinct FP clusters, negative-control assertions, and semantic merging corrections.
-- Confirmed versus unresolved critical-review cases, coverage of mandatory evidence checks, actual limitations, and the read-only Gold Set hash.
+1. Missing or unreadable mandatory inputs; malformed JSON/JSONL or missing identifiers; hash mismatch with `01_reference_lock.json`.
+2. Any generated document line/table cell without a coverage disposition, unresolved extraction incorrectly treated as clean, or unexplained missing generated occurrences.
+3. Duplicate `source_id`/`negative_control_id`/`occurrence_id`/`class_id`/`fp_cluster_id`, or any generated occurrence belonging to zero/multiple classes.
+4. `GO_count != GC_count + D_expected + D_redundant`, or an extra occurrence without one of the two permitted duplicate types.
+5. Any source-positive ID not assigned exactly one of `COVERED`, `MISSING_CONFIRMED`, `COVERAGE_UNRESOLVED`.
+6. A `COVERED` source atom without actual generated proof; an E2 source atom without an applicability bridge; a `MISSING_CONFIRMED` atom without complete eight-file reciprocal-search receipts.
+7. Any generated class without exactly one PDF validity status, unsupported class with no identified residual, or PDF-supported class whose material predicates lack cited support.
+8. Residual candidates lost between generated validity and final FP clustering, duplicated canonical residual semantics, overlapping identical negative-control and generated-only FP counts, or clusters missing member occurrence provenance.
+9. Any frozen negative-control ID lacking exactly one assertion status, or `B_asserted + B_not_asserted + B_unknown != |N|`.
+10. `R_TP + R_FN + R_UNKNOWN != |R|`, `G_supported + G_invalid + G_unknown != |GC|`, `FP_confirmed != F_only_confirmed + B_asserted`, or impossible interval bounds.
+11. Claimed independent critical adjudications without verifiable independent-pass records, or corrections absent from the unified post-challenge final ledger.
+12. Final metrics copied from a prior JSON instead of recomputed; numeric denominators not documented; historical incomparable runs presented as ranked equivalents.
+13. Output/inputs sharing a path, an attempted reference mutation, or a reference hash change at the final gate.
+14. Author-generated file prose not in English; evidence locators that cannot be resolved in the actual uploaded PDF/Markdown file; placeholder text misrepresented as real evidence.
 
-Do not claim a higher GCVR proves higher source Recall or that a high precision implies zero omitted requirements. Report numerical comparisons only when reference version, method scope, evidence standard, and dataset are genuinely comparable.
+The validation script must also reject missing `record_type` values, missing per-phase `PHASE_SUMMARY` or `FINAL_RECONCILIATION`, incomplete typed-record partitions and unreferenced changes or search receipts. Multiple record types inside one JSONL are intentional; a separate auxiliary file is never required solely for a schema family.
 
-## 9. Mechanical recomputation and audit gates
+A script passing these gates proves **structural integrity**, not semantic correctness. The report must state that explicitly. Inspect a selected set of actual PDF page images, tables and generated context at critical disputed sites; mechanical checks alone cannot sign off on semantic entailment.
 
-Write an English `compute_metrics.py` that recomputes the final values from emitted JSON/JSONL rather than copying a summary. The following checks are mandatory:
+## 8. Completion statuses and release rules
 
-1. All required inputs are accounted for and the frozen R/N hashes equal the Turn 1 recorded values. No revised reference files are emitted.
-2. `GO_m` occurrences each belong to exactly one `GC_m` class; no method cross-contamination occurs; every duplicate excess has exactly one of the two permitted types.
-3. `Expected_reuse + Redundant_duplicate = |GO_m| - |GC_m|`, and both duplicate rates use **occurrences** as their denominator.
-4. Every `R` ID has exactly one TP/FN judgment; every `N` ID has exactly one TN/FP judgment; every generated-only `F_m` ID has exactly one FP judgment.
-5. `FN = FN_true + FN_unconfirmed`; no `UNCONFIRMED_FN` is quietly dropped from the confusion matrix.
-6. Every TP has real proof evidence, every `TRUE_FN` has a completed reciprocal-search audit, and every `UNCONFIRMED_FN` has documented limitations rather than fabricated absence evidence.
-7. No semantic duplicate remains among canonical FP clusters according to the completed equivalence audit; asserted negative controls are not also represented by `F_m`.
-8. `FP = |F_m| + |B_m|`, `TN = |N| - |B_m|`, `TP + FN = |R|`, and the enumerated four-cell total equals `|U_m|`.
-9. `C_all = C_supported + C_invalid + C_uncertain = |GC_m|`; GCVR is independently recomputed from the complete class ledger, not inferred from TP or FP.
-10. Every flagged critical case has a recorded independent second assessment, one permitted resolution, or an explicit unavailable/unresolved status. No case/group was subjected to repetitive unbounded rechecks.
-11. All output JSON/JSONL parses, each cited input-file locator exists, all authored deliverable text is English, and any output-vs-input paths are distinct.
-12. Arithmetic checks are described as **structural**. They do not independently prove all semantic judgments or that the externally constructed Gold Set is complete.
+| Status | Meaning |
+| --- | --- |
+| `PHASE_COMPLETE_EVIDENCE_REVIEWED` | All required phase artifacts and semantic evidence checks completed for that phase |
+| `PHASE_COMPLETE_WITH_UNRESOLVED` | All phase items explicitly accounted for; unresolved cases and their impact enumerated |
+| `PHASE_INCOMPLETE_CONTINUE_SAME_PHASE` | Required items or reviews have not been processed; do **not** advance |
+| `PHASE_BLOCKED_INPUT` | Missing/unreadable mandatory input or PDF evidence; do **not** invent results |
+| `RUN_INVALID_REFERENCE_CHANGED` | Reference bytes differ from the locked pair; abort comparable scoring |
+| `FINAL_VERIFIED` | All items resolved, all mechanical checks pass, required critical challenges completed as independent assessments where available, and no material evidence exception remains |
+| `FINAL_QUALIFIED` | All items accounted for with explicit unresolved decisions, bounded score ranges and review limitations; no unsupported point-estimate claim |
+| `FINAL_BLOCKED` | Inputs or required ledger coverage insufficient for defensible scoring |
 
-### Permitted status labels
+A `PHASE_COMPLETE_WITH_UNRESOLVED` result may move forward **if** itemized uncertainty is preserved and the next phase can legitimately work with it. If an extraction or file-reading task itself is incomplete, use `PHASE_INCOMPLETE_CONTINUE_SAME_PHASE` and remain in the phase. **Never turn partial execution into success by relabeling everything as unresolved.**
 
-- `PHASE_COMPLETED_VERIFIED`: required phase outputs and semantic/evidence checks completed for that work package.
-- `PHASE_COMPLETED_BEST_EFFORT`: work package closed with explicitly enumerated unresolved judgments and limitations.
-- `PHASE_TERMINATED_INPUT_BLOCKER`: mandatory evidence was missing, corrupt, or unreadable.
-- `FINAL_VERIFIED`: all six phases completed; all material semantic judgments and mandatory independent critical challenges are supported and closed.
-- `FINAL_BEST_EFFORT`: all six phases completed with a complete canonical decision universe but some clearly disclosed unresolved semantic judgments.
-- `RUN_INVALID_REFERENCE_CHANGED`: frozen reference bytes changed during evaluation; do not publish comparable final scores for that run.
+`FINAL_VERIFIED` must not be awarded merely because a script passed or every file exists. If independent critical review was unavailable for material disputes, report `FINAL_QUALIFIED` unless those disputes are otherwise conclusively resolved with auditable evidence and the limitation is clearly disclosed. The final report must disclose the exact independent-review coverage.
 
-**Do not** award `FINAL_VERIFIED` merely because algebra reconciles or because all expected output filenames exist. If critical review cannot be genuinely isolated, describe the limitation plainly rather than falsely claiming model independence.
+## 9. Output layout and delivery
 
-## 10. Required artifact layout and delivery
-
-All original input files remain unchanged. Write only **English-language evaluation artifacts** to a separate output directory. For multi-method evaluations, put shared input/hash metadata at the output root and method-scoped artifacts under `fullload/`, `onelevel/`, and `twolevel/` respectively. No `common_atomic_reqs.jsonl` or `common_negative_controls.jsonl` output copies, corrected ledgers, or Gold Set creation outputs are permitted.
+**Exactly the following 14 mandatory deliverables** (11 phase checkpoints, three Phase 12 outputs). **No additional JSONL audit logs, Markdown summaries, duplicated cumulative ledgers or standalone manifest files.** Each phase writes to the indicated file only; necessary evidence records are embedded, not omitted.
 
 ```text
-<evaluation-output>/
-    00_reference_freeze.json
-    fullload/                         # if selected
-        00_input_inventory.json
-        01_generated_occurrences.jsonl
-        01_generated_exclusions.jsonl
-        01_generated_coverage.json
-        02_generated_classes.jsonl
-        02_duplicate_occurrences.jsonl
-        02_duplicate_metrics.json
-        03_source_coverage.jsonl
-        03_coverage_bridges.jsonl
-        03_fn_diagnostics.jsonl
-        03_source_confusion.json
-        04_generated_validity.jsonl
-        04_fp_clusters.jsonl
-        04_negative_control_judgments.jsonl
-        04_canonical_universe.jsonl
-        04_provisional_metrics.json
-        05_critical_review.jsonl
-        05_judgment_changes.jsonl
-        05_reconciliation.json
-        06_metrics_final.json
-        06_metrics_final.md
-        06_coverage_and_limitations.md
-        compute_metrics.py
-    onelevel/                         # same per-method schema if selected
-    twolevel/                         # same per-method schema if selected
-    06_comparison_final.json          # only if two or more methods
-    06_comparison_final.md            # only if two or more methods
+oriondesk_evaluation_v8_1/
+    01_reference_lock.json
+    02_extraction_a.jsonl
+    03_extraction_b.jsonl
+    04_generated_classes.jsonl
+    05_source_a.jsonl
+    06_source_b.jsonl
+    07_source_c.jsonl
+    08_pdf_a.jsonl
+    09_pdf_b.jsonl
+    10_fp_controls.jsonl
+    11_final_ledger.jsonl
+    compute_metrics.py
+    12_metrics.json
+    12_report.md
 ```
 
-For a single selected method, the same files may be placed directly under the output root provided their method identity is explicit. Deliver **individual files**, not a mandatory ZIP/TAR archive. A protocol-edit request creates **this protocol only**; it does not execute an evaluation phase.
+The **single** `01_reference_lock.json` combines the old input manifest, reference lock and three source shards. `02`/`03` each combine occurrences, exclusions, line dispositions and their reconciliation. `04` combines classes, equivalence audits, duplicate labels and class shard allocation. `05`–`09` embed search receipts and uncertainty directly in judgment rows. `10` combines confirmed/potential FP clusters, equivalence audits, negative-control decisions and reconciliation. `11` contains the coherent corrected item-level scoring snapshot, its provenance and all actual challenges/changes; **it replaces every former `final/*.jsonl` file**. `12_metrics.json` contains computed metrics, verification results, source and output SHA-256, record counts, release status and a compact delivery inventory. `12_report.md` combines the old metrics report, evidence audit and limitations in one readable file.
 
-## 11. Final binding instructions
+Generate or update only the current phase's mandatory file(s). Do not pre-create empty files for later phases. Keep original inputs untouched, and maintain a separate root for each evaluated method. Do not produce ZIP archives or upload redundant copies by default. Show a direct download link only for completed mandatory artifacts. Do not make corrected copies of the frozen reference inputs in the output directory.
 
-**Build no Gold Set here. Validate no Gold Set completeness here. Change no Gold Set or negative-control item here.** Assume the externally supplied, frozen reference is comprehensive; use it unchanged for source coverage and denominator construction. Verify generated assertions against the PDF to prevent false FP determinations, not to reformulate the reference. Evaluate the complete eight-document generated corpus, collapse meaning-equivalent FP residuals once, report both `EXPECTED_REUSE` and `REDUNDANT_DUPLICATE`, retain the canonical Precision/Recall/F1 alongside the **new nonstandard GCVR**, count both `TRUE_FN` and `UNCONFIRMED_FN` in FN, and interpret TN only within fixed bounded negative controls.
+**Version migration:** Phase 01 outputs already produced using 8.0 may be imported **only after verifying the actual input hashes**, then consolidated into the 8.1 `01_reference_lock.json` with the same explicit shard membership and method attribution. Record the migration provenance. A previous file's name or a claimed completion is not sufficient; never silently assume the earlier phase passed. Versions 8.0 and 8.1 share the scoring semantics but have different artifact layouts.
 
-Use no Codex workflow. Finish one named work package per request–response turn within a six-turn scope. Internal model/tool operations have **no numerical call cap**, but independence checks are limited to critical decisions and one fresh challenge plus at most one narrowly targeted resolution per case. Close ordinary uncertainty with traceable best-effort judgments rather than repetitive human interaction, unrecorded omissions, invented evidence, or unbounded review loops.
+## 10. Mandatory final report content
+
+The English `12_report.md` must present these subjects concisely; machine-readable detail belongs in `11_final_ledger.jsonl` and `12_metrics.json`, not duplicate standalone audit reports:
+
+1. Input files, PDF identity, reference version and hashes; actual method attribution; reference freeze limitations.
+2. Eight-file extraction coverage, eligible/excluded counts, unresolved extraction count and evidence completeness.
+3. Source coverage: `R_TP`, `R_FN`, `R_UNKNOWN`, direct E3 and bridged E2 counts, source evidence/bridge audit, Recall or its uncertainty interval.
+4. Generated validity: `G_supported`, `G_invalid`, `G_unknown`, `SUPPORTED_NONCOVERING`, per-class support evidence and ClaimValidity or its interval.
+5. **Confirmed FP**, **possible unresolved FP**, PDF contradiction/addition subtype counts, controls asserted and their dedup crosswalk; no invented “confirmed fabrications.”
+6. Source-projection Precision/Recall/F1 only if resolved; otherwise lower/upper envelopes and why single point estimates are withheld.
+7. `N` diagnostic counts (`ASSERTED`, `NOT_ASSERTED_VERIFIED`, `ASSERTION_UNRESOLVED`) without implying population-wide TN accuracy.
+8. Both duplicate types, rates, occurrence/class reconciliation and major cross-document reuse examples.
+9. Actual critical challenge coverage, first/second decision disagreements, correction count, unavailable independent reviews, unresolved material cases.
+10. Mechanical verification outcomes, semantic limitations, source-exception effects, reproducibility steps and explicit `FINAL_*` status.
+
+If several methods are evaluated under identical conditions, produce separate method-level results and a side-by-side comparison with the same uncertainty rules; rank methods only if the evidence supports a stable comparison. A larger or longer input-token budget is useful operational context, **not proof of better or worse specification quality**.
+
+## 11. Final operating instruction
+
+**Apply the frozen reference without changing it. Use scripts to locate evidence and check accounting, and LLM semantic reasoning to decide entailment. Evaluate the complete eight-document corpus in both directions. Confirm rather than assume omissions, and confirm rather than assume unsupported generated claims. Deduplicate unsupported propositions across all eight files by complete meaning, not surface wording. Never count a repeated FP more than once and never count an unreviewed candidate as confirmed FP. Preserve every source and generated item, every exception, every uncertainty and every actual change. Finish the twelve phases in order, continuing a phase when evidence work is incomplete. Publish verified point metrics only when defensible; otherwise publish explicit uncertainty ranges and the reasons verification remains incomplete.**

@@ -2,6 +2,41 @@
  * OrionDesk Atomic Evaluation Protocol Changes
 ***/
 
+2026/11/18 1:15
+Version 8.1 change summary
+Based on version 7.0, I had the AI generate a new version 8.1 metric calculation protocol.
+
+Changes in Version 8.1:
+================================================================
+In order to reduce LLM inference time, I prevented it from generating files other than essential ones.
+
+2026/11/18 0:51
+Version 8.0 change summary
+Without being based on version 7.0, I had the AI generate a completely new version 8.0 metric calculation protocol.
+
+Changes in Version 8.0:
+================================================================
+1. Rebuilt the evaluation protocol from scratch as a standalone procedure.
+2. Expanded the workflow to 12 phases, prioritizing accuracy over execution speed.
+3. Made LLM-based semantic entailment analysis mandatory.
+4. Restricted keyword matching, TF-IDF, and similarity scores to evidence retrieval.
+5. Strengthened atomic claim extraction and excluded non-normative statements.
+6. Required complete semantic deduplication across all eight specifications.
+7. Separated expected cross-document reuse from redundant duplication.
+8. Strengthened TP verification using direct evidence, universal rules, contextual applicability, and cross-document reasoning.
+9. Strengthened FN verification through exhaustive bidirectional evidence searches.
+10. Required PDF-grounded validation of every generated claim before confirming FP.
+11. Introduced two-pass semantic FP consolidation to prevent duplicate counting.
+12. Separated unresolved judgments from confirmed FP and FN.
+13. Prohibited automatically counting unresolved claims as FP.
+14. Required uncertainty ranges instead of misleading definitive metrics.
+15. Strengthened critical-decision review and independent adjudication requirements.
+16. Preserved the frozen Gold Set and negative controls without modification.
+17. Required complete evidence provenance and traceable judgment corrections.
+18. Added strict cross-file reconciliation and independent metric recomputation.
+19. Prevented incomplete semantic evaluations from receiving verified status.
+20. Removed the fixed six-turn deadline and required each phase to satisfy its acceptance criteria before proceeding.
+
 2026/11/18 23:02
 Version 7.0 change summary
 Without being based on version 6.2, I had the AI generate a completely new version 7.0 metric calculation protocol.
