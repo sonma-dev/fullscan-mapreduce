@@ -17,7 +17,7 @@
 11. If we extract atomic requirements chapter by chapter and then assemble the overall set, the document's global context is lost and the atomic requirements diverge. Current LLMs still cannot sequentially deduplicate thousands of atomic items semantically.
   - In such cases, human-driven MapReduce is effective: first establish the atomic requirements for the entire document as a whole, then extract atomic requirements chapter by chapter, and consolidate them against the document-wide set while accounting for duplicates.
   - In short, when building a gold set, if we extract atoms chapter by chapter without global context and attempt to merge them at the end, the LLM will fail to merge them semantically, causing the number of atoms to explode.
-12. Full-load approval is very weak, because in a MapReduce architecture, the detailed data required for approval is passed upward from the leaves and forks to the approving forks and root.
+12. The approval process for full-load operations is highly inefficient because, in a MapReduce architecture, the detailed data required for approval must be propagated upward from the leaves and forks to the approving forks and the root.
 13. There is a trade-off between accuracy and computational cost. Even when the compute cost is realistic, if human intervention is required in the loop, the time and effort can easily exceed what a human can tolerate.
 14. People say LLMs can understand meaning, but in reality they perform statistical next-token prediction. Relying on them to make semantic judgments—such as for deduplication—leads to disaster: rampant failures and an explosion in volume, or a divergence of atomic requirements.
 
