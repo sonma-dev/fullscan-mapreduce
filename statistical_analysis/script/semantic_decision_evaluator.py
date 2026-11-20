@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""OrionDesk v10.3: batched original-file semantic adjudication.
+"""OrionDesk v10.5: batched original-file semantic adjudication.
 
 Up to FOUR Responses API batches run concurrently. Each batch evaluates up to
 EIGHT independent queue items and returns one strictly structured JSON result
@@ -20,13 +20,14 @@ blocks, not a joint majority vote. Results are saved as one SEMANTIC_RESULT
 per item with shared batch metadata. Model decisions never directly set final
 canonical cells; Phase 07 must verify evidence and full predicates.
 
-Run: python semantic_decision_evaluator_10.3.py --pdf source.pdf \\
-    --spec-dir ./specifications --queue 06_llm_queue_v10.3.jsonl \\
+Run: python semantic_decision_evaluator_10.5.py --pdf source.pdf \\
+    --spec-dir ./specifications --queue 06_llm_queue_v10.5.jsonl \\
     --out-dir ./semantic_output --dry-run
 
-Run without --dry-run to call Azure. Failed batches are retried automatically
-up to THREE times (FOUR submissions including the initial request), with
-per-batch attempt counts and exponential backoff. Resume with --resume. If a
+Run without --dry-run to call Azure. SDK retries are disabled. The default is
+zero automatic batch retries; explicitly enabled invalid-response retries
+use the shared global eight-extra-submission budget, in addition to a per-
+batch maximum of four submissions. Resume with --resume. If a
 previous invocation left an uncommitted submission, use --resume
 --retry-ambiguous to authorize its resubmission within that same batch budget.
 Committed journals are never resubmitted.
@@ -52,15 +53,20 @@ import tempfile
 import time
 import unicodedata
 from typing import Any
+from itertools import chain
 from urllib.parse import urlparse
 
-PROTOCOL_VERSION = "10.3"
+PROTOCOL_VERSION = "10.5"
+BINARY_RULE_VERSION = "10.5-CANONICAL-FOUR-CELL-1"
 DEFAULT_MODEL = "gpt-6.1-sol"
 BATCH_SIZE = 8
 MAX_ITEMS = 4096
 DEFAULT_CONCURRENCY = 4
-DEFAULT_BATCH_RETRIES = 3
+DEFAULT_BATCH_RETRIES = 0
+GLOBAL_EXTRA_SUBMISSIONS = 8
+METHOD_LIMITS = {"fullload": 4096, "onelevel": 2048, "twolevel": 2048}
 ALLOWED_CELLS = {"TP", "TN", "FP", "FN"}
+G_SUPPORT_CATEGORIES = ["PDF_ENTAILED", "SUPPORTED_NONCOVERING", "PDF_UNSUPPORTED", "NONDEFINITIVE", "UNRESOLVED", "NOT_APPLICABLE"]
 ALLOWED_KINDS = {"R", "N", "G"}
 RELATIONS = ["FULL", "PARTIAL", "CONTRADICTED", "NOT_FOUND", "UNRESOLVED"]
 ELIGIBILITY = ["DEFINITIVE", "NONDEFINITIVE", "MIXED", "UNRESOLVED"]
@@ -161,7 +167,7 @@ def read_queue(path: Path) -> tuple[list[dict], dict | None]:
     rows = read_jsonl(path)
     items = []
     summary = None
-    seen_ids, seen_queue_ids = set(), set()
+    seen_ids = set()
     for number, row in enumerate(rows, 1):
         kind = row.get("record_type")
         if kind == "PHASE_SUMMARY":
@@ -175,10 +181,11 @@ def read_queue(path: Path) -> tuple[list[dict], dict | None]:
         queue_id = row.get("queue_id") or identifier
         if not isinstance(identifier, str) or not identifier.strip() or identifier in seen_ids:
             raise ValueError(f"Missing or duplicate item_id at record {number}")
-        if not isinstance(queue_id, str) or not queue_id.strip() or queue_id in seen_queue_ids:
-            raise ValueError(f"Missing or duplicate queue_id at record {number}")
+        # queue_id identifies the frozen queue, not a unique queue item.
+        # Multiple item_ids may therefore share the same queue_id.
+        if not isinstance(queue_id, str) or not queue_id.strip():
+            raise ValueError(f"Missing queue_id at record {number}")
         seen_ids.add(identifier)
-        seen_queue_ids.add(queue_id)
         direction = row.get("direction")
         if direction not in ALLOWED_KINDS:
             raise ValueError(f"Invalid direction for {identifier}")
@@ -210,6 +217,29 @@ def read_queue(path: Path) -> tuple[list[dict], dict | None]:
         items.append(item)
     if not items:
         raise ValueError("The queue contains no eligible pending items")
+    versions = {row.get("protocol_version") for row in items}
+    if versions != {PROTOCOL_VERSION} or summary is None or summary.get("protocol_version") != PROTOCOL_VERSION:
+        raise ValueError("v10.5 requires a separately frozen v10.5 queue and summary; older queues/journals are immutable and cannot be silently resumed")
+    methods = {row.get("spec_gen_method") or row.get("method") for row in items}
+    if len(methods) != 1 or next(iter(methods)) not in METHOD_LIMITS:
+        raise ValueError("All items must declare one valid spec_gen_method")
+    method = next(iter(methods))
+    if summary.get("spec_gen_method") != method:
+        raise ValueError("Queue and summary method mismatch")
+    if len(items) > METHOD_LIMITS[method]:
+        raise ValueError(f"Queue exceeds method-specific {method} cap {METHOD_LIMITS[method]}")
+    # Phase 06 must explicitly supply identity-proving evidence hints; no silent loss.
+    for row in items:
+        direction = row["direction"]
+        required = {
+            "R": ("original_pdf_evidence", "original_generated_evidence_candidates", "required_source_predicates"),
+            "N": ("original_pdf_evidence", "generated_original_candidates", "required_source_predicates"),
+            "G": ("original_generated_evidence", "original_pdf_evidence_candidates"),
+        }[direction]
+        if any(name not in row or not isinstance(row[name], list) for name in required) or (direction in ("R", "N") and not row["original_pdf_evidence"]) or (direction == "G" and not row["original_generated_evidence"]):
+            raise ValueError(f"Missing substantive mandatory {direction} evidence field in {row['item_id']}: {required}")
+        if not isinstance(row.get("source_digests"), dict):
+            raise ValueError(f"Missing source_digests in {row['item_id']}")
     if len(items) > MAX_ITEMS:
         raise ValueError(f"Frozen queue contains {len(items)} pending items; maximum is {MAX_ITEMS}. Reselect in Phase 06, do not truncate silently.")
     if summary is not None and summary.get("queue_item_count") is not None:
@@ -226,6 +256,21 @@ def validate_queue_sources(items: list[dict], pdf_digest: str, specs: dict[str, 
     for item in items:
         if item.get("pdf_sha256") is not None and item["pdf_sha256"] != pdf_digest:
             raise ValueError(f"PDF SHA-256 mismatch for {item['item_id']}")
+        source_map = item.get("source_digests") or {}
+        if source_map.get("pdf_sha256") != pdf_digest:
+            raise ValueError(f"Missing/incorrect nested PDF digest in {item['item_id']}")
+        nested = source_map.get("eight_original_spec_sha256")
+        if not isinstance(nested, dict) or len(nested) != 8:
+            raise ValueError(f"Missing eight source digests in {item['item_id']}")
+        normalized_nested = {}
+        for alias, declared_sha in nested.items():
+            role = role_of(alias)
+            if role is None or role in normalized_nested:
+                raise ValueError(f"Invalid/ambiguous nested Markdown role {alias}: {item['item_id']}")
+            normalized_nested[role] = declared_sha
+        for role, spec in specs.items():
+            if normalized_nested.get(role) != spec["sha256"]:
+                raise ValueError(f"Nested source digest mismatch {role}: {item['item_id']}")
         declared = item.get("eight_original_markdown_sha256")
         if declared is not None:
             if not isinstance(declared, dict) or len(declared) != 8:
@@ -276,7 +321,9 @@ ITEM_SCHEMA = {
         "direction": {"type": "string", "enum": ["R", "N", "G"]},
         "eligibility": {"type": "string", "enum": ELIGIBILITY},
         "relation": {"type": "string", "enum": RELATIONS},
-        "confidence_estimate": {"type": "number"},
+        "confidence_estimate": {"anyOf": [{"type": "number"}, {"type": "null"}]},
+        "generated_support_category": {"type": "string", "enum": G_SUPPORT_CATEGORIES},
+        "eligibility_reason_en": {"type": "string"},
         "corpus_exhaustively_reviewed": {"type": "boolean"},
         "predicate_checks": {
             "type": "object", "additionalProperties": False,
@@ -303,7 +350,8 @@ ITEM_SCHEMA = {
         "reason_en": {"type": "string"},
     },
     "required": ["item_id", "queue_id", "direction", "eligibility", "relation",
-                 "confidence_estimate", "corpus_exhaustively_reviewed", "predicate_checks",
+                 "confidence_estimate", "generated_support_category", "eligibility_reason_en",
+                 "corpus_exhaustively_reviewed", "predicate_checks",
                  "pdf_evidence", "generated_evidence", "unsupported_residual_en",
                  "missing_predicates_en", "alternative_checks_en", "reason_en"],
 }
@@ -379,6 +427,19 @@ For negative findings, report contrary searches and the strongest alternative.
 Use UNRESOLVED when material meaning or evidence is uncertain. Numeric
 confidence is subjective and never makes the canonical cell final.
 
+Return a separate 'generated_support_category' for EVERY item: for R/N use
+NOT_APPLICABLE; for G use PDF_ENTAILED, SUPPORTED_NONCOVERING,
+PDF_UNSUPPORTED, NONDEFINITIVE, or UNRESOLVED. Explain 'eligibility_reason_en'
+concretely for every item. A G FULL requires PDF_ENTAILED or
+SUPPORTED_NONCOVERING and actual PDF quotations. A G PDF_UNSUPPORTED requires
+a definitive affirmative clause, the precise unsupported_residual_en, and
+PARTIAL/CONTRADICTED/NOT_FOUND relation. G NONDEFINITIVE requires an
+exact generated original quotation and a specific explanation of why the
+sentence is only a noncommittal proposal, example, heading, citation, or
+unadopted TBD. NOT_FOUND alone never means NONDEFINITIVE. A mixed paragraph
+with any separable definitive affirmation is MIXED, never safely EXCLUDED.
+No model candidate is a final FP/TP/TN/FN or automatic deletion of a GO/GC.
+
 Return only the strict JSON schema envelope, one independent result object
 per incoming item. Do not output JSONL, code fences or shared prose.
 """
@@ -389,20 +450,80 @@ def make_batches(items: list[dict]) -> list[list[dict]]:
 
 
 def batch_id(index: int) -> str:
-    return f"B10.3-{index + 1:04d}"
+    return f"B10.5-{index + 1:04d}"
+
+
+def _bounded_evidence(value: Any, limit: int = 3, max_quote: int = 900) -> list:
+    """Retain ALL known/unknown evidence field keys; cap only ancillary values.
+
+    Each capped item is explicitly marked. Full proposition and required
+    predicates live outside these auxiliary evidence-hint arrays and are never
+    shortened. Original file/page/line identity is always kept verbatim.
+    """
+    if not isinstance(value, list):
+        return []
+
+    def shorten(obj: Any, depth: int = 0, key: str = "") -> Any:
+        if depth > 7:
+            return "[NESTED_EVIDENCE_VALUE_ELIDED_AT_DEPTH_7]"
+        if isinstance(obj, dict):
+            return {k: shorten(v, depth + 1, k) for k, v in obj.items()}
+        if isinstance(obj, list):
+            return [shorten(v, depth + 1, key) for v in obj[:12]] + (
+                [{"hint_list_capped_entries": len(obj) - 12}] if len(obj) > 12 else [])
+        if isinstance(obj, str) and len(obj) > max_quote and key not in (
+                "original_filename", "source_role", "source_sha256", "source_pdf_sha256",
+                "go_id", "control_id", "requirement_id", "semantic_class_id", "quote_sha256"):
+            return obj[:max_quote] + f" [EVIDENCE_HINT_TRUNCATED_FROM_{len(obj)}_CHARS]"
+        return obj
+
+    output = [shorten(x) for x in value[:limit]]
+    if len(value) > limit:
+        output.append({"additional_evidence_hints_not_inlined": len(value) - limit,
+                       "instruction": "Search attached original files for remaining evidence; these were retrieval hints only."})
+    return output
+
+
+def prompt_record(row: dict) -> dict:
+    """Translate the actual v10.5 Phase 06 source fields, not stale v10.2 aliases."""
+    direction = row["direction"]
+    entry = {"item_id": row["item_id"], "queue_id": row["queue_id"],
+             "direction": direction, "spec_gen_method": row["spec_gen_method"],
+             "statement_en": row["statement_en"],
+             "original_input_sha256": row["source_digests"],
+             "proof_family_id": row.get("proof_family_id"),
+             "source_scope": row.get("source_scope_en") or row.get("source_scope"),
+             "current_cell_is_noncanonical": row.get("current_cell"),
+             "eleven_dimensions_to_verify": row.get("eleven_predicate_dimensions_to_adjudicate", CHECK_FIELDS)}
+    if direction in ("R", "N"):
+        entry["original_pdf_evidence"] = _bounded_evidence(row["original_pdf_evidence"], 4)
+        entry["required_source_predicates"] = row.get("required_source_predicates", [])
+        if direction == "R":
+            entry["generated_original_evidence_candidates"] = _bounded_evidence(row["original_generated_evidence_candidates"], 5)
+            entry["unverified_source_predicates_en"] = row.get("unverified_source_predicates_en", [])
+        else:
+            entry["generated_original_candidates"] = _bounded_evidence(row["generated_original_candidates"], 5)
+            entry["negative_control_polarity_question_en"] = row.get("negative_control_polarity_question_en")
+    else:
+        entry["original_generated_evidence"] = _bounded_evidence(row["original_generated_evidence"], 5)
+        entry["original_pdf_evidence_candidates"] = _bounded_evidence(row["original_pdf_evidence_candidates"], 4)
+        entry["possible_unsupported_residual_en"] = row.get("possible_unsupported_residual_en")
+        entry["negative_control_overlap_candidates"] = _bounded_evidence(row.get("negative_control_overlap_candidates", []), 3)
+        entry["source_supported_noncovering_question_en"] = row.get("source_supported_noncovering_question_en")
+    return entry
 
 
 def prompt_items(batch: list[dict], identifier: str) -> str:
-    # Keep the payload bounded; the complete source corpus is already attached.
-    selected = []
-    for row in batch:
-        selected.append({key: row.get(key) for key in (
-            "item_id", "queue_id", "direction", "current_cell", "adjudication_status",
-            "statement_en", "source_scope", "spec_name", "pdf_evidence_hints",
-            "generated_original_evidence_hints", "selection_reason_en") if key in row})
+    selected = [prompt_record(row) for row in batch]
     return (f"BATCH_ID: {identifier}\nNUMBER_OF_INDEPENDENT_ITEMS: {len(batch)}\n"
-            "Evaluate each item independently, return exactly this many individual JSON "
-            "result objects in the listed order.\nITEMS_JSON:\n" + jdump(selected))
+            "The evidence hints below are ORIGINAL LOCATOR CANDIDATES, not independent proof. "
+            "Read all nine attached originals and resolve every predicate yourself.\n"
+            "Evaluate each item independently, return exactly this many results in order.\n"
+            "ITEMS_JSON:\n" + jdump(selected))
+
+
+def prompt_sha(batch: list[dict], identifier: str) -> str:
+    return hashlib.sha256(prompt_items(batch, identifier).encode("utf-8")).hexdigest()
 
 
 def validate_response(data: dict, batch: list[dict], identifier: str) -> list[dict]:
@@ -423,9 +544,37 @@ def validate_response(data: dict, batch: list[dict], identifier: str) -> list[di
                 raise ValueError(f"Wrong {field} in result block {position}")
         if result["relation"] not in RELATIONS or result["eligibility"] not in ELIGIBILITY:
             raise ValueError(f"Unknown relation/eligibility for {item['item_id']}")
+        support = result["generated_support_category"]
+        eligibility = result["eligibility"]
+        relation = result["relation"]
+        if not isinstance(result["eligibility_reason_en"], str) or not result["eligibility_reason_en"].strip():
+            raise ValueError(f"Missing eligibility justification for {item['item_id']}")
+        if item["direction"] != "G":
+            if support != "NOT_APPLICABLE":
+                raise ValueError(f"Non-G item has G support category: {item['item_id']}")
+        else:
+            if support == "NOT_APPLICABLE":
+                raise ValueError(f"G result missing support category: {item['item_id']}")
+            if eligibility == "NONDEFINITIVE":
+                if support != "NONDEFINITIVE" or relation not in ("NOT_FOUND", "UNRESOLVED"):
+                    raise ValueError(f"Inconsistent nondefinitive eligibility/category: {item['item_id']}")
+                if not result["generated_evidence"]:
+                    raise ValueError(f"Nondefinitive category requires original generated quote: {item['item_id']}")
+            elif eligibility == "DEFINITIVE":
+                if support == "NONDEFINITIVE":
+                    raise ValueError(f"Definitive item misclassified as nondefinitive: {item['item_id']}")
+                if support in ("PDF_ENTAILED", "SUPPORTED_NONCOVERING") and relation != "FULL":
+                    raise ValueError(f"Supported G category requires FULL relation: {item['item_id']}")
+                if relation == "FULL" and support not in ("PDF_ENTAILED", "SUPPORTED_NONCOVERING"):
+                    raise ValueError(f"FULL generated relation requires a supported category: {item['item_id']}")
+                if support == "PDF_UNSUPPORTED" and (relation not in ("PARTIAL", "CONTRADICTED", "NOT_FOUND")
+                    or not result["unsupported_residual_en"].strip()):
+                    raise ValueError(f"Unsupported G requires explicit residual and non-FULL relation: {item['item_id']}")
+            elif support != "UNRESOLVED":
+                raise ValueError(f"Mixed/unresolved G must remain unresolved: {item['item_id']}")
         confidence = result["confidence_estimate"]
-        if isinstance(confidence, bool) or not isinstance(confidence, (float, int)) or not 0 <= confidence <= 1:
-            raise ValueError("Confidence must be between zero and one")
+        if confidence is not None and (isinstance(confidence, bool) or not isinstance(confidence, (float, int)) or not 0 <= confidence <= 1):
+            raise ValueError("Confidence must be null or between zero and one")
         if not isinstance(result["corpus_exhaustively_reviewed"], bool):
             raise ValueError("Invalid full-corpus inspection flag")
         checks = result["predicate_checks"]
@@ -490,32 +639,52 @@ def check_evidence(data: dict, pages: list[str], specs: dict[str, dict]) -> dict
             "all_generated_verified": bool(g_checks) and all(r["verified_original"] for r in g_checks)}
 
 
-def suggest(item: dict, model: dict, checks: dict, threshold: float) -> tuple[str | None, bool, str]:
-    """Conservative item-level evidence suggestion; NEVER a final canonical cell."""
+def decide_binary(item: dict, model: dict, checks: dict, threshold: float) -> tuple[str, str, str]:
+    """Deterministic four-cell best-effort decision from independently checked item evidence.
+
+    G TP/TN are per-GC diagnostic decisions and MUST NOT increment canonical R TP or
+    frozen N TN. Only a deduplicated unsupported G-only residual enters canonical FP.
+    """
     direction, relation = item["direction"], model["relation"]
-    if model["confidence_estimate"] < threshold:
-        return None, True, "SUBJECTIVE_CONFIDENCE_BELOW_THRESHOLD"
-    if model["eligibility"] in ("MIXED", "UNRESOLVED") or relation == "UNRESOLVED":
-        return None, True, "MIXED_OR_UNRESOLVED"
-    complete_predicates = all(
-        check["assessment"] in ("MATCH", "NOT_APPLICABLE")
-        for check in model["predicate_checks"]
-    )
-    if direction == "G":
-        if model["eligibility"] == "NONDEFINITIVE" and checks["all_generated_verified"]:
-            return "EXCLUDED_NONDEFINITIVE", False, "NONDEFINITIVE_WITH_VERIFIED_QUOTE"
-        if relation == "FULL" and complete_predicates and checks["all_pdf_verified"] and checks["all_generated_verified"]:
-            return "NOT_FP", False, "PDF_ENTAILMENT_QUOTED_AND_PREDICATES_MATCHED_NOT_FINAL"
-        if relation == "CONTRADICTED" and checks["all_pdf_verified"] and checks["all_generated_verified"] and model["unsupported_residual_en"].strip():
-            return "FP_CANDIDATE", True, "UNSUPPORTED_RESIDUAL_REQUIRES_CANONICALIZATION"
-        return None, True, "GENERATED_VALIDITY_NOT_PROVEN"
-    if not checks["all_pdf_verified"]:
-        return None, True, "PDF_QUOTE_NOT_VERIFIED"
-    if relation == "FULL" and complete_predicates and checks["all_generated_verified"]:
-        return ("TP" if direction == "R" else "FP"), False, "AFFIRMATION_QUOTED_WITH_COMPLETE_PREDICATE_PROPOSAL_NOT_FINAL"
-    if relation == "NOT_FOUND" and model["corpus_exhaustively_reviewed"]:
-        return ("FN" if direction == "R" else "TN"), True, "CORPUS_ABSENCE_NOT_INDEPENDENTLY_PROVEN"
-    return None, True, "INCOMPLETE_NEGATIVE_OR_PARTIAL_ENTAILMENT"
+    confidence = model["confidence_estimate"]
+    checks_complete = all(x["assessment"] in ("MATCH", "NOT_APPLICABLE")
+                          for x in model["predicate_checks"])
+    high_confidence = confidence is not None and confidence >= threshold
+    strong = high_confidence and checks_complete and checks["all_pdf_verified"] and checks["all_generated_verified"]
+    if direction == "R":
+        if relation == "FULL" and model["eligibility"] == "DEFINITIVE" and strong:
+            return "TP", "D7-02_MODEL_SUPPORTED", "BEST_EFFORT"
+        return "FN", "D7-04_R_CONSERVATIVE_FALLBACK", "BEST_EFFORT"
+    if direction == "N":
+        if relation == "FULL" and model["eligibility"] == "DEFINITIVE" and strong:
+            return "FP", "D7-02_N_AFFIRMED_COUNTERFACTUAL", "BEST_EFFORT"
+        return "TN", "D7-04_N_CONSERVATIVE_NONAFFIRMATION", "BEST_EFFORT"
+    if direction != "G":
+        raise ValueError("Unsupported adjudication direction")
+    category = model["generated_support_category"]
+    if category == "NONDEFINITIVE" and model["eligibility"] == "NONDEFINITIVE" and checks["all_generated_verified"]:
+        return "TN", "D7-01_G_NONDEFINITIVE_NO_PREDICTION", "BEST_EFFORT"
+    if category in ("PDF_ENTAILED", "SUPPORTED_NONCOVERING") and relation == "FULL" and strong:
+        return "TP", "D7-02_G_PDF_SUPPORTED", "BEST_EFFORT"
+    if category == "PDF_UNSUPPORTED" and model["unsupported_residual_en"].strip() and checks["all_generated_verified"]:
+        return "FP", "D7-03_G_IDENTIFIED_UNSUPPORTED_RESIDUAL", "BEST_EFFORT"
+    # Ambiguities are decided, not left as NOT_FP/EXCLUDED/UNRESOLVED.
+    # The complete original sentence is the explicit candidate residual on fallback.
+    return "FP", "D7-04_G_FULL_AFFIRMATIVE_CLAIM_FALLBACK", "BEST_EFFORT"
+
+
+def suggest(item: dict, model: dict, checks: dict, threshold: float) -> tuple[str, bool, str]:
+    """Four-cell binary result only; uncertainty is recorded separately."""
+    cell, rule, quality = decide_binary(item, model, checks, threshold)
+    return cell, quality != "VERIFIED", rule
+
+
+class RejectedBatchResponse(RuntimeError):
+    """The service returned an explicit malformed/invalid completed response.
+
+    This is not a transport-ambiguity signal; it is eligible only for separately
+    authorized, globally budgeted invalid-response retry.
+    """
 
 
 class AzurePdfJudge:
@@ -552,23 +721,56 @@ class AzurePdfJudge:
             max_output_tokens=self.max_output_tokens,
             instructions=SYSTEM_PROMPT,
             input=[{"role": "user", "content": inputs}],
-            text={"format": {"type": "json_schema", "name": "oriondesk_batch_v103",
+            text={"format": {"type": "json_schema", "name": "oriondesk_batch_v105",
                              "strict": True, "schema": BATCH_SCHEMA}},
         )
         if getattr(response, "status", "completed") != "completed":
-            raise RuntimeError(f"Azure response status: {getattr(response, 'status', None)}")
+            raise RejectedBatchResponse(f"Azure response status: {getattr(response, 'status', None)}")
         raw = getattr(response, "output_text", None)
         if not isinstance(raw, str) or not raw.strip():
-            raise RuntimeError("Azure returned no structured JSON")
+            raise RejectedBatchResponse("Azure returned no structured JSON")
         try:
             parsed = json.loads(raw)
         except ValueError as exc:
-            raise RuntimeError("Azure returned invalid JSON") from exc
-        results = validate_response(parsed, batch, identifier)
+            raise RejectedBatchResponse("Azure returned invalid JSON") from exc
+        try:
+            results = validate_response(parsed, batch, identifier)
+        except ValueError as exc:
+            raise RejectedBatchResponse(f"Schema or item identity invalid: {exc}") from exc
         usage = getattr(response, "usage", None)
         if hasattr(usage, "model_dump"):
             usage = usage.model_dump()
         return results, {"response_id": getattr(response, "id", None), "usage": usage or {}}, parsed
+
+
+def reserve_attempt(state: dict, batch_index: int, batch: list[dict],
+                    max_total: int, max_per_batch: int) -> dict:
+    """Reserve a durable intent under the caller's lock BEFORE any network call.
+
+    The coordinator MUST persist state immediately after this returns and before
+    submitting the request. First submissions retain their reserved capacity;
+    extra submissions are counted globally (not separately per batch).
+    """
+    bid = batch_id(batch_index)
+    attempts = state["attempts"]
+    previous_count = sum(rec["batch_id"] == bid for rec in attempts)
+    if previous_count >= max_per_batch:
+        raise RuntimeError(f"Batch {bid} exhausted {max_per_batch} submissions")
+    if len(attempts) >= max_total:
+        raise RuntimeError(f"Global submission budget exhausted at {max_total}")
+    attempt_number = previous_count + 1
+    if attempt_number > 1:
+        extra_used = sum(rec.get("attempt_number", 1) > 1 for rec in attempts)
+        if extra_used >= GLOBAL_EXTRA_SUBMISSIONS:
+            raise RuntimeError("Global eight-extra-submission allowance exhausted")
+    attempt = {"batch_id": bid, "batch_index": batch_index,
+               "item_ids": [item["item_id"] for item in batch],
+               "attempt_number": attempt_number,
+               "global_attempt_number": len(attempts) + 1,
+               "status": "SUBMISSION_OUTCOME_UNCONFIRMED",
+               "recorded_at_utc": datetime.now(timezone.utc).isoformat()}
+    attempts.append(attempt)
+    return attempt
 
 
 def journal_path(out: Path, index: int) -> Path:
@@ -604,35 +806,21 @@ def migrate_legacy_journals(out: Path, batches: list[list[dict]]) -> list[str]:
 
 
 def model_candidate(direction: str, result: dict) -> str:
-    """A display-only, NON-CANONICAL candidate from a model's reported relation.
-
-    This intentionally does not alter suggested_decision, reliability, or scoring.
-    A G result represents generated-only validity and cannot create a TP by itself.
-    """
-    eligibility = result.get("eligibility")
-    relation = result.get("relation")
-    if direction == "G" and eligibility == "NONDEFINITIVE":
-        return "EXCLUDED"
-    if eligibility in ("MIXED", "UNRESOLVED") or relation == "UNRESOLVED":
-        return "UNRESOLVED"
-    if eligibility == "NONDEFINITIVE" and relation not in ("NOT_FOUND",):
-        return "UNRESOLVED"
+    """Four-cell display candidate; original-digest evidence checks decide final binary_cell."""
     if direction == "R":
-        return {"FULL": "TP", "PARTIAL": "FN", "CONTRADICTED": "FN",
-                "NOT_FOUND": "FN"}.get(relation, "UNRESOLVED")
+        return "TP" if result["relation"] == "FULL" else "FN"
     if direction == "N":
-        return {"FULL": "FP", "NOT_FOUND": "TN"}.get(relation, "UNRESOLVED")
+        return "FP" if result["relation"] == "FULL" else "TN"
     if direction == "G":
-        if relation == "FULL":
-            return "NOT_FP"
-        if relation in ("PARTIAL", "CONTRADICTED", "NOT_FOUND") and result.get("unsupported_residual_en", "").strip():
-            return "FP"
-    return "UNRESOLVED"
+        if result["generated_support_category"] == "NONDEFINITIVE":
+            return "TN"
+        return "TP" if result["generated_support_category"] in ("PDF_ENTAILED", "SUPPORTED_NONCOVERING") else "FP"
+    raise ValueError("Unknown queue direction")
 
 
 def candidate_counts(known: dict[str, dict]) -> dict[str, int]:
-    counts = Counter(model_candidate(row["direction"], row["model_json"]) for row in known.values())
-    return {name: counts[name] for name in ("TP", "TN", "FP", "FN", "NOT_FP", "EXCLUDED", "UNRESOLVED")}
+    counts = Counter(row.get("binary_cell", row.get("suggested_decision")) for row in known.values())
+    return {name: counts[name] for name in ("TP", "TN", "FP", "FN")}
 
 
 def stdout_log(started: float, event: str, message: str) -> None:
@@ -656,8 +844,17 @@ def rebuild_results(out: Path, batches: list[list[dict]]) -> dict[str, dict]:
         doc = json.loads(path.read_text(encoding="utf-8"))
         if doc.get("batch_index") != index or doc.get("batch_id") != batch_id(index):
             raise ValueError(f"Corrupt batch journal: {path}")
+        if (doc.get("protocol_version") != PROTOCOL_VERSION or doc.get("binary_rule_version") != BINARY_RULE_VERSION
+                or doc.get("prompt_hints_sha256") != prompt_sha(batch, batch_id(index))):
+            raise ValueError(f"Wrong journal protocol or input-prompt digest: {path}")
+        if doc.get("pdf_sha256") != batch[0]["source_digests"]["pdf_sha256"]:
+            raise ValueError(f"Batch journal PDF digest differs from committed queue: {path}")
         if doc.get("queue_item_ids") != [row["item_id"] for row in batch]:
             raise ValueError(f"Batch journal has incorrect queue membership: {path}")
+        try:
+            checked_model = validate_response(doc.get("raw_model_json"), batch, batch_id(index))
+        except (ValueError, TypeError) as exc:
+            raise ValueError(f"Batch journal raw envelope does not independently validate: {path}") from exc
         if doc.get("batch_content_sha256") != hashlib.sha256(
             jdump({"raw_model_json": doc.get("raw_model_json"), "item_records": doc.get("item_records")}).encode("utf-8")
         ).hexdigest():
@@ -665,9 +862,14 @@ def rebuild_results(out: Path, batches: list[list[dict]]) -> dict[str, dict]:
         item_records = doc.get("item_records")
         if not isinstance(item_records, list) or len(item_records) != len(batch):
             raise ValueError(f"Incomplete batch journal: {path}")
-        for expected, rec in zip(batch, item_records):
-            if rec.get("item_id") != expected["item_id"] or rec.get("queue_id") != expected["queue_id"]:
+        for position, (expected, rec) in enumerate(zip(batch, item_records)):
+            if (rec.get("prompt_hints_sha256") != doc.get("prompt_hints_sha256") or
+                    rec.get("protocol_version") != PROTOCOL_VERSION or rec.get("binary_rule_version") != BINARY_RULE_VERSION):
+                raise ValueError(f"Corrupt prompt provenance in journal: {path}")
+            if rec.get("item_id") != expected["item_id"] or rec.get("queue_id") != expected["queue_id"] or rec.get("direction") != expected["direction"]:
                 raise ValueError(f"Batch journal item mismatch: {path}")
+            if rec.get("model_json") != checked_model[position]:
+                raise ValueError(f"Batch journal normalized model result differs from raw response: {path}")
         records.extend(item_records)
     seen = [rec["item_id"] for rec in records]
     if len(set(seen)) != len(seen):
@@ -689,6 +891,8 @@ def publish_status_outputs(out: Path, items: list[dict], known: dict, settings: 
                        "prior_cell": item["current_cell"],
                        "unreliable": rec["unreliable"] if rec else True,
                        "suggested_decision": rec["suggested_decision"] if rec else None,
+                       "scoring_cell": rec["binary_cell"] if rec else None,
+                       "binary_cell": rec["binary_cell"] if rec else None,
                        "review_reason_code": rec["review_reason_code"] if rec else "REVIEW_PENDING",
                        "final_cell_not_committed": True})
         if not rec or rec["unreliable"]:
@@ -701,24 +905,204 @@ def publish_status_outputs(out: Path, items: list[dict], known: dict, settings: 
     atomic_text(out / "unreliable_review_queue.jsonl", "".join(jdump(r) + "\n" for r in still_open))
     summary = {
         "protocol_version": PROTOCOL_VERSION,
-        "status": "MODEL_PROPOSALS_NOT_FINAL_CANONICAL_SCORES" if len(known) == len(items) else "EXTERNAL_REVIEW_INCOMPLETE",
+        "status": "BINARY_ITEM_CELLS_COMMITTED_FULL_POPULATION_PENDING" if len(known) == len(items) else "EXTERNAL_REVIEW_INCOMPLETE",
         "pdf_sha256": settings["pdf_sha256"], "queue_sha256": settings["queue_sha256"],
         "source_file_sha256": settings["file_sha256"],
         "total_queue_items": len(items), "batch_size": BATCH_SIZE,
         "expected_batches": len(batches),
         "completed_batches": sum(journal_path(out, i).exists() for i in range(len(batches))),
         "submitted_attempts": len(state["attempts"]),
-        "max_attempts": len(batches) * (batch_retries + 1),
+        "max_attempts": len(batches) + GLOBAL_EXTRA_SUBMISSIONS,
+        "global_extra_submission_budget": GLOBAL_EXTRA_SUBMISSIONS,
+        "remaining_retry_capacity": max(0, GLOBAL_EXTRA_SUBMISSIONS - sum(a.get("attempt_number", 1) > 1 for a in state["attempts"])),
         "max_concurrent_batches": concurrency,
         "max_retries_per_batch": batch_retries,
+        "active_total_retry_attempts": sum(a.get("attempt_number", 1) > 1 for a in state["attempts"]),
         "processed": len(known), "review_pending": len(items) - len(known),
         "item_level_model_results": len(known),
         "unreliable_after_model": sum(bool(record["unreliable"]) for record in known.values()),
-        "suggested_decision_counts": dict(Counter(str(record["suggested_decision"]) for record in known.values())),
-        "model_candidate_counts_noncanonical": candidate_counts(known),
+        "model_proposal_counts": dict(Counter(str(record["model_proposal"]) for record in known.values())),
+        "binary_cell_counts_selected_diagnostic": candidate_counts(known),
+        "binary_rule_version": BINARY_RULE_VERSION,
         "full_population_scores_committed": False,
     }
     save_json(out / "semantic_summary.json", summary)
+
+def finalize_full_population(phase_dir: Path, out: Path, items: list[dict], known: dict,
+                             pdf_digest: str, file_digests: dict[str, str]) -> None:
+    """Close the entire R/N/G population with four cells after all K batch journals commit.
+
+    GC TP/TN are diagnostic per-claim labels, not extra canonical TP/TN counts.
+    One affirmative unsupported GC residual produces one canonical F/FP after
+    exact, scope-qualified deduplication and frozen-N crosswalk.
+    """
+    required = ["01_reference_lock.json", "reference_freeze.json", "common_atomic_reqs.jsonl",
+                "common_negative_controls.jsonl", "04_coverage_audit.jsonl",
+                "05_generated_claim_validity.jsonl"]
+    for name in required:
+        if not (phase_dir / name).is_file():
+            raise FileNotFoundError(f"Cannot finish full-population TP/TN/FP/FN: {phase_dir / name}")
+    if set(known) != {item["item_id"] for item in items}:
+        raise ValueError("Full-population closure requires all independently committed selected-item results")
+    def source_rows(name: str) -> list[dict]:
+        return [row for row in read_jsonl(phase_dir / name)
+                if row.get("record_type") != "PHASE_SUMMARY"]
+    lock = json.loads((phase_dir / required[0]).read_text(encoding="utf-8"))
+    freeze = json.loads((phase_dir / required[1]).read_text(encoding="utf-8"))
+    if lock.get("authoritative_pdf", {}).get("sha256") != pdf_digest or freeze["source_document"]["sha256"] != pdf_digest:
+        raise ValueError("Full-population original PDF identity does not match the queue")
+    for src in lock["immutable_generated_inputs"]:
+        real = next((digest for name, digest in file_digests.items()
+                     if role_of(name) == role_of(src["original_filename"])), None)
+        if real != src["sha256"]:
+            raise ValueError("Full-population specification digest mismatch: " + src["original_filename"])
+    for name in ["common_atomic_reqs.jsonl", "common_negative_controls.jsonl"]:
+        if sha256(phase_dir / name) != freeze["output_artifacts_sha256"][name]:
+            raise ValueError("Frozen benchmark hash changed: " + name)
+    rrows = source_rows("common_atomic_reqs.jsonl")
+    nrows = source_rows("common_negative_controls.jsonl")
+    grows = source_rows("05_generated_claim_validity.jsonl")
+    audited = {x["requirement_id"]: x for x in source_rows("04_coverage_audit.jsonl")}
+    if len(rrows) != 638 or len(nrows) != 142 or len(audited) != 638:
+        raise ValueError("Expected exactly 638 R and 142 N frozen items, plus 638 Phase04 audits")
+    if len({x["semantic_class_id"] for x in grows}) != len(grows):
+        raise ValueError("Duplicate generated semantic class in Phase 05")
+    items_by_id = {x["item_id"]:x for x in items}
+    ledger=[]; counters=Counter();n_assertions={}; g_fp=[]
+    def get_selection(ident):
+        entry=known.get(ident)
+        return (entry.get("binary_cell"), entry) if entry else (None,None)
+    def append_record(rec):
+        if rec["scoring_cell"] not in ALLOWED_CELLS:
+            raise ValueError("Non-four-cell final outcome: " + str(rec))
+        ledger.append(rec)
+        if rec.get("included_in_confusion_matrix"):
+            counters[rec["scoring_cell"]]+=1
+    for r in rrows:
+        rid=r["requirement_id"];proof=audited[rid]; selected,model=get_selection(rid)
+        complete=(proof.get("verification_status")=="VERIFIED" and
+                  proof.get("evidence_strength") in ("E2","E3") and
+                  proof.get("phase04_status", "").startswith("COVERED_VERIFIED"))
+        if complete:
+            cell="TP";rule="D7-01_VERIFIED_SOURCE_PROOF";quality="VERIFIED"
+        elif selected in ("TP","FN"):
+            cell=selected;rule=model.get("binary_decision_rule","D7-02_MODEL_SUPPORTED");quality="BEST_EFFORT"
+        else:
+            cell="FN";rule="D7-04_R_CONSERVATIVE_FALLBACK";quality="BEST_EFFORT"
+        append_record({"record_type":"FINAL_SOURCE","item_id":rid,"direction":"R",
+             "source_statement_en":r["statement_en"],"original_pdf_evidence":r.get("pdf_evidence", []),
+             "generated_evidence":proof.get("original_generated_evidence",[])[:6],
+             "scoring_cell":cell,"binary_cell":cell,"included_in_confusion_matrix":True,
+             "verification_status":quality,"unreliable":quality!="VERIFIED",
+             "unreliable_reason_en":None if quality=="VERIFIED" else "Partial or contested whole-predicate support; deterministic best-effort binary decision.",
+             "decision_rule_id":rule,"model_confidence_estimate":model["model_json"]["confidence_estimate"] if model else None,
+             "evidence_strength":proof.get("evidence_strength","EU"),
+             "verified_confidence_level":proof.get("verified_confidence_level","LOW"),
+             "model_batch_id":model.get("batch_id") if model else None})
+    for n in nrows:
+        nid=n["control_id"];selected,model=get_selection(nid)
+        cell=selected if selected in ("TN","FP") else "TN"
+        n_assertions[nid]=(cell=="FP")
+        append_record({"record_type":"FINAL_CONTROL","item_id":nid,"direction":"N",
+             "source_counterfactual_en":n["counterfactual_en"],"original_pdf_evidence":n.get("pdf_evidence",[]),
+             "scoring_cell":cell,"binary_cell":cell,"included_in_confusion_matrix":True,
+             "verification_status":"BEST_EFFORT","unreliable":True,
+             "unreliable_reason_en":"Nonaffirmation/affirmation chosen from audited available evidence, not certified exhaustive semantic proof.",
+             "decision_rule_id":model.get("binary_decision_rule") if model else "D7-04_N_DEFAULT_NONAFFIRMATION",
+             "model_confidence_estimate":model["model_json"]["confidence_estimate"] if model else None,
+             "model_batch_id":model.get("batch_id") if model else None})
+    # Candidate N/F exclusion is permitted only for exact proven affirmative identity;
+    # superficial token overlap is NOT sufficient to discard an unsupported residual.
+    def norm(v):
+        return " ".join(unicodedata.normalize("NFKC",str(v)).casefold().split()).strip(" .;:")
+    asserted_n={norm(n["counterfactual_en"]) for n in nrows if n_assertions[n["control_id"]]}
+    candidate_residual_groups={}
+    for g in grows:
+        gid=g["semantic_class_id"];selected,model=get_selection(gid)
+        source_status=g.get("pdf_validity_status", "UNRESOLVED_PDF_SUPPORT")
+        if selected in ALLOWED_CELLS:
+            cell=selected;rule=model.get("binary_decision_rule","D7-02_GENERATED_ITEM")
+        elif source_status=="NONDEFINITIVE_OR_SOURCE_INTERPRETATION":
+            cell="TN";rule="D7-04_G_NONDEFINITIVE_CONTEXT"
+        elif source_status in ("PDF_ENTAILED_CANDIDATE","SUPPORTED_NONCOVERING_CANDIDATE"):
+            cell="TP";rule="D7-03_G_DIRECT_PDF_SOURCE_CANDIDATE"
+        elif source_status=="PDF_SUPPORT_CANDIDATE" and g.get("pdf_search_receipt",{}).get("best_passage_score",0)>=0.65:
+            cell="TP";rule="D7-03_G_HIGH_SOURCE_SIMILARITY_BEST_EFFORT"
+        else:
+            cell="FP";rule="D7-04_G_PDF_SUPPORT_UNSUBSTANTIATED"
+        if cell=="FP":
+            residual=(model["model_json"].get("unsupported_residual_en","").strip() if model else "") or g["proposition_en"]
+            key=norm(residual)
+            if not key:
+                raise ValueError("Missing exact affirmative residual for generated class " + gid)
+            candidate_residual_groups.setdefault(key,[]).append((gid,g,residual))
+            g_fp.append(gid)
+        append_record({"record_type":"FINAL_CLASS","item_id":gid,"direction":"G",
+             "source_statement_en":g["proposition_en"],
+             "original_generated_evidence":g.get("original_generated_locators",[]),
+             "original_pdf_evidence_candidates":g.get("pdf_evidence_candidates",[])[:4],
+             "scoring_cell":cell,"binary_cell":cell,"included_in_confusion_matrix":False,
+             "counting_reason_en":"Generated class TP/TN is not an additional canonical R TP or N TN; G FP is counted only by deduplicated F residual rows.",
+             "verification_status":"BEST_EFFORT","unreliable":True,
+             "unreliable_reason_en":"Generated eligibility and full-PDF support not independently certified for all eleven dimensions.",
+             "decision_rule_id":rule,"model_confidence_estimate":model["model_json"]["confidence_estimate"] if model else None,
+             "source_phase05_status":source_status,"model_batch_id":model.get("batch_id") if model else None})
+    duplicate_n_count=0
+    for key,arr in sorted(candidate_residual_groups.items(),key=lambda a:a[0]):
+        # Exact N crosswalk prevents counting the very same asserted counterfactual twice.
+        if key in asserted_n:
+            duplicate_n_count+=1
+            continue
+        classids=[x[0] for x in arr]
+        representative=arr[0]
+        append_record({"record_type":"FINAL_RESIDUAL","item_id":"F-"+hashlib.sha256(key.encode()).hexdigest()[:16].upper(),
+             "direction":"G","source_statement_en":representative[2],
+             "contributing_generated_classes":classids,
+             "original_generated_evidence":list(chain.from_iterable(x[1].get("original_generated_locators",[]) for x in arr))[:24],
+             "scoring_cell":"FP","binary_cell":"FP","included_in_confusion_matrix":True,
+             "verification_status":"BEST_EFFORT","unreliable":True,
+             "unreliable_reason_en":"Original-PDF full support not established; class grouping uses exact normalized residual identity, with semantic paraphrase overcount risk disclosed.",
+             "decision_rule_id":"D7-04_F_DEDUP_EXACT_RESIDUAL"})
+    # Canonical R/N/F are disjoint. G class judgments never add extra TP or TN.
+    if counters["TP"]+counters["FN"]!=len(rrows) or counters["TN"]+sum(n_assertions.values())!=len(nrows):
+        raise ValueError("Binary confusion-matrix R/N partition mismatch")
+    if counters["FP"]!=sum(n_assertions.values())+sum(x["record_type"]=="FINAL_RESIDUAL" for x in ledger):
+        raise ValueError("Canonical FP count double-counted the frozen N/F overlap")
+    TP,TN,FP,FN=(counters[k] for k in ("TP","TN","FP","FN"))
+    metrics={"protocol_version":PROTOCOL_VERSION,"binary_rule_version":BINARY_RULE_VERSION,
+       "status":"METRICS_DETERMINISTIC_BEST_EFFORT","method":items[0].get("method"),
+       "TP":TP,"TN":TN,"FP":FP,"FN":FN,"R":len(rrows),"N":len(nrows),
+       "F":sum(x["record_type"]=="FINAL_RESIDUAL" for x in ledger),
+       "B":sum(n_assertions.values()),"G_count":len(grows),
+       "precision":TP/(TP+FP) if TP+FP else None,
+       "recall":TP/(TP+FN) if TP+FN else None,
+       "f1":(2*TP)/(2*TP+FP+FN) if (2*TP+FP+FN) else None,
+       "selected_external_items":len(known),"R_N_G_full_population_closed":True,
+       "excluded_G_TP_TN_from_canonical_matrix":True,
+       "N_F_exact_overlap_groups_excluded":duplicate_n_count,
+       "unverified_semantic_paraphrase_merge_warning":True,
+       "model_outputs_are_not_automatic_verified_proofs":True,
+       "input_original_pdf_sha256":pdf_digest,
+       "input_queue_sha256":known[next(iter(known))]["queue_sha256"] if known else None,
+       "no_statistical_estimation":True}
+    ledger_summary={"record_type":"PHASE_SUMMARY","phase":"07", "protocol_version":PROTOCOL_VERSION,
+       "status":"DETERMINISTIC_BEST_EFFORT_COMPLETE", "canonical_confusion_matrix":{k:counters[k] for k in ("TP","TN","FP","FN")},
+       "canonical_unit_population":TP+TN+FP+FN,"full_population_R_N_G_closed":True,
+       "best_effort_not_independent_proof":True,"source_sha256":pdf_digest}
+    atomic_text(out/"07_final_ledger.jsonl","".join(jdump(x)+"\n" for x in ledger)+jdump(ledger_summary)+"\n")
+    save_json(out/"07_binary_counts.json",metrics)
+    summary_path = out / "semantic_summary.json"
+    if summary_path.is_file():
+        summary = json.loads(summary_path.read_text(encoding="utf-8"))
+        summary["status"] = "DETERMINISTIC_FOUR_CELL_FULL_POPULATION_COMPLETE"
+        summary["full_population_scores_committed"] = True
+        summary["canonical_confusion_matrix"] = {key:metrics[key] for key in ("TP","TN","FP","FN")}
+        summary["binary_metrics_file"] = "07_binary_counts.json"
+        summary["binary_ledger_file"] = "07_final_ledger.jsonl"
+        summary["binary_rule_version"] = BINARY_RULE_VERSION
+        save_json(summary_path,summary)
+    print("FINAL FOUR-CELL COUNTS | "+" ".join(f"{k}={metrics[k]}" for k in ("TP","TN","FP","FN")),flush=True)
+    print(f"FINAL FULL-POPULATION BEST-EFFORT | Precision={metrics['precision']} Recall={metrics['recall']} F1={metrics['f1']}",flush=True)
 
 
 def run(args: argparse.Namespace) -> int:
@@ -733,6 +1117,13 @@ def run(args: argparse.Namespace) -> int:
     validate_queue_sources(items, digest, specs)
     pages = pdf_text_by_page(pdf)
     batches = make_batches(items)
+    if len(batches) > 512:
+        raise ValueError("Batch count exceeds fullload maximum")
+    # Validate all queue-to-prompt mappings locally BEFORE any API call.
+    for batch_index, batch in enumerate(batches):
+        encoded = prompt_items(batch, batch_id(batch_index))
+        if not encoded or len(batch) > BATCH_SIZE:
+            raise ValueError("Missing prompt content or oversized batch")
     combined_bytes = pdf.stat().st_size + sum(spec["path"].stat().st_size for spec in specs.values())
     if combined_bytes > 50_000_000:
         raise ValueError("Nine source files exceed the 50 MB request budget")
@@ -742,11 +1133,14 @@ def run(args: argparse.Namespace) -> int:
         raise ValueError("The PDF filename must differ from all Markdown source filenames")
     stdout_log(started, "QUEUE", f"items={len(items)} batches={len(batches)} max_items={MAX_ITEMS} batch_size={BATCH_SIZE} final_batch={len(batches[-1])}")
     stdout_log(started, "SOURCES", f"pdf_pages=90 pdf_sha256={digest} markdown_files=8 bytes={combined_bytes}")
-    stdout_log(started, "NOTICE", "Candidate labels are model proposals, NOT verified TP/TN/FP/FN or final metrics.")
+    stdout_log(started, "NOTICE", "Each item receives a four-cell result; G TP/TN are diagnostic and are not added to canonical R/N counts.")
     if args.dry_run:
         for i, batch in enumerate(batches[:min(len(batches), 3)]):
-            print(f"DRY_RUN {batch_id(i)}: {len(batch)} items: {[r['item_id'] for r in batch]}", flush=True)
-        print("DRY_RUN validated: no API calls and no output mutation", flush=True)
+            prompt = prompt_items(batch, batch_id(i))
+            if "statement_en" not in prompt or "original_input_sha256" not in prompt:
+                raise RuntimeError("Dry-run prompt field transformation failed")
+            print(f"DRY_RUN {batch_id(i)}: {len(batch)} items: {[r['item_id'] for r in batch]} prompt_sha256={prompt_sha(batch, batch_id(i))}", flush=True)
+        print("DRY_RUN validated all item evidence fields, no API calls and no output mutation", flush=True)
         return 0
     if args.retries != 0:
         raise ValueError("SDK retries must be zero; per-batch retries are tracked separately")
@@ -773,8 +1167,8 @@ def run(args: argparse.Namespace) -> int:
             if state.get(name) != value:
                 raise ValueError(f"Cannot resume after source/configuration change: {name}")
     else:
-        if state_file.exists() or (out / "semantic_decisions.jsonl").exists():
-            raise FileExistsError("Outputs already exist; choose a new --out-dir or use --resume")
+        if any(out.iterdir()):
+            raise FileExistsError("Output directory is not empty; use a new v10.5 --out-dir (never overwrite old v10.4 journals)")
         state = {**settings, "azure_file_ids": {}, "attempts": []}
         save_json(state_file, state)
     known = rebuild_results(out, batches)
@@ -784,7 +1178,7 @@ def run(args: argparse.Namespace) -> int:
         if moved:
             stdout_log(started, "MIGRATED", f"legacy_journals={len(moved)} moved_without_byte_changes to={out}")
     committed_batches = sum(journal_path(out, i).exists() for i in range(len(batches)))
-    stdout_log(started, "RESUME" if args.resume else "INITIAL", f"committed_items={len(known)}/{len(items)} committed_batches={committed_batches}/{len(batches)} attempted={len(state['attempts'])}/{len(batches) * (args.batch_retries + 1)} next={next_pending_batch(out, batches)}")
+    stdout_log(started, "RESUME" if args.resume else "INITIAL", f"committed_items={len(known)}/{len(items)} committed_batches={committed_batches}/{len(batches)} attempted={len(state['attempts'])}/{len(batches) + GLOBAL_EXTRA_SUBMISSIONS} next={next_pending_batch(out, batches)}")
     judge = AzurePdfJudge(endpoint, key, model, args.max_output_tokens, args.timeout)
     judge.file_ids = dict(state["azure_file_ids"])
     if args.reupload_files:
@@ -801,7 +1195,12 @@ def run(args: argparse.Namespace) -> int:
         save_json(state_file, state)
         stdout_log(started, "UPLOADED", f"file={name} duration={time.perf_counter() - upload_started:.1f}s ({len(judge.file_ids)}/9)")
     spec_names = [spec["file"] for spec in specs.values()]
-    max_attempts_per_batch = args.batch_retries + 1
+    max_attempts_per_batch = min(4, args.batch_retries + 1)
+    total_attempt_limit = len(batches) + GLOBAL_EXTRA_SUBMISSIONS
+    if len(state["attempts"]) > total_attempt_limit:
+        raise RuntimeError("Existing attempt ledger already exceeds the global submission budget")
+    if sum(a.get("attempt_number", 1) > 1 for a in state["attempts"]) > GLOBAL_EXTRA_SUBMISSIONS:
+        raise RuntimeError("Existing attempt ledger already exceeds eight global retry submissions")
     pending = [(index, batch) for index, batch in enumerate(batches)
                if not journal_path(out, index).exists()]
 
@@ -827,24 +1226,17 @@ def run(args: argparse.Namespace) -> int:
     from threading import Lock
     commit_lock = Lock()
     stdout_log(started, "CONFIG", f"concurrency={args.concurrency} retries_per_batch={args.batch_retries} "
-               f"max_submissions_per_batch={max_attempts_per_batch} pending_batches={len(pending)}")
+               f"max_submissions_per_batch={max_attempts_per_batch} global_submission_budget={total_attempt_limit} "
+               f"extra_retry_budget={GLOBAL_EXTRA_SUBMISSIONS} pending_batches={len(pending)}")
 
     def execute_batch(index: int, batch: list[dict]) -> None:
         nonlocal known
         bid = batch_id(index)
         while True:
             with commit_lock:
-                previous_count = sum(entry["batch_id"] == bid for entry in state["attempts"])
-                if previous_count >= max_attempts_per_batch:
-                    raise RuntimeError(f"Batch {bid} exhausted {max_attempts_per_batch} submissions")
-                attempt_number = previous_count + 1
-                attempt = {"batch_id": bid, "batch_index": index,
-                           "item_ids": [item["item_id"] for item in batch],
-                           "attempt_number": attempt_number,
-                           "global_attempt_number": len(state["attempts"]) + 1,
-                           "status": "SUBMISSION_OUTCOME_UNCONFIRMED",
-                           "recorded_at_utc": datetime.now(timezone.utc).isoformat()}
-                state["attempts"].append(attempt)
+                attempt = reserve_attempt(state, index, batch, total_attempt_limit,
+                                          max_attempts_per_batch)
+                attempt_number = attempt["attempt_number"]
                 save_json(state_file, state)  # Durable BEFORE API submission.
                 completed = len(known)
                 stdout_log(started, "START", f"batch={bid} position={index + 1}/{len(batches)} "
@@ -869,7 +1261,18 @@ def run(args: argparse.Namespace) -> int:
                         "prior_cell": item["current_cell"],
                         "prior_adjudication_status": item.get("adjudication_status"),
                         "prior_unreliable": item["unreliable"],
-                        "suggested_decision": suggestion, "unreliable": unreliable,
+                        "prompt_hints_sha256": prompt_sha(batch, bid),
+                        "model_proposal": model_candidate(item["direction"], proposed),
+                        "binary_cell": suggestion, "binary_decision_rule": reason,
+                        "binary_decision_quality": "BEST_EFFORT",
+                        "binary_rule_version": BINARY_RULE_VERSION,
+                        "binary_counting_scope": ("CANONICAL_R" if item["direction"] == "R" else
+                                                  "CANONICAL_N" if item["direction"] == "N" else
+                                                  "G_ONLY_RESIDUAL_REQUIRES_N_F_CONSOLIDATION" if suggestion == "FP" else
+                                                  "G_DIAGNOSTIC_NOT_EXTRA_CANONICAL_TP_TN"),
+                        "model_generated_support_category": proposed["generated_support_category"],
+                        "suggested_decision": suggestion, "scoring_cell": suggestion,
+                        "unreliable": unreliable,
                         "review_reason_code": reason,
                         "pdf_sha256": digest, "queue_sha256": settings["queue_sha256"],
                         "file_sha256": file_digests,
@@ -883,10 +1286,11 @@ def run(args: argparse.Namespace) -> int:
                 content_sha256 = hashlib.sha256(
                     jdump({"raw_model_json": raw_batch, "item_records": records}).encode("utf-8")
                 ).hexdigest()
-                journal = {"protocol_version": PROTOCOL_VERSION, "batch_id": bid,
+                journal = {"protocol_version": PROTOCOL_VERSION, "binary_rule_version": BINARY_RULE_VERSION, "batch_id": bid,
                            "batch_index": index, "queue_item_ids": attempt["item_ids"],
                            "pdf_sha256": digest, "queue_sha256": settings["queue_sha256"],
                            "raw_model_json": raw_batch, "response_metadata": meta,
+                           "prompt_hints_sha256": prompt_sha(batch, bid),
                            "item_records": records, "batch_content_sha256": content_sha256}
             except Exception as exc:
                 with commit_lock:
@@ -897,14 +1301,23 @@ def run(args: argparse.Namespace) -> int:
                     stdout_log(started, "FAILED", f"batch={bid} attempt={attempt_number}/{max_attempts_per_batch} "
                                f"duration={time.perf_counter() - batch_started:.1f}s "
                                f"error={type(exc).__name__}: {str(exc)[:200]}")
-                if attempt_number >= max_attempts_per_batch:
+                # A network failure could have reached Azure; NEVER retry it automatically.
+                # Only an explicitly rejected/truncated returned response may be retried
+                # when the operator enabled --auto-retry-invalid-response, and both
+                # the per-batch and GLOBAL retry budgets still permit it.
+                if not isinstance(exc, RejectedBatchResponse) or not args.auto_retry_invalid_response:
                     raise RuntimeError(
-                        f"Batch {bid} failed after {max_attempts_per_batch} submissions "
-                        f"({args.batch_retries} retries): {type(exc).__name__}: {str(exc)[:250]}"
+                        f"Batch {bid} uncommitted; resubmission requires --resume --retry-ambiguous, "
+                        "and unused shared retry capacity."
                     ) from exc
+                with commit_lock:
+                    extra_used = sum(row.get("attempt_number", 1) > 1 for row in state["attempts"])
+                    can_retry = attempt_number < max_attempts_per_batch and extra_used < GLOBAL_EXTRA_SUBMISSIONS and len(state["attempts"]) < total_attempt_limit
+                if not can_retry:
+                    raise RuntimeError(f"Batch {bid} invalid; shared or per-batch retry budget exhausted") from exc
                 delay = min(2 ** (attempt_number - 1), 30)
-                stdout_log(started, "RETRY", f"batch={bid} next_attempt={attempt_number + 1}/"
-                           f"{max_attempts_per_batch} backoff={delay}s")
+                stdout_log(started, "RETRY", f"batch={bid} invalid_model_response next_attempt={attempt_number + 1}/"
+                           f"{max_attempts_per_batch} extra_used={extra_used}/{GLOBAL_EXTRA_SUBMISSIONS} backoff={delay}s")
                 time.sleep(delay)
                 continue
 
@@ -925,13 +1338,13 @@ def run(args: argparse.Namespace) -> int:
                            f"journal={journal_path(out, index).name}")
                 for record in records:
                     proposed = record["model_json"]
-                    candidate = model_candidate(record["direction"], proposed)
-                    audit = "REVIEW_REQUIRED" if record["unreliable"] else "MODEL_CHECKS_PASSED"
+                    candidate = record["binary_cell"]
+                    audit = ("ORIGINAL_CHECKS_PASSED_PROOF_PENDING" if record["review_reason_code"] == "ORIGINAL_LOCATOR_CHECKS_PASSED_SEMANTIC_PROOF_STILL_PENDING_PHASE07" else "REVIEW_REQUIRED")
                     stdout_log(started, "ITEM", f"id={record['item_id']} direction={record['direction']} "
-                               f"relation={proposed['relation']} candidate={candidate} audit={audit}")
+                               f"relation={proposed['relation']} cell={candidate} rule={record['binary_decision_rule']} audit={audit}")
                 counts = candidate_counts(known)
                 counts_text = " ".join(f"{name}={count}" for name, count in counts.items())
-                stdout_log(started, "SUMMARY", f"candidates(noncanonical): {counts_text}; "
+                stdout_log(started, "SUMMARY", f"binary_cells(selected): {counts_text}; "
                            f"remaining={len(items) - len(known)}; next={next_pending_batch(out, batches)}")
             if args.sleep:
                 time.sleep(args.sleep)
@@ -956,27 +1369,33 @@ def run(args: argparse.Namespace) -> int:
                            + "; ".join(failures[:6]))
     if len(known) != len(items):
         raise RuntimeError("Missing individual model results after completed batches")
-    stdout_log(started, "FINISHED", f"items={len(known)}/{len(items)} batches={len(batches)}/{len(batches)} elapsed_seconds={time.perf_counter() - started:.1f} next=PHASE_07_INDEPENDENT_REVIEW")
+    if not args.skip_full_population_closure:
+        phase_dir = Path(args.phase_dir).resolve() if args.phase_dir else queue.parent
+        finalize_full_population(phase_dir, out, items, known, digest, file_digests)
+    stdout_log(started, "FINISHED", f"items={len(known)}/{len(items)} batches={len(batches)}/{len(batches)} elapsed_seconds={time.perf_counter() - started:.1f} next=COMPLETE_FOUR_CELL_OUTPUT")
     stdout_log(started, "OUTPUT", f"directory={out} decisions={out / 'semantic_decisions.jsonl'}")
-    stdout_log(started, "NOTICE", "All candidate labels are provisional; Phase 07 must independently verify evidence and predicates before canonical scoring.")
+    stdout_log(started, "NOTICE", "Four-cell decisions are recorded with BEST_EFFORT quality; canonical G residual deduplication is handled by full-population closure.")
     return 0
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="OrionDesk v10.3 batched evidence-grounded Azure Responses evaluation")
+    parser = argparse.ArgumentParser(description="OrionDesk v10.5 batched evidence-grounded Azure Responses evaluation")
     parser.add_argument("--pdf", required=True, help="Authoritative 90-page PDF")
-    parser.add_argument("--queue", required=True, help="Frozen Phase 06 JSONL: up to 4096 pending item records")
+    parser.add_argument("--queue", required=True, help="Frozen, new v10.5 Phase 06 JSONL: method-specific item cap")
     parser.add_argument("--spec-dir", help="Directory containing exactly eight specification roles")
     parser.add_argument("--spec", action="append", help="Explicit Markdown original; repeat exactly eight times")
-    parser.add_argument("--out-dir", default="semantic_output_v10.3")
+    parser.add_argument("--out-dir", default="semantic_output_v10.5")
+    parser.add_argument("--phase-dir", help="Phase 01-06 ledgers and frozen benchmark; defaults to queue directory for automatic full-population closure")
+    parser.add_argument("--skip-full-population-closure", action="store_true", help="Only save item-level four-cell results; skip exhaustive R/N/G+F final counts")
     parser.add_argument("--model", help="Azure deployment; default gpt-6.1-sol")
     parser.add_argument("--endpoint", help="Azure root HTTPS endpoint")
     parser.add_argument("--max-output-tokens", type=int, default=40000)
     parser.add_argument("--timeout", type=int, default=600)
-    parser.add_argument("--confidence-threshold", type=float, default=0.90)
+    parser.add_argument("--confidence-threshold", type=float, default=0.80)
     parser.add_argument("--retries", type=int, default=0, help="SDK-level retries must remain zero; use --batch-retries")
     parser.add_argument("--concurrency", type=int, default=DEFAULT_CONCURRENCY, help="Concurrent API batches (default: 4)")
-    parser.add_argument("--batch-retries", type=int, default=DEFAULT_BATCH_RETRIES, help="Retries after the first submission for each failed batch (default: 3)")
+    parser.add_argument("--batch-retries", type=int, default=DEFAULT_BATCH_RETRIES, help="Maximum additional attempts for one batch (0..3; global cap eight); default 0")
+    parser.add_argument("--auto-retry-invalid-response", action="store_true", help="Explicitly allow counted retries of known invalid returned outputs; never retries network ambiguity")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--retry-ambiguous", action="store_true", help="Allow explicitly counted resubmission of an uncommitted batch")
     parser.add_argument("--reupload-files", action="store_true")
@@ -987,7 +1406,7 @@ def main() -> int:
         parser.error("--spec requires exactly eight paths")
     if (not 0.5 <= args.confidence_threshold < 1 or args.max_output_tokens < 4000 or
         args.timeout <= 0 or args.retries != 0 or args.sleep < 0 or
-        args.concurrency < 1 or args.batch_retries < 0 or
+        args.concurrency < 1 or args.concurrency > 4 or args.batch_retries < 0 or args.batch_retries > 3 or
         args.retry_ambiguous and not args.resume):
         parser.error("Invalid confidence/tokens/timeout/retries/sleep or retry without resume")
     try:
