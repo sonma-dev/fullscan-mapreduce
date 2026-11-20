@@ -18,5 +18,5 @@
 13. Full-load approval is very weak, because in a MapReduce architecture, the detailed data required for approval is passed upward from the leaves and forks to the approving forks and root.
 14. There is a trade-off between accuracy and computational cost. Even when the compute cost is realistic, if human intervention is required in the loop, the time and effort can easily exceed what a human can tolerate.
 15. People say LLMs can understand meaning, but in reality they perform statistical next-token prediction. Relying on them to make semantic judgments—such as for deduplication—leads to disaster: rampant failures and an explosion in volume, or in your example, a divergence of atomic requirements.
-> **Note:** If you want to consolidate meaning, you should break the task down into small chunks.
+**Note:** If you want to consolidate meaning, you should break the task down into small chunks.
 16. Rather than reducing the responses of all child nodes at once at the root or forks, reducing them incrementally in smaller chunks may make semantic reduction much easier for current LLMs. Since current LLMs struggle to integrate meaning all at once, in an LLM-based MapReduce pipeline—disregarding cost—you can choose to consolidate meaning within each shard first, and then integrate meaning again across every shard alongside the global context.
