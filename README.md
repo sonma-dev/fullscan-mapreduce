@@ -22,8 +22,6 @@ I explicitly state that the input token count for the Full Load approach did not
 
 I evaluated precision, recall, and F1-score using **the same dataset**, exclusively for **the full-load scenario** with the reasoning effort set to extra high (`xhigh`).
 
-![Evaluation Metrics for XHigh Reasoning Effort](misc/img/xhigh_metric.png)
-
 - Even if XHigh improves precision and recall, performance degradation similar to the low setting will likely occur as the number and size of files increase.
 - Because this pipeline passes previously generated specifications into subsequent generation steps, it becomes increasingly susceptible to issues such as "lost in the middle" and "context rot." This risk is further exacerbated by the fact that each generated specification averages approximately 120 KB under XHigh, compared to about 50 KB under low.
 - It should also be noted that truncation is disabled by default in the OpenAI Responses API, which increases the risk of exceeding context limits or degrading attention over long inputs.
