@@ -1,6 +1,6 @@
 # An Exploratory Experiment: LLM-based Hierarchical MapReduce
 
-For experimental findings, evaluation metrics, and limitations, see [Experimental Results](__result.md).
+For experimental findings, evaluation metrics, and limitations, see [Experimental Results](result.md).
 
 **The key issue seems to be not the number of datasets, but the reliability of the statistical methodology.**
 
@@ -27,7 +27,7 @@ Since $R$ was derived by an LLM from the original PDF detailed design specificat
 
 This is a metric calculation conducted on **the same dataset**. It represents a statistical validation of the metric calculation itself, rather than an assessment of confidence intervals or statistical significance.
 
-![Precision, Recall, and F1-score Comparison](_statistical_validation_comparison.png)
+![Precision, Recall, and F1-score Comparison](statistical_validation_comparison.png)
 
 All three methods initially used the same 1,024 atomic requirements and 37 negative controls. Subsequent corrections led to slight differences in the final reference-set sizes.
 
