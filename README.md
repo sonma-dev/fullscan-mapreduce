@@ -6,7 +6,7 @@ For experimental findings, evaluation metrics, and limitations, see [Experimenta
 
 Based on my examination of these results, although the observed differences have not been established as statistically significant, there seems to be a consistent tendency for the MapReduce approach to achieve precision and recall scores close to 100%, whereas the full-load approach tends to fall short of 100%.
 
-**I am currently performing metric calculations using full-load with approval process and xhigh reasoning effort, and I'm running into FP explosions! Surprisingly, I didn't see these FP explosions when running full-load with xhigh reasoning effort alone.**
+**I am currently performing metric calculations using full-load with approval process and XHigh reasoning effort, and I'm running into FP explosions! Surprisingly, I didn't see these FP explosions when running full-load with XHigh reasoning effort alone.**
 
 ## Hypothesis on FP Explosion
 
@@ -37,12 +37,12 @@ I explicitly state that the input token count for the Full Load approach did not
 
 I evaluated precision, recall, and F1-score using **the same dataset**, exclusively for **the full-load scenario** with the reasoning effort set to extra high (`xhigh`).
 
-![Evaluation Metrics for xhigh Reasoning Effort](misc/img/xhigh_metric.png)
+![Evaluation Metrics for XHigh Reasoning Effort](misc/img/xhigh_metric.png)
 
-- It seems that xhigh improves precision, but not recall whatsoever.
+- It seems that XHigh improves precision, but not recall whatsoever.
 - The variance in these trial metrics indicates that I have not yet established a statistically reliable methodology.
-- Even if xhigh improves precision and recall, performance degradation similar to the low setting will likely occur as the number and size of files increase.
-- Because this pipeline passes previously generated specifications into subsequent generation steps, it becomes increasingly susceptible to issues such as "lost in the middle" and "context rot." This risk is further exacerbated by the fact that each generated specification averages approximately 120 KB under xhigh, compared to about 50 KB under low.
+- Even if XHigh improves precision and recall, performance degradation similar to the low setting will likely occur as the number and size of files increase.
+- Because this pipeline passes previously generated specifications into subsequent generation steps, it becomes increasingly susceptible to issues such as "lost in the middle" and "context rot." This risk is further exacerbated by the fact that each generated specification averages approximately 120 KB under XHigh, compared to about 50 KB under low.
 - It should also be noted that truncation is disabled by default in the OpenAI Responses API, which increases the risk of exceeding context limits or degrading attention over long inputs.
 - Collectively, these findings imply that, although a MapReduce approach might conversely exacerbate context growth, **it can enhance the LLM's reasoning capabilities.**
 
