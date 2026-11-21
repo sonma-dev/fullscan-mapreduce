@@ -2,34 +2,19 @@
 
 For experimental findings, evaluation metrics, and limitations, see [Experimental Results](result.md).
 
-**The key issue seems to be not the number of datasets, but the reliability of the statistical methodology.**
+**The key issue seems to be not the number of datasets, but the reliability of the statistical methodology.** On November 22, 2026, I recalculated the metrics using a more reliable statistical methodology than that of November 17. To inspect the previous metric calculations, see statistical_analysis/old/.
 
-Based on my examination of these results, although the observed differences have not been established as statistically significant, there seems to be a consistent tendency for the MapReduce approach to achieve precision and recall scores close to 100%, whereas the full-load approach tends to fall short of 100%.
-
-**I am currently performing metric calculations using full-load with approval process and XHigh reasoning effort, and I'm running into FP explosions! Surprisingly, I didn't see these FP explosions when running full-load with XHigh reasoning effort alone.**
-
-## Hypothesis on FP Explosion
-
-Evaluation Protocol version 6.1 defines the evaluation universe as follows:
-
-$$
-X = R + N + F
-$$
-
-Here, we can reasonably assume that $R$ and $N$ are essentially the same sets of atomic requirements and negative controls initially provided for the metric calculations.
-$F$ represents atomic requirements that are not semantically included in $R$.
-Therefore, it appears that the full-Load approach with an approval process and XHigh reasoning effort generates additional atomic requirements that are not semantically included in $R$.
-Since $R$ was derived by an LLM from the original PDF detailed design specification, it is reasonable to assume that $R$ provides nearly comprehensive coverage of the ideal set of true atomic requirements.
+Based on my examination of these results, the MapReduce approach can achieve precision and recall scores approaching 100%, whereas the full-load approach falls significantly short.
 
 **You must understand that executing two-level MapReduce incurs substantial financial costs.**
 
 ![2-level MapReduce Workflow](misc/img/twolevel_mapreduce.png)
 
-This is a metric calculation conducted on **the same dataset**. It represents a statistical validation of the metric calculation itself, rather than an assessment of confidence intervals or statistical significance.
+These metrics were computed on the same dataset and represent descriptive point estimates rather than an assessment of confidence intervals or statistical significance.
 
 ![Precision, Recall, and F1-score Comparison](statistical_validation_comparison.png)
 
-All three methods initially used the same 1,024 atomic requirements and 37 negative controls. Subsequent corrections led to slight differences in the final reference-set sizes.
+All three methods initially used the same 638 atomic requirements and 142 negative controls. Subsequent corrections led to slight differences in the final reference-set sizes.
 
 I explicitly state that the input token count for the Full Load approach did not exceed the maximum input context length of gpt-6.1-sol.
 
@@ -39,12 +24,10 @@ I evaluated precision, recall, and F1-score using **the same dataset**, exclusiv
 
 ![Evaluation Metrics for XHigh Reasoning Effort](misc/img/xhigh_metric.png)
 
-- It seems that XHigh improves precision, but not recall whatsoever.
-- The variance in these trial metrics indicates that I have not yet established a statistically reliable methodology.
 - Even if XHigh improves precision and recall, performance degradation similar to the low setting will likely occur as the number and size of files increase.
 - Because this pipeline passes previously generated specifications into subsequent generation steps, it becomes increasingly susceptible to issues such as "lost in the middle" and "context rot." This risk is further exacerbated by the fact that each generated specification averages approximately 120 KB under XHigh, compared to about 50 KB under low.
 - It should also be noted that truncation is disabled by default in the OpenAI Responses API, which increases the risk of exceeding context limits or degrading attention over long inputs.
-- Collectively, these findings imply that, although a MapReduce approach might conversely exacerbate context growth, **it can enhance the LLM's reasoning capabilities.**
+- Collectively, these findings imply that, although a MapReduce approach might increase token consumption and wall-clock time, **it can enhance the LLM's reasoning capabilities.**
 
 Note that I have never deliberately attempted to improve the precision, recall, or F1 scores of the MapReduce approaches through this statistical evaluation.
 

@@ -17,13 +17,13 @@ checklist or a new best-effort scoring column. No certified canonical scores
 are invented.
 
 All code, comments, API prompts, output records and CLI logs are in English.
-Model: Azure Foundry gpt-6.1-sol deployment, reasoning effort medium.
+Model: Azure Foundry gpt-6.2-sol deployment, reasoning effort high.
 Install: pip install 'openai>=2' pymupdf
 
 Environment variables:
     AZURE_OPENAI_ENDPOINT=https://YOUR-RESOURCE.openai.azure.com/
     AZURE_OPENAI_API_KEY=...
-    AZURE_OPENAI_DEPLOYMENT=gpt-6.1-sol
+    AZURE_OPENAI_DEPLOYMENT=gpt-6.2-sol
 
 Example:
     python semantic_decision_evaluator_v10.6_unlimited.py --pdf source.pdf \
@@ -32,6 +32,10 @@ Example:
       --spec-dir ./inputs --queue unreliable_items.jsonl --out-dir ./out
     python semantic_decision_evaluator_v10.6_unlimited.py --pdf source.pdf \
       --spec-dir ./inputs --queue unreliable_items.jsonl --out-dir ./out --resume
+    # After inspecting failed_batches, authorize one new retry round for exhausted batches:
+    python semantic_decision_evaluator_retry_failed.py --pdf source.pdf \
+      --spec-dir ./inputs --queue unreliable_items.jsonl --out-dir ./out \
+      --resume --retry-failed
 """
 from __future__ import annotations
 
@@ -40,6 +44,7 @@ from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
 from threading import Event, Lock
 from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 import hashlib
 import json
 import os
@@ -65,9 +70,16 @@ BATCH_SIZE_DEFAULT = 16
 BATCH_SIZE_MAX = 128
 CONCURRENCY_DEFAULT = 4
 CONCURRENCY_MAX = 64
-RETRY_COUNT_DEFAULT = 3  # Additional attempts per batch, initial request not included.
+RETRY_COUNT_DEFAULT = 3  # Additional attempts per batch for explicit retryable failures.
+AMBIGUOUS_SUBMISSION_LIMIT_DEFAULT = 256  # Maximum submissions per batch when explicitly authorized.
+AMBIGUOUS_SUBMISSION_LIMIT_MAX = 256
+AMBIGUOUS_RETRY_DELAY_SECONDS = 5.0  # Bounded pacing before a possibly billable re-submission.
+# Transport-only safeguards. These are not part of scoring or resume identity.
+RATE_LIMIT_BACKOFF_BASE_SECONDS = 120.0
+RATE_LIMIT_BACKOFF_MAX_FALLBACK_SECONDS = 600.0
+RATE_LIMIT_RECOVERY_SPACING_SECONDS = 30.0
 
-DEFAULT_MODEL = "gpt-6.1-sol"
+DEFAULT_MODEL = "gpt-6.2-sol"
 ALLOWED_CELLS = {"TP", "TN", "FP", "FN"}
 ALLOWED_KINDS = {"R", "N", "G"}
 # The eight fixed source roles. Only matching canonical basenames and optional
@@ -443,6 +455,104 @@ class ExplicitInvalidResponse(RuntimeError):
 class ExplicitRateLimit(RuntimeError):
     """Azure explicitly rejected the submission with HTTP 429."""
 
+    status_code = 429
+
+
+# Azure error diagnostics intentionally include only non-secret, allowlisted fields.
+_RATE_LIMIT_HEADERS = (
+    "retry-after-ms", "retry-after", "x-ratelimit-limit-tokens",
+    "x-ratelimit-remaining-tokens", "x-ratelimit-reset-tokens",
+    "x-ms-request-id", "apim-request-id", "x-request-id",
+)
+
+
+def http_diagnostics(exc: Exception) -> dict:
+    """Capture Azure response metadata without logging authentication headers."""
+    original = exc.__cause__ if isinstance(exc, ExplicitRateLimit) and exc.__cause__ else exc
+    response = getattr(original, "response", None)
+    headers = getattr(response, "headers", None)
+    status = getattr(original, "status_code", None)
+    if status is None:
+        status = getattr(response, "status_code", None)
+    diagnostic = {"http_status": status} if status is not None else {}
+    request_id = getattr(original, "request_id", None)
+    if request_id:
+        diagnostic["request_id"] = str(request_id)
+    if headers is not None:
+        observed = {name: str(headers[name]) for name in _RATE_LIMIT_HEADERS
+                    if headers.get(name) is not None}
+        if observed:
+            diagnostic["headers"] = observed
+    return diagnostic
+
+
+def azure_retry_after_seconds(diagnostic: dict) -> float | None:
+    """Interpret HTTP retry guidance and token-reset duration, if supplied."""
+    headers = diagnostic.get("headers", {})
+    candidates = []
+    value = headers.get("retry-after-ms")
+    if value is not None:
+        try:
+            candidates.append(max(0.0, float(value) / 1000.0))
+        except (ValueError, TypeError, OverflowError):
+            pass
+    value = headers.get("retry-after")
+    if value is not None:
+        try:
+            candidates.append(max(0.0, float(value)))
+        except (ValueError, TypeError, OverflowError):
+            try:
+                when = parsedate_to_datetime(value)
+                if when.tzinfo is None:
+                    when = when.replace(tzinfo=timezone.utc)
+                candidates.append(max(0.0, (when - datetime.now(timezone.utc)).total_seconds()))
+            except (ValueError, TypeError, OverflowError):
+                pass
+    value = headers.get("x-ratelimit-reset-tokens")
+    if value is not None:
+        # Azure commonly uses e.g. '1m20s' or '3.5s'.
+        normalized = str(value).strip().lower()
+        parts = list(re.finditer(r"(\d+(?:\.\d+)?)(ms|h|m|s)", normalized))
+        if parts and "".join(part.group(0) for part in parts) == normalized:
+            units = {"ms": 0.001, "s": 1, "m": 60, "h": 3600}
+            candidates.append(sum(float(part.group(1)) * units[part.group(2)] for part in parts))
+    candidates = [v for v in candidates if 0 <= v < float("inf")]
+    return max(candidates) if candidates else None
+
+
+class SharedRateLimitGate:
+    """Pause all workers after 429 and space resumed sends across the workers."""
+
+    def __init__(self):
+        self.lock = Lock()
+        self.cooldown_until = 0.0
+        self.next_dispatch_at = 0.0
+        self.recovery_pacing = False
+
+    def note_rate_limit(self, seconds: float) -> None:
+        with self.lock:
+            self.cooldown_until = max(self.cooldown_until, time.monotonic() + seconds)
+            self.next_dispatch_at = max(self.next_dispatch_at, self.cooldown_until)
+            self.recovery_pacing = True
+
+    def wait_for_slot(self, stopped: Event, identifier: str) -> bool:
+        announced = False
+        while not stopped.is_set():
+            with self.lock:
+                now = time.monotonic()
+                earliest = max(self.cooldown_until, self.next_dispatch_at)
+                if now >= earliest:
+                    if self.recovery_pacing:
+                        self.next_dispatch_at = now + RATE_LIMIT_RECOVERY_SPACING_SECONDS
+                    return not stopped.is_set()
+                remaining = earliest - now
+            if not announced:
+                log_event("RATE_WAIT", f"batch={identifier} shared_wait_seconds={remaining:.1f}")
+                announced = True
+            if stopped.wait(min(remaining, 1.0)):
+                return False
+        return False
+
 
 """ FIXME We may need to warm up the cache. """
 class AzurePdfJudge:
@@ -496,7 +606,7 @@ class AzurePdfJudge:
 
         try:
             response = self.client.responses.create(
-                model=self.deployment, reasoning={"effort": "medium"},
+                model=self.deployment, reasoning={"effort": "high"},
                 prompt_cache_key=cache_key,
                 max_output_tokens=self.max_output_tokens,
                 instructions=SYSTEM_PROMPT,
@@ -507,7 +617,9 @@ class AzurePdfJudge:
             )
         except Exception as exc:
             if getattr(exc, "status_code", None) == 429:
+                # Keep original SDK exception as __cause__ to retain headers.
                 raise ExplicitRateLimit(str(exc)[:300]) from exc
+            # 408, SDK timeouts and connection errors are ambiguous: no silent retry.
             raise
         if getattr(response, "status", "completed") != "completed":
             raise ExplicitInvalidResponse(
@@ -685,6 +797,114 @@ def failed_path(out: Path, index: int) -> Path:
     return out / "failed_batches" / (batch_id(index) + ".json")
 
 
+def failed_history_path(out: Path, index: int, old_round: int) -> Path:
+    """Immutable original failure record, archived before authorized recovery."""
+    return out / "failed_batches" / "history" / f"{batch_id(index)}-round{old_round:04d}.json"
+
+
+def recovery_round(state: dict, identifier: str) -> int:
+    rounds = state.get("recovery_rounds", {})
+    if not isinstance(rounds, dict):
+        raise ValueError("Corrupt run_state.json: recovery_rounds must be an object")
+    number = rounds.get(identifier, 0)
+    if type(number) is not int or number < 0:
+        raise ValueError(f"Invalid recovery round for {identifier}")
+    return number
+
+
+def round_attempts(state: dict, identifier: str, round_number: int) -> list[dict]:
+    """Legacy attempts lacking a round field are round zero; do not erase history."""
+    return [a for a in state["attempts"] if a.get("batch_id") == identifier
+            and a.get("recovery_round", 0) == round_number]
+
+
+def inspect_failed_record(out: Path, index: int, batch: list[dict],
+                          state: dict, settings: dict,
+                          *, allow_ambiguous: bool = False) -> tuple[int, str]:
+    """Validate a failed batch against the queue and exact historical attempts."""
+    path = failed_path(out, index)
+    data = json.loads(path.read_text(encoding="utf-8"))
+    identifier = batch_id(index)
+    if not isinstance(data, dict) or data.get("status") not in (
+            "RETRY_BUDGET_EXHAUSTED_NO_DECISION", "AMBIGUOUS_DEFERRED_NO_DECISION"):
+        raise ValueError(f"Unrecognized failure status: {path}")
+    if (data.get("batch_id") != identifier or data.get("batch_index") != index or
+            data.get("batch_size") != len(batch) or
+            data.get("item_ids") != [x["item_id"] for x in batch]):
+        raise ValueError(f"Failure record does not match frozen batch: {path}")
+    if (data.get("queue_sha256", settings["queue_sha256"]) != settings["queue_sha256"] or
+            data.get("pdf_sha256", settings["pdf_sha256"]) != settings["pdf_sha256"] or
+            data.get("input_digest", batch_digest(batch)) != batch_digest(batch)):
+        raise ValueError(f"Failure record hash mismatch: {path}")
+    old_round = data.get("recovery_round", 0)
+    if type(old_round) is not int or not 0 <= old_round <= recovery_round(state, identifier):
+        raise ValueError(f"Invalid failure recovery generation: {path}")
+    old_attempts = round_attempts(state, identifier, old_round)
+    # A safely exhausted retry round may contain earlier, explicitly
+    # authorized ambiguous failures. Preserve all of them. The final error
+    # and the normal retry-count exhaustion must still be explicit/verified.
+    if not old_attempts or data.get("attempts") != len(old_attempts):
+        raise ValueError(f"Failure attempt history inconsistent: {path}")
+    if not all(a.get("status") == "FAILED" for a in old_attempts):
+        raise ValueError(f"Failure history contains incomplete/unknown submissions: {path}")
+    explicit_types = ("ExplicitRateLimit", "ExplicitInvalidResponse")
+    explicit_count = sum(a.get("error_type") in explicit_types for a in old_attempts)
+    if data.get("status") == "AMBIGUOUS_DEFERRED_NO_DECISION":
+        # The provider may already have billed the request. Require the caller's
+        # explicit resubmission authorization, not just --retry-failed.
+        if not allow_ambiguous:
+            raise ValueError(f"Ambiguous failed batch requires --retry-ambiguous: {path}")
+        if (data.get("error_type") in explicit_types or
+                old_attempts[-1].get("error_type") != data.get("error_type") or
+                data.get("reason_code") != "AMBIGUOUS_SUBMISSION_UNCOMMITTED"):
+            raise ValueError(f"Unverifiable ambiguous failure record: {path}")
+    else:
+        if (old_attempts[-1].get("error_type") not in explicit_types or
+                explicit_count != 1 + state["batch_retries"]):
+            raise ValueError(f"Failure may be ambiguous or structurally unsafe: {path}")
+        if data.get("error_type") not in explicit_types:
+            raise ValueError(f"Failure record is not a safe retryable response: {path}")
+    return old_round, sha256(path)
+
+
+def authorize_failed_retries(out: Path, selected: list[tuple[int, list[dict]]],
+                             state: dict, settings: dict, state_path: Path,
+                             *, allow_ambiguous: bool = False) -> None:
+    """Authorize one new bounded round and archive old failures crash-safely.
+
+    Write authorization to run_state BEFORE moving the original failure record.
+    A crash between these steps can be completed without incrementing the round
+    again: the failure's recorded round will then be older than the authorized one.
+    """
+    plans = []
+    # Validate everything before the first state or filesystem change.
+    for index, batch in selected:
+        identifier = batch_id(index)
+        old_round, old_sha = inspect_failed_record(
+            out, index, batch, state, settings, allow_ambiguous=allow_ambiguous)
+        current_round = recovery_round(state, identifier)
+        archive = failed_history_path(out, index, old_round)
+        if archive.exists():
+            raise FileExistsError(f"Refusing to overwrite existing failure history: {archive}")
+        if current_round > old_round + 1:
+            raise ValueError(f"Inconsistent interrupted retry authorization: {identifier}")
+        if current_round == old_round + 1 and round_attempts(state, identifier, current_round):
+            raise ValueError(f"Cannot archive stale failure after new attempts: {identifier}")
+        plans.append((index, identifier, old_round, current_round, old_sha, archive))
+    for index, identifier, old_round, current_round, old_sha, archive in plans:
+        if current_round == old_round:
+            state.setdefault("recovery_rounds", {})[identifier] = current_round + 1
+            state.setdefault("recovery_events", []).append({
+                "batch_id": identifier, "prior_round": old_round,
+                "authorized_round": current_round + 1, "authorized_at_utc": utcnow(),
+                "prior_failure_sha256": old_sha, "authorization": "EXPLICIT_RETRY_FAILED"})
+            atomic_json(state_path, state)
+        archive.parent.mkdir(parents=True, exist_ok=True)
+        os.replace(failed_path(out, index), archive)
+        log_event("RECOVERY", f"batch={identifier} archived={archive.name} "
+                  f"new_round={old_round + 1} new_max_attempts={1 + state['batch_retries']}")
+
+
 def batches_for(items: list[dict], size: int) -> list[list[dict]]:
     return [items[start:start + size] for start in range(0, len(items), size)]
 
@@ -699,6 +919,8 @@ def validate_run_state(state: dict, settings: dict) -> None:
             raise ValueError(f"Refusing to resume after changing {key}")
     if not isinstance(state.get("attempts"), list):
         raise ValueError("Corrupt run_state.json: attempts must be an array")
+    if not isinstance(state.get("recovery_rounds", {}), dict):
+        raise ValueError("Corrupt run_state.json: recovery_rounds must be an object")
 
 
 def read_journals(out: Path, batches: list[list[dict]], settings: dict) -> dict[str, dict]:
@@ -760,6 +982,8 @@ def publish_aggregate(out: Path, items: list[dict], batches: list[list[dict]],
                "completed_batches": sum(journal_path(out, i).exists() for i in range(len(batches))),
                "failed_batches": len(failures),
                "attempts": len(state["attempts"]),
+               "recovery_rounds": state.get("recovery_rounds", {}),
+               "historical_failed_records": len(list((out / "failed_batches" / "history").glob("*.json"))),
                "suggested_decision_counts": dict(counts),
                "no_final_tp_tn_fp_fn_totals_produced": True}
     atomic_json(out / "semantic_summary.json", summary)
@@ -862,24 +1086,62 @@ def run(args: argparse.Namespace) -> int:
     # Concurrency can be adjusted without changing model decisions.
     state["concurrency"] = args.concurrency
     known = read_journals(out, batches, settings)
+    # Only an explicit --retry-failed opt-in selects exhausted failures again.
+    # Independently committed successful journals always take precedence.
+    selected_failed = [(i, batch) for i, batch in enumerate(batches)
+                       if not journal_path(out, i).exists() and failed_path(out, i).exists()]
     pending = [(i, batch) for i, batch in enumerate(batches)
-               if not journal_path(out, i).exists() and not failed_path(out, i).exists()]
+               if not journal_path(out, i).exists() and
+               (not failed_path(out, i).exists() or args.retry_failed)]
+    # Validate ambiguous/incomplete attempts BEFORE archiving any failed record.
+    # Previous failed rounds do not consume the fresh, explicitly authorized
+    # per-round retry allowance; every attempt remains in the immutable ledger.
+    for index, batch in pending:
+        identifier = batch_id(index)
+        if args.retry_ambiguous:
+            # Never reset the ambiguity cap across process restarts or explicit
+            # failed-batch recovery rounds. A prior ambiguous submission may
+            # already have been processed/billed by the provider.
+            all_prior = [a for a in state["attempts"] if a["batch_id"] == identifier]
+            if len(all_prior) >= args.ambiguous_submission_limit:
+                raise RuntimeError(
+                    f"Ambiguous submission limit exhausted for {identifier}: "
+                    f"{len(all_prior)}/{args.ambiguous_submission_limit}. "
+                    "Do not resubmit without a separate explicitly audited run.")
+        active_round = recovery_round(state, identifier)
+        if failed_path(out, index).exists():
+            old_round, _ = inspect_failed_record(
+                out, index, batch, state, settings,
+                allow_ambiguous=args.retry_ambiguous)
+            if active_round == old_round:
+                active_round += 1  # This round requires --retry-failed authorization.
+        previous = round_attempts(state, identifier, active_round)
+        if (args.retry_ambiguous and len(previous) >= 1 + args.batch_retries and
+                all(a.get("status") == "FAILED" and a.get("error_type") in
+                    ("ExplicitRateLimit", "ExplicitInvalidResponse") for a in previous)):
+            raise RuntimeError(f"Only safe retries exhausted for {identifier}; "
+                               "--retry-ambiguous cannot bypass the normal retry budget")
+        if len(previous) >= (args.ambiguous_submission_limit if args.retry_ambiguous
+                             else 1 + args.batch_retries):
+            raise RuntimeError(f"Submission budget exhausted for {identifier}; inspect failed history")
+        if previous and not args.retry_ambiguous:
+            raise RuntimeError(f"Uncommitted prior attempt for {identifier}; inspect run_state.json "
+                               "and use --resume --retry-ambiguous only after review")
+    if args.retry_failed and selected_failed:
+        authorize_failed_retries(
+            out, selected_failed, state, settings, state_path,
+            allow_ambiguous=args.retry_ambiguous)
     attempted_batches = len({a["batch_id"] for a in state["attempts"]})
     next_text = (f"{batch_id(pending[0][0])} ({pending[0][0] + 1}/{len(batches)}, "
                  f"items={len(pending[0][1])})" if pending else "none")
     log_event("INITIAL", f"committed_items={len(known)}/{len(active)} "
               f"committed_batches={sum(journal_path(out, i).exists() for i in range(len(batches)))}/{len(batches)} "
               f"attempted_batches={attempted_batches}/{len(batches)} next={next_text}")
-    # Before spending money: forbid silent resubmission of an ambiguous previous
-    # attempt, and forbid any more than (1+retry) submissions per batch.
-    for index, batch in pending:
-        previous = [a for a in state["attempts"] if a["batch_id"] == batch_id(index)]
-        if len(previous) >= 1 + args.batch_retries:
-            raise RuntimeError(f"Retry budget exhausted for {batch_id(index)}")
-        if previous and not args.retry_ambiguous:
-            raise RuntimeError(f"Uncommitted prior attempt for {batch_id(index)}; "
-                               "inspect run_state.json and pass --resume --retry-ambiguous "
-                               "only if resubmission is intentional")
+    if not pending:
+        publish_aggregate(out, active, batches, settings, state, known)
+        log_event("FINISHED", f"pending_batches=0 completed={len(known)}/{len(active)} "
+                  "azure_calls=0")
+        return 0 if len(known) == len(active) else 2
     judge = AzurePdfJudge(endpoint, key, model, args.max_output_tokens, args.timeout)
     judge.file_ids = dict(state.get("azure_file_ids", {}))
     if args.reupload_files:
@@ -898,24 +1160,87 @@ def run(args: argparse.Namespace) -> int:
                   f"({len(judge.file_ids)}/9)")
     commit_lock = Lock()
     stop_event = Event()
+    rate_gate = SharedRateLimitGate()
     started = time.monotonic()
     log_event("CONFIG", f"concurrency={args.concurrency} retries_per_batch={args.batch_retries} "
-              f"max_submissions_per_batch={1 + args.batch_retries} "
-              f"maximum_attempts={(1 + args.batch_retries) * len(batches)} "
-              f"pending_batches={len(pending)} reasoning=medium "
+              f"ambiguous_retry_authorized={args.retry_ambiguous} "
+              f"ambiguous_submission_limit={args.ambiguous_submission_limit} "
+              f"default_request_timeout_seconds={args.timeout} "
+              f"max_submissions_per_batch={args.ambiguous_submission_limit if args.retry_ambiguous else 1 + args.batch_retries} "
+              f"maximum_attempts={(args.ambiguous_submission_limit if args.retry_ambiguous else 1 + args.batch_retries) * len(batches)} "
+              f"pending_batches={len(pending)} reasoning=high "
               f"cache_breakpoint=after_nine_files batch_size={args.batch_size} "
-              f"resumed={args.resume}")
+              f"resumed={args.resume} continue_on_batch_error={args.continue_on_batch_error} "
+              f"sdk_auto_retries=0 "
+              f"429_fallback_seconds={RATE_LIMIT_BACKOFF_BASE_SECONDS:.0f} "
+              f"recovery_spacing_seconds={RATE_LIMIT_RECOVERY_SPACING_SECONDS:.0f}")
+
+    def defer_failed_batch(index: int, batch: list[dict], attempt: dict,
+                           error: Exception, *, ambiguous: bool) -> None:
+        """Persist the failed batch, then let independent batches continue.
+
+        Success journals always win. Missing/failed results are never invented.
+        """
+        identifier = batch_id(index)
+        status = ("AMBIGUOUS_DEFERRED_NO_DECISION" if ambiguous
+                  else "RETRY_BUDGET_EXHAUSTED_NO_DECISION")
+        failed = {"batch_id": identifier, "batch_index": index,
+                  "batch_size": len(batch),
+                  "item_ids": [row["item_id"] for row in batch],
+                  "queue_sha256": settings["queue_sha256"],
+                  "pdf_sha256": settings["pdf_sha256"],
+                  "input_digest": batch_digest(batch),
+                  "recovery_round": attempt["recovery_round"],
+                  "attempts": len(round_attempts(state, identifier,
+                                                  attempt["recovery_round"])),
+                  "error_type": type(error).__name__,
+                  "error_detail": str(error)[:350],
+                  "reason_code": ("AMBIGUOUS_SUBMISSION_UNCOMMITTED" if ambiguous
+                                  else "EXPLICIT_RETRIES_EXHAUSTED"),
+                  "status": status}
+        with commit_lock:
+            if journal_path(out, index).exists():
+                raise RuntimeError(f"Success journal already exists: {identifier}")
+            atomic_json(failed_path(out, index), failed)
+            known_now = read_journals(out, batches, settings)
+            publish_aggregate(out, active, batches, settings, state, known_now)
+        log_event("DEFERRED", f"batch={identifier} status={status} "
+                  f"attempts={failed['attempts']} remaining_batches_continue=true "
+                  f"retry_after_run_with=--resume,--retry-failed"
+                  + (",--retry-ambiguous" if ambiguous else ""))
 
     def evaluate(index: int, batch: list[dict]) -> None:
         identifier = batch_id(index)
         while not stop_event.is_set():
+            # Do not journal a send attempt until the shared rate gate admits it.
+            if not rate_gate.wait_for_slot(stop_event, identifier):
+                return
             with commit_lock:
-                past = [a for a in state["attempts"] if a["batch_id"] == identifier]
-                if len(past) >= 1 + args.batch_retries:
-                    raise RuntimeError(f"Retry budget exhausted for {identifier}")
+                if stop_event.is_set():
+                    return
+                round_number = recovery_round(state, identifier)
+                past = round_attempts(state, identifier, round_number)
+                if (args.retry_ambiguous and len(past) >= 1 + args.batch_retries and
+                        all(a.get("status") == "FAILED" and a.get("error_type") in
+                            ("ExplicitRateLimit", "ExplicitInvalidResponse") for a in past)):
+                    raise RuntimeError(f"Only safe retries exhausted for {identifier}; "
+                                       "explicit ambiguous retry authorization cannot bypass it")
+                all_past = [a for a in state["attempts"] if a["batch_id"] == identifier]
+                max_attempts_this_round = (args.ambiguous_submission_limit if args.retry_ambiguous
+                                           else 1 + args.batch_retries)
+                if len(past) >= max_attempts_this_round:
+                    raise RuntimeError(f"Submission budget exhausted for {identifier} in round {round_number}")
+                if args.retry_ambiguous and len(all_past) >= args.ambiguous_submission_limit:
+                    raise RuntimeError(f"Ambiguous submission limit exhausted for {identifier}: "
+                                       f"{len(all_past)}/{args.ambiguous_submission_limit}")
                 attempt_number = len(past) + 1
+                total_submission_number = len(all_past) + 1
+                display_limit = max_attempts_this_round
                 attempt = {"batch_id": identifier, "batch_index": index,
+                           "recovery_round": round_number,
                            "attempt_number": attempt_number,
+                           "submission_number_for_batch": total_submission_number,
+                           "ambiguous_retry_authorized": args.retry_ambiguous,
                            "status": "DISPATCH_SCHEDULED", "created_at_utc": utcnow()}
                 state["attempts"].append(attempt)
                 atomic_json(state_path, state)
@@ -923,7 +1248,7 @@ def run(args: argparse.Namespace) -> int:
                 attempt["dispatch_invoked_at_utc"] = utcnow()
                 atomic_json(state_path, state)
                 log_event("START", f"batch={identifier} position={index + 1}/{len(batches)} "
-                          f"items={len(batch)} attempt={attempt_number}/{1+args.batch_retries} "
+                          f"items={len(batch)} attempt={attempt_number}/{display_limit} "
                           f"committed={len(known)}/{len(active)}")
             batch_started = time.monotonic()
             try:
@@ -949,7 +1274,7 @@ def run(args: argparse.Namespace) -> int:
                                     "pdf_sha256": settings["pdf_sha256"],
                                     "queue_sha256": settings["queue_sha256"],
                                     "file_sha256": file_digests,
-                                    "model": model, "reasoning_effort": "medium",
+                                    "model": model, "reasoning_effort": "high",
                                     "model_json": proposed, "evidence_checks": checks,
                                     "all_nine_source_files_attached": True,
                                     "metadata": {"response_id": meta["response_id"],
@@ -967,35 +1292,97 @@ def run(args: argparse.Namespace) -> int:
                            "content_sha256": digest_text(jdump({"raw_model_json": raw,
                                                                 "item_records": records}))}
             except Exception as exc:
+                diagnostics = http_diagnostics(exc)
+                is_429 = isinstance(exc, ExplicitRateLimit)
+                is_408 = diagnostics.get("http_status") == 408
+                if is_429:
+                    suggested = azure_retry_after_seconds(diagnostics)
+                    fallback = min(RATE_LIMIT_BACKOFF_BASE_SECONDS * (2 ** (attempt_number - 1)),
+                                   RATE_LIMIT_BACKOFF_MAX_FALLBACK_SECONDS)
+                    delay = max(fallback, suggested if suggested is not None else 0)
+                    rate_gate.note_rate_limit(delay)
                 with commit_lock:
                     attempt["status"] = "FAILED"
                     attempt["error_type"] = type(exc).__name__
                     attempt["error_detail"] = str(exc)[:350]
                     attempt["failed_at_utc"] = utcnow()
+                    if diagnostics:
+                        attempt["http_diagnostics"] = diagnostics
+                    if is_429:
+                        attempt["429_shared_cooldown_seconds"] = delay
                     atomic_json(state_path, state)
-                log_event("FAILED", f"batch={identifier} attempt={attempt_number}/{1+args.batch_retries} "
+                log_event("FAILED", f"batch={identifier} attempt={attempt_number}/{display_limit} "
                           f"duration={time.monotonic()-batch_started:.1f}s "
                           f"error={type(exc).__name__}: {str(exc)[:240]}")
+                if diagnostics:
+                    log_event("HTTP_DIAG", f"batch={identifier} {jdump(diagnostics)}")
+                if is_429:
+                    log_event("THROTTLE", f"batch={identifier} shared_cooldown_seconds={delay:.1f} "
+                              f"azure_retry_seconds={suggested if suggested is not None else 'n/a'}")
+                if is_408:
+                    log_event("TIMEOUT", f"batch={identifier} http_status=408 "
+                              f"ambiguous_completion=true automatic_resubmission={args.retry_ambiguous}")
                 if is_structural(exc):
                     stop_event.set()
                     raise RuntimeError(f"Structural API/SDK error; stop submissions: "
                                        f"{identifier}: {type(exc).__name__}: {exc}") from exc
-                # Exactly as the latest evaluator, an ambiguous network failure
-                # cannot be automatically repeated; the server might have billed it.
-                if (is_retryable(exc) and attempt_number < 1 + args.batch_retries):
-                    delay = min(2 ** (attempt_number-1), 30)
+                # Separately budget explicit 429/invalid responses and ambiguous
+                # submissions. The existing normal retry budget remains three.
+                # An explicit --retry-ambiguous opt-in authorizes possible extra
+                # Azure charges, never overwrites successful journals, and caps
+                # the total submission count for this batch across all restarts.
+                round_history = round_attempts(state, identifier, round_number)
+                explicit_failures = sum(a.get("error_type") in
+                    ("ExplicitRateLimit", "ExplicitInvalidResponse") for a in round_history)
+                if (is_retryable(exc) and explicit_failures <= args.batch_retries and
+                        attempt_number < display_limit and
+                        (not args.retry_ambiguous or
+                         total_submission_number < args.ambiguous_submission_limit)):
+                    if is_429:
+                        log_event("RETRY", f"batch={identifier} shared_gate=true "
+                                  f"next_attempt={attempt_number+1}/{display_limit}")
+                        continue
+                    delay = min(2 ** min(attempt_number - 1, 5), 30)
                     log_event("RETRY", f"batch={identifier} after_seconds={delay} "
-                              f"next_attempt={attempt_number+1}/{1+args.batch_retries}")
-                    time.sleep(delay)
+                              f"next_attempt={attempt_number+1}/{display_limit}")
+                    if stop_event.wait(delay):
+                        return
                     continue
                 if not is_retryable(exc):
+                    # For a full queue pass, park an ambiguous batch after ONE
+                    # failed submission; run all remaining independent batches.
+                    # On an authorized failed-only pass, --retry-ambiguous allows
+                    # its re-submission, but this mode still parks it after one
+                    # unsuccessful attempt. No surprise 256-request burst.
+                    if args.continue_on_batch_error:
+                        defer_failed_batch(index, batch, attempt, exc, ambiguous=True)
+                        return
+                    # Legacy same-pass automatic retry (up to the 256 hard cap)
+                    # applies only when --continue-on-batch-error is ABSENT.
+                    if (args.retry_ambiguous and
+                            total_submission_number < args.ambiguous_submission_limit):
+                        delay = AMBIGUOUS_RETRY_DELAY_SECONDS
+                        log_event("AMBIGUOUS_RETRY", f"batch={identifier} "
+                                  f"submission={total_submission_number}/{args.ambiguous_submission_limit} "
+                                  f"retry_in_seconds={delay:.1f} "
+                                  "may_have_been_billed=true explicitly_authorized=true")
+                        if stop_event.wait(delay):
+                            return
+                        continue
                     stop_event.set()
-                    raise RuntimeError(f"Ambiguous submission for {identifier}; do not "
-                                       "auto-retry. Inspect run_state.json; explicit "
-                                       "--resume --retry-ambiguous required.") from exc
+                    raise RuntimeError(
+                        f"Ambiguous submission for {identifier}; "
+                        f"submission={total_submission_number}; "
+                        f"limit={args.ambiguous_submission_limit}. "
+                        "Stop to avoid accidental duplicate charges; "
+                        "--retry-ambiguous explicitly authorizes retries up to that limit.") from exc
                 failed = {"batch_id": identifier, "batch_index": index,
                           "batch_size": len(batch),
                           "item_ids": [row["item_id"] for row in batch],
+                          "queue_sha256": settings["queue_sha256"],
+                          "pdf_sha256": settings["pdf_sha256"],
+                          "input_digest": batch_digest(batch),
+                          "recovery_round": round_number,
                           "attempts": attempt_number,
                           "error_type": type(exc).__name__,
                           "error_detail": str(exc)[:350],
@@ -1019,7 +1406,7 @@ def run(args: argparse.Namespace) -> int:
                           f"items={len(batch)} duration={time.monotonic()-batch_started:.1f}s "
                           f"committed={len(known_now)}/{len(active)} "
                           f"({100*len(known_now)/len(active):.1f}%) "
-                          f"attempt={attempt_number}/{1+args.batch_retries} "
+                          f"attempt={attempt_number}/{display_limit} "
                           f"journal={journal_path(out, index).name}")
                 log_event("USAGE", f"batch={identifier} {usage_fields(usage)}")
                 for record in records:
@@ -1032,7 +1419,9 @@ def run(args: argparse.Namespace) -> int:
                 time.sleep(args.sleep)
             return
 
-    # Keep only max_workers submissions outstanding.  This prevents a Ctrl+C
+    # Keep only max_workers submissions outstanding.  A deferred batch failure
+    # does not stop later independent batches; structural errors still stop.
+    # This prevents a Ctrl+C
     # from accidentally draining a pre-submitted queue of paid Azure batches.
     errors = []
     interrupted = False
@@ -1104,7 +1493,8 @@ def main() -> int:
     parser.add_argument("--endpoint")
     parser.add_argument("--confidence-threshold", type=float, default=0.90)
     parser.add_argument("--max-output-tokens", type=int, default=32000)
-    parser.add_argument("--timeout", type=int, default=300)
+    parser.add_argument("--timeout", type=int, default=750,
+                        help="Per-request Azure SDK timeout in seconds (default: 750)")
     parser.add_argument("--concurrency", type=int, default=CONCURRENCY_DEFAULT)
     parser.add_argument("--batch-size", type=int, default=BATCH_SIZE_DEFAULT)
     parser.add_argument("--batch-retries", "--retries", dest="batch_retries", type=int,
@@ -1114,8 +1504,22 @@ def main() -> int:
                         help="Deprecated compatibility option. Only 0 is accepted; v10.6 forbids item-count truncation.")
     parser.add_argument("--sleep", type=float, default=0.0)
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--continue-on-batch-error", action="store_true",
+                        help="Defer each ambiguous transport error after ONE unsuccessful "
+                             "submission per batch and continue all later batches, even "
+                             "with --retry-ambiguous; never suppress structural/SDK "
+                             "errors. Retry failed batches in a separate pass "
+                             "separately with --resume --retry-failed "
+                             "and --retry-ambiguous when necessary")
+    parser.add_argument("--retry-failed", action="store_true",
+                        help="With --resume, explicitly retry exhausted failed batches "
+                             "with a fresh bounded attempt round; archive failure history")
     parser.add_argument("--retry-ambiguous", action="store_true",
-                        help="On resume, explicitly authorize resubmitting an uncommitted attempt")
+                        help="Explicitly allow automatic resubmission after ambiguous transport failures; "
+                             "may incur duplicate Azure charges, maximum 256 submissions per batch")
+    parser.add_argument("--ambiguous-submission-limit", type=int,
+                        default=AMBIGUOUS_SUBMISSION_LIMIT_DEFAULT,
+                        help="Hard per-batch ambiguous submission cap across resumes (default/max: 256)")
     parser.add_argument("--reupload-files", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
@@ -1125,11 +1529,14 @@ def main() -> int:
         not 1 <= args.concurrency <= CONCURRENCY_MAX or
         not 1 <= args.batch_size <= BATCH_SIZE_MAX or
         not 0 <= args.batch_retries <= 3 or
+        not 1 <= args.ambiguous_submission_limit <= AMBIGUOUS_SUBMISSION_LIMIT_MAX or
         args.limit != 0 or args.max_output_tokens < 1000 or args.timeout <= 0 or
-        args.sleep < 0 or (args.retry_ambiguous and not args.resume) or
+        args.sleep < 0 or
+        (args.retry_failed and not args.resume) or
         (args.reupload_files and not args.resume)):
         parser.error(f"Invalid configuration: concurrency 1..{CONCURRENCY_MAX}, "
                      f"batch-size 1..{BATCH_SIZE_MAX}, batch-retries 0..3, "
+                     f"ambiguous-submission-limit 1..{AMBIGUOUS_SUBMISSION_LIMIT_MAX}, "
                      "or incompatible other options")
     try:
         return run(args)
