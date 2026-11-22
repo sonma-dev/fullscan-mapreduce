@@ -31,3 +31,41 @@ twolevel_mapreduce-20261122
 Precision: 93.75%, Recall: 91.69%, F1-score: 92.71%, Duplicate: 7.34%
 
 Note that these values are the reported final best-effort results of the archived evaluations conducted under evaluation protocol version 10.6.
+
+statistical_analysis/script/semantic_decision_evaluator.py reviews queued items against the PDF and eight original Markdown specifications; final metric computation is a separate step.
+Install dependencies with: pip install 'openai>=2' pymupdf
+Set AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY. Run these Bash examples from a working directory containing the script, PDF, eight specifications, and llm_queue.jsonl.
+
+/***
+ * New run
+***/
+python3 "semantic_decision_evaluator.py" \
+  --pdf "./OrionDesk_AI_Detailed_Design_Specification.pdf" \
+  --spec-dir "./" \
+  --queue "./llm_queue.jsonl" \
+  --out-dir "./out" \
+  --model "gpt-6.2-sol" \
+  --batch-size 16 \
+  --concurrency 4 \
+  --batch-retries 3 \
+  --timeout 750 \
+  --continue-on-batch-error
+
+// Retry failed batches after the run finishes. Back up the dataset and ./out first.
+SCRIPT="./semantic_decision_evaluator.py"
+
+COMMON_ARGS=(
+  --pdf "./OrionDesk_AI_Detailed_Design_Specification.pdf"
+  --spec-dir "./"
+  --queue "./llm_queue.jsonl"
+  --out-dir "./out"
+  --model "gpt-6.2-sol"
+  --batch-size 16
+  --concurrency 4
+  --batch-retries 3
+)
+python3 "$SCRIPT" "${COMMON_ARGS[@]}" \
+  --resume \
+  --retry-failed \
+  --retry-ambiguous \
+  --continue-on-batch-error
