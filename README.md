@@ -2,7 +2,7 @@
 
 For experimental findings, evaluation metrics, and limitations, see [Experimental Results](result.md).
 
-**The key issue seems to be not the number of datasets, but the reliability of the statistical methodology.** On November 22, 2026, I recalculated the metrics using a more reliable statistical methodology than that of November 17. To inspect the previous metric calculations, see statistical_analysis/old/.
+**The key issue seems to be not the number of datasets, but the reliability of the statistical methodology.** On November 22, 2026, I recalculated the metrics using a more reliable statistical methodology than that of November 17. To inspect the previous metric calculations, see the "statistical_analysis/old/" directory.
 
 Based on my examination of these results, the MapReduce approach can achieve precision and recall scores approaching 100%, whereas the full-load approach falls significantly short.
 
