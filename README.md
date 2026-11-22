@@ -96,7 +96,7 @@ Local environment files, Python caches, logs, and generated results are covered 
 | Example | Processing strategy | Response-creation calls per successful upload |
 | --- | --- | --- |
 | [Full file](experiment/fullload/be/README.md) (`fullload`) | Sends the original document for stages 01–07, then generates stage 8 from their Markdown; no approval calls or approval gate. | `8` |
-| [Full file with Approval](experiment/fullload_approve/be/README.md) (`fullload_approval`) | Sends the original document for stages 01–07, then generates stage 8 from their Markdown, with an approval gate. | `8` |
+| [Full file with Approval](experiment/fullload_approve/be/README.md) (`fullload_approve`) | Sends the original document for stages 01–07, then generates stage 8 from their Markdown, with an approval gate. | `8` |
 | [One-level MapReduce](experiment/onelevel_mapreduce/be/README.md) (`onelevel_mapreduce`) | For stages 01–07, scans every chunk, then sends leaf evidence directly to a root reducer and a separate approval review. | `1 + 7 * (N + 3) + 1` |
 | [Two-level MapReduce](experiment/twolevel_mapreduce/be/README.md) (`twolevel_mapreduce`) | For stages 01–07, maps PDF sections or section parts, combines their evidence within chapter forks, then runs root reduction and a separate approval review. | `1 + 7 * (N + 2G + 3) + 1` |
 
