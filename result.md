@@ -37,7 +37,6 @@ Note that If I have enough time, I can also develop a dependency-graph-based Map
 - This experiment uses a relatively simple approach based on an LLM model alone. Using application software such as Codex or Kiro may potentially produce higher evaluation scores.
 - I prepared a common atomic requirements ledger derived from the original PDF for use across all five methods.
 - The improvement in precision is more likely attributable to the approval process than to MapReduce itself, that is, splitting the document and scanning it in full. In contrast, the improvement in recall appears to stem from the splitting process that scans every chunk.
-- I did not add an approval process to the full-load approach because having a single LLM perform the approval could lead to the same errors being repeated. However, an approval process might be meaningful in a multi-pass full-load approach.
 - We might be able to use the OpenAI Decisions API or TypeSafe AI Jev for the approval process and for calculating precision, recall, and F1-scores.
 
 ## Assumptions / Prerequisites
