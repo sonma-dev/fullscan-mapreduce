@@ -60,7 +60,7 @@ I will systematically document my findings through empirical research.
 
 - In hierarchical MapReduce, root and fork nodes can perform more effective approval processes than a full-load approach because they can obtain detailed information propagated upward from their descendant leaf nodes.
 
-## Extending Hierarchical MapReduce to Network Theory
+## Extending Hierarchical MapReduce to Graph Theory
 
 *Directed Acyclic Graph*
 - When we extend MapReduce approaches to more complex structures, using a Directed Acyclic Graph (DAG) instead of an N-level tree may allow us to achieve higher accuracy and completeness than 1-level MapReduce approaches.
