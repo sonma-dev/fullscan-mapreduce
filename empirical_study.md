@@ -33,7 +33,7 @@ I will systematically document my findings through empirical research.
 
 - If we extract atomic requirements chapter by chapter and then assemble the overall set, we lose the document-wide context, leading to inconsistent granularity and semantic duplication. Current LLMs still struggle to sequentially deduplicate thousands of atomic requirements based on semantic equivalence.
   - When building a gold set, if we extract atomic requirements chapter by chapter without global context and attempt to merge them at the end, semantic deduplication may fail, causing the number of atomic requirements to grow excessively.
-  - In such cases, human-guided MapReduce is effective: first establish a document-wide reference set of atomic requirements, then extract atomic requirements chapter by chapter and reconcile them against the reference set while resolving duplicates.
+  - In such cases, sequential MapReduce is effective: first establish a document-wide reference set of atomic requirements, then extract atomic requirements chapter by chapter, reconciling them against the global set, resolving semantic duplicates, and progressively updating the global set after each chapter.
 
 ## Greenfield and Brownfield Development
 
