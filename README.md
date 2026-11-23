@@ -22,7 +22,7 @@ I explicitly state that the input token count for the Full Load approach did not
 
 I evaluated precision, recall, and F1-score using **the same dataset**, exclusively for **the full-load scenario** with the reasoning effort set to extra high (`xhigh`).
 
-- Even if XHigh improves precision and recall, performance degradation similar to the low setting will likely occur as the number and size of files increase.
+- Even if XHigh improves precision and recall, performance degradation likely occurs as the number and size of files increase.
 - Because this pipeline passes previously generated specifications into subsequent generation steps, it becomes increasingly susceptible to issues such as "lost in the middle" and "context rot." This risk is further exacerbated by the fact that each generated specification averages approximately 120 KB under XHigh, compared to about 50 KB under low.
 - It should also be noted that truncation is disabled by default in the OpenAI Responses API, which increases the risk of exceeding context limits or degrading attention over long inputs.
 - Collectively, these findings imply that, although a MapReduce approach might increase token consumption and wall-clock time, **it can enhance the LLM's reasoning capabilities.**
@@ -91,7 +91,7 @@ API responses, existing JSON results, and logs provide inputs for usage and timi
 
 Local environment files, Python caches, logs, and generated results are covered by the root [.gitignore](.gitignore). Each backend also has its own `.gitignore`.
 
-## The three backends
+## The four backends
 
 | Example | Processing strategy | Response-creation calls per successful upload |
 | --- | --- | --- |
@@ -151,7 +151,7 @@ python -m pip install -r requirements.txt
 cp -n .env-sample .env
 ```
 
-The copy command preserves an existing `.env`. All three backends provide `.env-sample`; credential fields are blank, while the MapReduce samples include suggested resource settings. Edit the selected backend's `.env` for your environment:
+The copy command preserves an existing `.env`. All four backends provide `.env-sample`; credential fields are blank, while the MapReduce samples include suggested resource settings. Edit the selected backend's `.env` for your environment:
 
 | Setting | Configuration |
 | --- | --- |
@@ -221,7 +221,7 @@ Missing or invalid authentication returns `401`; empty uploads or invalid filena
 
 ## Markdown output files
 
-All three backends save one UTF-8 Markdown file per completed stage. Each request uses its own `<repository>/res/<prefix>_<YYYYMMDDhhmmss>_<unique suffix>/` directory, where the prefix is `fullload`, `onelevel`, or `twolevel` and the timestamp is the run-start time in **JST (UTC+09:00)**. Runs starting in the same second cannot overwrite one another. The location is resolved from the source file and does not depend on the server's working directory.
+All four backends save one UTF-8 Markdown file per completed stage. Each request uses its own `<repository>/res/<prefix>_<YYYYMMDDhhmmss>_<unique suffix>/` directory, where the prefix is `fullload`, `onelevel`, or `twolevel` and the timestamp is the run-start time in **JST (UTC+09:00)**. Runs starting in the same second cannot overwrite one another. The location is resolved from the source file and does not depend on the server's working directory.
 
 A successful run contains:
 
@@ -285,7 +285,7 @@ A missing or invalid Map `strength` triggers up to two repairs of only that chun
 
 ## 1200-second deadline retries
 
-All three backends retry a request whose client-side 1200-second deadline expires
+All four backends retry a request whose client-side 1200-second deadline expires
 up to three additional times, each with a fresh 1200-second deadline. This covers
 Root, chapter aggregation, contexts, approval, and full-file generation. Only the
 affected request is resubmitted with the same prompt, attachments, and options;
@@ -306,7 +306,7 @@ See each backend README for cancellation, usage, and timeout details.
 
 ## Response processing retries
 
-All three backends resubmit failed background Responses jobs for `server_error`, `rate_limit_exceeded`, and `vector_store_timeout`, up to three additional times. A code-less Azure processing error that explicitly recommends retrying is also recognized. Delays are 2, 4, and 8 seconds plus up to one second of jitter. Other terminal failures, including incomplete output, stop without processing retries.
+All four backends resubmit failed background Responses jobs for `server_error`, `rate_limit_exceeded`, and `vector_store_timeout`, up to three additional times. A code-less Azure processing error that explicitly recommends retrying is also recognized. Delays are 2, 4, and 8 seconds plus up to one second of jitter. Other terminal failures, including incomplete output, stop without processing retries.
 
 The same prompt, attachments, candidate, and evidence are reused. A failed Root approval therefore retries only that approval request. Submission, polling, HTTP retries, and processing retries share the current 1200-second deadline attempt; a deadline retry starts a fresh window, and the outer 300-second leaf Map deadline still applies within each Map attempt. Usage includes failed attempts when reported, and becomes `null` if any attempt's usage is incomplete. See each backend README for error classification, timeout interaction, and logs.
 
@@ -314,7 +314,7 @@ Both MapReduce backends require at least two distinct source finding IDs per rel
 
 ## Output token limits
 
-All three backends set `max_output_tokens` explicitly. These budgets include visible output and reasoning tokens:
+All four backends set `max_output_tokens` explicitly. These budgets include visible output and reasoning tokens:
 
 | Calls | Environment variable | Default | Application maximum |
 | --- | --- | ---: | ---: |
