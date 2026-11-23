@@ -37,7 +37,7 @@ Note that If I have enough time, I can also develop a dependency-graph-based Map
 - Results may change in the future as issues such as lost in the middle and context rot improve, and reasoning capabilities become more advanced.
 - This experiment uses a relatively simple approach based on an LLM model alone. Using application software such as Codex or Kiro may potentially produce higher evaluation scores.
 - I prepared a common atomic requirements ledger derived from the original PDF for use across all five methods.
-- The improvement in precision is more likely attributable to the approval process than to MapReduce itself, that is, splitting the document and scanning it in full. In contrast, the improvement in recall appears to stem from the splitting process that scans every chunk.
+- In the Full Load experiments, the approval gate was associated with improved recall and F1-score, but lower precision. Further controlled experiments are needed to isolate its causal contribution.
 - We might be able to use the OpenAI Decisions API or TypeSafe AI Jev for the approval process and for calculating precision, recall, and F1-scores.
 
 ## Assumptions / Prerequisites
@@ -72,3 +72,5 @@ Note that the eighth document consolidates unresolved architectural decisions, s
   - SaaS-hosted ChatGPT
   - gpt-6.2-sol in Azure AI Foundry
   - Reasoning effort: High
+
+See also the findings I have documented in [my empirical study](empirical_study.md).
