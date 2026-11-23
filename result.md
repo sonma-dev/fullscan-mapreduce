@@ -72,7 +72,3 @@ Note that the eighth document consolidates unresolved architectural decisions, s
   - SaaS-hosted ChatGPT
   - gpt-6.2-sol in Azure AI Foundry
   - Reasoning effort: High
-
-Note that, considering AI agents fine-tuned by OpenAI, SaaS-hosted ChatGPT may be a superior metric calculation environment compared to Codex.
-Also note that in N-level hierarchical MapReduce, the number of concurrent LLMs should be increased depending on $N$.
-
