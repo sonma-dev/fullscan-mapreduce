@@ -14,6 +14,7 @@ I explicitly state that the same statistical method was used to calculate the pr
 
 ## Main conclusion
 
+- **It seems highly likely that MapReduce approaches are superior, yet recall still falls short of 100%. This is a critical issue in large-scale specification-driven development.** We need to aim for 100% precision and recall in the future through fine-tuning and other improvements.
 - In the Full Load approach, I did not provide the LLM with input exceeding its context window. **Nevertheless, the Full Load approach yielded lower precision, recall, and F1 scores than the MapReduce approaches.**
 - It is necessary to verify the validity of the experimental methods, including the source code logic and the calculation of TP, FP, TN, and FN.
 - Further investigation into N-level hierarchical MapReduce is necessary before drawing definitive conclusions.
@@ -69,14 +70,9 @@ Note that the eighth document consolidates unresolved architectural decisions, s
   - Local Execution Environment: Gentoo Linux, Windows Subsystem for Linux
 - Statistical evaluation details:
   - SaaS-hosted ChatGPT
+  - gpt-6.2-sol in Azure AI Foundry
   - Reasoning effort: High
 
 Note that, considering AI agents fine-tuned by OpenAI, SaaS-hosted ChatGPT may be a superior metric calculation environment compared to Codex.
 Also note that in N-level hierarchical MapReduce, the number of concurrent LLMs should be increased depending on $N$.
-
-## Statistical Validation of the Evaluation Metrics
-I verified the validity of the statistical method by applying it to the same set of multiple datasets for each of the three methods.
-During this verification, when precision or recall was close to 100%, the values remained unchanged.
-However, in the statistical calculations for full-load, when precision deviated substantially from 100%, the precision value varied considerably.
-Although the precision and recall estimates obtained from the full-load evaluations with low reasoning effort are not reliable, I believe we can confidently conclude that neither precision nor recall reaches 100%.
 
